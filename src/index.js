@@ -8,7 +8,8 @@ import './stylesheet/fonts.css';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <BrowserRouter basename="wallet-team-project-client-side"></BrowserRouter>
-    <App />
+    <BrowserRouter basename="wallet-team-project-client-side">
+      <App />
+    </BrowserRouter>
   </React.StrictMode>
 );
