@@ -1,11 +1,11 @@
 import { Routes, Route } from 'react-router-dom';
-import Test from './Test';
+import Logo from './Logo/Logo';
 
 export const App = () => {
   return (
     <>
       <Routes>
-        <Route path="/" element={<Test />} />
+        <Route path="/" element={<Logo />} />
       </Routes>
     </>
   );
