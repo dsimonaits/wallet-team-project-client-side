@@ -1,4 +1,4 @@
-import logo from '../../iamges/logo.svg';
+import logo from '../../images/logo.svg';
 import { LogoContainer, LogoIcon, LogoText } from './Logo.styled';
 
 const Logo = () => {
