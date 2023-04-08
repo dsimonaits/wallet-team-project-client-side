@@ -15,25 +15,34 @@ import {
   TableSum,
   TableBtn,
   EditBtn,
+  IconBtn,
   DeleteBtn,
 } from './Table.styled';
 
 const Table = () => {
   // const [data, setData] = useState([]);
 
-  // useEffect(async () => {
-  //   axios.get('./data.json').then(response => {
-  //     setData(response.data);
-  //   });
+  // useEffect(() => {
+  //   async function fetchData() {
+  //     try {
+  //       const response = await axios.get(
+  //         'https://wallet-team-project-hg8k.onrender.com/transactions'
+  //       );
+  //       setData(response.data);
+  //     } catch (error) {
+  //       console.error(error);
+  //     }
+  //   }
+  //   fetchData();
   // }, []);
-  console.log(data.transactions);
+  // console.log(data);
 
   const handleEdit = id => {
-    // Обработка редактирования записи с указанным ID
+    // update
   };
 
   const handleDelete = id => {
-    // Обработка удаления записи с указанным ID
+    // delete
   };
 
   return (
@@ -60,7 +69,7 @@ const Table = () => {
             <TableSum type={row.type}>{row.sum}</TableSum>
             <TableBtn>
               <EditBtn onClick={() => handleEdit(row.id)}>
-                <img src={icon} alt="" />
+                <IconBtn src={icon} alt="" />
               </EditBtn>
               <DeleteBtn onClick={() => handleDelete(row.id)}>Delete</DeleteBtn>
             </TableBtn>

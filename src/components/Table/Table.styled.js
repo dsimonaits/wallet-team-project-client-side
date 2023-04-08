@@ -34,6 +34,7 @@ export const Th = styled.th`
   padding: 10px;
   text-align: center;
 `;
+////////////////////////////////////////////////////////////
 
 export const TbodyWrapper = styled.tbody``;
 
@@ -58,12 +59,36 @@ export const TableSum = styled.td`
   color: ${props => (props.type === '-' ? '#ff6596' : '#24cca7')};
 `;
 
+////////////////////////////////////////////////////////
+
 export const TableBtn = styled.td`
   height: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 5px;
+`;
+
+export const IconBtn = styled.img`
+  width: 14px;
+  height: 14px;
+`;
+
+export const EditBtn = styled.button`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  border: none;
+  width: 18px;
+  height: 18px;
+  background: none;
+  cursor: pointer;
+  transition: box-shadow 250ms ease-in-out;
+
+  :hover {
+    box-shadow: 0 0 10px #24cca7;
+  }
 `;
 
 export const DeleteBtn = styled.button`
@@ -74,12 +99,10 @@ export const DeleteBtn = styled.button`
   border-radius: 20px;
   margin: 0 5px;
   cursor: pointer;
-`;
+  transition: box-shadow 250ms ease-in-out, background-color 250ms ease-in-out;
 
-export const EditBtn = styled.button`
-  border: none;
-  background: none;
-  width: 14px;
-  height: 14px;
-  cursor: pointer;
+  :hover {
+    /* background-color: #24f0a7; */
+    box-shadow: 0 0 8px #24cca7;
+  }
 `;
