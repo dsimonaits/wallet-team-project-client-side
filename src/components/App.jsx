@@ -6,6 +6,7 @@ export const App = () => {
     <>
       <Routes>
         <Route path="/" element={<Logo />} />
+        <Route path="/test" element={"Тэст компонент"} />
       </Routes>
     </>
   );
