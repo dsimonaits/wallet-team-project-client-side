@@ -9,6 +9,7 @@ import {
   TbodyWrapper,
   Thead,
   Tr,
+  TrWrapperTable,
   Th,
   Td,
   TableSum,
@@ -49,7 +50,7 @@ const Table = () => {
       </Thead>
       <TbodyWrapper>
         {data.transactions.map(row => (
-          <Tr key={row.id}>
+          <TrWrapperTable key={row.id}>
             <Td>{row.date}</Td>
             <Td>{row.type}</Td>
             <Td>{row.category}</Td>
@@ -63,7 +64,7 @@ const Table = () => {
               </EditBtn>
               <DeleteBtn onClick={() => handleDelete(row.id)}>Delete</DeleteBtn>
             </TableBtn>
-          </Tr>
+          </TrWrapperTable>
         ))}
       </TbodyWrapper>
     </TableWrapper>

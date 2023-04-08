@@ -16,7 +16,13 @@ export const Thead = styled.thead`
 
 export const Tr = styled.tr`
   padding: 10px;
-  border-bottom: 2px solid #dcdcdf;
+`;
+
+export const TrWrapperTable = styled.tr`
+  padding: 10px;
+  :not(:last-child) {
+    border-bottom: 2px solid #dcdcdf;
+  }
 `;
 
 export const Th = styled.th`
