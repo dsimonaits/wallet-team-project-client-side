@@ -1,4 +1,4 @@
-// import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 // import axios from 'axios';
 import EllipsisText from 'react-ellipsis-text';
 import data from './data.json';
@@ -28,22 +28,31 @@ import {
 } from './Table.styled';
 
 const Table = () => {
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
   // const [data, setData] = useState([]);
 
-  // useEffect(() => {
-  //   async function fetchData() {
-  //     try {
-  //       const response = await axios.get(
-  //         'https://wallet-team-project-hg8k.onrender.com/transactions'
-  //       );
-  //       setData(response.data);
-  //     } catch (error) {
-  //       console.error(error);
-  //     }
-  //   }
-  //   fetchData();
-  // }, []);
+  useEffect(() => {
+    //   async function fetchData() {
+    //     try {
+    //       const response = await axios.get(
+    //         'https://wallet-team-project-hg8k.onrender.com/transactions'
+    //       );
+    //       setData(response.data);
+    //     } catch (error) {
+    //       console.error(error);
+    //     }
+    //   }
+    //   fetchData();
+
+    window.addEventListener('resize', handleResize);
+
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
   // console.log(data);
+
+  const handleResize = () => {
+    setIsMobile(window.innerWidth <= 768);
+  };
 
   const handleEdit = id => {
     // update
@@ -52,8 +61,6 @@ const Table = () => {
   const handleDelete = id => {
     // delete
   };
-
-  const isMobile = window.innerWidth <= 768;
 
   if (isMobile) {
     return (
