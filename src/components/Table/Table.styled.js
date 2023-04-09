@@ -1,17 +1,93 @@
 import styled from 'styled-components';
 
+export const MobileCardWrapper = styled.div`
+  width: 280px;
+  margin: 0 auto;
+`;
+
+export const TransactionList = styled.ul`
+  padding: 0;
+  background: #ffffff;
+  justify-content: center;
+  list-style: none;
+  border-radius: 10px;
+  margin: 8px;
+`;
+
+export const TransactionItem = styled.li`
+  padding: 12px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-left: 5px solid
+    ${props => (props.type === '-' ? '#ff6596' : '#24cca7')};
+  :not(:last-child) {
+    border-bottom: 2px solid #dcdcdf;
+  }
+`;
+
+export const TitleText = styled.span`
+  font-family: 'Circe';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 27px;
+`;
+
+export const Text = styled.span`
+  font-family: 'Circe';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  text-align: right;
+`;
+
+export const TextSum = styled.span`
+  font-family: 'Circe';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 24px;
+  text-align: right;
+  color: ${props => (props.type === '-' ? '#ff6596' : '#24cca7')};
+`;
+
+export const IconBtnMobile = styled.img`
+  width: 14px;
+  height: 14px;
+  margin-right: 5px;
+`;
+
+export const EditBtnMobile = styled.button`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px 0px 12px 4px;
+  border-radius: 20px;
+  border: none;
+  background: none;
+  cursor: pointer;
+  transition: box-shadow 250ms ease-in-out, background 250ms ease-in-out;
+
+  :hover {
+    /* background: #24cca7; */
+    box-shadow: 0 0 10px #24cca7;
+  }
+`;
+
+////////////////////////////////////////////////////
+
 export const TableWrapper = styled.table`
   padding: 10px;
   border-collapse: collapse;
-  /* background-color: #1212; */
   width: 715px;
   height: 306px;
   margin: 0 auto;
 `;
 
 export const Thead = styled.thead`
-  background: #ffffff;
-  border-radius: 20px;
+  /* background: #1346f0; */
 `;
 
 export const Tr = styled.tr`
@@ -55,7 +131,6 @@ export const TableSum = styled.td`
   font-size: 16px;
   line-height: 24px;
   padding: 10px;
-
   color: ${props => (props.type === '-' ? '#ff6596' : '#24cca7')};
 `;
 
@@ -66,7 +141,7 @@ export const TableBtn = styled.td`
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 5px;
+  /* gap: 5px; */
 `;
 
 export const IconBtn = styled.img`
@@ -80,13 +155,14 @@ export const EditBtn = styled.button`
   justify-content: center;
   border-radius: 50%;
   border: none;
-  width: 18px;
-  height: 18px;
+  width: 20px;
+  height: 20px;
   background: none;
   cursor: pointer;
-  transition: box-shadow 250ms ease-in-out;
+  transition: box-shadow 250ms ease-in-out, background 250ms ease-in-out;
 
   :hover {
+    /* background: #24cca7; */
     box-shadow: 0 0 10px #24cca7;
   }
 `;

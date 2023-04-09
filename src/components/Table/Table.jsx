@@ -5,6 +5,14 @@ import data from './data.json';
 import icon from './pencil.png';
 
 import {
+  MobileCardWrapper,
+  TransactionList,
+  TransactionItem,
+  TitleText,
+  Text,
+  TextSum,
+  EditBtnMobile,
+  IconBtnMobile,
   TableWrapper,
   TbodyWrapper,
   Thead,
@@ -45,6 +53,45 @@ const Table = () => {
     // delete
   };
 
+  const isMobile = window.innerWidth <= 768;
+
+  if (isMobile) {
+    return (
+      <MobileCardWrapper>
+        {data.transactions.map(row => (
+          <TransactionList key={row.id}>
+            <TransactionItem type={row.type}>
+              <TitleText>Date:</TitleText> <Text>{row.date}</Text>
+            </TransactionItem>
+            <TransactionItem type={row.type}>
+              <TitleText>Type:</TitleText> <Text>{row.type}</Text>
+            </TransactionItem>
+            <TransactionItem type={row.type}>
+              <TitleText>Category:</TitleText> <Text>{row.category}</Text>
+            </TransactionItem>
+            <TransactionItem type={row.type}>
+              <TitleText>Comment:</TitleText>
+              <Text>
+                <EllipsisText text={row.comment} length={'15'} />
+              </Text>
+            </TransactionItem>
+            <TransactionItem type={row.type}>
+              <TitleText>Sum:</TitleText>{' '}
+              <TextSum type={row.type}>{row.sum}</TextSum>
+            </TransactionItem>
+            <TransactionItem type={row.type}>
+              <DeleteBtn onClick={() => handleDelete(row.id)}>Delete</DeleteBtn>
+              <EditBtnMobile onClick={() => handleEdit(row.id)}>
+                <IconBtnMobile src={icon} alt="" />
+                Edit
+              </EditBtnMobile>
+            </TransactionItem>
+          </TransactionList>
+        ))}
+      </MobileCardWrapper>
+    );
+  }
+
   return (
     <TableWrapper>
       <Thead>
@@ -57,6 +104,7 @@ const Table = () => {
           <Th></Th>
         </Tr>
       </Thead>
+
       <TbodyWrapper>
         {data.transactions.map(row => (
           <TrWrapperTable key={row.id}>
