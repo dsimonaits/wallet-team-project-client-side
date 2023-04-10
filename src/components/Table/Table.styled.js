@@ -66,7 +66,7 @@ export const EditBtnMobile = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 4px 0px 12px 4px;
+  padding: 4px;
   border-radius: 20px;
   border: none;
   background: none;
