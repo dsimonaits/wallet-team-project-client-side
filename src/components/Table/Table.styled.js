@@ -94,10 +94,6 @@ export const Thead = styled.thead``;
 export const Tr = styled.tr`
   position: relative;
   padding: 10px;
-  /* background: #1346f0; */
-  /* border: 5px solid #1346f0; */
-  /* border-radius: 10%; */
-  overflow: hidden;
 
   ::after {
     content: ' ';
@@ -106,7 +102,9 @@ export const Tr = styled.tr`
     position: absolute;
     width: 100%;
     height: 100%;
-    background-color: #fff;
+    /* background-color: #fff; */
+    background: #24cca7;
+
     border-radius: 30px;
     z-index: -1;
   }
