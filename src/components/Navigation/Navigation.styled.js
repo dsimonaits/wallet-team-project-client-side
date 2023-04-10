@@ -10,33 +10,25 @@ export const Nav = styled.nav`
 
   @media screen and (max-width: 767.9px) {
     max-width: 186px;
-
-  };
+  }
 
   @media screen and (min-width: 768px) {
     flex-direction: column;
-
   }
 `;
 
 export const NavItem = styled.li`
-
   @media screen and (min-width: 768px) {
-  
     &:not(:first-child) {
       margin-top: 21px;
     }
-
-}
-`
-
+  }
+`;
 
 export const LinkName = styled.span`
-font-size: 18px;
-font-weight: 400;
-font-family: var( --secondary-font-family);
-
-
+  font-size: 18px;
+  font-weight: 400;
+  font-family: var(--secondary-font-family);
 
   @media screen and (max-width: 767px) {
     position: absolute;
@@ -52,30 +44,36 @@ font-family: var( --secondary-font-family);
   }
 
   @media screen and (min-width: 768px) {
-  
     margin-left: 23px;
-  
   }
 `;
 
 export const NavLinkStyled = styled(NavLink)`
-color: var( --primary-text-color);
-text-decoration: none;
+  color: var(--primary-text-color);
+  text-decoration: none;
   @media screen and (min-width: 768px) {
-  
-  display:flex;
-  align-items:center;
+    display: flex;
+    align-items: center;
+  }
 
-}
+  & svg {
+    fill: var(--acsent-text-color2);
+  }
 
-  &:hover ,
+  &:hover,
   &:focus {
-    filter: drop-shadow( 0px 3px 10px #4a56e280);
+    filter: drop-shadow(0px 3px 10px #4a56e280);
+  }
 
+  &:hover svg,
+  &:focus svg {
+    fill: var(--acsent-text-color);
+    filter: drop-shadow(0px 3px 10px #4a56e280);
   }
 
   &.active svg {
-    filter: drop-shadow( 0px 3px 10px #4a56e280);
+    fill: var(--acsent-text-color);
+    filter: drop-shadow(0px 3px 10px #4a56e280);
   }
   &.active span {
     font-weight: 700;
