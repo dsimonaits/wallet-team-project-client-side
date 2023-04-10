@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 
+// MOBILE ////////////////////////////////////////
 export const MobileCardWrapper = styled.div`
   width: 280px;
   margin: 0 auto;
@@ -12,6 +13,7 @@ export const TransactionList = styled.ul`
   list-style: none;
   border-radius: 10px;
   margin: 8px;
+  overflow: hidden;
 `;
 
 export const TransactionItem = styled.li`
@@ -21,6 +23,7 @@ export const TransactionItem = styled.li`
   justify-content: space-between;
   border-left: 5px solid
     ${props => (props.type === '-' ? '#ff6596' : '#24cca7')};
+
   :not(:last-child) {
     border-bottom: 2px solid #dcdcdf;
   }
@@ -76,7 +79,7 @@ export const EditBtnMobile = styled.button`
   }
 `;
 
-////////////////////////////////////////////////////
+// DESCTOP //////////////////////////////////////////////
 
 export const TableWrapper = styled.table`
   padding: 10px;
@@ -86,12 +89,27 @@ export const TableWrapper = styled.table`
   margin: 0 auto;
 `;
 
-export const Thead = styled.thead`
-  /* background: #1346f0; */
-`;
+export const Thead = styled.thead``;
 
 export const Tr = styled.tr`
+  position: relative;
   padding: 10px;
+  /* background: #1346f0; */
+  /* border: 5px solid #1346f0; */
+  /* border-radius: 10%; */
+  overflow: hidden;
+
+  ::after {
+    content: ' ';
+    top: 0;
+    left: 0;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: #fff;
+    border-radius: 30px;
+    z-index: -1;
+  }
 `;
 
 export const TrWrapperTable = styled.tr`

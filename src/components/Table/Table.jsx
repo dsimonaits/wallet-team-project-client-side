@@ -100,38 +100,41 @@ const Table = () => {
   }
 
   return (
-    <TableWrapper>
-      <Thead>
-        <Tr>
-          <Th>Date</Th>
-          <Th>Type</Th>
-          <Th>Category</Th>
-          <Th>Comment</Th>
-          <Th>Sum</Th>
-          <Th></Th>
-        </Tr>
-      </Thead>
-
-      <TbodyWrapper>
-        {data.transactions.map(row => (
-          <TrWrapperTable key={row.id}>
-            <Td>{row.date}</Td>
-            <Td>{row.type}</Td>
-            <Td>{row.category}</Td>
-            <Td>
-              <EllipsisText text={row.comment} length={'25'} />
-            </Td>
-            <TableSum type={row.type}>{row.sum}</TableSum>
-            <TableBtn>
-              <EditBtn onClick={() => handleEdit(row.id)}>
-                <IconBtn src={icon} alt="" />
-              </EditBtn>
-              <DeleteBtn onClick={() => handleDelete(row.id)}>Delete</DeleteBtn>
-            </TableBtn>
-          </TrWrapperTable>
-        ))}
-      </TbodyWrapper>
-    </TableWrapper>
+    <>
+      <TableWrapper>
+        <Thead>
+          <Tr>
+            <Th>Date</Th>
+            <Th>Type</Th>
+            <Th>Category</Th>
+            <Th>Comment</Th>
+            <Th>Sum</Th>
+            <Th></Th>
+          </Tr>
+        </Thead>
+        <TbodyWrapper>
+          {data.transactions.map(row => (
+            <TrWrapperTable key={row.id}>
+              <Td>{row.date}</Td>
+              <Td>{row.type}</Td>
+              <Td>{row.category}</Td>
+              <Td>
+                <EllipsisText text={row.comment} length={'25'} />
+              </Td>
+              <TableSum type={row.type}>{row.sum}</TableSum>
+              <TableBtn>
+                <EditBtn onClick={() => handleEdit(row.id)}>
+                  <IconBtn src={icon} alt="" />
+                </EditBtn>
+                <DeleteBtn onClick={() => handleDelete(row.id)}>
+                  Delete
+                </DeleteBtn>
+              </TableBtn>
+            </TrWrapperTable>
+          ))}
+        </TbodyWrapper>
+      </TableWrapper>
+    </>
   );
 };
 
