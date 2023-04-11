@@ -35,7 +35,7 @@ export const Name = styled.p`
   padding-right: 12px;
   font-size: 18px;
   line-height: 27px;
-  color: var(--placeholder-main-color);
+  color: var(--primary-grey-color);
 `;
 
 export const Button = styled.button`
@@ -48,7 +48,7 @@ export const Button = styled.button`
   border: none;
   background-color: transparent;
   cursor: pointer;
-  color: var(--placeholder-main-color);
+  color: var(--primary-grey-color);
   
   &:hover,
   &:focus {
@@ -70,7 +70,7 @@ export const LineSvg = styled.svg`
 export const ExitSvg = styled.svg`
   width: 18px;
   height: 18px;
-  fill: var(--placeholder-main-color);
+  fill: var(--primary-grey-color);
   transition: var(--transition);
   margin-right: 8px;
 `;
