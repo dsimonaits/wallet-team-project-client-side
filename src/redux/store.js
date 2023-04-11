@@ -1,22 +1,22 @@
-import { configureStore } from "@reduxjs/toolkit";
-import { globalReducer } from "./global/globalSlice";
+import { configureStore } from '@reduxjs/toolkit';
+import { globalReducer } from './global/globalSlice';
 import {
-  persistStore,
-  persistReducer,
+  // persistStore,
+  // persistReducer,
   FLUSH,
   REHYDRATE,
   PAUSE,
   PERSIST,
   PURGE,
   REGISTER,
-} from "redux-persist";
-import storage from "redux-persist/lib/storage";
+} from 'redux-persist';
+import storage from 'redux-persist/lib/storage';
 
-const authPersistConfig = {
-  key: "session",
-  storage,
-  whitelist: ["token"],
-};
+// const authPersistConfig = {
+//   key: "session",
+//   storage,
+//   whitelist: ["token"],
+// };
 
 export const store = configureStore({
   reducer: {
@@ -24,7 +24,7 @@ export const store = configureStore({
     // session: persistReducer(authPersistConfig, "sessionReducer"),
     // finance: "financeReducer",
   },
-  middleware: (getDefaultMiddleware) =>
+  middleware: getDefaultMiddleware =>
     getDefaultMiddleware({
       serializableCheck: {
         ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
