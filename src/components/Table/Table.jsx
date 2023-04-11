@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 // import axios from 'axios';
 import EllipsisText from 'react-ellipsis-text';
 import data from './data.json';
-import icon from './pencil.png';
+import icon from '../../images/pencil.png';
 
 import {
   MobileCardWrapper,
