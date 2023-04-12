@@ -1,5 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { globalReducer } from './global/globalSlice';
+import { transactionsReducer } from './statistic/statisticSlice';
 import {
   // persistStore,
   // persistReducer,
@@ -21,6 +22,7 @@ import {
 export const store = configureStore({
   reducer: {
     global: globalReducer,
+    transactions: transactionsReducer,
     // session: persistReducer(authPersistConfig, "sessionReducer"),
     // finance: "financeReducer",
   },
@@ -31,5 +33,6 @@ export const store = configureStore({
       },
     }),
 });
+
 
 // export const persistor = persistStore(store);
