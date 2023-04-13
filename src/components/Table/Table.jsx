@@ -11,7 +11,7 @@ import {
   selectTransactions,
 } from '../../redux/finance/financeSelectors';
 import EllipsisText from 'react-ellipsis-text';
-import data from './data.json';
+// import data from './data.json';
 import icon from '../../images/pencil.png';
 
 // STYLE ////////////////////////////////////
@@ -39,9 +39,10 @@ import {
 } from './Table.styled';
 
 // COMPONENT //////////////////////////////////////////////////////
+
 const Table = () => {
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
-  // const [transactionUpdate, setTransactionUpdate] = useState(null);
+  const [transactionUpdate, setTransactionUpdate] = useState(null);
   // const [data, setData] = useState([]);
 
   // const isLoading = useSelector(selectIsLoading);
@@ -62,13 +63,14 @@ const Table = () => {
     setIsMobile(window.innerWidth <= 768);
   };
 
-  const handleEdit = id => {
-    // update
+  const handleEdit = transactionId => {
+    const transaction = transactions.find(({ id }) => id === transactionId);
+    setTransactionUpdate(transaction);
   };
 
-  const handleDelete = id => {
-    //   // update
-  };
+  // const handleDelete = id => {
+  //   //   // update
+  // };
 
   function formatDate(dateString) {
     const date = new Date(dateString);
@@ -81,6 +83,7 @@ const Table = () => {
   }
 
   // MOBILE ///////////////////////////////////////////////////////
+
   if (isMobile) {
     return (
       <MobileCardWrapper>
