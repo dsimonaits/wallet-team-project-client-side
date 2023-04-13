@@ -26,7 +26,7 @@ const Currency = () => {
     fetchCurrencies();
   }, []);
 
-  console.log(currenCiesList);
+  console.log(isLoading);
 
   return (
     <CurrencyWrapper>
@@ -58,6 +58,7 @@ const Currency = () => {
                   </tr>
                 );
               }
+              return;
             })}
         </tbody>
       </Table>
