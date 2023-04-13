@@ -7,7 +7,7 @@ import {
   deleteTransaction,
 } from '../../redux/finance/financeOperations';
 import {
-  // selectIsLoading,
+  selectIsLoading,
   selectTransactions,
 } from '../../redux/finance/financeSelectors';
 import EllipsisText from 'react-ellipsis-text';
@@ -45,7 +45,7 @@ const Table = () => {
   const [transactionUpdate, setTransactionUpdate] = useState(null);
   // const [data, setData] = useState([]);
 
-  // const isLoading = useSelector(selectIsLoading);
+  const isLoading = useSelector(selectIsLoading);
   const transactions = useSelector(selectTransactions);
 
   const dispatch = useDispatch();
@@ -115,7 +115,7 @@ const Table = () => {
             </TransactionItem>
             <TransactionItem type={row.type.toString()}>
               <DeleteBtn onClick={() => dispatch(deleteTransaction(row._id))}>
-                {/* {isLoading ? 'Deleting' : 'Delete'} */}
+                {isLoading ? 'Deleting' : 'Delete'}
               </DeleteBtn>
               {/* <DeleteBtn onClick={() => handleDelete(row.id)}>Delete</DeleteBtn> */}
               <EditBtnMobile onClick={() => handleEdit(row._id)}>
@@ -167,7 +167,7 @@ const Table = () => {
                   <IconBtn src={icon} alt="edit" />
                 </EditBtn>
                 <DeleteBtn onClick={() => dispatch(deleteTransaction(row._id))}>
-                  {/* {isLoading ? 'Deleting' : 'Delete'} */}
+                  {isLoading ? 'Deleting' : 'Delete'}
                 </DeleteBtn>
                 {/* <DeleteBtn onClick={() => handleDelete(row._id)}>
                   Delete
