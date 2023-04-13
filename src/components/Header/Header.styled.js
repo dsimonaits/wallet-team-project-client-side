@@ -1,20 +1,20 @@
 import styled from 'styled-components';
 
 export const HeaderContainer = styled.header`
-  width: calc(100% - 40px);
+  width:100%;
   height: 60px;
   background-color: var(--primary-white-color);
-  padding: 15px 20px;
+  padding: 0 20px;
 
   @media screen and (min-width: 768px) {
-    width: calc(100% - 64px);
+    width: 768px;
     height: 80px;
-    padding: 20px 32px;
+    padding: 0 32px;
   }
 
   @media screen and (min-width: 1280px) {
-    width: calc(100% - 32px);
-    padding: 20px 16px;
+    width: 1280px;
+    padding: 0 16px;
   }
 `;
 
@@ -24,11 +24,12 @@ export const MainContainer = styled.div`
 `;
 
 export const LogoContainer = styled.div`
-  margin: auto 0;
+ margin-top: 20px;
 `;
 
 export const AuthContainer = styled.div`
   display: flex;
+  padding-top: 5px;
 `;
 
 export const Name = styled.p`
@@ -36,6 +37,10 @@ export const Name = styled.p`
   font-size: 18px;
   line-height: 27px;
   color: var(--primary-grey-color);
+
+  @media screen {
+    
+  }
 `;
 
 export const Button = styled.button`
