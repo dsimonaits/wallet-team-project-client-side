@@ -24,6 +24,7 @@ export const store = configureStore({
     global: globalReducer,
     // session: persistReducer(authPersistConfig, "sessionReducer"),
     finance: financeReducer,
+
   },
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware({
