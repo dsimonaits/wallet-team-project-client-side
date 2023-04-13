@@ -42,8 +42,10 @@ import {
 
 const Table = () => {
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
-  // const [transactionUpdate, setTransactionUpdate] = useState(null);
+  const [transactionUpdate, setTransactionUpdate] = useState(null);
   // const [data, setData] = useState([]);
+
+  console.log(transactionUpdate);
 
   const isLoading = useSelector(selectIsLoading);
   const transactions = useSelector(selectTransactions);
@@ -63,10 +65,10 @@ const Table = () => {
     setIsMobile(window.innerWidth <= 768);
   };
 
-  // const handleEdit = transactionId => {
-  //   const transaction = transactions.find(({ id }) => id === transactionId);
-  //   setTransactionUpdate(transaction);
-  // };
+  const handleEdit = transactionId => {
+    const transaction = transactions.find(({ id }) => id === transactionId);
+    setTransactionUpdate(transaction);
+  };
 
   // const handleDelete = id => {
   //   //   // update
@@ -118,8 +120,7 @@ const Table = () => {
                 {isLoading ? 'Deleting' : 'Delete'}
               </DeleteBtn>
               {/* <DeleteBtn onClick={() => handleDelete(row.id)}>Delete</DeleteBtn> */}
-              {/* <EditBtnMobile onClick={() => handleEdit(row._id)}> */}
-              <EditBtnMobile>
+              <EditBtnMobile onClick={() => handleEdit(row._id)}>
                 <IconBtnMobile src={icon} alt="edit" />
                 Edit
               </EditBtnMobile>
@@ -164,8 +165,7 @@ const Table = () => {
               </Td>
               <TableSum type={row.type.toString()}>{row.sum}</TableSum>
               <TableBtn>
-                {/* <EditBtn onClick={() => handleEdit(row._id)}> */}
-                <EditBtn>
+                <EditBtn onClick={() => handleEdit(row._id)}>
                   <IconBtn src={icon} alt="edit" />
                 </EditBtn>
                 <DeleteBtn onClick={() => dispatch(deleteTransaction(row._id))}>
