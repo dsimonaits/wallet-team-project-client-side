@@ -22,7 +22,7 @@ export const TransactionItem = styled.li`
   align-items: center;
   justify-content: space-between;
   border-left: 5px solid
-    ${props => (props.type === '-' ? '#ff6596' : '#24cca7')};
+    ${props => (props.type === 'true' ? '#24cca7' : '#ff6596')};
 
   :not(:last-child) {
     border-bottom: 2px solid #dcdcdf;
@@ -53,7 +53,7 @@ export const TextSum = styled.span`
   font-size: 16px;
   line-height: 24px;
   text-align: right;
-  color: ${props => (props.type === '-' ? '#ff6596' : '#24cca7')};
+  color: ${props => (props.type === 'true' ? '#24cca7' : '#ff6596')};
 `;
 
 export const IconBtnMobile = styled.img`
@@ -147,7 +147,7 @@ export const TableSum = styled.td`
   font-size: 16px;
   line-height: 24px;
   padding: 10px;
-  color: ${props => (props.type === '-' ? '#ff6596' : '#24cca7')};
+  color: ${props => (props.type === 'true' ? '#24cca7' : '#ff6596')};
 `;
 
 ////////////////////////////////////////////////////////

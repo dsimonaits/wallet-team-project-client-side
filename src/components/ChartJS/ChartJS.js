@@ -1,24 +1,27 @@
 import { Chart as ChartJS, ArcElement, Tooltip, Legend, Title } from 'chart.js';
 import { Doughnut } from 'react-chartjs-2';
 
-import { useSelector } from 'react-redux';
-import { allTransactions } from 'redux/statistic/statisticSelectors';
-
 ChartJS.register(ArcElement, Tooltip, Legend, Title);
 
-export const ChartJs = () => {
-  const transactions = useSelector(allTransactions);
-
+export const ChartJs = ({ transactions }) => {
   const total = transactions.reduce((acc, { sum }) => {
     return acc + sum;
   }, 0);
 
+  const category = transactions.reduce((acc, { category, sum }) => {
+    acc[category] = acc[category] ? acc[category] + sum : sum;
+
+    return acc;
+  }, {});
+
+  console.log(category);
+
   const data = {
-    labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+    labels: Object.keys(category),
     datasets: [
       {
         label: ' Sveta',
-        data: [2, 9, 3, 5, 2, 3],
+        data: Object.values(category),
         backgroundColor: [
           'rgba(255, 99, 132, 0.2)',
           'rgba(54, 162, 235, 0.2)',
@@ -63,24 +66,43 @@ export const ChartJs = () => {
     },
   };
 
-  const centerText = {
-    id: 'centerText',
-    beforeDatasetsDraw(chart, args, pluginOptions) {
-      const { ctx } = chart;
-      ctx.textAlign = 'center';
+  // const centerText = {
+  //   id: 'centerText',
+  //   beforeDatasetsDraw(chart, args, pluginOptions) {
+  //     const { ctx } = chart;
+  //     ctx.textAlign = 'center';
 
-      ctx.fillText(
-        `${total}`,
-        chart.getDatasetMeta(0).data[0].x,
-        chart.getDatasetMeta(0).data[0].y
-      );
-    },
-  };
-  const plugins = [centerText];
+  //     ctx.fillText(
+  //       `${total}`,
+  //       chart.getDatasetMeta(0).data[0].x,
+  //       chart.getDatasetMeta(0).data[0].y
+  //     );
+  //   },
+  // };
+  // const plugins = [centerText];
 
   return (
     <div style={{ width: '400px' }}>
-      <Doughnut data={data} options={options} plugins={plugins} />
+      <Doughnut
+        data={data}
+        options={options}
+        plugins={[
+          {
+            id: 'centerText',
+            beforeDatasetsDraw(chart, args, pluginOptions) {
+              const { ctx } = chart;
+              ctx.textAlign = 'center';
+
+              ctx.fillText(
+                `${total}`,
+                chart.getDatasetMeta(0).data[0].x,
+                chart.getDatasetMeta(0).data[0].y
+              );
+            },
+          },
+        ]}
+      />
+      )
     </div>
   );
 };

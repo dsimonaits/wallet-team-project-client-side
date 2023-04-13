@@ -1,25 +1,30 @@
 import { ChartJs } from 'components/ChartJS/ChartJS';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { getAllTransactions } from 'redux/statistic/statisticOperations';
-import { allTransactions } from 'redux/statistic/statisticSelectors';
+import { SelectLabels } from 'components/SelectLabels/SelectLabels';
+import { selectTransactions } from 'redux/finance/financeSelectors';
+import { fetchTransactions } from 'redux/finance/financeOperations';
 
 export const Statistics = () => {
-  //   const [s, setS] = useState(0);
+  const [s, setS] = useState(0);
   const dispatch = useDispatch();
 
+  const transactions = useSelector(selectTransactions);
+  // console.log(transactions);
   useEffect(() => {
-    dispatch(getAllTransactions());
+    dispatch(fetchTransactions());
   }, [dispatch]);
+
+  // useEffect(() => {
+  //   setS(transactions);
+  // }, [transactions]);
 
   //   const transactions = useSelector(allTransactions);
 
-  //   if (transactions.length !== 0) {
-  //     const total = transactions.reduce((acc, { sum }) => {
-  //       return acc + sum;
-  //     }, 0);
-  //     setS(total);
-  //   }
-
-  return <ChartJs />;
+  return (
+    <>
+      <ChartJs transactions={transactions} />
+      <SelectLabels />
+    </>
+  );
 };

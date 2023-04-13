@@ -1,6 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { globalReducer } from './global/globalSlice';
-import { transactionsReducer } from './statistic/statisticSlice';
+import { financeReducer } from './finance/financeSlice';
 import {
   // persistStore,
   // persistReducer,
@@ -22,9 +22,9 @@ import {
 export const store = configureStore({
   reducer: {
     global: globalReducer,
-    transactions: transactionsReducer,
+
     // session: persistReducer(authPersistConfig, "sessionReducer"),
-    // finance: "financeReducer",
+    finance: financeReducer,
   },
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware({
@@ -33,6 +33,5 @@ export const store = configureStore({
       },
     }),
 });
-
 
 // export const persistor = persistStore(store);
