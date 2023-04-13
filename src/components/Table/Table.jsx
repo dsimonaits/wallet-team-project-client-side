@@ -1,9 +1,20 @@
 import React, { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
 // import axios from 'axios';
+import { useSelector, useDispatch } from 'react-redux';
+import {
+  fetchTransactions,
+  deleteTransaction,
+} from '../../redux/finance/financeOperations';
+import {
+  selectIsLoading,
+  selectTransactions,
+} from '../../redux/finance/financeSelectors';
 import EllipsisText from 'react-ellipsis-text';
-import data from './data.json';
+// import data from './data.json';
 import icon from '../../images/pencil.png';
 
+// STYLE ////////////////////////////////////
 import {
   MobileCardWrapper,
   TransactionList,
@@ -27,69 +38,88 @@ import {
   DeleteBtn,
 } from './Table.styled';
 
+// COMPONENT //////////////////////////////////////////////////////
+
 const Table = () => {
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
+  const [transactionUpdate, setTransactionUpdate] = useState(null);
   // const [data, setData] = useState([]);
 
+  const isLoading = useSelector(selectIsLoading);
+  const transactions = useSelector(selectTransactions);
+
+  const dispatch = useDispatch();
+
   useEffect(() => {
-    //   async function fetchData() {
-    //     try {
-    //       const response = await axios.get(
-    //         'https://wallet-team-project-hg8k.onrender.com/transactions'
-    //       );
-    //       setData(response.data);
-    //     } catch (error) {
-    //       console.error(error);
-    //     }
-    //   }
-    //   fetchData();
+    dispatch(fetchTransactions());
 
     window.addEventListener('resize', handleResize);
 
     return () => window.removeEventListener('resize', handleResize);
-  }, []);
+  }, [dispatch]);
   // console.log(data);
 
   const handleResize = () => {
     setIsMobile(window.innerWidth <= 768);
   };
 
-  const handleEdit = id => {
-    // update
+  const handleEdit = transactionId => {
+    const transaction = transactions.find(({ id }) => id === transactionId);
+    setTransactionUpdate(transaction);
   };
 
-  const handleDelete = id => {
-    // delete
-  };
+  // const handleDelete = id => {
+  //   //   // update
+  // };
+
+  function formatDate(dateString) {
+    const date = new Date(dateString);
+    const day = date.getDate();
+    const month = date.getMonth() + 1;
+    const year = date.getFullYear();
+    return `${day < 10 ? '0' : ''}${day}.${
+      month < 10 ? '0' : ''
+    }${month}.${year}`;
+  }
+
+  // MOBILE ///////////////////////////////////////////////////////
 
   if (isMobile) {
     return (
       <MobileCardWrapper>
-        {data.transactions.map(row => (
-          <TransactionList key={row.id}>
-            <TransactionItem type={row.type}>
-              <TitleText>Date:</TitleText> <Text>{row.date}</Text>
+        {transactions.map(row => (
+          <TransactionList key={row._id}>
+            <TransactionItem type={row.type.toString()}>
+              <TitleText>Date:</TitleText> <Text>{formatDate(row.date)}</Text>
             </TransactionItem>
-            <TransactionItem type={row.type}>
-              <TitleText>Type:</TitleText> <Text>{row.type}</Text>
+            <TransactionItem type={row.type.toString()}>
+              <TitleText>Type:</TitleText>
+              {row.type.toString() === 'true' ? <Text>+</Text> : <Text>-</Text>}
             </TransactionItem>
-            <TransactionItem type={row.type}>
+            <TransactionItem type={row.type.toString()}>
               <TitleText>Category:</TitleText> <Text>{row.category}</Text>
             </TransactionItem>
-            <TransactionItem type={row.type}>
+            <TransactionItem type={row.type.toString()}>
               <TitleText>Comment:</TitleText>
               <Text>
-                <EllipsisText text={row.comment} length={'15'} />
+                {row.comment ? (
+                  <EllipsisText text={row.comment} length={20} />
+                ) : (
+                  '-'
+                )}
               </Text>
             </TransactionItem>
-            <TransactionItem type={row.type}>
-              <TitleText>Sum:</TitleText>{' '}
-              <TextSum type={row.type}>{row.sum}</TextSum>
+            <TransactionItem type={row.type.toString()}>
+              <TitleText>Sum:</TitleText>
+              <TextSum type={row.type.toString()}>{row.sum}</TextSum>
             </TransactionItem>
-            <TransactionItem type={row.type}>
-              <DeleteBtn onClick={() => handleDelete(row.id)}>Delete</DeleteBtn>
-              <EditBtnMobile onClick={() => handleEdit(row.id)}>
-                <IconBtnMobile src={icon} alt="" />
+            <TransactionItem type={row.type.toString()}>
+              <DeleteBtn onClick={() => dispatch(deleteTransaction(row._id))}>
+                {isLoading ? 'Deleting' : 'Delete'}
+              </DeleteBtn>
+              {/* <DeleteBtn onClick={() => handleDelete(row.id)}>Delete</DeleteBtn> */}
+              <EditBtnMobile onClick={() => handleEdit(row._id)}>
+                <IconBtnMobile src={icon} alt="edit" />
                 Edit
               </EditBtnMobile>
             </TransactionItem>
@@ -113,22 +143,35 @@ const Table = () => {
           </Tr>
         </Thead>
         <TbodyWrapper>
-          {data.transactions.map(row => (
-            <TrWrapperTable key={row.id}>
-              <Td>{row.date}</Td>
-              <Td>{row.type}</Td>
+          {transactions.map(row => (
+            <TrWrapperTable key={row._id}>
+              <Td>{formatDate(row.date)}</Td>
+              <Td>
+                {row.type.toString() === 'true' ? (
+                  <Text>+</Text>
+                ) : (
+                  <Text>-</Text>
+                )}
+              </Td>
               <Td>{row.category}</Td>
               <Td>
-                <EllipsisText text={row.comment} length={'25'} />
+                {row.comment ? (
+                  <EllipsisText text={row.comment} length={25} />
+                ) : (
+                  '-'
+                )}
               </Td>
-              <TableSum type={row.type}>{row.sum}</TableSum>
+              <TableSum type={row.type.toString()}>{row.sum}</TableSum>
               <TableBtn>
-                <EditBtn onClick={() => handleEdit(row.id)}>
-                  <IconBtn src={icon} alt="" />
+                <EditBtn onClick={() => handleEdit(row._id)}>
+                  <IconBtn src={icon} alt="edit" />
                 </EditBtn>
-                <DeleteBtn onClick={() => handleDelete(row.id)}>
-                  Delete
+                <DeleteBtn onClick={() => dispatch(deleteTransaction(row._id))}>
+                  {isLoading ? 'Deleting' : 'Delete'}
                 </DeleteBtn>
+                {/* <DeleteBtn onClick={() => handleDelete(row._id)}>
+                  Delete
+                </DeleteBtn> */}
               </TableBtn>
             </TrWrapperTable>
           ))}
@@ -136,6 +179,11 @@ const Table = () => {
       </TableWrapper>
     </>
   );
+};
+
+EllipsisText.propTypes = {
+  text: PropTypes.string.isRequired,
+  length: PropTypes.number.isRequired,
 };
 
 export default Table;
