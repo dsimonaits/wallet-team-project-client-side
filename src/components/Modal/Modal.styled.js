@@ -20,7 +20,7 @@ export const ModalContent = styled.div`
 
   @media screen and (min-width: 768px) {
     width: 540px;
-    height: 0;
+    height: 508px;
     border-radius: 20px;
     padding: 40px;
   }
