@@ -12,7 +12,9 @@ export const BalanceContainer = styled.div`
   width: 280px;
   height: 80px;
   left: 20px;
-  top: 128px;
+  /*top: 128px;*/
+  margin-bottom: 32px;
+  margin-top: 15px;
 
   background: #ffffff;
   border-radius: 30px;
@@ -22,14 +24,18 @@ export const BalanceContainer = styled.div`
     width: 336px;
     height: 80px;
     left: 32px;
-    top: 214px;
+    /*top: 214px;*/
+    margin-top: 28px;
+    margin-bottom: 20px;
   }
 
   @media ${mediaQueries.desktop} {
     width: 395px;
     height: 80px;
     left: 16px;
-    top: 214px;
+    /*top: 214px;*/
+    margin-bottom: 20px;
+    margin-top: 32px;
   }
 `;
 
@@ -65,8 +71,8 @@ export const TotalBalance = styled.p`
   /* position: absolute; */
   width: 175px;
   height: 36px;
-  left: 52px;
-  top: 160.8px;
+  margin-left: 32px;
+  margin-bottom: 11.2px;
 
   font-family: 'Poppins';
   font-style: normal;
