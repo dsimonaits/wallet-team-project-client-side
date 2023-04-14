@@ -4,13 +4,14 @@ import { useDispatch, useSelector } from 'react-redux';
 import { SelectLabels } from 'components/SelectLabels/SelectLabels';
 import { selectTransactions } from 'redux/finance/financeSelectors';
 import { fetchTransactions } from 'redux/finance/financeOperations';
+import { StatisticsList } from 'components/StatisticsList/StatisticsList';
 
 export const Statistics = () => {
   // const [s, setS] = useState(0);
   const dispatch = useDispatch();
 
   const transactions = useSelector(selectTransactions);
-  // console.log(transactions);
+
   useEffect(() => {
     dispatch(fetchTransactions());
   }, [dispatch]);
@@ -23,8 +24,13 @@ export const Statistics = () => {
 
   return (
     <>
-      <ChartJs transactions={transactions} />
-      <SelectLabels />
+      <div style={{ display: 'flex', alignItems: 'center' }}>
+        <ChartJs transactions={transactions} />
+        <div>
+          <SelectLabels />
+          <StatisticsList transactions={transactions} />
+        </div>
+      </div>
     </>
   );
 };
