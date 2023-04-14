@@ -13,7 +13,7 @@ export const App = () => {
   const location = useLocation();
   const navigate = useNavigate();
   useEffect(() => {
-    if (!isMobile && location.pathname === '/home/currency') {
+    if (!isMobile && location.pathname === '/currency') {
       navigate('/home');
     }
     if (location.pathname === '/') {
@@ -25,10 +25,10 @@ export const App = () => {
     <Routes>
       <Route path="/login" element={<LoginPage />} />
       {/* <Route path="/registration" element={</>} /> */}
-      <Route path="/home" element={<DashboardPage />}>
+      <Route path="/" element={<DashboardPage />}>
         {isMobile && <Route path="currency" element={<Currency />} />}
+        <Route path="home" element={<Table />} />
         <Route path="diagram" element={<Statistics />} />
-        <Route index element={<Table />} />
       </Route>
     </Routes>
   );
