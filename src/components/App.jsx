@@ -24,6 +24,7 @@ export const App = () => {
       <Route path="/home" element={<DashboardPage />}>
         {isMobile && <Route path="currency" element={<Currency />} />}
         <Route index element={<Table />} />
+        <Route path="/" element={<DashboardPage />} />
       </Route>
     </Routes>
   );
