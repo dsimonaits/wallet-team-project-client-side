@@ -3,13 +3,15 @@ import { NavLink } from 'react-router-dom';
 
 export const Nav = styled.nav`
   padding-top: 15px;
+  width: 300px;
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   flex-direction: row;
   list-style: none;
 
   @media screen and (max-width: 767.9px) {
     max-width: 186px;
+    margin: 0 auto 15px;
   }
 
   @media screen and (min-width: 768px) {
@@ -57,7 +59,7 @@ export const NavLinkStyled = styled(NavLink)`
   }
 
   & svg {
-    fill: var(--acsent-text-color2);
+    fill: var(--ascent-text-color2);
   }
 
   &:hover,
@@ -67,12 +69,12 @@ export const NavLinkStyled = styled(NavLink)`
 
   &:hover svg,
   &:focus svg {
-    fill: var(--acsent-text-color);
+    fill: var(--ascent-text-color);
     filter: drop-shadow(0px 3px 10px #4a56e280);
   }
 
   &.active svg {
-    fill: var(--acsent-text-color);
+    fill: var(--ascent-text-color);
     filter: drop-shadow(0px 3px 10px #4a56e280);
   }
   &.active span {

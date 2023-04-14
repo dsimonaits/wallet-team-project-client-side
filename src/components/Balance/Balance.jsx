@@ -1,4 +1,5 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 import { connect } from 'react-redux';
 import { BalanceContainer, BalanceTitle, TotalBalance } from './Balance.styled';
 
@@ -11,9 +12,9 @@ const Balance = ({ totalBalance }) => {
   );
 };
 
-const mapStateToProps = (state) => {
+const mapStateToProps = state => {
   return {
-    totalBalance: state.finance.totalBalance,
+    totalBalance: state.session.user.balance,
   };
 };
 

@@ -5,7 +5,7 @@ import * as yup from 'yup';
 import { Formik, ErrorMessage } from 'formik';
 import { toast } from 'react-toastify';
 import Logo from 'components/Logo/Logo';
-import ShowPwdButton from 'components/ShowPwdButton/ShowPwdButton'
+import ShowPwdButton from 'components/ShowPwdButton/ShowPwdButton';
 import {
   FormContainer,
   Form,
@@ -19,22 +19,16 @@ import {
   StyledBtn,
 } from 'components/LoginForm/LoginForm.styled';
 
-
-import operations from 'redux/auth/operations';
+import operations from 'redux/session/sessionOperations';
 
 const LoginForm = () => {
-     
- const dispatch = useDispatch();
- const navigate = useNavigate();
- 
- const [isRevealPwd, setIsRevealPwd] = useState(false);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
-      
- const schema = yup.object().shape({
-    email: yup
-      .string()
-      .email()
-      .required(),
+  const [isRevealPwd, setIsRevealPwd] = useState(false);
+
+  const schema = yup.object().shape({
+    email: yup.string().email().required(),
     password: yup
       .string()
       .min(6, 'must be at least 6 characters')
@@ -42,24 +36,21 @@ const LoginForm = () => {
       .required(),
   });
 
-   
   const onSubmit = (values, { resetForm }) => {
     const res = dispatch(operations.logIn(values));
 
-      if (res.error && res.payload === 401) {
-          toast.warning('Email or password is wrong');
-          return;
-      } else if (res.error) {
-          toast.warning('Sorry, something is wrong, please, try again');
-          return;
-      }
-     
+    if (res.error && res.payload === 401) {
+      toast.warning('Email or password is wrong');
+      return;
+    } else if (res.error) {
+      toast.warning('Sorry, something is wrong, please, try again');
+      return;
+    }
 
     resetForm();
   };
 
-    return (
-   
+  return (
     <FormContainer>
       <Formik
         initialValues={{
@@ -71,9 +62,9 @@ const LoginForm = () => {
       >
         {({ handleSubmit, handleChange, values }) => (
           <Form onSubmit={handleSubmit}>
-              <LogoContainer>
-                <Logo />
-              </LogoContainer>            
+            <LogoContainer>
+              <Logo />
+            </LogoContainer>
             <FormLabel>
               <FormField
                 type="email"
@@ -91,7 +82,7 @@ const LoginForm = () => {
 
             <FormLabel>
               <FormField
-                type={isRevealPwd ? "text" : "password"}
+                type={isRevealPwd ? 'text' : 'password'}
                 name="password"
                 value={values.password}
                 onChange={handleChange}
@@ -108,21 +99,19 @@ const LoginForm = () => {
                 render={msg => <ErrorText>{msg}</ErrorText>}
               />
             </FormLabel>
-              <StyledBtnMain type="submit">
-                Log In
-              </StyledBtnMain>
-              <StyledBtn
-                type="button"
-                onClick={() => {
-                  navigate('/registration');
-                }}
-              >
-                Register
-              </StyledBtn>
+            <StyledBtnMain type="submit">Log In</StyledBtnMain>
+            <StyledBtn
+              type="button"
+              onClick={() => {
+                navigate('/registration');
+              }}
+            >
+              Register
+            </StyledBtn>
           </Form>
         )}
       </Formik>
-            </FormContainer>
+    </FormContainer>
   );
 };
 

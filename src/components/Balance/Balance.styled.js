@@ -8,13 +8,13 @@ export const mediaQueries = {
 };
 
 export const BalanceContainer = styled.div`
-  position: absolute;
+  /* position: absolute; */
   width: 280px;
   height: 80px;
   left: 20px;
   top: 128px;
 
-  background: #FFFFFF;
+  background: #ffffff;
   border-radius: 30px;
 
   @media ${mediaQueries.tablet} {
@@ -33,7 +33,7 @@ export const BalanceContainer = styled.div`
 `;
 
 export const BalanceTitle = styled.h2`
-  position: absolute;
+  /* position: absolute; */
   width: 118px;
   height: 13px;
   left: 52px;
@@ -46,7 +46,7 @@ export const BalanceTitle = styled.h2`
   line-height: 18px;
   text-transform: uppercase;
 
-  color: #A6A6A6;
+  color: #a6a6a6;
 
   @media ${mediaQueries.tablet} {
     width: 141px;
@@ -64,7 +64,7 @@ export const BalanceTitle = styled.h2`
 `;
 
 export const TotalBalance = styled.p`
-  position: absolute;
+  /* position: absolute; */
   width: 175px;
   height: 36px;
   left: 52px;
@@ -94,4 +94,3 @@ export const TotalBalance = styled.p`
     top: 247px;
   }
 `;
-

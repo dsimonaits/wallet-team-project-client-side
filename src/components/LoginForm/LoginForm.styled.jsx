@@ -54,7 +54,7 @@ export const IconName = styled(name)`
   position: absolute;
   left: 10px;
   top: 4px;
-  fill: var(--primary-grey-color);;
+  fill: var(--primary-grey-color);
   transition: fill 200ms linear;
 `;
 
@@ -71,10 +71,10 @@ export const FormField = styled(Field)`
     -webkit-text-fill-color: var(--primary-text-color);
   }
   &:focus + ${IconPassword}, &:focus + ${IconMail}, &:focus + ${IconName} {
-    fill: var(--acsent-text-color);
+    fill: var(--ascent-text-color);
   }
   ::placeholder {
-    color: var(--primary-grey-color);;
+    color: var(--primary-grey-color);
   }
   @media ${mediaQueries.desktop} {
     width: 410px;
@@ -102,61 +102,58 @@ export const ErrorTextConfirm = styled(ErrorText)`
   }
 `;
 
-export const StyledBtnMain = styled.button` 
-    min-width: 300px;   
-    align-self: center;
-    font-family: var(--primary-font-family);
-    font-style: normal;
-    font-weight: 400;
-    font-size: 18px;
-    line-height: 1.5;
-    text-align: center;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    
-    color: var(--primary-white-color);
-    cursor: pointer;
-    border: none;
-    border-radius: 20px;
-    background-color: var(--greenblue);
-    padding: 13px 112px;
-    transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
-    &:hover{
-    box-shadow:  -4px 4px 6px 0 rgba(255,255,255,.5),
-              -4px 4px 6px 0 rgba(116, 125, 139, .5), 
-    inset -4px -4px 6px 0 rgba(255,255,255,.5),
-    inset -4px -4px 6px 0 rgba(0, 0, 0, .4);
-  }
-   `
+export const StyledBtnMain = styled.button`
+  min-width: 300px;
+  align-self: center;
+  font-family: var(--primary-font-family);
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 1.5;
+  text-align: center;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
 
+  color: var(--primary-white-color);
+  cursor: pointer;
+  border: none;
+  border-radius: 20px;
+  background-color: var(--greenblue);
+  padding: 13px 112px;
+  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  &:hover {
+    box-shadow: -4px 4px 6px 0 rgba(255, 255, 255, 0.5),
+      -4px 4px 6px 0 rgba(116, 125, 139, 0.5),
+      inset -4px -4px 6px 0 rgba(255, 255, 255, 0.5),
+      inset -4px -4px 6px 0 rgba(0, 0, 0, 0.4);
+  }
+`;
 
 export const StyledBtn = styled.button`
-    min-width: 300px;    
-    padding: 13px 98px;
-    margin-top: 20px;
-    align-self: center;
-    font-family: var(--primary-font-family);
-    font-size: 18px;
-    line-height: 1.5;
-    text-align: center;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
+  min-width: 300px;
+  padding: 13px 98px;
+  margin-top: 20px;
+  align-self: center;
+  font-family: var(--primary-font-family);
+  font-size: 18px;
+  line-height: 1.5;
+  text-align: center;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
 
-    color: var(--acsent-text-color);
-    cursor: pointer;
+  color: var(--ascent-text-color);
+  cursor: pointer;
 
-    border: 1px solid var(--acsent-text-color);
-    border-radius: 20px;
-    background-color: var(--primary-white-color);
-       
-    
-    transition: var(--transition);
-  
-  &:hover{
-    box-shadow:  -4px 4px 6px 0 rgba(255,255,255,.5),
-              -4px 4px 6px 0 rgba(116, 125, 139, .5), 
-    inset -4px -4px 6px 0 rgba(255,255,255,.5),
-    inset -4px -4px 6px 0 rgba(0, 0, 0, .4);
+  border: 1px solid var(--ascent-text-color);
+  border-radius: 20px;
+  background-color: var(--primary-white-color);
+
+  transition: var(--transition);
+
+  &:hover {
+    box-shadow: -4px 4px 6px 0 rgba(255, 255, 255, 0.5),
+      -4px 4px 6px 0 rgba(116, 125, 139, 0.5),
+      inset -4px -4px 6px 0 rgba(255, 255, 255, 0.5),
+      inset -4px -4px 6px 0 rgba(0, 0, 0, 0.4);
   }
-   
-`
+`;

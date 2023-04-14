@@ -9,41 +9,39 @@ export const ModalContainer = styled.div`
 `;
 
 export const LogoContainer = styled.div`
-
-display: flex;
+  display: flex;
   justify-content: center;
   margin-bottom: 40px;
-`
+`;
 export const Text = styled.p`
-font-weight: 400;
-font-size: 30px;
-line-height: 45px;
-`
+  font-weight: 400;
+  font-size: 30px;
+  line-height: 45px;
+`;
 
 export const ExitButton = styled.button`
-padding: 13px;
-font-size: 18px;
-line-height: 27px;
-text-align: center;
-letter-spacing: 0.1em;
-text-transform: uppercase;
-color: var(--acsent-text-color);
-border: 1px solid #4A56E2;
-background-color: var(--primary-white-color);
-border-radius: 20px;
-margin-bottom: 20px;
-`
+  padding: 13px;
+  font-size: 18px;
+  line-height: 27px;
+  text-align: center;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ascent-text-color);
+  border: 1px solid #4a56e2;
+  background-color: var(--primary-white-color);
+  border-radius: 20px;
+  margin-bottom: 20px;
+`;
 
 export const CancelButton = styled.button`
-padding: 13px;
-font-size: 18px;
-line-height: 27px;
-text-align: center;
-letter-spacing: 0.1em;
-text-transform: uppercase;
-color: var(--primary-white-color);
-border: none;
-background-color: var(--greenblue);
-border-radius: 20px;
-`
-
+  padding: 13px;
+  font-size: 18px;
+  line-height: 27px;
+  text-align: center;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--primary-white-color);
+  border: none;
+  background-color: var(--greenblue);
+  border-radius: 20px;
+`;

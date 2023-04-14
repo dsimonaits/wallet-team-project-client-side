@@ -13,7 +13,7 @@ const initialState = {
 };
 
 const financeSLice = createSlice({
-  name: 'transactions',
+  name: 'finance',
   initialState,
 
   extraReducers: builder => {

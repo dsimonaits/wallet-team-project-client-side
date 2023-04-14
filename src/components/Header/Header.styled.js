@@ -1,13 +1,13 @@
 import styled from 'styled-components';
 
 export const HeaderContainer = styled.header`
-  width:100%;
+  width: 100%;
   height: 60px;
   background-color: var(--primary-white-color);
   padding: 0 20px;
+  margin: 0 auto;
 
   @media screen and (min-width: 768px) {
-    width: 768px;
     height: 80px;
     padding: 0 32px;
   }
@@ -24,7 +24,7 @@ export const MainContainer = styled.div`
 `;
 
 export const LogoContainer = styled.div`
- margin-top: 20px;
+  margin-top: 20px;
 `;
 
 export const AuthContainer = styled.div`
@@ -39,7 +39,6 @@ export const Name = styled.p`
   color: var(--primary-grey-color);
 
   @media screen {
-    
   }
 `;
 
@@ -54,7 +53,7 @@ export const Button = styled.button`
   background-color: transparent;
   cursor: pointer;
   color: var(--primary-grey-color);
-  
+
   &:hover,
   &:focus {
     color: var(--pink);

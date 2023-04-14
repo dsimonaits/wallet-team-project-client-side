@@ -1,4 +1,4 @@
-export const selectTransactions = state => state.transactions.items;
-export const selectIsLoading = state => state.transactions.isLoading;
-export const selectError = state => state.transactions.error;
-export const selectFilter = state => state.transactions.filter;
+export const selectTransactions = state => state.finance.items;
+export const selectIsLoading = state => state.finance.isLoading;
+export const selectError = state => state.finance.error;
+export const selectFilter = state => state.finance.filter;
