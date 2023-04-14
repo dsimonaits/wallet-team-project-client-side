@@ -7,6 +7,7 @@ import Table from './Table/Table';
 import { Statistics } from './Statistics/Statistics';
 import Currency from './Currency/Currency';
 import DashboardPage from 'pages/DashboardPage/DashboardPage';
+import Spinner from './Spinner/Spinner';
 
 export const App = () => {
   const isMobile = useMediaQuery(mediaQueries.mobile);
@@ -22,6 +23,8 @@ export const App = () => {
   }, [isMobile, navigate, location.pathname]);
 
   return (
+    <>
+      <Spinner />
     <Routes>
       <Route path="/login" element={<LoginPage />} />
       {/* <Route path="/registration" element={</>} /> */}
@@ -31,5 +34,6 @@ export const App = () => {
         <Route index element={<Table />} />
       </Route>
     </Routes>
+    </>
   );
 };
