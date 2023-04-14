@@ -9,14 +9,11 @@ export const CurrencyWrapper = styled.div`
     width: 280px;
     min-height: 174px;
     border-radius: 30px;
+    margin: 0 auto;
 
     background-image: url(${mobileBackground});
 
     background-color: var(--ascent-text-color);
-
-    @media screen and (max-width: 767.9) {
-      margin: 0 auto;
-    }
   }
 
   @media screen and (min-width: 1280px) {
