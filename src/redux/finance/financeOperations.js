@@ -21,8 +21,16 @@ export const fetchTransactions = createAsyncThunk(
   'finance/fetchTransactions',
   async (_, { rejectWithValue }) => {
     try {
-      const { data } = await axios(`${BASE_URL}/transaction/getAll`);
-      return data.ResponseBody.data;
+      const {
+        data: { ResponseBody },
+      } = await axios(`${BASE_URL}/transaction/getAll`, {
+        headers: {
+          Authorization:
+            'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDM1YjRhOTI2YjJlOTllYTY5Y2E5N2YiLCJpYXQiOjE2ODE0MTE4MjUsImV4cCI6MTY4MjAxNjYyNX0.m-RceESTfxin6DVqUcDnClQ4IQKfKUjb9hpz_-mPfs0',
+        },
+      });
+
+      return ResponseBody.data;
     } catch (error) {
       return rejectWithValue(error);
     }

@@ -4,6 +4,9 @@ import mediaQueries from 'utils/media';
 import { useMediaQuery } from '@mui/material';
 import LoginPage from '../pages/auth/LoginPage';
 import Table from './Table/Table';
+import GlobalStoreTest from './GlobalStoreTest/GlobalStoreTest';
+import { Statistics } from './Statistics/Statistics';
+import Balance from './Balance/Balance';
 import Currency from './Currency/Currency';
 import DashboardPage from 'pages/DashboardPage/DashboardPage';
 
