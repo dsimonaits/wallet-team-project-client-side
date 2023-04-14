@@ -16,6 +16,7 @@ import icon from '../../images/pencil.png';
 
 // STYLE ////////////////////////////////////
 import {
+  Wrapper,
   MobileCardWrapper,
   TransactionList,
   TransactionItem,
@@ -149,7 +150,7 @@ const Table = () => {
   }
 
   return (
-    <>
+    <Wrapper>
       <TableWrapper>
         <Thead>
           <Tr>
@@ -200,7 +201,7 @@ const Table = () => {
           ))}
         </TbodyWrapper>
       </TableWrapper>
-    </>
+    </Wrapper>
   );
 };
 

@@ -1,5 +1,32 @@
 import styled from 'styled-components';
 
+export const Wrapper = styled.div`
+  overflow-y: auto;
+  width: 730px;
+  height: 306px;
+
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background-color: #dcdcdf;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    border-radius: 20px;
+    width: 20px;
+    height: 20px;
+    background-color: #24cca7;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background-color: #ff6596;
+    /* box-shadow: 0 0 10px #ff6596; */
+  }
+`;
+
 // MOBILE ////////////////////////////////////////
 export const MobileCardWrapper = styled.div`
   width: 280px;
@@ -164,6 +191,7 @@ export const TableBtn = styled.td`
   display: flex;
   align-items: center;
   justify-content: center;
+  padding: 10px;
   /* gap: 5px; */
 `;
 
