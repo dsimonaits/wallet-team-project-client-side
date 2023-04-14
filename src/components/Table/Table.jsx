@@ -16,6 +16,7 @@ import icon from '../../images/pencil.png';
 
 // STYLE ////////////////////////////////////
 import {
+  Wrapper,
   MobileCardWrapper,
   TransactionList,
   TransactionItem,
@@ -43,6 +44,8 @@ import {
 const Table = () => {
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
   const [transactionUpdate, setTransactionUpdate] = useState(null);
+  const [expandedRows, setExpandedRows] = useState({});
+
   // const [data, setData] = useState([]);
 
   console.log(transactionUpdate);
@@ -75,6 +78,7 @@ const Table = () => {
   //   //   // update
   // };
 
+  // DATE formatter //////////////////////////////////////////
   function formatDate(dateString) {
     const date = new Date(dateString);
     const day = date.getDate();
@@ -83,6 +87,14 @@ const Table = () => {
     return `${day < 10 ? '0' : ''}${day}.${
       month < 10 ? '0' : ''
     }${month}.${year}`;
+  }
+
+  // TOGGLE for comment //////////////////////////////////
+  function toggleRow(rowId) {
+    setExpandedRows({
+      ...expandedRows,
+      [rowId]: !expandedRows[rowId],
+    });
   }
 
   // MOBILE ///////////////////////////////////////////////////////
@@ -106,7 +118,12 @@ const Table = () => {
               <TitleText>Comment:</TitleText>
               <Text>
                 {row.comment ? (
-                  <EllipsisText text={row.comment} length={20} />
+                  <EllipsisText
+                    className="cursor"
+                    onClick={() => toggleRow(row._id)}
+                    text={row.comment}
+                    length={expandedRows[row._id] ? 100 : 20}
+                  />
                 ) : (
                   '-'
                 )}
@@ -133,7 +150,7 @@ const Table = () => {
   }
 
   return (
-    <>
+    <Wrapper>
       <TableWrapper>
         <Thead>
           <Tr>
@@ -159,7 +176,11 @@ const Table = () => {
               <Td>{row.category}</Td>
               <Td>
                 {row.comment ? (
-                  <EllipsisText text={row.comment} length={25} />
+                  <EllipsisText
+                    onClick={() => toggleRow(row._id)}
+                    text={row.comment}
+                    length={expandedRows[row._id] ? 100 : 20}
+                  />
                 ) : (
                   '-'
                 )}
@@ -180,7 +201,7 @@ const Table = () => {
           ))}
         </TbodyWrapper>
       </TableWrapper>
-    </>
+    </Wrapper>
   );
 };
 

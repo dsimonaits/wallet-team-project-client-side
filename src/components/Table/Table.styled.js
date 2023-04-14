@@ -1,5 +1,32 @@
 import styled from 'styled-components';
 
+export const Wrapper = styled.div`
+  overflow-y: auto;
+  width: 730px;
+  height: 306px;
+
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background-color: #dcdcdf;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    border-radius: 20px;
+    width: 20px;
+    height: 20px;
+    background-color: #24cca7;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background-color: #ff6596;
+    /* box-shadow: 0 0 10px #ff6596; */
+  }
+`;
+
 // MOBILE ////////////////////////////////////////
 export const MobileCardWrapper = styled.div`
   width: 280px;
@@ -23,7 +50,7 @@ export const TransactionItem = styled.li`
   justify-content: space-between;
   border-left: 5px solid
     ${props => (props.type === 'true' ? '#24cca7' : '#ff6596')};
-
+  cursor: default;
   :not(:last-child) {
     border-bottom: 2px solid #dcdcdf;
   }
@@ -44,6 +71,10 @@ export const Text = styled.span`
   font-size: 16px;
   line-height: 24px;
   text-align: right;
+
+  .cursor {
+    cursor: pointer;
+  }
 `;
 
 export const TextSum = styled.span`
@@ -94,6 +125,7 @@ export const Thead = styled.thead``;
 export const Tr = styled.tr`
   position: relative;
   padding: 10px;
+  cursor: default;
 
   ::after {
     content: ' ';
@@ -112,6 +144,8 @@ export const Tr = styled.tr`
 
 export const TrWrapperTable = styled.tr`
   padding: 10px;
+  cursor: default;
+
   :not(:last-child) {
     border-bottom: 2px solid #dcdcdf;
   }
@@ -157,6 +191,7 @@ export const TableBtn = styled.td`
   display: flex;
   align-items: center;
   justify-content: center;
+  padding: 10px;
   /* gap: 5px; */
 `;
 
