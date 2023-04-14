@@ -15,6 +15,9 @@ export const App = () => {
     if (!isMobile && location.pathname === '/home/currency') {
       navigate('/home');
     }
+    if (location.pathname === '/') {
+      navigate('/home');
+    }
   }, [isMobile, navigate, location.pathname]);
 
   return (
@@ -24,7 +27,6 @@ export const App = () => {
       <Route path="/home" element={<DashboardPage />}>
         {isMobile && <Route path="currency" element={<Currency />} />}
         <Route index element={<Table />} />
-        <Route path="*" element={<DashboardPage />} />
       </Route>
     </Routes>
   );
