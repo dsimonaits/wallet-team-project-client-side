@@ -1,5 +1,5 @@
 import { ChartJs } from 'components/ChartJS/ChartJS';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { SelectLabels } from 'components/SelectLabels/SelectLabels';
 import { selectTransactions } from 'redux/finance/financeSelectors';
