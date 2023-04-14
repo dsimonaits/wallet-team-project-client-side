@@ -8,36 +8,42 @@ export const mediaQueries = {
 };
 
 export const BalanceContainer = styled.div`
-  /* position: absolute; */
+  display: block;
   width: 280px;
   height: 80px;
   left: 20px;
-  top: 128px;
+  /*top: 128px;*/
+  margin-bottom: 32px;
+  margin-top: 15px;
 
   background: #ffffff;
   border-radius: 30px;
 
   @media ${mediaQueries.tablet} {
+    display: flex;
     width: 336px;
     height: 80px;
     left: 32px;
-    top: 214px;
+    /*top: 214px;*/
+    margin-top: 28px;
+    margin-bottom: 20px;
   }
 
   @media ${mediaQueries.desktop} {
     width: 395px;
     height: 80px;
     left: 16px;
-    top: 214px;
+    /*top: 214px;*/
+    margin-bottom: 20px;
+    margin-top: 32px;
   }
 `;
 
 export const BalanceTitle = styled.h2`
-  /* position: absolute; */
+  margin-left: 32px;
+  margin-top: 8px;
   width: 118px;
   height: 13px;
-  left: 52px;
-  top: 136px;
 
   font-family: 'Circe';
   font-style: normal;
@@ -51,15 +57,13 @@ export const BalanceTitle = styled.h2`
   @media ${mediaQueries.tablet} {
     width: 141px;
     height: 13px;
-    left: 72px;
-    top: 222px;
+    margin-left: 40px;
+    margin-top: 8px;
   }
 
   @media ${mediaQueries.desktop} {
     width: 94px;
     height: 13px;
-    left: 56px;
-    top: 222px;
   }
 `;
 
@@ -67,8 +71,8 @@ export const TotalBalance = styled.p`
   /* position: absolute; */
   width: 175px;
   height: 36px;
-  left: 52px;
-  top: 160.8px;
+  margin-left: 32px;
+  margin-bottom: 11.2px;
 
   font-family: 'Poppins';
   font-style: normal;
