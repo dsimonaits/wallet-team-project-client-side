@@ -1,10 +1,24 @@
 import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
+const token = {
+  set(token) {
+    axios.defaults.headers.common.Authorization = `Bearer ${token}`;
+  },
+
+  unset() {
+    axios.defaults.headers.common.Authorization = ``;
+  },
+};
+
+token.set(
+  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDM1YjRhOTI2YjJlOTllYTY5Y2E5N2YiLCJpYXQiOjE2ODE0MTE4MjUsImV4cCI6MTY4MjAxNjYyNX0.m-RceESTfxin6DVqUcDnClQ4IQKfKUjb9hpz_-mPfs0'
+);
+
 const BASE_URL = 'https://wallet-team-project-hg8k.onrender.com/api';
 
 export const fetchTransactions = createAsyncThunk(
-  'transactions/fetchTransactions',
+  'finance/fetchTransactions',
   async (_, { rejectWithValue }) => {
     try {
       const {
@@ -24,7 +38,7 @@ export const fetchTransactions = createAsyncThunk(
 );
 
 export const addTransaction = createAsyncThunk(
-  'transactions/addTransaction',
+  'finance/addTransaction',
   async (transaction, { rejectWithValue }) => {
     try {
       const { data } = await axios.post(
@@ -42,7 +56,7 @@ export const addTransaction = createAsyncThunk(
 );
 
 export const updateTransaction = createAsyncThunk(
-  'transactions/updateTransaction',
+  'finance/updateTransaction',
   async ({ type, category, comment, sum, id }, { rejectWithValue }) => {
     try {
       const { data } = await axios.patch(`${BASE_URL}/api/update/${id}`, {
@@ -63,7 +77,7 @@ export const updateTransaction = createAsyncThunk(
 );
 
 export const deleteTransaction = createAsyncThunk(
-  'transactions/deleteTransaction',
+  'finance/deleteTransaction',
   async (id, { rejectWithValue }) => {
     try {
       const { data } = await axios.delete(

@@ -1,22 +1,36 @@
-import { Routes, Route } from 'react-router-dom';
-import Logo from './Logo/Logo';
-
+import { Routes, Route, useNavigate, useLocation } from 'react-router-dom';
+import { useEffect } from 'react';
+import mediaQueries from 'utils/media';
+import { useMediaQuery } from '@mui/material';
+import LoginPage from '../pages/auth/LoginPage';
 import Table from './Table/Table';
 import GlobalStoreTest from './GlobalStoreTest/GlobalStoreTest';
 import { Statistics } from './Statistics/Statistics';
 import Balance from './Balance/Balance';
+import Currency from './Currency/Currency';
+import DashboardPage from 'pages/DashboardPage/DashboardPage';
 
 export const App = () => {
+  const isMobile = useMediaQuery(mediaQueries.mobile);
+  const location = useLocation();
+  const navigate = useNavigate();
+  useEffect(() => {
+    if (!isMobile && location.pathname === '/home/currency') {
+      navigate('/home');
+    }
+    if (location.pathname === '/') {
+      navigate('/home');
+    }
+  }, [isMobile, navigate, location.pathname]);
+
   return (
-    <>
-      <Routes>
-        <Route path="/" element={<Logo />} />
-        <Route path="/test" element={'Тэст компонент'} />
-        <Route path="/dashboard" element={<Table />} />
-        <Route path="/global" element={<GlobalStoreTest />} />
-        <Route path="/statistics" element={<Statistics />} />
-        <Route path="/balance" element={<Balance />} />
-      </Routes>
-    </>
+    <Routes>
+      <Route path="/login" element={<LoginPage />} />
+      {/* <Route path="/registration" element={</>} /> */}
+      <Route path="/home" element={<DashboardPage />}>
+        {isMobile && <Route path="currency" element={<Currency />} />}
+        <Route index element={<Table />} />
+      </Route>
+    </Routes>
   );
 };

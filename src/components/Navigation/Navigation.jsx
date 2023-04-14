@@ -1,4 +1,5 @@
 import Media from 'react-media';
+import mediaQueries from 'utils/media';
 import { ReactComponent as HomeSvg } from '../../images/home-icon.svg';
 import { ReactComponent as StatisticsSvg } from '../../images/statistics-icon.svg';
 import { ReactComponent as FinanceSvg } from '../../images/finance-icon.svg';
@@ -8,7 +9,7 @@ const Navigation = () => {
   return (
     <Nav>
       <NavItem>
-        <NavLinkStyled to="home">
+        <NavLinkStyled exact="true" to="/home">
           <HomeSvg />
           <LinkName>Home</LinkName>
         </NavLinkStyled>
@@ -19,12 +20,11 @@ const Navigation = () => {
           <LinkName>Statistics</LinkName>
         </NavLinkStyled>
       </NavItem>
-      <Media
-        queries={{ small: '(max-width: 767.9px)' }}>
+      <Media queries={mediaQueries}>
         {matches =>
-          matches.small && (
+          matches.mobile && (
             <NavItem>
-              <NavLinkStyled to="currencies">
+              <NavLinkStyled to="currency">
                 <FinanceSvg />
                 <LinkName>Currencies</LinkName>
               </NavLinkStyled>

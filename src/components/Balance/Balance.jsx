@@ -11,9 +11,9 @@ const Balance = ({ totalBalance }) => {
   );
 };
 
-const mapStateToProps = (state) => {
+const mapStateToProps = state => {
   return {
-    totalBalance: state.finance.totalBalance,
+    totalBalance: state.session.user.balance,
   };
 };
 

@@ -3,7 +3,7 @@ import { LogoContainer, LogoIcon, LogoText } from './Logo.styled';
 
 const Logo = () => {
   return (
-    <LogoContainer>
+    <LogoContainer to="/">
       <LogoIcon src={logo} alt="Logo"/>
       <LogoText>Wallet</LogoText>
     </LogoContainer>

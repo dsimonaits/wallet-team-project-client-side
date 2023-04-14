@@ -1,9 +1,17 @@
-import Media from 'react-media'
-import { mediaQueries } from '../../utils/media'
+import Media from 'react-media';
+import mediaQueries from '../../utils/media';
 import Logo from 'components/Logo/Logo';
-import { AuthContainer, Button, ExitSvg, HeaderContainer, LineSvg, LogoContainer, MainContainer, Name } from './Header.styled';
-import sprite from '../../images/sprite.svg'
-
+import {
+  AuthContainer,
+  Button,
+  ExitSvg,
+  HeaderContainer,
+  LineSvg,
+  LogoContainer,
+  MainContainer,
+  Name,
+} from './Header.styled';
+import sprite from '../../images/sprite.svg';
 
 export default function Header() {
   // const dispatch = useDispatch()
@@ -15,43 +23,34 @@ export default function Header() {
         <MainContainer>
           <LogoContainer>
             {/* <NavLink exact to="./"> */}
-                <Logo />
+            <Logo />
             {/* </NavLink> */}
-          </LogoContainer>  
+          </LogoContainer>
           <AuthContainer>
             <Name>Name</Name>
             <Media queries={mediaQueries}>
-              {(matches) =>
+              {matches =>
                 (matches.tablet || matches.desktop) && (
-                 <LineSvg>
+                  <LineSvg>
                     <use href={`${sprite}#icon-vertical-line`}></use>
                   </LineSvg>
                 )
               }
-            </Media>    
+            </Media>
             <Button
               // onClick={() => dispatch(openModalLogout())}
               type="button"
-            >  
+            >
               <ExitSvg>
                 <use href={`${sprite}#icon-exit`}></use>
               </ExitSvg>
               <Media queries={mediaQueries}>
-                {(matches) =>
-                  (matches.tablet || matches.desktop) && (
-                    <p>Exit</p>
-                  )
-                }
+                {matches => (matches.tablet || matches.desktop) && <p>Exit</p>}
               </Media>
- 
             </Button>
           </AuthContainer>
         </MainContainer>
       </HeaderContainer>
     </>
-  )
+  );
 }
-
-
-
-

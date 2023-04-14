@@ -49,6 +49,7 @@ const Table = () => {
 
   const isLoading = useSelector(selectIsLoading);
   const transactions = useSelector(selectTransactions);
+  console.log(transactions);
 
   const dispatch = useDispatch();
 

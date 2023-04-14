@@ -5,24 +5,25 @@ import background from '../../images/currencies/background-image.png';
 export const CurrencyWrapper = styled.div`
   background-repeat: no-repeat;
   background-position: bottom;
-  @media screen and (max-width: 767px) {
+  @media screen and (max-width: 1279px) {
     width: 280px;
     min-height: 174px;
     border-radius: 30px;
+    margin: 0 auto;
 
     background-image: url(${mobileBackground});
 
-    background-color: var(--acsent-text-color);
+    background-color: var(--ascent-text-color);
   }
 
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: 1280px) {
     width: 393px;
     min-height: 331px;
     border-radius: 30px;
 
     background-image: url(${background});
 
-    background-color: var(--acsent-text-color);
+    background-color: var(--ascent-text-color);
   }
 `;
 
@@ -31,11 +32,11 @@ export const Table = styled.table`
   color: var(--primary-white-color);
   text-align: center;
 
-  @media screen and (max-width: 767px) {
+  @media screen and (max-width: 1279px) {
     width: 280px;
   }
 
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: 1280px) {
     width: 393px;
 
     thead tr th {
@@ -54,7 +55,7 @@ export const Table = styled.table`
   }
 
   thead tr th {
-    background-color: var(--acsent-text-color2);
+    background-color: var(--ascent-text-color2);
     line-height: 50px;
     width: calc(100% / 3);
   }
