@@ -8,7 +8,7 @@ export const mediaQueries = {
 };
 
 export const BalanceContainer = styled.div`
-  /* position: absolute; */
+  display: block;
   width: 280px;
   height: 80px;
   left: 20px;
@@ -18,6 +18,7 @@ export const BalanceContainer = styled.div`
   border-radius: 30px;
 
   @media ${mediaQueries.tablet} {
+    display: flex;
     width: 336px;
     height: 80px;
     left: 32px;
@@ -33,11 +34,10 @@ export const BalanceContainer = styled.div`
 `;
 
 export const BalanceTitle = styled.h2`
-  /* position: absolute; */
+  margin-left: 32px;
+  margin-top: 8px;
   width: 118px;
   height: 13px;
-  left: 52px;
-  top: 136px;
 
   font-family: 'Circe';
   font-style: normal;
@@ -51,15 +51,13 @@ export const BalanceTitle = styled.h2`
   @media ${mediaQueries.tablet} {
     width: 141px;
     height: 13px;
-    left: 72px;
-    top: 222px;
+    margin-left: 40px;
+    margin-top: 8px;
   }
 
   @media ${mediaQueries.desktop} {
     width: 94px;
     height: 13px;
-    left: 56px;
-    top: 222px;
   }
 `;
 
