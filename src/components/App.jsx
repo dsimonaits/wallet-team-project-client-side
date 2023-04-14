@@ -4,9 +4,7 @@ import mediaQueries from 'utils/media';
 import { useMediaQuery } from '@mui/material';
 import LoginPage from '../pages/auth/LoginPage';
 import Table from './Table/Table';
-import GlobalStoreTest from './GlobalStoreTest/GlobalStoreTest';
 import { Statistics } from './Statistics/Statistics';
-import Balance from './Balance/Balance';
 import Currency from './Currency/Currency';
 import DashboardPage from 'pages/DashboardPage/DashboardPage';
 
@@ -29,6 +27,7 @@ export const App = () => {
       {/* <Route path="/registration" element={</>} /> */}
       <Route path="/home" element={<DashboardPage />}>
         {isMobile && <Route path="currency" element={<Currency />} />}
+        <Route path="diagram" element={<Statistics />} />
         <Route index element={<Table />} />
       </Route>
     </Routes>

@@ -6,7 +6,7 @@ import { selectTransactions } from 'redux/finance/financeSelectors';
 import { fetchTransactions } from 'redux/finance/financeOperations';
 
 export const Statistics = () => {
-  const [s, setS] = useState(0);
+  // const [s, setS] = useState(0);
   const dispatch = useDispatch();
 
   const transactions = useSelector(selectTransactions);
