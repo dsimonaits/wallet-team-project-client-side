@@ -15,7 +15,7 @@ export const App = () => {
     if (!isMobile && location.pathname === '/home/currency') {
       navigate('/home');
     }
-  }, [isMobile, navigate]);
+  }, [isMobile, navigate, location.pathname]);
 
   return (
     <Routes>

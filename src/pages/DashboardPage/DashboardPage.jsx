@@ -1,4 +1,3 @@
-import Container from 'components/Container/Container';
 import MainTab from 'components/MainTab/MainTab';
 import HomeTab from 'components/HomeTab/HomeTab';
 import Section from 'components/Section/Section';

@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import Container from 'components/Container/Container';
 export const LeftBar = styled.div`
   display: flex;
   flex-direction: column;

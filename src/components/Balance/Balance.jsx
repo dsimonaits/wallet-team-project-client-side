@@ -1,5 +1,4 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
 import { connect } from 'react-redux';
 import { BalanceContainer, BalanceTitle, TotalBalance } from './Balance.styled';
 
