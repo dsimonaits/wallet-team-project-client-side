@@ -1,6 +1,7 @@
 import Media from 'react-media';
 import mediaQueries from '../../utils/media';
 import Logo from 'components/Logo/Logo';
+import { useDispatch, useSelector } from 'react-redux';
 import {
   AuthContainer,
   Button,
@@ -12,19 +13,21 @@ import {
   Name,
 } from './Header.styled';
 import sprite from '../../images/sprite.svg';
+import ModalLogout from 'components/ModalLogout/ModalLogout';
+import { toggleModalLogout } from 'redux/global/globalSlice';
 
 export default function Header() {
-  // const dispatch = useDispatch()
+  const { isModalLogoutOpen } = useSelector((store) => store.global)
+  const dispatch = useDispatch()
   // const { name } = useSelector(getUser)
 
   return (
     <>
+      {isModalLogoutOpen && <ModalLogout/>}
       <HeaderContainer>
         <MainContainer>
           <LogoContainer>
-            {/* <NavLink exact to="./"> */}
             <Logo />
-            {/* </NavLink> */}
           </LogoContainer>
           <AuthContainer>
             <Name>Name</Name>
@@ -38,7 +41,7 @@ export default function Header() {
               }
             </Media>
             <Button
-              // onClick={() => dispatch(openModalLogout())}
+              onClick={() => dispatch(toggleModalLogout())}
               type="button"
             >
               <ExitSvg>

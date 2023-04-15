@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import Media from 'react-media';
 import mediaQueries from '../../utils/media';
 import {
@@ -8,17 +9,49 @@ import {
   CloseIcon,
 } from './Modal.styled';
 import sprite from '../../images/sprite.svg';
+import { useDispatch } from 'react-redux';
+import { toggleModalLogout,  toggleModalAddTransaction, toggleModalEditTransaction} from 'redux/global/globalSlice';
+
 
 export default function Modal({ children }) {
+  const dispatch = useDispatch()
+
+  const closeModal = () => {
+    dispatch(toggleModalLogout())
+    dispatch(toggleModalAddTransaction())
+    dispatch(toggleModalEditTransaction())
+  }
+
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.code === 'Escape') {
+        closeModal()
+      }
+    }
+
+    window.addEventListener('keydown', handleKeyDown)
+
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown)
+    }
+  }, [dispatch])
+
+  const handleBackdropClick = (e) => {
+    if (e.currentTarget === e.target) {
+      closeModal()
+    }
+  }
+
+  const modalRoot = document.querySelector('#modal-root')
   return (
     <>
-      <ModalWrapper>
+      <ModalWrapper onClick={handleBackdropClick}>
         <ModalContent>
           <Media queries={mediaQueries}>
             {matches =>
               (matches.tablet || matches.desktop) && (
                 <CloseBtnBox>
-                  <CloseButton>
+                  <CloseButton type='button' onClick={() => dispatch(closeModal())}>
                     <CloseIcon width="24" height="24">
                       <use href={`${sprite}#icon-close`} />
                     </CloseIcon>
@@ -29,7 +62,8 @@ export default function Modal({ children }) {
           </Media>
           {children}
         </ModalContent>
-      </ModalWrapper>
+      </ModalWrapper>,
+      modalRoot,
     </>
   );
 }
