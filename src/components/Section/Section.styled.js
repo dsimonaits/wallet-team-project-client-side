@@ -8,9 +8,11 @@ export const SectionStyled = styled.section`
   padding-top: 12px;
   min-height: 640px;
 
-  background-image: url(${Eliipse_Grey}), url(${Eliipse_Pink});
-  background-repeat: no-repeat;
-  background-position: 0px 100%, right top;
+  @media screen and (min-width: 768px) {
+    background-image: url(${Eliipse_Grey}), url(${Eliipse_Pink});
+    background-repeat: no-repeat;
+    background-position: 0px 100%, right top;
+  }
 
   @media screen and (max-width: 1200px) {
     padding-top: 32px;
