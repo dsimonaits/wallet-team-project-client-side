@@ -39,11 +39,16 @@ const sessionSlice = createSlice({
         state.token = null;
         state.isLoggedIn = false;
       })
-      .addCase(refreshUser.fulfilled, (state, { payload: { payload } }) => {
-        state.user = payload;
-        state.isLoggedIn = true;
-        state.isRefreshing = false;
-      })
+      .addCase(
+        refreshUser.fulfilled,
+        (state, { payload: { name, balance, email } }) => {
+          state.user.name = name;
+          state.user.email = email;
+          state.user.balance = balance;
+          state.isLoggedIn = true;
+          state.isRefreshing = false;
+        }
+      )
       .addCase(refreshUser.pending, state => {
         state.isRefreshing = true;
       })

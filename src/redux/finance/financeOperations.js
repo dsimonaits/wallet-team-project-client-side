@@ -2,17 +2,15 @@ import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { toast } from 'react-toastify';
 
-const token = {
-  set(token) {
-    axios.defaults.headers.common.Authorization = `Bearer ${token}`;
-  },
+// const token = {
+//   set(token) {
+//     axios.defaults.headers.common.Authorization = `Bearer ${token}`;
+//   },
 
-  unset() {
-    axios.defaults.headers.common.Authorization = ``;
-  },
-};
-
-token.set(token);
+//   unset() {
+//     axios.defaults.headers.common.Authorization = ``;
+//   },
+// };
 
 const BASE_URL = 'https://wallet-team-project-hg8k.onrender.com/api';
 
