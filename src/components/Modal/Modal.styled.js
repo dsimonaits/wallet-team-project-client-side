@@ -10,6 +10,7 @@ export const ModalWrapper = styled.div`
   justify-content: center;
   align-items: center;
   background: rgba(0, 0, 0, 0.25);
+  z-index: 1;
 `;
 export const ModalContent = styled.div`
   width: 100vw;
@@ -20,8 +21,8 @@ export const ModalContent = styled.div`
   z-index:1000;
 
   @media screen and (min-width: 768px) {
-    width: 540px;
-    height: 508px;
+    width: auto;
+    height: auto;
     border-radius: 20px;
     padding: 40px;
   }
