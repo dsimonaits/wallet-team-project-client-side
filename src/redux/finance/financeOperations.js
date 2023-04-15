@@ -77,16 +77,16 @@ export const addTransaction = createAsyncThunk(
 
 export const updateTransaction = createAsyncThunk(
   'finance/updateTransaction',
-  async ({ type, category, comment, sum, id }, { rejectWithValue }) => {
+  async ({ type, category, comment, sum, _id }, { rejectWithValue }) => {
     try {
-      const { data } = await axios.patch(`${BASE_URL}/api/update/${id}`, {
+      const { data } = await axios.put(`${BASE_URL}/api/update`, {
         type,
         category,
         comment,
         sum,
+        _id,
       });
 
-      // console.log(data);
       toast.success('Transaction updated successfully', {
         position: 'top-right',
         autoClose: 5000,
@@ -117,11 +117,11 @@ export const updateTransaction = createAsyncThunk(
 
 export const deleteTransaction = createAsyncThunk(
   'finance/deleteTransaction',
-  async (id, { rejectWithValue }) => {
+  async (_id, { rejectWithValue }) => {
     try {
-      const { data } = await axios.delete(
-        `${BASE_URL}/transaction/delete/${id}`
-      );
+      const { data } = await axios.delete(`${BASE_URL}/transaction/delete`, {
+        data: { _id },
+      });
       // console.log(data);
       toast.success('Transaction successfully removed', {
         position: 'top-right',
@@ -134,7 +134,7 @@ export const deleteTransaction = createAsyncThunk(
         theme: 'light',
       });
 
-      return data.id;
+      return data._id;
     } catch (error) {
       toast.error('Transaction not removed');
 
