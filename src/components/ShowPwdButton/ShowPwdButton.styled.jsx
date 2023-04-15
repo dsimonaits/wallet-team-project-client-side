@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import mediaQueries from '../../utils/media';
 import { ReactComponent as EyeShow } from 'images/formicons/eye-password-show.svg';
 import { ReactComponent as EyeHide } from 'images/formicons/eye-password-hide.svg';
 
@@ -11,7 +10,7 @@ export const BtnIcon = styled.button`
   background: transparent;
   border: none;
   cursor: pointer;
-  @media ${mediaQueries.tablet} {
+  @media screen and (min-width: 768px) {
     right: 0;
     top: 0;
   }

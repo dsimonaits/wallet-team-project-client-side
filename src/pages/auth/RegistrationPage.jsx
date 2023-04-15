@@ -1,3 +1,4 @@
+import RegisterForm from '../../components/RegForm/RegForm'
 import {
     Section,
     PageContainer,
@@ -16,7 +17,7 @@ const LoginPage = () => {
           <Title>Finance App</Title>
         </ImgContainer>
               <FormWrapper>
-                  
+                 <RegisterForm />   
               </FormWrapper>
           </PageContainer>        
      </Section>

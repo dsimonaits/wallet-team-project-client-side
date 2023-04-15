@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import mediaQueries from '../../utils/media';
 import Eliipse_Grey from '../../images/authicons/ellipse-grey.png';
 import Eliipse_Pink from '../../images/authicons/ellipse-pink.png';
 import Log_Img_Desktop from '../../images/authicons/log-img-desktop.png';
@@ -21,7 +20,7 @@ export const PageContainer = styled.div`
   top: 0px;
   left: 0px;
   background-color: var(--primary-white-color);
-  @media ${mediaQueries.tablet} {
+  @media screen and (min-width: 768px) {
     background-color: #E5E5E5;
     background-image: url(${Eliipse_Grey}), url(${Eliipse_Pink});
     background-repeat: no-repeat;
@@ -32,7 +31,7 @@ export const PageContainer = styled.div`
     text-align: center;
     height: 100vh;
   }
-  @media ${mediaQueries.desktop} {
+  @media screen and (min-width: 1280px) {
     flex-direction: row;
     padding: 0;
     min-height: 720px;
@@ -40,14 +39,14 @@ export const PageContainer = styled.div`
 `;
 
 export const ImgContainer = styled.div`
-  @media ${mediaQueries.tablet} {
+  @media screen and (min-width: 768px) {
     display: flex;
     margin-bottom: 50px;
     margin-right: auto;
     margin-left: auto;
     width: 540px;
   }
-  @media ${mediaQueries.desktop} {
+  @media screen and (min-width: 1280px) {
     flex-direction: column;
     justify-content: center;
     margin-bottom: 0px;
@@ -55,7 +54,7 @@ export const ImgContainer = styled.div`
 `;
 
 export const ImgWrapperLogin = styled.div`
-  @media ${mediaQueries.tablet} {
+  @media screen and (min-width: 768px) {
     background-image: url(${Log_Img_Tablet});
     background-repeat: no-repeat;
     background-size: cover;
@@ -65,7 +64,7 @@ export const ImgWrapperLogin = styled.div`
     height: 250px;
     width: 260px;
   }
-  @media ${mediaQueries.desktop} {
+  @media screen and (min-width: 1280px) {
     background-image: url(${Log_Img_Desktop});
     width: 435px;
     height: 420px;
@@ -76,7 +75,7 @@ export const ImgWrapperLogin = styled.div`
 
 export const Title = styled.h1`
      display: none;
-  @media ${mediaQueries.tablet} {
+  @media screen and (min-width: 768px) {
     color: var(--primary-text-color);
     display: flex;
     margin-right: auto;
@@ -87,7 +86,7 @@ export const Title = styled.h1`
     margin-left: 40px;
     align-items: center;
   }
-  @media ${mediaQueries.desktop} {
+  @media screen and (min-width: 1280px) {
     margin-left: auto;
     width: 187px;
   }
@@ -102,10 +101,10 @@ export const FormWrapper = styled.div`
   @media screen and (max-width: 768px) and (min-height: 570px) {
     height: 100vh;
   }
-  @media ${mediaQueries.tablet} {
+  @media screen and (min-width: 768px) {
     padding-top: 0px;
   }
-  @media ${mediaQueries.desktop} {
+  @media screen and (min-width: 1280px) {
     width: 57%;
     height: 100%;
     background: rgba(255, 255, 255, 0.4);;
@@ -115,7 +114,7 @@ export const FormWrapper = styled.div`
 
 
 export const ImgWrapperReg = styled.div`
-  @media ${mediaQueries.tablet} {
+  @media screen and (min-width: 768px) {
     background-image: url(${Reg_Img_Tablet});
     background-repeat: no-repeat;
     background-size: cover;
@@ -124,7 +123,7 @@ export const ImgWrapperReg = styled.div`
     height: 250px;
     width: 274px;
   }
-  @media ${mediaQueries.desktop} {
+  @media screen and (min-width: 1280px) {
     background-image: url(${Reg_Img_Desktop});
     width: 452px;
     height: 412px;

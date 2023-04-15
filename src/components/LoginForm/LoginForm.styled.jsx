@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import mediaQueries from '../../utils/media';
 import { Field } from 'formik';
 import { ReactComponent as email } from '../../images/formicons/email.svg';
 import { ReactComponent as password } from '../../images/formicons/lock.svg';
@@ -14,7 +13,7 @@ export const FormContainer = styled.div`
     height: auto;
     border-radius: 20px;
   }
-  @media ${mediaQueries.tablet} {
+  @media screen and (min-width: 768px) {
     width: 533px;
     padding: 40px 58.5px 62px 65px;
     background-color: var(--primary-white-color);
@@ -76,7 +75,7 @@ export const FormField = styled(Field)`
   ::placeholder {
     color: var(--primary-grey-color);
   }
-  @media ${mediaQueries.desktop} {
+  @media screen and (min-width: 1280px) {
     width: 410px;
   }
 `;
