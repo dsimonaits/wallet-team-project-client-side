@@ -6,7 +6,7 @@ export const SectionStyled = styled.section`
   background-color: var(--background-color);
   backdrop-filter: blur(25px);
   padding-top: 12px;
-  /* min-height: 100vh; */
+  min-height: 640px;
 
   background-image: url(${Eliipse_Grey}), url(${Eliipse_Pink});
   background-repeat: no-repeat;
