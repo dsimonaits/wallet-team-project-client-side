@@ -10,37 +10,40 @@ import {
 } from './Modal.styled';
 import sprite from '../../images/sprite.svg';
 import { useDispatch } from 'react-redux';
-import { toggleModalLogout,  toggleModalAddTransaction, toggleModalEditTransaction} from 'redux/global/globalSlice';
-
+import {
+  toggleModalLogout,
+  toggleModalAddTransaction,
+  toggleModalEditTransaction,
+} from 'redux/global/globalSlice';
 
 export default function Modal({ children }) {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
   const closeModal = () => {
-    dispatch(toggleModalLogout())
-    dispatch(toggleModalAddTransaction())
-    dispatch(toggleModalEditTransaction())
-  }
+    dispatch(toggleModalLogout());
+    dispatch(toggleModalAddTransaction());
+    dispatch(toggleModalEditTransaction());
+  };
 
   useEffect(() => {
-    const handleKeyDown = (e) => {
+    const handleKeyDown = e => {
       if (e.code === 'Escape') {
-        closeModal()
+        closeModal();
       }
-    }
+    };
 
-    window.addEventListener('keydown', handleKeyDown)
+    window.addEventListener('keydown', handleKeyDown);
 
     return () => {
-      window.removeEventListener('keydown', handleKeyDown)
-    }
-  }, [dispatch])
+      window.removeEventListener('keydown', handleKeyDown);
+    };
+  });
 
-  const handleBackdropClick = (e) => {
+  const handleBackdropClick = e => {
     if (e.currentTarget === e.target) {
-      closeModal()
+      closeModal();
     }
-  }
+  };
 
   return (
     <>
@@ -50,7 +53,10 @@ export default function Modal({ children }) {
             {matches =>
               (matches.tablet || matches.desktop) && (
                 <CloseBtnBox>
-                  <CloseButton type='button' onClick={() => dispatch(closeModal())}>
+                  <CloseButton
+                    type="button"
+                    onClick={() => dispatch(closeModal())}
+                  >
                     <CloseIcon width="24" height="24">
                       <use href={`${sprite}#icon-close`} />
                     </CloseIcon>
