@@ -53,8 +53,8 @@ const Currency = () => {
                 return (
                   <tr key={index}>
                     <td>{currencyName}</td>
-                    <td>{item.rateBuy}</td>
-                    <td>{item.rateSell}</td>
+                    <td>{item.rateBuy.toFixed(2)}</td>
+                    <td>{item.rateSell.toFixed(2)}</td>
                   </tr>
                 );
               }
