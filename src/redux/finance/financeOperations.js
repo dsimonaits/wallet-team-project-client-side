@@ -12,9 +12,7 @@ const token = {
   },
 };
 
-token.set(
-  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDM1YjRhOTI2YjJlOTllYTY5Y2E5N2YiLCJpYXQiOjE2ODE0OTYwNjQsImV4cCI6MTY4MjEwMDg2NH0.V8sPdgY93qumxRrxSRhZH_hwn6nMjXPyWpVeLg7nkU0'
-);
+token.set(token);
 
 const BASE_URL = 'https://wallet-team-project-hg8k.onrender.com/api';
 

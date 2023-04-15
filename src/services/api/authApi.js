@@ -4,12 +4,14 @@ axios.defaults.baseURL = 'https://wallet-team-project-hg8k.onrender.com';
 
 const signup = async body => {
   const { data } = await axios.post('api/user/signup', body);
-  return data;
+  console.log(data.ResponseBody);
+  return data.ResponseBody;
 };
 
-const userLogin = async body => {
+const login = async body => {
   const { data } = await axios.post('/api/user/login', body);
-  return data;
+  console.log(data.ResponseBody);
+  return data.ResponseBody;
 };
 
 const logout = async () => {
@@ -18,12 +20,13 @@ const logout = async () => {
 
 const getCurrent = async () => {
   const { data } = await axios.get('api/user/current');
-  return data;
+  console.log(data.ResponseBody);
+  return data.ResponseBody;
 };
 
 const API = {
   signup,
-  userLogin,
+  login,
   logout,
   getCurrent,
 };
