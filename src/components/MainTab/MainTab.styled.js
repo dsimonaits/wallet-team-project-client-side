@@ -23,7 +23,7 @@ export const MainTabStyled = styled.div`
       content: '';
       position: absolute;
       top: 0;
-      left: 30%;
+      left: 480px;
       transform: translateX(-50%);
       height: 100%;
       width: 1px;
