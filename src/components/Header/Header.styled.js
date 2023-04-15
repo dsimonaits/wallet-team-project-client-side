@@ -5,7 +5,7 @@ export const HeaderContainer = styled.header`
   height: 60px;
   background-color: var(--primary-white-color);
   padding: 0 20px;
-  margin: 0 auto;
+  /* margin: 0 auto; */
 
   @media screen and (min-width: 768px) {
     height: 80px;
@@ -13,7 +13,7 @@ export const HeaderContainer = styled.header`
   }
 
   @media screen and (min-width: 1280px) {
-    width: 1280px;
+    /* width: 1280px; */
     padding: 0 16px;
   }
 `;

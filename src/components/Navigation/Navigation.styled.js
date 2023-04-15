@@ -15,6 +15,7 @@ export const Nav = styled.nav`
   }
 
   @media screen and (min-width: 768px) {
+    margin-bottom: 30px;
     flex-direction: column;
   }
 `;

@@ -9,7 +9,7 @@ const Navigation = () => {
   return (
     <Nav>
       <NavItem>
-        <NavLinkStyled exact="true" to="/home">
+        <NavLinkStyled exact="true" to="home">
           <HomeSvg />
           <LinkName>Home</LinkName>
         </NavLinkStyled>

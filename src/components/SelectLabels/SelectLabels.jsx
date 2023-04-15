@@ -7,8 +7,8 @@ import Select from '@mui/material/Select';
 
 export const SelectLabels = () => {
   const [year, setYear] = useState('');
-  const [month, setMonth] = useState('');
-
+  const [month, setMonth] = useState('January');
+  console.log(month);
   const handleChange = event => {
     const { name, value } = event.target;
 
@@ -26,19 +26,13 @@ export const SelectLabels = () => {
 
   return (
     <div>
-      <FormControl sx={{ m: 1, minWidth: 120 }}>
-        <Select
-          value={month}
-          name="month"
-          onChange={handleChange}
-          displayEmpty
-          //   inputProps={{ "aria-label": "Without label" }}
-        >
+      <FormControl sx={{ m: 1, minWidth: 120 }} size="small">
+        <Select value={month} name="month" onChange={handleChange} displayEmpty>
           <MenuItem value="">
             <em>Month</em>
           </MenuItem>
           <MenuItem value={'January'}>January</MenuItem>
-          <MenuItem value={11}>February</MenuItem>
+          <MenuItem value={'01'}>February</MenuItem>
           <MenuItem value={12}>March</MenuItem>
           <MenuItem value={13}>April</MenuItem>
           <MenuItem value={14}>May</MenuItem>
@@ -51,14 +45,8 @@ export const SelectLabels = () => {
           <MenuItem value={21}>December</MenuItem>
         </Select>
       </FormControl>
-      <FormControl sx={{ m: 1, minWidth: 120 }}>
-        <Select
-          value={year}
-          name="year"
-          onChange={handleChange}
-          displayEmpty
-          //   inputProps={{ "aria-label": "Without label" }}
-        >
+      <FormControl sx={{ m: 1, minWidth: 120 }} size="small">
+        <Select value={year} name="year" onChange={handleChange} displayEmpty>
           <MenuItem value="">
             <em>Year</em>
           </MenuItem>

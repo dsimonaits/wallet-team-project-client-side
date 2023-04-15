@@ -17,6 +17,7 @@ export const App = () => {
   useEffect(() => {
     if (!isMobile && location.pathname === "/home/currency") {
       navigate("/home");
+
     }
     if (location.pathname === "/") {
       navigate("/home");
@@ -26,15 +27,15 @@ export const App = () => {
   return (
     <>
       <Spinner />
-      <Routes>
-        <Route path="/login" element={<LoginPage />} />
-        <Route path="/registration" element={<RegistrationPage />} />
-        <Route path="/home" element={<DashboardPage />}>
-          {isMobile && <Route path="currency" element={<Currency />} />}
-          <Route path="diagram" element={<Statistics />} />
-          <Route index element={<Table />} />
-        </Route>
-      </Routes>
+    <Routes>
+      <Route path="/login" element={<LoginPage />} />
+      <Route path="/registration" element={<RegistrationPage />} />
+      <Route path="/" element={<DashboardPage />}>
+        {isMobile && <Route path="currency" element={<Currency />} />}
+        <Route path="home" element={<Table />} />
+        <Route path="diagram" element={<Statistics />} />
+      </Route>
+    </Routes>
     </>
   );
 };

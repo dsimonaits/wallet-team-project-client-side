@@ -4,24 +4,23 @@ import { Doughnut } from 'react-chartjs-2';
 ChartJS.register(ArcElement, Tooltip, Legend, Title);
 
 export const ChartJs = ({ transactions }) => {
-  const total = transactions.reduce((acc, { sum }) => {
-    return acc + sum;
-  }, 0);
-
-  const category = transactions.reduce((acc, { category, sum }) => {
+  const obj = transactions.reduce((acc, { category, sum }) => {
     acc[category] = acc[category] ? acc[category] + sum : sum;
 
     return acc;
   }, {});
 
+  const category = Object.keys(obj);
+  const sum = Object.values(obj);
+
   console.log(category);
 
   const data = {
-    labels: Object.keys(category),
+    labels: [],
     datasets: [
       {
         label: ' Sveta',
-        data: Object.values(category),
+        data: sum,
         backgroundColor: [
           'rgba(255, 99, 132, 0.2)',
           'rgba(54, 162, 235, 0.2)',
@@ -66,21 +65,6 @@ export const ChartJs = ({ transactions }) => {
     },
   };
 
-  // const centerText = {
-  //   id: 'centerText',
-  //   beforeDatasetsDraw(chart, args, pluginOptions) {
-  //     const { ctx } = chart;
-  //     ctx.textAlign = 'center';
-
-  //     ctx.fillText(
-  //       `${total}`,
-  //       chart.getDatasetMeta(0).data[0].x,
-  //       chart.getDatasetMeta(0).data[0].y
-  //     );
-  //   },
-  // };
-  // const plugins = [centerText];
-
   return (
     <div style={{ width: '400px' }}>
       <Doughnut
@@ -92,17 +76,21 @@ export const ChartJs = ({ transactions }) => {
             beforeDatasetsDraw(chart, args, pluginOptions) {
               const { ctx } = chart;
               ctx.textAlign = 'center';
-
+              // console.log(chart.getDatasetMeta(0));
+              const total =
+                '$ ' +
+                chart.getDatasetMeta(0)._parsed.reduce((a, b) => a + b, 0);
               ctx.fillText(
-                `${total}`,
-                chart.getDatasetMeta(0).data[0].x,
-                chart.getDatasetMeta(0).data[0].y
+                total,
+                185,
+                200
+                // chart.getDatasetMeta(0).data[0].x,
+                // chart.getDatasetMeta(0).data[0].y
               );
             },
           },
         ]}
       />
-      )
     </div>
   );
 };
