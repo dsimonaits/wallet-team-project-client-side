@@ -7,7 +7,7 @@ export const LeftBar = styled.div`
     margin: 0 auto;
   }
   @media screen and (min-width: 768px) {
-    margin-bottom: 30px;
+    margin-bottom: 32px;
   }
 `;
 

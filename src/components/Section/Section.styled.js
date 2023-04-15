@@ -6,7 +6,7 @@ export const SectionStyled = styled.section`
   background-color: var(--background-color);
   backdrop-filter: blur(25px);
   padding-top: 12px;
-  min-height: 100vh;
+  /* min-height: 100vh; */
 
   background-image: url(${Eliipse_Grey}), url(${Eliipse_Pink});
   background-repeat: no-repeat;
@@ -14,7 +14,7 @@ export const SectionStyled = styled.section`
 
   @media screen and (min-width: 768px) {
     padding-top: 32px;
-    height: 100vh;
+    /* height: 100vh; */
   }
 
   @media screen and (min-width: 1279px) {
