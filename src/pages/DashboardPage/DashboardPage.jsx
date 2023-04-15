@@ -26,7 +26,7 @@ const DashboardPage = () => {
             </Media>
           </MainTab>
           <HomeTab>
-             <AddBtnFunction/>
+            {/* <AddBtnFunction/> */}
             <Outlet />
           </HomeTab>
         </DashBoardContainer>
