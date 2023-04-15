@@ -3,8 +3,13 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import mediaQueries from 'utils/media';
 import { useMediaQuery } from '@mui/material';
-import { selectIsLoggedIn } from '../redux/session/sessionSelectors';
+import {
+  selectToken,
+  selectIsLoggedIn,
+} from '../redux/session/sessionSelectors';
+import { selectTransactions } from '../redux/finance/financeSelectors';
 import { refreshUser } from '../redux/session/sessionOperations';
+import { fetchTransactions } from '../redux/finance/financeOperations';
 import LoginPage from '../pages/auth/LoginPage';
 import RegistrationPage from '../pages/auth/RegistrationPage';
 import Table from './Table/Table';
@@ -20,15 +25,26 @@ export const App = () => {
   const location = useLocation();
 
   const dispatch = useDispatch();
-  const refreshingCompleted = useSelector(selectIsLoggedIn);
-
-  console.log(refreshingCompleted);
+  const tokenExists = useSelector(selectToken);
+  const userLoggedIn = useSelector(selectIsLoggedIn);
+  const transactions = useSelector(selectTransactions);
+  const cachedResponse = JSON.parse(localStorage.getItem('persist:session'));
+  const navigate = useNavigate();
 
   useEffect(() => {
-    dispatch(refreshUser());
-  }, [dispatch, refreshingCompleted]);
+    if (cachedResponse.token && !userLoggedIn) dispatch(refreshUser());
+  });
 
-  const navigate = useNavigate();
+  useEffect(() => {
+    if (!tokenExists) {
+      navigate('/login');
+    }
+
+    if (tokenExists && transactions.length === 0) {
+      dispatch(fetchTransactions());
+    }
+  }, [dispatch, tokenExists, navigate, transactions]);
+
   useEffect(() => {
     if (!isMobile && location.pathname === '/currency') {
       navigate('/home');
@@ -41,26 +57,26 @@ export const App = () => {
   return (
     <>
       <Spinner />
-      {refreshingCompleted && (
-        <Routes>
+      <Routes>
+        <Route
+          path="/login"
+          element={
+            <PublicRoute restricted redirectTo="/home">
+              <LoginPage />
+            </PublicRoute>
+          }
+        />
+        <Route
+          path="/registration"
+          element={
+            <PublicRoute restricted redirectTo="/home">
+              <RegistrationPage />
+            </PublicRoute>
+          }
+        />
+        {userLoggedIn && (
           <Route
-            path="/login"
-            element={
-              <PublicRoute restricted redirectTo="/home">
-                <LoginPage />
-              </PublicRoute>
-            }
-          />
-          <Route
-            path="/registration"
-            element={
-              <PublicRoute restricted redirectTo="/home">
-                <RegistrationPage />
-              </PublicRoute>
-            }
-          />
-          <Route
-            path="/home"
+            path="/"
             element={
               <PrivateRoute restricted redirectTo="/login">
                 <DashboardPage />
@@ -94,8 +110,8 @@ export const App = () => {
               }
             />
           </Route>
-        </Routes>
-      )}
+        )}
+      </Routes>
     </>
   );
 };

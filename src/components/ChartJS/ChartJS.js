@@ -10,10 +10,8 @@ export const ChartJs = ({ transactions }) => {
     return acc;
   }, {});
 
-  const category = Object.keys(obj);
+  // const category = Object.keys(obj);
   const sum = Object.values(obj);
-
-  console.log(category);
 
   const data = {
     labels: [],

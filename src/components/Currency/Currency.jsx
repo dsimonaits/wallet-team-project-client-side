@@ -4,12 +4,9 @@ import { useState, useEffect } from 'react';
 import { Table, CurrencyWrapper } from './Currency.styled';
 
 const Currency = () => {
-  const [isLoading, setIsLoading] = useState(false);
   const [currencyCourse, setCurrencyCourse] = useState(null);
 
   useEffect(() => {
-    setIsLoading(true);
-
     const fetchCurrencies = async () => {
       try {
         const currencies = await currenciesApi();
@@ -19,14 +16,11 @@ const Currency = () => {
       } catch (error) {
         console.log(error.message);
       } finally {
-        setIsLoading(false);
       }
     };
 
     fetchCurrencies();
   }, []);
-
-  console.log(isLoading);
 
   return (
     <CurrencyWrapper>

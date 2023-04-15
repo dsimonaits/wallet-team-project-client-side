@@ -17,20 +17,20 @@ const sessionSlice = createSlice({
       .addCase(
         register.fulfilled,
         (state, { payload: { name, accessToken, email, balance } }) => {
-          state.user = name;
-          state.email = email;
+          state.user.name = name;
+          state.user.email = email;
           state.token = accessToken;
-          state.balance = balance;
+          state.user.balance = balance;
           state.isLoggedIn = true;
         }
       )
       .addCase(
         logIn.fulfilled,
         (state, { payload: { name, accessToken, email, balance } }) => {
-          state.user = name;
-          state.email = email;
+          state.user.name = name;
+          state.user.email = email;
           state.token = accessToken;
-          state.balance = balance;
+          state.user.balance = balance;
           state.isLoggedIn = true;
         }
       )
@@ -53,10 +53,11 @@ const sessionSlice = createSlice({
         state.isRefreshing = true;
       })
       .addCase(refreshUser.rejected, (state, { payload }) => {
-        state.isLoggedIn = true;
-        state.user = { name: '', email: '' };
+        state.isLoggedIn = false;
+        state.user = { name: '', email: '', balance: '' };
         state.token = null;
         state.error = payload;
+        state.isRefreshing = false;
       })
       .addMatcher(
         isAnyOf(
