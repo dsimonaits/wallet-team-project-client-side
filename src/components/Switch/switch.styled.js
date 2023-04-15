@@ -24,7 +24,7 @@ border:solid 1px rgba(224, 224, 224, 1);
 background-color: transparent;
 &:before {
    content: '';
-   background: url('../../images/+ btn.png');
+   background-image: url('../../images/Plusbtn.png');
   position: absolute;
   width: 44px;
 height: 44px;
