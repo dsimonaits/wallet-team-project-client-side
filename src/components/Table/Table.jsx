@@ -135,7 +135,9 @@ const Table = () => {
             <TransactionItem type={row.type.toString()}>
               <TitleText>Sum:</TitleText>
               <TextSum type={row.type.toString()}>
-                {Number.isInteger(row.sum) ? row.sum.toFixed(2) : row.sum}
+                {Number.isInteger(row.sum)
+                  ? row.sum.toFixed(2)
+                  : row.sum.toFixed(2)}
               </TextSum>
             </TransactionItem>
             <TransactionItem type={row.type.toString()}>
@@ -201,7 +203,9 @@ const Table = () => {
                 )}
               </Td>
               <TableSum type={row.type.toString()}>
-                {Number.isInteger(row.sum) ? row.sum.toFixed(2) : row.sum}
+                {Number.isInteger(row.sum)
+                  ? row.sum.toFixed(2)
+                  : row.sum.toFixed(2)}
               </TableSum>
               <TableBtn>
                 <EditBtn onClick={() => handleEdit(row._id)}>
