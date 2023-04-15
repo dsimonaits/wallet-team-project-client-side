@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { useSelector, useDispatch } from 'react-redux';
+
 import {
   fetchTransactions,
   deleteTransaction,
@@ -109,6 +110,7 @@ const Table = () => {
 
   if (isMobile) {
     return (
+
       <MobileCardWrapper>
         <ToastContainer />
         {transactions.map(row => (
@@ -163,7 +165,8 @@ const Table = () => {
           </TransactionList>
         ))}
       </MobileCardWrapper>
-    );
+         );
+       
   }
 
   return (
@@ -236,7 +239,8 @@ const Table = () => {
           ))}
         </TbodyWrapper>
       </TableWrapper>
-    </Wrapper>
+        </Wrapper>
+       
   );
 };
 
@@ -245,4 +249,4 @@ EllipsisText.propTypes = {
   length: PropTypes.number.isRequired,
 };
 
-export default Table;
+export default Table

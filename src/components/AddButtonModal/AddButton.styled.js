@@ -1,0 +1,135 @@
+import styled from 'styled-components';
+export const Div = styled.div`
+background-color:var(--primary-white-color);
+`
+export const Form = styled.form`
+display: flex;
+flex-direction: column;
+align-items: center;
+ justify-content: center;
+ 
+ // background-color: antiquewhite; 
+`
+export const LabelTitle = styled.label`
+font-size:24px;
+font-weight:400;
+margin: 20px 20px 42px 20px;
+color: rgba(0, 0, 0, 1);
+
+`
+export const ModalContainer = styled.div`
+  
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  padding-top: 40px;
+  width:320px;
+  height: auto;
+  
+  
+`;
+export const Expense = styled.p`
+font-size:16px;
+font-weight:700;
+margin-right:20px;
+margin-left:20px;
+color: #E0E0E0;
+
+`
+export const NumberInput = styled.input`
+min-width:270px;
+border:transparent;
+border-bottom:1px solid #E0E0E0;
+color:rgba(0, 0, 0, 1);
+font-size: 18px;
+outline:none;
+/* &:focus {
+    border-color:transparent} */
+
+`
+export const MenuInputs = styled.ul`
+list-style: none;
+  padding-left: 0px;
+` 
+export const ItemInput = styled.li`
+margin-bottom:40px;
+padding: 0 20px;
+
+
+`
+export const Textarea = styled.textarea`
+min-width:270px;
+border:transparent;
+border-bottom:1px solid #E0E0E0;
+color:rgba(0, 0, 0, 1); 
+font-size: 18px;
+outline:none;
+`
+export const ToggleContainer = styled.div`
+display:flex;
+margin-bottom:42px;
+
+`
+export const AddBtn = styled.button`
+ width: 44px;
+height: 44px; 
+//padding:20px;
+border-radius:50%;
+color:rgba(255, 255, 255, 1);
+font-size:30px;
+font-weight: 100;
+border: 1px solid #FFFFFF;
+ background-color: rgba(36, 204, 167, 1); 
+position: fixed;
+bottom: 40px;
+right: 40px;
+`
+export const CloseButton = styled.button`
+  height: fit-content;
+  padding: unset;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+`;
+
+export const AddIcon = styled.svg`
+  width: 20px;
+  height: 20px;
+`;
+export const ExitButton = styled.button`
+width: 300px;
+height: 50px;
+  padding: 13px;
+  font-size: 18px;
+  line-height: 27px;
+  text-align: center;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #4A56E2;;
+
+  background-color: #FFFFFF;
+  border: 1px solid #4A56E2;
+border-radius: 20px;
+ font-size: 18px;
+  margin-bottom: 20px;` 
+
+  export const AddButton = styled.button`
+width: 300px;
+height: 50px;
+  padding: 13px;
+  font-size: 18px;
+  line-height: 27px;
+  text-align: center;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color:  #FFFF;
+
+  background-color:  #24CCA7;;
+  border: 1px solid #4A56E2;
+border-radius: 20px;
+ font-size: 18px;
+  margin-bottom: 20px;` 
+
+export const ButtonItem = styled.li`
+margin-bottom:20px;
+`
