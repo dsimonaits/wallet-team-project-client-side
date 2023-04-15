@@ -24,7 +24,7 @@ export const register = createAsyncThunk(
       const { data } = await API.signup(credentials);
       // After successful registration, add the token to the HTTP header
       setAuthHeader(data.accessToken);
-      console.log(data);
+
       return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
@@ -41,7 +41,7 @@ export const logIn = createAsyncThunk(
   async (credentials, thunkAPI) => {
     try {
       const { data } = await API.login(credentials);
-      console.log(data);
+
       setAuthHeader(data.token);
       return data;
     } catch (error) {
