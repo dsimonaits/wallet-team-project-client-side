@@ -3,6 +3,7 @@ import { useEffect } from 'react';
 import mediaQueries from 'utils/media';
 import { useMediaQuery } from '@mui/material';
 import LoginPage from '../pages/auth/LoginPage';
+import RegistrationPage from '../pages/auth/RegistrationPage'
 import Table from './Table/Table';
 import { Statistics } from './Statistics/Statistics';
 import Currency from './Currency/Currency';
@@ -27,7 +28,7 @@ export const App = () => {
       <Spinner />
     <Routes>
       <Route path="/login" element={<LoginPage />} />
-      {/* <Route path="/registration" element={</>} /> */}
+      <Route path="/registration" element={<RegistrationPage/>} />
       <Route path="/home" element={<DashboardPage />}>
         {isMobile && <Route path="currency" element={<Currency />} />}
         <Route path="diagram" element={<Statistics />} />
