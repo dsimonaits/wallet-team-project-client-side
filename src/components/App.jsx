@@ -62,7 +62,7 @@ export const App = () => {
           <Route
             path="/home"
             element={
-              <PrivateRoute redirectTo="/login">
+              <PrivateRoute restricted redirectTo="/login">
                 <DashboardPage />
               </PrivateRoute>
             }
@@ -71,7 +71,7 @@ export const App = () => {
               <Route
                 path="currency"
                 element={
-                  <PrivateRoute redirectTo="/login">
+                  <PrivateRoute restricted redirectTo="/login">
                     <Currency />
                   </PrivateRoute>
                 }
