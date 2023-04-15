@@ -6,6 +6,7 @@ export const LeftBar = styled.div`
   @media screen and (max-width: 767.9px) {
     margin: 0 auto;
   }
+
   @media screen and (min-width: 768px) {
     justify-content: flex-end;
   }

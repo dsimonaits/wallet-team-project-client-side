@@ -4,6 +4,10 @@ export const MainTabStyled = styled.div`
   display: flex;
   flex-flow: column;
 
+  @media screen and (min-width: 320px) {
+    margin-bottom: 32px;
+  }
+
   @media screen and (min-width: 768px) {
     display: flex;
     flex-flow: row;
