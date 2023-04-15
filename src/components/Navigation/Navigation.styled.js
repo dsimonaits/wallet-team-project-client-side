@@ -24,6 +24,11 @@ export const NavItem = styled.li`
     &:not(:first-child) {
       margin-top: 21px;
     }
+
+    & svg {
+      width: 18px;
+      height: 18px;
+    }
   }
 `;
 
