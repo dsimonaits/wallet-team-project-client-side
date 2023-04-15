@@ -30,6 +30,7 @@ export const CurrencyWrapper = styled.div`
     width: 393px;
     min-height: 331px;
     border-radius: 30px;
+    margin: 0;
 
     background-image: url(${background});
 
