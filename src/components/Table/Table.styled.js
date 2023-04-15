@@ -6,11 +6,11 @@ export const Wrapper = styled.div`
   height: 306px;
 
   @media screen and (min-width: 768px) {
-    width: 704px;
+    width: 714px;
   }
 
   @media screen and (min-width: 1280px) {
-    width: 715px;
+    width: 725px;
   }
 
   ::-webkit-scrollbar {
@@ -79,6 +79,7 @@ export const Text = styled.span`
   font-size: 16px;
   line-height: 24px;
   text-align: right;
+  padding-left: 5px;
 
   .cursor {
     cursor: pointer;
