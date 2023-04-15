@@ -42,7 +42,6 @@ export default function Modal({ children }) {
     }
   }
 
-  const modalRoot = document.querySelector('#modal-root')
   return (
     <>
       <ModalWrapper onClick={handleBackdropClick}>
@@ -62,8 +61,7 @@ export default function Modal({ children }) {
           </Media>
           {children}
         </ModalContent>
-      </ModalWrapper>,
-      modalRoot,
+      </ModalWrapper>
     </>
   );
 }
