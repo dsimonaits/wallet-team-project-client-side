@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
+import { toast } from 'react-toastify';
 
 const token = {
   set(token) {
@@ -45,11 +46,30 @@ export const addTransaction = createAsyncThunk(
         `${BASE_URL}/transaction/create`,
         transaction
       );
-      console.log(`Transaction added successfully`);
+      toast.success('Transaction added successfully', {
+        position: 'top-right',
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: 'light',
+      });
 
       return data;
     } catch (error) {
-      console.log(` Transaction not added`);
+      toast.error('Transaction not added', {
+        position: 'top-right',
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: 'light',
+      });
+
       return rejectWithValue(error);
     }
   }
@@ -66,11 +86,30 @@ export const updateTransaction = createAsyncThunk(
         sum,
       });
 
-      console.log(data);
-      console.log(`Transaction updated successfully`);
+      // console.log(data);
+      toast.success('Transaction updated successfully', {
+        position: 'top-right',
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: 'light',
+      });
       return data;
     } catch (error) {
-      console.log(`Transaction not updated`);
+      toast.error('Transaction not updated', {
+        position: 'top-right',
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: 'light',
+      });
+
       return rejectWithValue(error);
     }
   }
@@ -84,10 +123,21 @@ export const deleteTransaction = createAsyncThunk(
         `${BASE_URL}/transaction/delete/${id}`
       );
       // console.log(data);
-      console.log(`Transaction successfully removed`);
+      toast.success('Transaction successfully removed', {
+        position: 'top-right',
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: 'light',
+      });
+
       return data.id;
     } catch (error) {
-      console.log(`Transaction not removed`);
+      toast.error('Transaction not removed');
+
       return rejectWithValue(error);
     }
   }

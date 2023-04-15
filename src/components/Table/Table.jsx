@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-// import axios from 'axios';
 import { useSelector, useDispatch } from 'react-redux';
 import {
   fetchTransactions,
@@ -13,6 +12,10 @@ import {
 import EllipsisText from 'react-ellipsis-text';
 // import data from './data.json';
 import icon from '../../images/pencil.png';
+// import Modal from 'components/Modal/Modal';
+
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 // STYLE ////////////////////////////////////
 import {
@@ -31,6 +34,7 @@ import {
   Tr,
   TrWrapperTable,
   Th,
+  ThSum,
   Td,
   TableSum,
   TableBtn,
@@ -45,8 +49,6 @@ const Table = () => {
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
   const [transactionUpdate, setTransactionUpdate] = useState(null);
   const [expandedRows, setExpandedRows] = useState({});
-
-  // const [data, setData] = useState([]);
 
   console.log(transactionUpdate);
 
@@ -74,8 +76,8 @@ const Table = () => {
     setTransactionUpdate(transaction);
   };
 
-  // const handleDelete = id => {
-  //   //   // update
+  // const closeForm = () => {
+  //   setTransactionUpdate(null);
   // };
 
   // DATE formatter //////////////////////////////////////////
@@ -102,6 +104,7 @@ const Table = () => {
   if (isMobile) {
     return (
       <MobileCardWrapper>
+        <ToastContainer />
         {transactions.map(row => (
           <TransactionList key={row._id}>
             <TransactionItem type={row.type.toString()}>
@@ -131,13 +134,14 @@ const Table = () => {
             </TransactionItem>
             <TransactionItem type={row.type.toString()}>
               <TitleText>Sum:</TitleText>
-              <TextSum type={row.type.toString()}>{row.sum}</TextSum>
+              <TextSum type={row.type.toString()}>
+                {Number.isInteger(row.sum) ? row.sum.toFixed(2) : row.sum}
+              </TextSum>
             </TransactionItem>
             <TransactionItem type={row.type.toString()}>
               <DeleteBtn onClick={() => dispatch(deleteTransaction(row._id))}>
                 {isLoading ? 'Deleting' : 'Delete'}
               </DeleteBtn>
-              {/* <DeleteBtn onClick={() => handleDelete(row.id)}>Delete</DeleteBtn> */}
               <EditBtnMobile onClick={() => handleEdit(row._id)}>
                 <IconBtnMobile src={icon} alt="edit" />
                 Edit
@@ -151,6 +155,8 @@ const Table = () => {
 
   return (
     <Wrapper>
+      <ToastContainer />
+
       <TableWrapper>
         <Thead>
           <Tr>
@@ -158,13 +164,21 @@ const Table = () => {
             <Th>Type</Th>
             <Th>Category</Th>
             <Th>Comment</Th>
-            <Th>Sum</Th>
+            <ThSum>Sum</ThSum>
             <Th></Th>
           </Tr>
         </Thead>
         <TbodyWrapper>
           {transactions.map(row => (
             <TrWrapperTable key={row._id}>
+              {/* <Modal>
+                {transactionUpdate && transactionUpdate.id === row._id && (
+                  <UpdateForm
+                    contactUpdate={transactionUpdate}
+                    closeForm={closeForm}
+                  />
+                )}
+              </Modal> */}
               <Td>{formatDate(row.date)}</Td>
               <Td>
                 {row.type.toString() === 'true' ? (
@@ -177,6 +191,7 @@ const Table = () => {
               <Td>
                 {row.comment ? (
                   <EllipsisText
+                    className="cursor"
                     onClick={() => toggleRow(row._id)}
                     text={row.comment}
                     length={expandedRows[row._id] ? 100 : 20}
@@ -185,7 +200,9 @@ const Table = () => {
                   '-'
                 )}
               </Td>
-              <TableSum type={row.type.toString()}>{row.sum}</TableSum>
+              <TableSum type={row.type.toString()}>
+                {Number.isInteger(row.sum) ? row.sum.toFixed(2) : row.sum}
+              </TableSum>
               <TableBtn>
                 <EditBtn onClick={() => handleEdit(row._id)}>
                   <IconBtn src={icon} alt="edit" />
@@ -193,9 +210,6 @@ const Table = () => {
                 <DeleteBtn onClick={() => dispatch(deleteTransaction(row._id))}>
                   {isLoading ? 'Deleting' : 'Delete'}
                 </DeleteBtn>
-                {/* <DeleteBtn onClick={() => handleDelete(row._id)}>
-                  Delete
-                </DeleteBtn> */}
               </TableBtn>
             </TrWrapperTable>
           ))}
