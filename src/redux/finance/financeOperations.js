@@ -48,7 +48,7 @@ export const addTransaction = createAsyncThunk(
       );
       toast.success('Transaction added successfully', {
         position: 'top-right',
-        autoClose: 5000,
+        autoClose: 3000,
         hideProgressBar: false,
         closeOnClick: true,
         pauseOnHover: true,
@@ -61,7 +61,7 @@ export const addTransaction = createAsyncThunk(
     } catch (error) {
       toast.error('Transaction not added', {
         position: 'top-right',
-        autoClose: 5000,
+        autoClose: 3000,
         hideProgressBar: false,
         closeOnClick: true,
         pauseOnHover: true,
@@ -89,7 +89,7 @@ export const updateTransaction = createAsyncThunk(
 
       toast.success('Transaction updated successfully', {
         position: 'top-right',
-        autoClose: 5000,
+        autoClose: 3000,
         hideProgressBar: false,
         closeOnClick: true,
         pauseOnHover: true,
@@ -101,7 +101,7 @@ export const updateTransaction = createAsyncThunk(
     } catch (error) {
       toast.error('Transaction not updated', {
         position: 'top-right',
-        autoClose: 5000,
+        autoClose: 3000,
         hideProgressBar: false,
         closeOnClick: true,
         pauseOnHover: true,
@@ -120,12 +120,14 @@ export const deleteTransaction = createAsyncThunk(
   async (_id, { rejectWithValue }) => {
     try {
       const { data } = await axios.delete(`${BASE_URL}/transaction/delete`, {
-        data: { _id },
+        data: {
+          _id: _id,
+        },
       });
       // console.log(data);
       toast.success('Transaction successfully removed', {
         position: 'top-right',
-        autoClose: 5000,
+        autoClose: 3000,
         hideProgressBar: false,
         closeOnClick: true,
         pauseOnHover: true,
@@ -133,8 +135,8 @@ export const deleteTransaction = createAsyncThunk(
         progress: undefined,
         theme: 'light',
       });
-
-      return data._id;
+      console.log({ _id }, data);
+      return _id;
     } catch (error) {
       toast.error('Transaction not removed');
 

@@ -169,7 +169,6 @@ const Table = () => {
   return (
     <Wrapper>
       <ToastContainer />
-
       <TableWrapper>
         <Thead>
           <Tr>
