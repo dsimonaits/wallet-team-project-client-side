@@ -17,6 +17,11 @@ import { logOut } from 'redux/session/sessionOperations';
 export default function ModalLogout() {
   const dispatch = useDispatch();
 
+  const userLogOut = () => {
+    dispatch(logOut());
+    dispatch(toggleModalLogout());
+  };
+
   return (
     <>
       <Modal>
@@ -27,7 +32,7 @@ export default function ModalLogout() {
             </Media>
           </LogoContainer>
           <Text>Are you sure you want to exit?</Text>
-          <ExitButton type="button" onClick={() => dispatch(logOut())}>
+          <ExitButton type="button" onClick={() => userLogOut()}>
             Exit
           </ExitButton>
           <CancelButton
