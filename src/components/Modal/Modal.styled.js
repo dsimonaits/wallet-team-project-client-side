@@ -17,6 +17,7 @@ export const ModalContent = styled.div`
   background-color: var(--primary-white-color);
   padding: 20px;
   position: relative;
+  z-index:1000;
 
   @media screen and (min-width: 768px) {
     width: 540px;
