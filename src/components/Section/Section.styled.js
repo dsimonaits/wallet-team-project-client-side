@@ -12,12 +12,12 @@ export const SectionStyled = styled.section`
   background-repeat: no-repeat;
   background-position: 0px 100%, right top;
 
-  @media screen and (min-width: 768px) {
+  @media screen and (max-width: 1200px) {
     padding-top: 32px;
-    /* height: 100vh; */
+    background-size: 50%;
   }
 
-  @media screen and (min-width: 1279px) {
+  @media screen and (min-width: 1280px) {
     padding-top: 46px;
   }
 `;
