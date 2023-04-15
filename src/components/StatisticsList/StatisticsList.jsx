@@ -1,3 +1,5 @@
+import { List, Item, Elem, Sum } from './StatisticsList.styled';
+
 export const StatisticsList = ({ transactions }) => {
   const colors = [
     'rgba(255, 99, 132, 1)',
@@ -15,21 +17,14 @@ export const StatisticsList = ({ transactions }) => {
   }, {});
 
   return (
-    <ul>
+    <List>
       {Object.entries(obj).map(([category, sum], index) => (
-        <li style={{ width: '300px', display: 'flex' }} key={index}>
-          <p
-            style={{
-              width: '20px',
-              height: '15px',
-              backgroundColor: colors[index],
-              marginRight: '20px',
-            }}
-          ></p>
+        <Item key={index}>
+          <Elem style={{ backgroundColor: colors[index] }}></Elem>
           <p>{category}</p>
-          <p style={{ marginLeft: 'auto' }}>{sum}</p>
-        </li>
+          <Sum>{sum}</Sum>
+        </Item>
       ))}
-    </ul>
+    </List>
   );
 };
