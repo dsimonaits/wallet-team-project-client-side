@@ -46,7 +46,7 @@ import {
 // COMPONENT //////////////////////////////////////////////////////
 
 const Table = () => {
-  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 767);
   const [transactionUpdate, setTransactionUpdate] = useState(null);
   const [expandedRows, setExpandedRows] = useState({});
 
@@ -68,11 +68,11 @@ const Table = () => {
   // console.log(data);
 
   const handleResize = () => {
-    setIsMobile(window.innerWidth <= 768);
+    setIsMobile(window.innerWidth <= 767);
   };
 
   const handleEdit = transactionId => {
-    const transaction = transactions.find(({ id }) => id === transactionId);
+    const transaction = transactions.find(({ _id }) => _id === transactionId);
     setTransactionUpdate(transaction);
   };
 
@@ -90,6 +90,12 @@ const Table = () => {
       month < 10 ? '0' : ''
     }${month}.${year}`;
   }
+
+  // SUM formatter /////////////////////////////////
+  // const formatter = new Intl.NumberFormat('en-US', {
+  //   style: 'currency',
+  //   currency: 'USD',
+  // });
 
   // TOGGLE for comment //////////////////////////////////
   function toggleRow(rowId) {
@@ -135,7 +141,14 @@ const Table = () => {
             <TransactionItem type={row.type.toString()}>
               <TitleText>Sum:</TitleText>
               <TextSum type={row.type.toString()}>
-                {Number.isInteger(row.sum) ? row.sum.toFixed(2) : row.sum}
+                {row.sum
+                  .toLocaleString('ru-RU', {
+                    minimumIntegerDigits: 1,
+                    minimumFractionDigits: 2,
+                    maximumFractionDigits: 2,
+                    useGrouping: true,
+                  })
+                  .replace(',', '.')}
               </TextSum>
             </TransactionItem>
             <TransactionItem type={row.type.toString()}>
@@ -172,7 +185,7 @@ const Table = () => {
           {transactions.map(row => (
             <TrWrapperTable key={row._id}>
               {/* <Modal>
-                {transactionUpdate && transactionUpdate.id === row._id && (
+                {transactionUpdate && transactionUpdate._id === row._id && (
                   <UpdateForm
                     contactUpdate={transactionUpdate}
                     closeForm={closeForm}
@@ -201,7 +214,15 @@ const Table = () => {
                 )}
               </Td>
               <TableSum type={row.type.toString()}>
-                {Number.isInteger(row.sum) ? row.sum.toFixed(2) : row.sum}
+                {/* {formatter.format(row.sum)} */}
+                {row.sum
+                  .toLocaleString('ru-RU', {
+                    minimumIntegerDigits: 1,
+                    minimumFractionDigits: 2,
+                    maximumFractionDigits: 2,
+                    useGrouping: true,
+                  })
+                  .replace(',', '.')}
               </TableSum>
               <TableBtn>
                 <EditBtn onClick={() => handleEdit(row._id)}>
