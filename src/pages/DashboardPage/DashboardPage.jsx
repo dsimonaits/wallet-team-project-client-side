@@ -9,7 +9,7 @@ import Currency from 'components/Currency/Currency';
 import { Outlet } from 'react-router-dom';
 import Header from 'components/Header/Header';
 import { LeftBar, DashBoardContainer } from './DashboardPage.styled';
-import AddBtnFunction from 'components/AddButtonModal/AddButton';
+// import AddBtnFunction from 'components/AddButtonModal/AddButton';
 const DashboardPage = () => {
   return (
     <>
