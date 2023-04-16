@@ -6,7 +6,7 @@ import { Formik, ErrorMessage } from 'formik';
 import { toast } from 'react-toastify';
 import Logo from 'components/Logo/Logo';
 import ShowPwdButton from 'components/ShowPwdButton/ShowPwdButton';
-import { 
+import {
   FormContainer,
   Form,
   FormField,
@@ -32,11 +32,13 @@ const LoginForm = () => {
     password: yup
       .string()
       .min(8, 'must be at least 8 characters')
-      .max(12, 'password length must be less than 13 characters')    
-      .matches(/^(?=.*[0-9])(?=.*[a-zA-Z])[a-zA-Z0-9!@#$%^&*]+$/, 'must contain a letter, a number and a symbol')
+      .max(12, 'password length must be less than 13 characters')
+      .matches(
+        /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*])(?!.*\s).{8,}$/,
+        'must contain a letter, a number and a symbol'
+      )
       .required(),
   });
-
 
   const onSubmit = (values, { resetForm }) => {
     const res = dispatch(operations.logIn(values));
@@ -52,15 +54,15 @@ const LoginForm = () => {
     resetForm();
   };
 
-  return (   
-      <Formik
-        initialValues={{
-          email: '',
-          password: '',
-        }}
-        validationSchema={schema}
-        onSubmit={onSubmit}
-      >
+  return (
+    <Formik
+      initialValues={{
+        email: '',
+        password: '',
+      }}
+      validationSchema={schema}
+      onSubmit={onSubmit}
+    >
       {({ handleSubmit, handleChange, values }) => (
         <FormContainer>
           <Form onSubmit={handleSubmit}>
@@ -111,10 +113,9 @@ const LoginForm = () => {
               Register
             </SecondButton>
           </Form>
-          </FormContainer>
-        )}
-      </Formik>
-
+        </FormContainer>
+      )}
+    </Formik>
   );
 };
 

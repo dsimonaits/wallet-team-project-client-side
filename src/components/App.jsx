@@ -32,7 +32,7 @@ export const App = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (cachedResponse.token && !userLoggedIn) dispatch(refreshUser());
+    if (cachedResponse.token === true) dispatch(refreshUser());
   });
 
   useEffect(() => {
@@ -67,7 +67,7 @@ export const App = () => {
           }
         />
         <Route
-          path="/registration"
+          path="/register"
           element={
             <PublicRoute restricted redirectTo="/home">
               <RegistrationPage />
