@@ -1,20 +1,17 @@
 import { ChartJs } from 'components/ChartJS/ChartJS';
-import { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { SelectLabels } from 'components/SelectLabels/SelectLabels';
 import { selectTransactions } from 'redux/finance/financeSelectors';
-import { fetchTransactions } from 'redux/finance/financeOperations';
 import { StatisticsList } from 'components/StatisticsList/StatisticsList';
 
-export const Statistics = () => {
+const Statistics = () => {
   // const [s, setS] = useState(0);
-  const dispatch = useDispatch();
 
   const transactions = useSelector(selectTransactions);
 
-  useEffect(() => {
-    dispatch(fetchTransactions());
-  }, [dispatch]);
+  // useEffect(() => {
+  //   dispatch(fetchTransactions());
+  // }, [dispatch]);
 
   // useEffect(() => {
   //   setS(transactions);
@@ -34,3 +31,5 @@ export const Statistics = () => {
     </>
   );
 };
+
+export default Statistics;

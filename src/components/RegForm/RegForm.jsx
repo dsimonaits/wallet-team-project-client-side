@@ -17,8 +17,8 @@ import {
   IconPassword,
   IconName,
   ErrorTextConfirm,
-  StyledBtnMain,
-  StyledBtn,
+  FirstButton,
+  SecondButton,
 } from 'components/LoginForm/LoginForm.styled';
 import { toast } from 'react-toastify';
 
@@ -31,21 +31,28 @@ const RegisterForm = () => {
   const [isRevealPwd, setIsRevealPwd] = useState(false);
   const [showConfirmPassword, setConfirmShowPassword] = useState(false);
 
-   const schema = yup.object().shape({
+  const schema = yup.object().shape({
     email: yup.string().email().required(),
     password: yup
       .string()
       .min(6, 'must be at least 6 characters')
       .max(12, 'password length must be less than 12 characters')
-           .required(),
-     name: yup
-    .string()
-    .min(1, 'must min length 1')
-    .max(12, 'must max length 12')
-    .required(),      
-   });    
-    
-    
+      .matches(
+        /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*])(?!.*\s).{6,12}$/,
+        'must contain a letter, a number and a symbol'
+      )
+      .required(),
+    confirmPassword: yup
+      .string()
+      .oneOf([yup.ref('password'), null], 'passwords need to be the same')
+      .required(),
+    name: yup
+      .string()
+      .min(1, 'must min length 1')
+      .max(12, 'must max length 12')
+      .required(),
+  });
+
   const onSubmit = (values, { resetForm }) => {
     const { email, password, name } = values;
     const res = dispatch(operations.register({ email, password, name }));
@@ -62,22 +69,22 @@ const RegisterForm = () => {
   };
 
   return (
-    <FormContainer>
-      <Formik
-        initialValues={{
-          email: '',
-          password: '',
-          confirmPassword: '',
-          name: '',
-        }}
-        validationSchema={schema}
-        onSubmit={onSubmit}
-      >
-        {({ handleSubmit, handleChange, values }) => (
+    <Formik
+      initialValues={{
+        email: '',
+        password: '',
+        confirmPassword: '',
+        name: '',
+      }}
+      validationSchema={schema}
+      onSubmit={onSubmit}
+    >
+      {({ handleSubmit, handleChange, values }) => (
+        <FormContainer>
           <Form onSubmit={handleSubmit}>
-              <LogoContainer>
-                <Logo />
-              </LogoContainer>
+            <LogoContainer>
+              <Logo />
+            </LogoContainer>
             <FormLabel>
               <FormField
                 type="email"
@@ -104,10 +111,9 @@ const RegisterForm = () => {
               <IconPassword />
               <ShowPwdButton
                 type="button"
-                setShowPassword={setIsRevealPwd}
-                showPassword={isRevealPwd}
+                setIsRevealPwd={setIsRevealPwd}
+                isRevealPwd={isRevealPwd}
               />
-
               <ErrorMessage
                 name="password"
                 render={msg => <ErrorText>{msg}</ErrorText>}
@@ -125,8 +131,8 @@ const RegisterForm = () => {
               <IconPassword />
               <ShowPwdButton
                 type="button"
-                setShowPassword={setConfirmShowPassword}
-                showPassword={showConfirmPassword}
+                setIsRevealPwd={setConfirmShowPassword}
+                isRevealPwd={showConfirmPassword}
               />
 
               <PasswordStrengthMeter password={password} />
@@ -149,21 +155,19 @@ const RegisterForm = () => {
                 render={msg => <ErrorText>{msg}</ErrorText>}
               />
             </FormLabel>
-             <StyledBtnMain type="submit">
-                Register
-              </StyledBtnMain>            
-              <StyledBtn
-                type="button"
-                onClick={() => {
-                  navigate('/login');
-                }}
-              >
-                Log In
-              </StyledBtn>
+            <FirstButton type="submit">Register</FirstButton>
+            <SecondButton
+              type="button"
+              onClick={() => {
+                navigate('/login');
+              }}
+            >
+              Log In
+            </SecondButton>
           </Form>
-        )}
-      </Formik>
-    </FormContainer>
+        </FormContainer>
+      )}
+    </Formik>
   );
 };
 

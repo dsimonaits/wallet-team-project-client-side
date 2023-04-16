@@ -2,10 +2,7 @@ import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { useSelector, useDispatch } from 'react-redux';
 
-import {
-  fetchTransactions,
-  deleteTransaction,
-} from '../../redux/finance/financeOperations';
+import { deleteTransaction } from '../../redux/finance/financeOperations';
 import {
   selectIsLoading,
   selectTransactions,
@@ -51,22 +48,19 @@ const Table = () => {
   const [transactionUpdate, setTransactionUpdate] = useState(null);
   const [expandedRows, setExpandedRows] = useState({});
 
-  console.log(transactionUpdate);
-
   const isLoading = useSelector(selectIsLoading);
   const transactions = useSelector(selectTransactions);
-  console.log(transactions);
 
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(fetchTransactions());
+    // dispatch(fetchTransactions());
 
     window.addEventListener('resize', handleResize);
 
     return () => window.removeEventListener('resize', handleResize);
   }, [dispatch]);
-  // console.log(data);
+  console.log(transactionUpdate);
 
   const handleResize = () => {
     setIsMobile(window.innerWidth <= 767);
@@ -110,7 +104,6 @@ const Table = () => {
 
   if (isMobile) {
     return (
-
       <MobileCardWrapper>
         <ToastContainer />
         {transactions.map(row => (
@@ -165,8 +158,7 @@ const Table = () => {
           </TransactionList>
         ))}
       </MobileCardWrapper>
-         );
-       
+    );
   }
 
   return (
@@ -238,8 +230,7 @@ const Table = () => {
           ))}
         </TbodyWrapper>
       </TableWrapper>
-        </Wrapper>
-       
+    </Wrapper>
   );
 };
 
@@ -248,4 +239,4 @@ EllipsisText.propTypes = {
   length: PropTypes.number.isRequired,
 };
 
-export default Table
+export default Table;

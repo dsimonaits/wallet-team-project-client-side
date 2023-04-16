@@ -1,4 +1,4 @@
-// import * as React from 'react';
+import * as React from 'react';
 import { AddBtn } from './AddButton.styled';
 import Datetime from 'react-datetime';
 import 'react-datetime/css/react-datetime.css';
@@ -224,3 +224,4 @@ expense:"#FF6596"
 };
 
 export default AddBtnFunction;
+

@@ -1,4 +1,6 @@
 import LoginForm from 'components/LoginForm/LoginForm';
+import Media from 'react-media';
+import mediaQueries from '../../utils/media';
 import {
     Section,
     PageContainer,
@@ -11,11 +13,13 @@ import {
 const LoginPage = () => {
   return (
     <Section>
-       <PageContainer>
-        <ImgContainer>
+      <PageContainer>
+         <Media queries={mediaQueries}>
+              {matches => (matches.tablet || matches.desktop) &&  <ImgContainer>
             <ImgWrapperLogin />
           <Title>Finance App</Title>
-        </ImgContainer>
+        </ImgContainer>}
+            </Media>       
               <FormWrapper>
                 <LoginForm />   
               </FormWrapper>

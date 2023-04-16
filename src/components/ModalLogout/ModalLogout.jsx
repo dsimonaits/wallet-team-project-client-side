@@ -9,8 +9,19 @@ import {
 } from './ModalLogout.styled';
 import Modal from 'components/Modal/Modal';
 import Logo from 'components/Logo/Logo';
+import { useDispatch } from 'react-redux';
+import { toggleModalLogout } from 'redux/global/globalSlice';
+import { logOut } from 'redux/session/sessionOperations';
+// import { logOut } from '../../redux/session/session-operations'
 
 export default function ModalLogout() {
+  const dispatch = useDispatch();
+
+  const userLogOut = () => {
+    dispatch(logOut());
+    dispatch(toggleModalLogout());
+  };
+
   return (
     <>
       <Modal>
@@ -21,8 +32,15 @@ export default function ModalLogout() {
             </Media>
           </LogoContainer>
           <Text>Are you sure you want to exit?</Text>
-          <ExitButton>Exit</ExitButton>
-          <CancelButton>Cancel</CancelButton>
+          <ExitButton type="button" onClick={() => dispatch(userLogOut)}>
+            Exit
+          </ExitButton>
+          <CancelButton
+            type="button"
+            onClick={() => dispatch(toggleModalLogout())}
+          >
+            Cancel
+          </CancelButton>
         </ModalContainer>
       </Modal>
     </>

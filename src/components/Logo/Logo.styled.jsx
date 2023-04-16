@@ -3,9 +3,10 @@ import styled from 'styled-components';
 
 
 export const LogoContainer = styled(Link)`
+  display: flex;
+  align-items: center;
   width: 120px;
   height: 30px;
-  display: flex;
   text-decoration: none;
   @media screen and (min-width: 768px) {
     width: 181px;
@@ -15,7 +16,7 @@ export const LogoContainer = styled(Link)`
 
 
 export const LogoIcon = styled.img`
-  margin-right: 15px;
+  margin-right: 16px;
   width: 30px;
   height: 30px; 
   @media screen and (min-width: 768px) {
@@ -25,18 +26,13 @@ export const LogoIcon = styled.img`
   }
 `;
 
-export const LogoText = styled.p`
-  display: flex;
-  align-items: center;
-  margin: 0px;  
+export const LogoText = styled.p` 
   font-family: var(--secondary-font-family);
   color: var(--primary-text-color);
   font-weight: 700;
   font-size: 20px;
-  line-height: 1.5;
-  
-  @media screen and (min-width: 768px) {
-    width: 121px;
+  line-height: 1.5;  
+  @media screen and (min-width: 768px) {    
     font-size: 30px;
   }
 `;
