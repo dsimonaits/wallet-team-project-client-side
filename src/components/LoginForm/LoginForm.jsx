@@ -34,7 +34,7 @@ const LoginForm = () => {
       .min(8, 'must be at least 8 characters')
       .max(12, 'password length must be less than 13 characters')
       .matches(
-        /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*])(?!.*\s).{8,}$/,
+        /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*])(?!.*\s).{6,12}$/,
         'must contain a letter, a number and a symbol'
       )
       .required(),
