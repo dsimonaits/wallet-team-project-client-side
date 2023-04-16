@@ -1,58 +1,25 @@
-import {TextField,MenuItem } from '@mui/material';
-export const Select = () => {
-    const currencies = [
-  {
-    value: 'Main expenses',
-    label: 'Main expenses',
-  },
-  {
-    value: 'Car',
-    label: 'Car',
-  },
-  
-  {
-    value: 'Child care',
-    label: 'Child care',
-  },
-  {
-    value: 'Household products',
-    label: 'Household products',
-  },
-  {
-    value: 'Education',
-    label: 'Education',
-  },
-  {
-    value: 'Leisure',
-    label: 'Leisure',
-  },
-  {
-    value: 'Other expenses',
-    label: 'Other expenses',
-  },
-  {
-    value: 'Entertainment',
-    label: 'Entertainment',
-  },
+import { TextField, MenuItem } from '@mui/material';
+import { useState, useEffect } from 'react';
+import { Select } from './Select.styled';
+export const SelectFunk = () => {
+  const [mySelect, setMySelect] = useState('')
+  // const handleChange = e => useMySelect(e.target.value);
+  return (
+    <div>
+      <Select  value={mySelect} onChange={e=>setMySelect(e.target.value)}>
+<option value="Main expenses">Main expenses</option>
+<option value="Car">Car</option>
+<option value="Child care">Child care</option>
+<option value="Household products">Household products</option>
+<option value="Education">Education</option>
+        <option value="Leisure">Leisure</option>
+        <option value="Other expenses">Other expenses</option>
+<option value="Entertainment">Entertainment</option>
 
-];
-    return (
-        <TextField
-                size="small"
-                
-          id="standard-select-currency"
-                select
-                // label="Select a category"
-                defaultValue="Select a category"
-                // placeholder='Select a category'
-          helperText="Select a category"
-          variant="standard"
-              >
-              {currencies.map((option) => (
-             <MenuItem key={option.value} value={option.value}>
-              {option.label}
-            </MenuItem>
-          ))}
-        </TextField> 
-    )
+
+
+      </Select>
+    </div>
+  )
+
 }

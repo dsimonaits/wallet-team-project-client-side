@@ -41,6 +41,11 @@ transition-property: background-color, transform;
 
 }
 `
+export const ToggleContainer = styled.div`
+display:flex;
+margin-bottom:42px;
+
+`
 
   /* &:before{
     content:`${props}`
@@ -62,3 +67,17 @@ height: 0;
 export const Span = styled.span`
 
 `
+export const Expense = styled.p`
+font-size:16px;
+font-weight:700;
+margin-right:20px;
+margin-left:20px;
+color:${(props) => props.theme.expense};
+/* color:${props=>(props.type=== 'false' ? '#E0E0E0':'rgba(255, 255, 255, 1)')}  */
+`
+export const Income = styled.p`
+font-size:16px;
+font-weight:700;
+margin-right:20px;
+margin-left:20px;
+color:${(props) => props.theme.income};` 
