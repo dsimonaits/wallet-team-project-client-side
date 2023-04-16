@@ -6,7 +6,6 @@ import { SpinnerContainer } from './Spinner.styled';
 
 const Spinner = ({ position }) => {
   const isLoading = useSelector(selectIsLoading);
-  console.log(isLoading);
 
   if (!isLoading) {
     return null;

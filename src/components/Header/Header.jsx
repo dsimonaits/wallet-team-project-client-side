@@ -16,8 +16,9 @@ import sprite from '../../images/sprite.svg';
 import ModalLogout from 'components/ModalLogout/ModalLogout';
 import { toggleModalLogout } from 'redux/global/globalSlice';
 import { selectUser } from 'redux/session/sessionSelectors';
+import ThemeSwitcher from 'components/ThemeChanger/ThemeSwitcher';
 
-export default function Header() {
+export default function Header({ themeToggler }) {
   const { isModalLogoutOpen } = useSelector(store => store.global);
   const dispatch = useDispatch();
   const { name } = useSelector(selectUser);
@@ -25,11 +26,12 @@ export default function Header() {
   return (
     <>
       {isModalLogoutOpen && <ModalLogout />}
-      <HeaderContainer>
+      <HeaderContainer className="HeaderTheme">
         <MainContainer>
           <LogoContainer>
             <Logo />
           </LogoContainer>
+          <ThemeSwitcher themeToggler={themeToggler} />
           <AuthContainer>
             <Name>{name}</Name>
             <Media queries={mediaQueries}>

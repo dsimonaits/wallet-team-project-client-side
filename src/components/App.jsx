@@ -8,6 +8,8 @@ import {
   selectIsLoggedIn,
   selectIsRefreshing,
 } from '../redux/session/sessionSelectors';
+import { selectIsLoading } from '../redux/global/globalSelectors';
+import { modalsIsOpen } from '../redux/global/globalSelectors';
 import { refreshUser } from '../redux/session/sessionOperations';
 import { fetchTransactions } from '../redux/finance/financeOperations';
 import { PublicRoute } from './PublicRoute';
@@ -20,12 +22,6 @@ const DashboardPage = lazy(() => import('pages/DashboardPage/DashboardPage'));
 const Table = lazy(() => import('./Table/Table'));
 const Statistics = lazy(() => import('./Statistics/Statistics'));
 const Currency = lazy(() => import('./Currency/Currency'));
-// import LoginPage from '../pages/auth/LoginPage';
-// import RegistrationPage from '../pages/auth/RegistrationPage';
-// import DashboardPage from 'pages/DashboardPage/DashboardPage';
-// import Table from './Table/Table';
-// import { Statistics } from './Statistics/Statistics';
-// import Currency from './Currency/Currency';
 
 export const App = () => {
   const isMobile = useMediaQuery(mediaQueries.mobile);
@@ -34,6 +30,8 @@ export const App = () => {
   const dispatch = useDispatch();
   const userLoggedIn = useSelector(selectIsLoggedIn);
   const refreshing = useSelector(selectIsRefreshing);
+  const isModalIsOpen = useSelector(modalsIsOpen);
+  const isGLobalLoading = useSelector(selectIsLoading);
 
   const navigate = useNavigate();
 
@@ -55,6 +53,14 @@ export const App = () => {
       navigate('/home');
     }
   }, [isMobile, navigate, location.pathname]);
+
+  useEffect(() => {
+    if (!isGLobalLoading) {
+      const section = document.getElementById('blur');
+      isModalIsOpen && section.classList.add('blur');
+      !isModalIsOpen && section.classList.remove('blur');
+    }
+  });
 
   return (
     <>

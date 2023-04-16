@@ -18,7 +18,8 @@ export const ModalContent = styled.div`
   background-color: var(--primary-white-color);
   padding: 20px;
   position: relative;
-  z-index:1000;
+  z-index: 1000;
+  transition: all 0.5s linear;
 
   @media screen and (min-width: 768px) {
     width: auto;
@@ -29,7 +30,7 @@ export const ModalContent = styled.div`
 `;
 
 export const CloseBtnBox = styled.div`
-position: absolute;
+  position: absolute;
   right: 20px;
   top: 20px;
   display: block;
