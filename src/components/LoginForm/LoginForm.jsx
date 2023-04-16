@@ -107,7 +107,7 @@ const LoginForm = () => {
             <SecondButton
               type="button"
               onClick={() => {
-                navigate('/registration');
+                navigate('/register');
               }}
             >
               Register

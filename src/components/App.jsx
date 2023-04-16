@@ -6,6 +6,7 @@ import { useMediaQuery } from '@mui/material';
 import {
   selectToken,
   selectIsLoggedIn,
+  selectIsRefreshing,
 } from '../redux/session/sessionSelectors';
 import { selectTransactions } from '../redux/finance/financeSelectors';
 import { refreshUser } from '../redux/session/sessionOperations';
@@ -27,23 +28,20 @@ export const App = () => {
   const dispatch = useDispatch();
   const tokenExists = useSelector(selectToken);
   const userLoggedIn = useSelector(selectIsLoggedIn);
+  const refreshing = useSelector(selectIsRefreshing);
   const transactions = useSelector(selectTransactions);
   const cachedResponse = JSON.parse(localStorage.getItem('persist:session'));
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (cachedResponse.token === true) dispatch(refreshUser());
-  });
+    dispatch(refreshUser());
+  }, [dispatch]);
 
   useEffect(() => {
-    if (!tokenExists) {
-      navigate('/login');
-    }
-
-    if (tokenExists && transactions.length === 0) {
+    if (userLoggedIn && !refreshing) {
       dispatch(fetchTransactions());
     }
-  }, [dispatch, tokenExists, navigate, transactions]);
+  }, [userLoggedIn]);
 
   useEffect(() => {
     if (!isMobile && location.pathname === '/currency') {
@@ -57,28 +55,28 @@ export const App = () => {
   return (
     <>
       <Spinner />
-      <Routes>
-        <Route
-          path="/login"
-          element={
-            <PublicRoute restricted redirectTo="/home">
-              <LoginPage />
-            </PublicRoute>
-          }
-        />
-        <Route
-          path="/register"
-          element={
-            <PublicRoute restricted redirectTo="/home">
-              <RegistrationPage />
-            </PublicRoute>
-          }
-        />
-        {userLoggedIn && (
+      {!refreshing && (
+        <Routes>
+          <Route
+            path="/login"
+            element={
+              <PublicRoute restricted redirectTo="/home">
+                <LoginPage />
+              </PublicRoute>
+            }
+          />
+          <Route
+            path="/register"
+            element={
+              <PublicRoute restricted redirectTo="/home">
+                <RegistrationPage />
+              </PublicRoute>
+            }
+          />
           <Route
             path="/"
             element={
-              <PrivateRoute restricted redirectTo="/login">
+              <PrivateRoute redirectTo="/login">
                 <DashboardPage />
               </PrivateRoute>
             }
@@ -87,7 +85,7 @@ export const App = () => {
               <Route
                 path="currency"
                 element={
-                  <PrivateRoute restricted redirectTo="/login">
+                  <PrivateRoute redirectTo="/login">
                     <Currency />
                   </PrivateRoute>
                 }
@@ -110,8 +108,16 @@ export const App = () => {
               }
             />
           </Route>
-        )}
-      </Routes>
+          <Route
+            path="*"
+            element={
+              <PublicRoute restricted redirectTo="/login">
+                <RegistrationPage />
+              </PublicRoute>
+            }
+          />
+        </Routes>
+      )}
     </>
   );
 };

@@ -48,8 +48,6 @@ const Table = () => {
   const [transactionUpdate, setTransactionUpdate] = useState(null);
   const [expandedRows, setExpandedRows] = useState({});
 
-  console.log(transactionUpdate);
-
   const isLoading = useSelector(selectIsLoading);
   const transactions = useSelector(selectTransactions);
 
@@ -62,7 +60,7 @@ const Table = () => {
 
     return () => window.removeEventListener('resize', handleResize);
   }, [dispatch]);
-  // console.log(data);
+  console.log(transactionUpdate);
 
   const handleResize = () => {
     setIsMobile(window.innerWidth <= 767);

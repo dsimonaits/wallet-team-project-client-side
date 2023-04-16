@@ -31,26 +31,28 @@ const RegisterForm = () => {
   const [isRevealPwd, setIsRevealPwd] = useState(false);
   const [showConfirmPassword, setConfirmShowPassword] = useState(false);
 
-   const schema = yup.object().shape({
+  const schema = yup.object().shape({
     email: yup.string().email().required(),
     password: yup
       .string()
       .min(6, 'must be at least 6 characters')
       .max(12, 'password length must be less than 12 characters')
-      .matches(/^(?=.*[0-9])(?=.*[a-zA-Z])[a-zA-Z0-9!@#$%^&*]+$/, 'must contain a letter, a number and a symbol')
-       .required(),
+      .matches(
+        /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*])(?!.*\s).{8,}$/,
+        'must contain a letter, a number and a symbol'
+      )
+      .required(),
     confirmPassword: yup
-    .string()
-    .oneOf([yup.ref('password'), null], 'passwords need to be the same')
-    .required(),
-     name: yup
-    .string()
-    .min(1, 'must min length 1')
-    .max(12, 'must max length 12')
-    .required(),      
-   });    
-    
-    
+      .string()
+      .oneOf([yup.ref('password'), null], 'passwords need to be the same')
+      .required(),
+    name: yup
+      .string()
+      .min(1, 'must min length 1')
+      .max(12, 'must max length 12')
+      .required(),
+  });
+
   const onSubmit = (values, { resetForm }) => {
     const { email, password, name } = values;
     const res = dispatch(operations.register({ email, password, name }));
@@ -67,23 +69,22 @@ const RegisterForm = () => {
   };
 
   return (
-    
-      <Formik
-        initialValues={{
-          email: '',
-          password: '',
-          confirmPassword: '',
-          name: '',
-        }}
-        validationSchema={schema}
-        onSubmit={onSubmit}
-      >
+    <Formik
+      initialValues={{
+        email: '',
+        password: '',
+        confirmPassword: '',
+        name: '',
+      }}
+      validationSchema={schema}
+      onSubmit={onSubmit}
+    >
       {({ handleSubmit, handleChange, values }) => (
         <FormContainer>
           <Form onSubmit={handleSubmit}>
-              <LogoContainer>
-                <Logo />
-              </LogoContainer>
+            <LogoContainer>
+              <Logo />
+            </LogoContainer>
             <FormLabel>
               <FormField
                 type="email"
@@ -130,7 +131,7 @@ const RegisterForm = () => {
               <IconPassword />
               <ShowPwdButton
                 type="button"
-                setIsRevealPwd ={setConfirmShowPassword}
+                setIsRevealPwd={setConfirmShowPassword}
                 isRevealPwd={showConfirmPassword}
               />
 
@@ -154,21 +155,19 @@ const RegisterForm = () => {
                 render={msg => <ErrorText>{msg}</ErrorText>}
               />
             </FormLabel>
-             <FirstButton type="submit">
-                Register
-              </FirstButton>            
-              <SecondButton
-                type="button"
-                onClick={() => {
-                  navigate('/login');
-                }}
-              >
-                Log In
-              </SecondButton>
+            <FirstButton type="submit">Register</FirstButton>
+            <SecondButton
+              type="button"
+              onClick={() => {
+                navigate('/login');
+              }}
+            >
+              Log In
+            </SecondButton>
           </Form>
-          </FormContainer>
-        )}
-      </Formik>
+        </FormContainer>
+      )}
+    </Formik>
   );
 };
 
