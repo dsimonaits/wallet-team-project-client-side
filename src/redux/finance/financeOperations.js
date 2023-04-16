@@ -2,6 +2,16 @@ import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { toast } from 'react-toastify';
 
+// const token = {
+//   set(token) {
+//     axios.defaults.headers.common.Authorization = `Bearer ${token}`;
+//   },
+
+//   unset() {
+//     axios.defaults.headers.common.Authorization = ``;
+//   },
+// };
+
 const BASE_URL = 'https://wallet-team-project-hg8k.onrender.com/api';
 
 export const fetchTransactions = createAsyncThunk(
@@ -34,7 +44,7 @@ export const addTransaction = createAsyncThunk(
       );
       toast.success('Transaction added successfully', {
         position: 'top-right',
-        autoClose: 5000,
+        autoClose: 3000,
         hideProgressBar: false,
         closeOnClick: true,
         pauseOnHover: true,
@@ -47,7 +57,7 @@ export const addTransaction = createAsyncThunk(
     } catch (error) {
       toast.error('Transaction not added', {
         position: 'top-right',
-        autoClose: 5000,
+        autoClose: 3000,
         hideProgressBar: false,
         closeOnClick: true,
         pauseOnHover: true,
@@ -63,19 +73,19 @@ export const addTransaction = createAsyncThunk(
 
 export const updateTransaction = createAsyncThunk(
   'finance/updateTransaction',
-  async ({ type, category, comment, sum, id }, { rejectWithValue }) => {
+  async ({ type, category, comment, sum, _id }, { rejectWithValue }) => {
     try {
-      const { data } = await axios.patch(`${BASE_URL}/api/update/${id}`, {
+      const { data } = await axios.put(`${BASE_URL}/api/update`, {
         type,
         category,
         comment,
         sum,
+        _id,
       });
 
-      // console.log(data);
       toast.success('Transaction updated successfully', {
         position: 'top-right',
-        autoClose: 5000,
+        autoClose: 3000,
         hideProgressBar: false,
         closeOnClick: true,
         pauseOnHover: true,
@@ -87,7 +97,7 @@ export const updateTransaction = createAsyncThunk(
     } catch (error) {
       toast.error('Transaction not updated', {
         position: 'top-right',
-        autoClose: 5000,
+        autoClose: 3000,
         hideProgressBar: false,
         closeOnClick: true,
         pauseOnHover: true,
@@ -103,15 +113,17 @@ export const updateTransaction = createAsyncThunk(
 
 export const deleteTransaction = createAsyncThunk(
   'finance/deleteTransaction',
-  async (id, { rejectWithValue }) => {
+  async (_id, { rejectWithValue }) => {
     try {
-      const { data } = await axios.delete(
-        `${BASE_URL}/transaction/delete/${id}`
-      );
+      const { data } = await axios.delete(`${BASE_URL}/transaction/delete`, {
+        data: {
+          _id: _id,
+        },
+      });
       // console.log(data);
       toast.success('Transaction successfully removed', {
         position: 'top-right',
-        autoClose: 5000,
+        autoClose: 3000,
         hideProgressBar: false,
         closeOnClick: true,
         pauseOnHover: true,
@@ -119,8 +131,8 @@ export const deleteTransaction = createAsyncThunk(
         progress: undefined,
         theme: 'light',
       });
-
-      return data.id;
+      console.log({ _id }, data);
+      return _id;
     } catch (error) {
       toast.error('Transaction not removed');
 

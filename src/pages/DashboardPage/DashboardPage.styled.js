@@ -6,8 +6,13 @@ export const LeftBar = styled.div`
   @media screen and (max-width: 767.9px) {
     margin: 0 auto;
   }
+
   @media screen and (min-width: 768px) {
-    margin-bottom: 30px;
+    justify-content: flex-end;
+  }
+  @media screen and (min-width: 1280px) {
+    margin-bottom: 32px;
+    justify-content: flex-end;
   }
 `;
 

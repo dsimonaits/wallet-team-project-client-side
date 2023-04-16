@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const CURRENCY_CACHE_KEY = 'currencyCache';
-const CACHE_TTL = 5 * 60 * 1000; // 5 minutes in milliseconds
+const CACHE_TTL = 86400000;
 
 const currenciesApi = async () => {
   const cachedResponse = localStorage.getItem(CURRENCY_CACHE_KEY);
@@ -11,7 +11,6 @@ const currenciesApi = async () => {
     const lastRequest = Date.now() - timestamp;
 
     if (lastRequest < CACHE_TTL) {
-      console.log(`Returning cached response (lastRequest: ${lastRequest}ms)`);
       return data;
     }
   }

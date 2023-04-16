@@ -12,6 +12,10 @@ export const LogoContainer = styled.div`
   display: flex;
   justify-content: center;
   margin-bottom: 40px;
+
+  @media screen and (min-width: 768px){
+    margin-bottom: 0;
+  }
 `;
 export const Text = styled.p`
   font-weight: 400;

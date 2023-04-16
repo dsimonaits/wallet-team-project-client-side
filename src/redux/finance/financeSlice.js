@@ -7,7 +7,7 @@ import {
 } from './financeOperations';
 
 const initialState = {
-  items: [],
+  transactions: [],
   isLoading: false,
   error: null,
 };
@@ -19,19 +19,21 @@ const financeSLice = createSlice({
   extraReducers: builder => {
     builder
       .addCase(fetchTransactions.fulfilled, (state, { payload }) => {
-        state.items = payload;
+        state.transactions = payload;
       })
       .addCase(addTransaction.fulfilled, (state, { payload }) => {
-        state.items = [...state.items, payload];
+        state.transactions = [...state.transactions, payload];
       })
       .addCase(updateTransaction.fulfilled, (state, { payload }) => {
-        const index = state.items.findIndex(
-          contact => contact.id === payload.id
+        const index = state.transactions.findIndex(
+          transaction => transaction._id === payload._id
         );
-        state.items[index] = payload;
+        state.transactions[index] = payload;
       })
       .addCase(deleteTransaction.fulfilled, (state, { payload }) => {
-        state.items = state.items.filter(({ id }) => id !== payload);
+        state.transactions = state.transactions.filter(
+          transaction => transaction._id !== payload
+        );
       })
       .addMatcher(
         isAnyOf(

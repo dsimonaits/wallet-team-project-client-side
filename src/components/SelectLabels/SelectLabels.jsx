@@ -8,7 +8,7 @@ import Select from '@mui/material/Select';
 export const SelectLabels = () => {
   const [year, setYear] = useState('');
   const [month, setMonth] = useState('January');
-  console.log(month);
+
   const handleChange = event => {
     const { name, value } = event.target;
 

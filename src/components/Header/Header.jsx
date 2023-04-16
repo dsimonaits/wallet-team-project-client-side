@@ -1,6 +1,7 @@
 import Media from 'react-media';
 import mediaQueries from '../../utils/media';
 import Logo from 'components/Logo/Logo';
+import { useDispatch, useSelector } from 'react-redux';
 import {
   AuthContainer,
   Button,
@@ -12,22 +13,25 @@ import {
   Name,
 } from './Header.styled';
 import sprite from '../../images/sprite.svg';
+import ModalLogout from 'components/ModalLogout/ModalLogout';
+import { toggleModalLogout } from 'redux/global/globalSlice';
+import { selectUser } from 'redux/session/sessionSelectors';
 
 export default function Header() {
-  // const dispatch = useDispatch()
-  // const { name } = useSelector(getUser)
+  const { isModalLogoutOpen } = useSelector(store => store.global);
+  const dispatch = useDispatch();
+  const { name } = useSelector(selectUser);
 
   return (
     <>
+      {isModalLogoutOpen && <ModalLogout />}
       <HeaderContainer>
         <MainContainer>
           <LogoContainer>
-            {/* <NavLink exact to="./"> */}
             <Logo />
-            {/* </NavLink> */}
           </LogoContainer>
           <AuthContainer>
-            <Name>Name</Name>
+            <Name>{name}</Name>
             <Media queries={mediaQueries}>
               {matches =>
                 (matches.tablet || matches.desktop) && (
@@ -37,10 +41,7 @@ export default function Header() {
                 )
               }
             </Media>
-            <Button
-              // onClick={() => dispatch(openModalLogout())}
-              type="button"
-            >
+            <Button onClick={() => dispatch(toggleModalLogout())} type="button">
               <ExitSvg>
                 <use href={`${sprite}#icon-exit`}></use>
               </ExitSvg>
