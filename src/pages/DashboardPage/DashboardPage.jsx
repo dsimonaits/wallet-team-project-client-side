@@ -14,6 +14,7 @@ import { LeftBar, DashBoardContainer } from './DashboardPage.styled';
 import { ThemeProvider } from 'styled-components';
 import { GlobalStyles } from '../../components/ThemeChanger/GlobalSyle';
 import { lightTheme, darkTheme } from '../../components/ThemeChanger/Theme';
+import MainBackground from '../../components/Background/background';
 
 // import AddBtnFunction from 'components/AddButtonModal/AddButton';
 
@@ -23,26 +24,29 @@ const DashboardPage = () => {
     theme === 'light' ? setTheme('dark') : setTheme('light');
   };
   return (
-    <ThemeProvider theme={theme === 'light' ? lightTheme : darkTheme}>
-      <GlobalStyles />
-      <Header themeToggler={themeToggler} />
-      <Section>
-        <DashBoardContainer>
-          <MainTab>
-            <LeftBar>
-              <Navigation />
-              <Balance />
-            </LeftBar>
-            <Media queries={mediaQueries}>
-              {matches => (matches.tablet || matches.desktop) && <Currency />}
-            </Media>
-          </MainTab>
-          <HomeTab>
-            <Outlet />
-          </HomeTab>
-        </DashBoardContainer>
-      </Section>
-    </ThemeProvider>
+    <>
+      <MainBackground />
+      <ThemeProvider theme={theme === 'light' ? lightTheme : darkTheme}>
+        <GlobalStyles />
+        <Header themeToggler={themeToggler} />
+        <Section>
+          <DashBoardContainer>
+            <MainTab>
+              <LeftBar>
+                <Navigation />
+                <Balance />
+              </LeftBar>
+              <Media queries={mediaQueries}>
+                {matches => (matches.tablet || matches.desktop) && <Currency />}
+              </Media>
+            </MainTab>
+            <HomeTab>
+              <Outlet />
+            </HomeTab>
+          </DashBoardContainer>
+        </Section>
+      </ThemeProvider>
+    </>
   );
 };
 
