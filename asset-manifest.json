@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/wallet-team-project-client-side/static/css/main.66ec70f9.css",
-    "main.js": "/wallet-team-project-client-side/static/js/main.58442c59.js",
+    "main.js": "/wallet-team-project-client-side/static/js/main.50359684.js",
     "static/media/Circe-Regular.eot": "/wallet-team-project-client-side/static/media/Circe-Regular.cb92908127bb9d67856e.eot",
     "static/media/Circe-Regular.ttf": "/wallet-team-project-client-side/static/media/Circe-Regular.f80cf2f1a50fc5107f4c.ttf",
     "static/media/Circe-Bold.eot": "/wallet-team-project-client-side/static/media/Circe-Bold.88073c2acd9bd5c499ea.eot",
@@ -27,17 +27,17 @@
     "index.html": "/wallet-team-project-client-side/index.html",
     "static/media/logo.svg": "/wallet-team-project-client-side/static/media/logo.00ae4d84264f40632bd66b40d26ac9b8.svg",
     "static/media/finance-icon.svg": "/wallet-team-project-client-side/static/media/finance-icon.6f4432ec3354dccba7d4af91b1e2e72b.svg",
-    "static/media/lock.svg": "/wallet-team-project-client-side/static/media/lock.bc2d0405cd2652ac8bcec12cc36ed0da.svg",
-    "static/media/name.svg": "/wallet-team-project-client-side/static/media/name.f0689cc4bc652243768a88fe683730b7.svg",
-    "static/media/eye-password-hide.svg": "/wallet-team-project-client-side/static/media/eye-password-hide.5f3698fe23a90c013ee9cb620417c045.svg",
+    "static/media/eye-password-show.svg": "/wallet-team-project-client-side/static/media/eye-password-show.4c3d7863d84b38eaf4f7a76e55be0944.svg",
+    "static/media/lock.svg": "/wallet-team-project-client-side/static/media/lock.f1cda05605d66a50b2b2ab6b41089765.svg",
+    "static/media/name.svg": "/wallet-team-project-client-side/static/media/name.64ff1b5b1af7e796e0014b9643901e8c.svg",
     "static/media/home-icon.svg": "/wallet-team-project-client-side/static/media/home-icon.d554a0d3259b05a718cca7083952ac13.svg",
-    "static/media/email.svg": "/wallet-team-project-client-side/static/media/email.d6e114a6a80d46bb8f7a6b641b62c0ac.svg",
-    "static/media/eye-password-show.svg": "/wallet-team-project-client-side/static/media/eye-password-show.eafe2e1da5572a449e7276729a5c8a35.svg",
+    "static/media/eye-password-hide.svg": "/wallet-team-project-client-side/static/media/eye-password-hide.eafe2e1da5572a449e7276729a5c8a35.svg",
+    "static/media/email.svg": "/wallet-team-project-client-side/static/media/email.df88736263a8b441b17ac7d6b5843f63.svg",
     "main.66ec70f9.css.map": "/wallet-team-project-client-side/static/css/main.66ec70f9.css.map",
-    "main.58442c59.js.map": "/wallet-team-project-client-side/static/js/main.58442c59.js.map"
+    "main.50359684.js.map": "/wallet-team-project-client-side/static/js/main.50359684.js.map"
   },
   "entrypoints": [
     "static/css/main.66ec70f9.css",
-    "static/js/main.58442c59.js"
+    "static/js/main.50359684.js"
   ]
 }
