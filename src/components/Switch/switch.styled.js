@@ -24,7 +24,7 @@ border:solid 1px rgba(224, 224, 224, 1);
 background-color: transparent;
 &:before {
    content: '';
-   background: url('../../images/+ btn.png');
+   background-image: url('../../images/Plusbtn.png');
   position: absolute;
   width: 44px;
 height: 44px;
@@ -40,6 +40,11 @@ transition-property: background-color, transform;
   transition-duration: 500ms;
 
 }
+`
+export const ToggleContainer = styled.div`
+display:flex;
+margin-bottom:42px;
+
 `
 
   /* &:before{
@@ -62,3 +67,17 @@ height: 0;
 export const Span = styled.span`
 
 `
+export const Expense = styled.p`
+font-size:16px;
+font-weight:700;
+margin-right:20px;
+margin-left:20px;
+color:${(props) => props.theme.expense};
+/* color:${props=>(props.type=== 'false' ? '#E0E0E0':'rgba(255, 255, 255, 1)')}  */
+`
+export const Income = styled.p`
+font-size:16px;
+font-weight:700;
+margin-right:20px;
+margin-left:20px;
+color:${(props) => props.theme.income};` 

@@ -1,18 +1,25 @@
-import { Label, Checkbox, Slider } from './switch.styled';
+import { Label, Checkbox, Slider,ToggleContainer,Income, Expense} from './switch.styled';
 // import sprite from '../../images/sprite.svg';
-export const Switch = () => {
-  return (
-    //   <p>Income<p />
-    <Label>
-      <Checkbox type="checkbox" />
-
-      <Slider />
-
-      {/* {' '}
-        <AddIcon width="24" height="24">
-          <use href={`${sprite}#icon-plus`} />
-        </AddIcon>{' '} */}
-    </Label>
-    // <p>Expense</p>
+import { useState } from 'react';
+ export const Switch = () => {
+  const [onSwitch, setOnSwitch] = useState(false)
+   const handleChangeSwitch = ({toggleTheme}) => {
+    setOnSwitch(!onSwitch)
+    toggleTheme()
+  };
+   
+    return (
+   
+    <ToggleContainer >
+              <Income >Income</Income>
+              <Label>  
+        <Checkbox name='onSwitch' value={onSwitch} type="checkbox" checked={onSwitch} onClick={handleChangeSwitch} />
+          <Slider />
+    
+            </Label>
+              <Expense>Expense</Expense>
+            </ToggleContainer>
+  
+        
   );
 };
