@@ -32,7 +32,7 @@ export default function ModalLogout() {
             </Media>
           </LogoContainer>
           <Text>Are you sure you want to exit?</Text>
-          <ExitButton type="button" onClick={() => userLogOut()}>
+          <ExitButton type="button" onClick={() => dispatch(userLogOut)}>
             Exit
           </ExitButton>
           <CancelButton
