@@ -3,27 +3,23 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import { toast } from 'react-toastify';
 import API from '../../services/api/authApi';
 
-// Utility to add JWT
-const setAuthHeader = token => {
-  axios.defaults.headers.common.Authorization = `Bearer ${token}`;
+const token = {
+  set(token) {
+    axios.defaults.headers.common.Authorization = `Bearer ${token}`;
+  },
+
+  unset() {
+    axios.defaults.headers.common.Authorization = ``;
+  },
 };
 
-// Utility to remove JWT
-const clearAuthHeader = () => {
-  axios.defaults.headers.common.Authorization = '';
-};
-
-/*
- * POST @ /users/signup
- * body: { name, email, password }
- */
 export const register = createAsyncThunk(
   'session/register',
   async (credentials, thunkAPI) => {
     try {
       const { data } = await API.signup(credentials);
       // After successful registration, add the token to the HTTP header
-      setAuthHeader(data.accessToken);
+      token.set(data.accessToken);
 
       return data;
     } catch (error) {
@@ -42,7 +38,7 @@ export const logIn = createAsyncThunk(
     try {
       const { data } = await API.login(credentials);
 
-      setAuthHeader(data.token);
+      token.set(data.accessToken);
       return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
@@ -60,7 +56,7 @@ export const logOut = createAsyncThunk(
     try {
       await API.logout;
       // After a successful logout, remove the token from the HTTP header
-      clearAuthHeader();
+      token.unset();
     } catch (error) {
       toast.error('Something went wrong! Please, try again');
       return thunkAPI.rejectWithValue(error.message);
@@ -86,7 +82,7 @@ export const refreshUser = createAsyncThunk(
 
     try {
       // If there is a token, add it to the HTTP header and perform the request
-      setAuthHeader(persistedToken);
+      token.set(persistedToken);
       const { data } = await API.getCurrent();
       return data;
     } catch (error) {
