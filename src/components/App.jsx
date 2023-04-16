@@ -4,11 +4,9 @@ import { useEffect } from 'react';
 import mediaQueries from 'utils/media';
 import { useMediaQuery } from '@mui/material';
 import {
-  selectToken,
   selectIsLoggedIn,
   selectIsRefreshing,
 } from '../redux/session/sessionSelectors';
-import { selectTransactions } from '../redux/finance/financeSelectors';
 import { refreshUser } from '../redux/session/sessionOperations';
 import { fetchTransactions } from '../redux/finance/financeOperations';
 import LoginPage from '../pages/auth/LoginPage';
@@ -26,11 +24,9 @@ export const App = () => {
   const location = useLocation();
 
   const dispatch = useDispatch();
-  const tokenExists = useSelector(selectToken);
   const userLoggedIn = useSelector(selectIsLoggedIn);
   const refreshing = useSelector(selectIsRefreshing);
-  const transactions = useSelector(selectTransactions);
-  const cachedResponse = JSON.parse(localStorage.getItem('persist:session'));
+
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -41,7 +37,7 @@ export const App = () => {
     if (userLoggedIn && !refreshing) {
       dispatch(fetchTransactions());
     }
-  }, [userLoggedIn]);
+  }, [dispatch, userLoggedIn, refreshing]);
 
   useEffect(() => {
     if (!isMobile && location.pathname === '/currency') {
