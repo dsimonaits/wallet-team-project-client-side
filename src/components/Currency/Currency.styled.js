@@ -4,6 +4,7 @@ import background from '../../images/currencies/background-image.png';
 import tabletBackground from '../../images/currencies/background-image-tablet.png';
 
 export const CurrencyWrapper = styled.div`
+  position: relative;
   background-repeat: no-repeat;
   background-position: bottom;
   @media screen and (min-width: 320px) {

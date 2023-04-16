@@ -1,4 +1,5 @@
 import { Routes, Route, useNavigate, useLocation } from 'react-router-dom';
+import { lazy, Suspense } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import mediaQueries from 'utils/media';
@@ -9,15 +10,22 @@ import {
 } from '../redux/session/sessionSelectors';
 import { refreshUser } from '../redux/session/sessionOperations';
 import { fetchTransactions } from '../redux/finance/financeOperations';
-import LoginPage from '../pages/auth/LoginPage';
-import RegistrationPage from '../pages/auth/RegistrationPage';
-import Table from './Table/Table';
-import { Statistics } from './Statistics/Statistics';
-import Currency from './Currency/Currency';
-import DashboardPage from 'pages/DashboardPage/DashboardPage';
 import { PublicRoute } from './PublicRoute';
 import { PrivateRoute } from './PrivateRoute';
 import Spinner from './Spinner/Spinner';
+
+const LoginPage = lazy(() => import('../pages/auth/LoginPage'));
+const RegistrationPage = lazy(() => import('../pages/auth/RegistrationPage'));
+const DashboardPage = lazy(() => import('pages/DashboardPage/DashboardPage'));
+const Table = lazy(() => import('./Table/Table'));
+const Statistics = lazy(() => import('./Statistics/Statistics'));
+const Currency = lazy(() => import('./Currency/Currency'));
+// import LoginPage from '../pages/auth/LoginPage';
+// import RegistrationPage from '../pages/auth/RegistrationPage';
+// import DashboardPage from 'pages/DashboardPage/DashboardPage';
+// import Table from './Table/Table';
+// import { Statistics } from './Statistics/Statistics';
+// import Currency from './Currency/Currency';
 
 export const App = () => {
   const isMobile = useMediaQuery(mediaQueries.mobile);
@@ -50,70 +58,71 @@ export const App = () => {
 
   return (
     <>
-      <Spinner />
-      {!refreshing && (
-        <Routes>
-          <Route
-            path="/login"
-            element={
-              <PublicRoute restricted redirectTo="/home">
-                <LoginPage />
-              </PublicRoute>
-            }
-          />
-          <Route
-            path="/register"
-            element={
-              <PublicRoute restricted redirectTo="/home">
-                <RegistrationPage />
-              </PublicRoute>
-            }
-          />
-          <Route
-            path="/"
-            element={
-              <PrivateRoute redirectTo="/login">
-                <DashboardPage />
-              </PrivateRoute>
-            }
-          >
-            {isMobile && (
+      <Suspense fallback={<Spinner />}>
+        {!refreshing && (
+          <Routes>
+            <Route
+              path="/login"
+              element={
+                <PublicRoute restricted redirectTo="/home">
+                  <LoginPage />
+                </PublicRoute>
+              }
+            />
+            <Route
+              path="/register"
+              element={
+                <PublicRoute restricted redirectTo="/home">
+                  <RegistrationPage />
+                </PublicRoute>
+              }
+            />
+            <Route
+              path="/"
+              element={
+                <PrivateRoute redirectTo="/login">
+                  <DashboardPage />
+                </PrivateRoute>
+              }
+            >
+              {isMobile && (
+                <Route
+                  path="currency"
+                  element={
+                    <PrivateRoute redirectTo="/login">
+                      <Currency />
+                    </PrivateRoute>
+                  }
+                />
+              )}
               <Route
-                path="currency"
+                path="home"
                 element={
                   <PrivateRoute redirectTo="/login">
-                    <Currency />
+                    <Table />
                   </PrivateRoute>
                 }
               />
-            )}
+              <Route
+                path="diagram"
+                element={
+                  <PrivateRoute redirectTo="/login">
+                    <Statistics />
+                  </PrivateRoute>
+                }
+              />
+            </Route>
             <Route
-              path="home"
+              path="*"
               element={
-                <PrivateRoute redirectTo="/login">
-                  <Table />
-                </PrivateRoute>
+                <PublicRoute restricted redirectTo="/login">
+                  <RegistrationPage />
+                </PublicRoute>
               }
             />
-            <Route
-              path="diagram"
-              element={
-                <PrivateRoute redirectTo="/login">
-                  <Statistics />
-                </PrivateRoute>
-              }
-            />
-          </Route>
-          <Route
-            path="*"
-            element={
-              <PublicRoute restricted redirectTo="/login">
-                <RegistrationPage />
-              </PublicRoute>
-            }
-          />
-        </Routes>
-      )}
+          </Routes>
+        )}
+      </Suspense>
     </>
   );
 };

@@ -4,7 +4,7 @@ import { SelectLabels } from 'components/SelectLabels/SelectLabels';
 import { selectTransactions } from 'redux/finance/financeSelectors';
 import { StatisticsList } from 'components/StatisticsList/StatisticsList';
 
-export const Statistics = () => {
+const Statistics = () => {
   // const [s, setS] = useState(0);
 
   const transactions = useSelector(selectTransactions);
@@ -31,3 +31,5 @@ export const Statistics = () => {
     </>
   );
 };
+
+export default Statistics;
