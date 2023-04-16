@@ -74,7 +74,6 @@ export const ImgWrapperLogin = styled.div`
 `;
 
 export const Title = styled.h1`
-     display: none;
   @media screen and (min-width: 768px) {
     color: var(--primary-text-color);
     display: flex;
@@ -131,6 +130,8 @@ export const ImgWrapperReg = styled.div`
     margin-right: 32px;
   }
 `;
+
+
 
 
 

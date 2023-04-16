@@ -6,7 +6,7 @@ import { Formik, ErrorMessage } from 'formik';
 import { toast } from 'react-toastify';
 import Logo from 'components/Logo/Logo';
 import ShowPwdButton from 'components/ShowPwdButton/ShowPwdButton';
-import {
+import { 
   FormContainer,
   Form,
   FormField,
@@ -15,8 +15,8 @@ import {
   ErrorText,
   IconMail,
   IconPassword,
-  StyledBtnMain,
-  StyledBtn,
+  FirstButton,
+  SecondButton,
 } from 'components/LoginForm/LoginForm.styled';
 
 import operations from 'redux/session/sessionOperations';
@@ -31,10 +31,12 @@ const LoginForm = () => {
     email: yup.string().email().required(),
     password: yup
       .string()
-      .min(6, 'must be at least 6 characters')
-      .max(12, 'password length must be less than 13 characters')
+      .min(8, 'must be at least 8 characters')
+      .max(12, 'password length must be less than 13 characters')    
+      .matches(/^(?=.*[0-9])(?=.*[a-zA-Z])[a-zA-Z0-9!@#$%^&*]+$/, 'must contain a letter, a number and a symbol')
       .required(),
   });
+
 
   const onSubmit = (values, { resetForm }) => {
     const res = dispatch(operations.logIn(values));
@@ -50,8 +52,7 @@ const LoginForm = () => {
     resetForm();
   };
 
-  return (
-    <FormContainer>
+  return (   
       <Formik
         initialValues={{
           email: '',
@@ -60,7 +61,8 @@ const LoginForm = () => {
         validationSchema={schema}
         onSubmit={onSubmit}
       >
-        {({ handleSubmit, handleChange, values }) => (
+      {({ handleSubmit, handleChange, values }) => (
+        <FormContainer>
           <Form onSubmit={handleSubmit}>
             <LogoContainer>
               <Logo />
@@ -99,19 +101,20 @@ const LoginForm = () => {
                 render={msg => <ErrorText>{msg}</ErrorText>}
               />
             </FormLabel>
-            <StyledBtnMain type="submit">Log In</StyledBtnMain>
-            <StyledBtn
+            <FirstButton type="submit">Log In</FirstButton>
+            <SecondButton
               type="button"
               onClick={() => {
                 navigate('/registration');
               }}
             >
               Register
-            </StyledBtn>
+            </SecondButton>
           </Form>
+          </FormContainer>
         )}
       </Formik>
-    </FormContainer>
+
   );
 };
 

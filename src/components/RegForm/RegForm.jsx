@@ -17,8 +17,8 @@ import {
   IconPassword,
   IconName,
   ErrorTextConfirm,
-  StyledBtnMain,
-  StyledBtn,
+  FirstButton,
+  SecondButton,
 } from 'components/LoginForm/LoginForm.styled';
 import { toast } from 'react-toastify';
 
@@ -37,7 +37,12 @@ const RegisterForm = () => {
       .string()
       .min(6, 'must be at least 6 characters')
       .max(12, 'password length must be less than 12 characters')
-           .required(),
+      .matches(/^(?=.*[0-9])(?=.*[a-zA-Z])[a-zA-Z0-9!@#$%^&*]+$/, 'must contain a letter, a number and a symbol')
+       .required(),
+    confirmPassword: yup
+    .string()
+    .oneOf([yup.ref('password'), null], 'passwords need to be the same')
+    .required(),
      name: yup
     .string()
     .min(1, 'must min length 1')
@@ -62,7 +67,7 @@ const RegisterForm = () => {
   };
 
   return (
-    <FormContainer>
+    
       <Formik
         initialValues={{
           email: '',
@@ -73,7 +78,8 @@ const RegisterForm = () => {
         validationSchema={schema}
         onSubmit={onSubmit}
       >
-        {({ handleSubmit, handleChange, values }) => (
+      {({ handleSubmit, handleChange, values }) => (
+        <FormContainer>
           <Form onSubmit={handleSubmit}>
               <LogoContainer>
                 <Logo />
@@ -104,10 +110,9 @@ const RegisterForm = () => {
               <IconPassword />
               <ShowPwdButton
                 type="button"
-                setShowPassword={setIsRevealPwd}
-                showPassword={isRevealPwd}
+                setIsRevealPwd={setIsRevealPwd}
+                isRevealPwd={isRevealPwd}
               />
-
               <ErrorMessage
                 name="password"
                 render={msg => <ErrorText>{msg}</ErrorText>}
@@ -125,8 +130,8 @@ const RegisterForm = () => {
               <IconPassword />
               <ShowPwdButton
                 type="button"
-                setShowPassword={setConfirmShowPassword}
-                showPassword={showConfirmPassword}
+                setIsRevealPwd ={setConfirmShowPassword}
+                isRevealPwd={showConfirmPassword}
               />
 
               <PasswordStrengthMeter password={password} />
@@ -149,21 +154,21 @@ const RegisterForm = () => {
                 render={msg => <ErrorText>{msg}</ErrorText>}
               />
             </FormLabel>
-             <StyledBtnMain type="submit">
+             <FirstButton type="submit">
                 Register
-              </StyledBtnMain>            
-              <StyledBtn
+              </FirstButton>            
+              <SecondButton
                 type="button"
                 onClick={() => {
                   navigate('/login');
                 }}
               >
                 Log In
-              </StyledBtn>
+              </SecondButton>
           </Form>
+          </FormContainer>
         )}
       </Formik>
-    </FormContainer>
   );
 };
 
