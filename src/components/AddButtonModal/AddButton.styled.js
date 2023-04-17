@@ -82,6 +82,9 @@ export const ToggleContainer = styled.div`
   margin-bottom: 42px;
 `;
 export const AddBtn = styled.button`
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 44px;
   height: 44px;
   //padding:20px;
@@ -95,6 +98,13 @@ export const AddBtn = styled.button`
   bottom: 40px;
   right: 40px;
   cursor: pointer;
+
+  transition: box-shadow 250ms ease-in-out, background 250ms ease-in-out;
+
+  :hover {
+    /* background: #24cca7; */
+    box-shadow: 0 0 10px #24cca7;
+  }
 `;
 export const CloseButton = styled.button`
   height: fit-content;
