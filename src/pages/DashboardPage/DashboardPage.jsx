@@ -15,8 +15,7 @@ import { ThemeProvider } from 'styled-components';
 import { GlobalStyles } from '../../components/ThemeChanger/GlobalSyle';
 import { lightTheme, darkTheme } from '../../components/ThemeChanger/Theme';
 import MainBackground from '../../components/Background/background';
-
-// import AddBtnFunction from 'components/AddButtonModal/AddButton';
+import AddBtnFunction from 'components/AddButtonModal/AddButton';
 
 const DashboardPage = () => {
   const [theme, setTheme] = useState('light');
@@ -45,6 +44,7 @@ const DashboardPage = () => {
             </HomeTab>
           </DashBoardContainer>
         </Section>
+        <AddBtnFunction />
       </ThemeProvider>
     </>
   );

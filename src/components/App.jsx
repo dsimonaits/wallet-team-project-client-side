@@ -55,10 +55,19 @@ export const App = () => {
   }, [isMobile, navigate, location.pathname]);
 
   useEffect(() => {
-    if (!isGLobalLoading) {
+    if (!isGLobalLoading && userLoggedIn && !refreshing) {
       const section = document.getElementById('blur');
-      isModalIsOpen && section.classList.add('blur');
-      !isModalIsOpen && section.classList.remove('blur');
+      switch (isModalIsOpen) {
+        case true:
+          section.classList.add('blur');
+          break;
+        case false:
+          section.classList.contains('blur') &&
+            section.classList.remove('blur');
+          break;
+        default:
+          break;
+      }
     }
   });
 

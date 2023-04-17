@@ -10,25 +10,19 @@ import {
 } from './Modal.styled';
 import sprite from '../../images/sprite.svg';
 import { useDispatch } from 'react-redux';
-import {
-  toggleModalLogout,
-  toggleModalAddTransaction,
-  toggleModalEditTransaction,
-} from 'redux/global/globalSlice';
+// import {
+//   toggleModalLogout,
+//   toggleModalAddTransaction,
+//   toggleModalEditTransaction,
+// } from 'redux/global/globalSlice';
 
-export default function Modal({ children }) {
+export default function Modal({ onClose, children }) {
   const dispatch = useDispatch();
-
-  const closeModal = () => {
-    dispatch(toggleModalLogout());
-    dispatch(toggleModalAddTransaction());
-    dispatch(toggleModalEditTransaction());
-  };
 
   useEffect(() => {
     const handleKeyDown = e => {
       if (e.code === 'Escape') {
-        closeModal();
+        onClose();
       }
     };
 
@@ -41,7 +35,7 @@ export default function Modal({ children }) {
 
   const handleBackdropClick = e => {
     if (e.currentTarget === e.target) {
-      closeModal();
+      onClose();
     }
   };
 
@@ -53,10 +47,7 @@ export default function Modal({ children }) {
             {matches =>
               (matches.tablet || matches.desktop) && (
                 <CloseBtnBox>
-                  <CloseButton
-                    type="button"
-                    onClick={() => dispatch(closeModal())}
-                  >
+                  <CloseButton type="button" onClick={() => dispatch(onClose)}>
                     <CloseIcon width="24" height="24">
                       <use href={`${sprite}#icon-close`} />
                     </CloseIcon>

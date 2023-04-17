@@ -176,9 +176,10 @@ const Table = () => {
           </Tr>
         </Thead>
         <TbodyWrapper>
-          {transactions.map(row => (
-            <TrWrapperTable key={row._id}>
-              {/* <Modal>
+          {transactions &&
+            transactions.map(row => (
+              <TrWrapperTable key={row._id}>
+                {/* <Modal>
                 {transactionUpdate && transactionUpdate._id === row._id && (
                   <UpdateForm
                     contactUpdate={transactionUpdate}
@@ -186,48 +187,50 @@ const Table = () => {
                   />
                 )}
               </Modal> */}
-              <Td>{formatDate(row.date)}</Td>
-              <Td>
-                {row.type.toString() === 'true' ? (
-                  <Text>+</Text>
-                ) : (
-                  <Text>-</Text>
-                )}
-              </Td>
-              <Td>{row.category}</Td>
-              <Td>
-                {row.comment ? (
-                  <EllipsisText
-                    className="cursor"
-                    onClick={() => toggleRow(row._id)}
-                    text={row.comment}
-                    length={expandedRows[row._id] ? 100 : 20}
-                  />
-                ) : (
-                  '-'
-                )}
-              </Td>
-              <TableSum type={row.type.toString()}>
-                {/* {formatter.format(row.sum)} */}
-                {row.sum
-                  .toLocaleString('ru-RU', {
-                    minimumIntegerDigits: 1,
-                    minimumFractionDigits: 2,
-                    maximumFractionDigits: 2,
-                    useGrouping: true,
-                  })
-                  .replace(',', '.')}
-              </TableSum>
-              <TableBtn>
-                <EditBtn onClick={() => handleEdit(row._id)}>
-                  <IconBtn src={icon} alt="edit" />
-                </EditBtn>
-                <DeleteBtn onClick={() => dispatch(deleteTransaction(row._id))}>
-                  {isLoading ? 'Deleting' : 'Delete'}
-                </DeleteBtn>
-              </TableBtn>
-            </TrWrapperTable>
-          ))}
+                <Td>{formatDate(row.date)}</Td>
+                <Td>
+                  {row.type.toString() === 'true' ? (
+                    <Text>+</Text>
+                  ) : (
+                    <Text>-</Text>
+                  )}
+                </Td>
+                <Td>{row.category}</Td>
+                <Td>
+                  {row.comment ? (
+                    <EllipsisText
+                      className="cursor"
+                      onClick={() => toggleRow(row._id)}
+                      text={row.comment}
+                      length={expandedRows[row._id] ? 100 : 20}
+                    />
+                  ) : (
+                    '-'
+                  )}
+                </Td>
+                <TableSum type={row.type.toString()}>
+                  {/* {formatter.format(row.sum)} */}
+                  {row.sum
+                    .toLocaleString('ru-RU', {
+                      minimumIntegerDigits: 1,
+                      minimumFractionDigits: 2,
+                      maximumFractionDigits: 2,
+                      useGrouping: true,
+                    })
+                    .replace(',', '.')}
+                </TableSum>
+                <TableBtn>
+                  <EditBtn onClick={() => handleEdit(row._id)}>
+                    <IconBtn src={icon} alt="edit" />
+                  </EditBtn>
+                  <DeleteBtn
+                    onClick={() => dispatch(deleteTransaction(row._id))}
+                  >
+                    {isLoading ? 'Deleting' : 'Delete'}
+                  </DeleteBtn>
+                </TableBtn>
+              </TrWrapperTable>
+            ))}
         </TbodyWrapper>
       </TableWrapper>
     </Wrapper>
