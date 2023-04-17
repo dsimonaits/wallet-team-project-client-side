@@ -179,7 +179,18 @@ export const Th = styled.th`
   line-height: 27px;
   padding: 10px;
   text-align: center;
-  width: 16.66%;
+  width: 15%;
+`;
+
+export const LargeTh = styled.th`
+  font-family: 'Circe';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 27px;
+  padding: 10px;
+  text-align: center;
+  width: 20%;
 `;
 
 export const ThSum = styled.th`
@@ -190,7 +201,7 @@ export const ThSum = styled.th`
   line-height: 27px;
   padding: 10px;
   text-align: right;
-  width: 16.66%;
+  width: 15%;
 `;
 ////////////////////////////////////////////////////////////
 
@@ -204,11 +215,27 @@ export const Td = styled.td`
   line-height: 24px;
   padding: 10px;
   text-align: center;
-  width: 16.66%;
+  width: 15%;
 
   .cursor {
     cursor: pointer;
   }
+`;
+
+export const LargeTd = styled.th`
+  font-family: 'Circe';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  padding: 10px;
+  text-align: center;
+  width: 15%;
+
+  .cursor {
+    cursor: pointer;
+  }
+  width: 20%;
 `;
 
 export const TableSum = styled.td`
@@ -220,6 +247,7 @@ export const TableSum = styled.td`
   padding: 10px;
   text-align: right;
   color: ${props => (props.type === 'true' ? '#24cca7' : '#ff6596')};
+  
 `;
 
 ////////////////////////////////////////////////////////
@@ -231,6 +259,7 @@ export const TableBtn = styled.td`
   justify-content: right;
   padding: 10px 0 10px 10px;
   /* gap: 5px; */
+
 `;
 
 export const IconBtn = styled.img`

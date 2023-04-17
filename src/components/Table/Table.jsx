@@ -32,8 +32,10 @@ import {
   Tr,
   TrWrapperTable,
   Th,
+  LargeTh,
   ThSum,
   Td,
+  LargeTd,
   TableSum,
   TableBtn,
   EditBtn,
@@ -133,7 +135,7 @@ const Table = () => {
                     className="cursor"
                     onClick={() => toggleRow(row._id)}
                     text={row.comment}
-                    length={expandedRows[row._id] ? 100 : 20}
+                    length={expandedRows[row._id] ? 100 : 15}
                   />
                 ) : (
                   '-'
@@ -176,8 +178,8 @@ const Table = () => {
           <Tr>
             <Th>Date</Th>
             <Th>Type</Th>
-            <Th>Category</Th>
-            <Th>Comment</Th>
+            <LargeTh>Category</LargeTh>
+            <LargeTh>Comment</LargeTh>
             <ThSum>Sum</ThSum>
             <Th></Th>
           </Tr>
@@ -202,14 +204,14 @@ const Table = () => {
                     <Text>-</Text>
                   )}
                 </Td>
-                <Td>
+                <LargeTd>
                   {row.type.toString() === 'true' ? (
                     <Text>Income</Text>
                   ) : (
                     <Text>{row.category}</Text>
                   )}
-                </Td>
-                <Td>
+                </LargeTd>
+                <LargeTd>
                   {row.comment ? (
                     <EllipsisText
                       className="cursor"
@@ -220,7 +222,7 @@ const Table = () => {
                   ) : (
                     '-'
                   )}
-                </Td>
+                </LargeTd>
                 <TableSum type={row.type.toString()}>
                   {/* {formatter.format(row.sum)} */}
                   {row.sum
