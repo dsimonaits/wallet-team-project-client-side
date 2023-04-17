@@ -93,6 +93,7 @@ const AddBtnFunction = () => {
       default:
         break;
     }
+    dispatch(toggleModalAddTransaction());
   };
 
   const themeInc = {
@@ -219,12 +220,7 @@ const AddBtnFunction = () => {
 
               <MenuBtn>
                 <ButtonItem>
-                  <AddButton
-                    onClick={() => dispatch(toggleModalAddTransaction())}
-                    type="submit"
-                  >
-                    ADD
-                  </AddButton>
+                  <AddButton type="submit">ADD</AddButton>
                 </ButtonItem>
                 <ButtonItem>
                   <ExitButton
