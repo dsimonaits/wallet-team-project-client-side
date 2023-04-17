@@ -14,7 +14,6 @@ const sessionSlice = createSlice({
   initialState,
   reducers: {
     updateBalance(state, action) {
-      console.log(action);
       state.user.balance = action.payload;
     },
   },

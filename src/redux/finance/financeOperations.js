@@ -133,7 +133,7 @@ export const deleteTransaction = createAsyncThunk(
         theme: 'light',
       });
       console.log({ _id }, data);
-      return _id;
+      return { id: _id, data };
     } catch (error) {
       toast.error('Transaction not removed');
 

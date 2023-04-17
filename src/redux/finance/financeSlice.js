@@ -53,7 +53,7 @@ const financeSLice = createSlice({
       })
       .addCase(deleteTransaction.fulfilled, (state, { payload }) => {
         state.transactions = state.transactions.filter(
-          transaction => transaction._id !== payload
+          transaction => transaction._id !== payload.id
         );
       })
       .addCase(getTransactionsStatistics.fulfilled, (state, { payload }) => {
