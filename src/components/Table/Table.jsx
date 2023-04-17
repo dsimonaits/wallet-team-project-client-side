@@ -18,6 +18,12 @@ import icon from '../../images/pencil.png';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
+// Edit /////////////////////
+import Modal from 'components/Modal/Modal';
+import UpdateForm from 'components/UpdateForm/UpdateForm';
+import { toggleModalEditTransaction } from '../../redux/global/globalSlice';
+import { selectIsModalEditTransactionOpen } from '../../redux/global/globalSelectors';
+
 // STYLE ////////////////////////////////////
 import {
   Wrapper,
@@ -55,6 +61,7 @@ const Table = () => {
   const [expandedRows, setExpandedRows] = useState({});
   // const [currentPage, setCurrentPage] = useState(1);
 
+  const isEditModalIsOpen = useSelector(selectIsModalEditTransactionOpen);
   const isLoading = useSelector(selectIsLoading);
   const transactions = useSelector(selectTransactions);
 
@@ -83,9 +90,10 @@ const Table = () => {
   //   dispatch(loadMoreTransactions(currentPage + 1));
   // };
 
-  // const closeForm = () => {
-  //   setTransactionUpdate(null);
-  // };
+  const toggleModal = () => {
+    // setTransactionUpdate(null);
+    dispatch(toggleModalEditTransaction());
+  };
 
   // DATE formatter //////////////////////////////////////////
   function formatDate(dateString) {
@@ -182,6 +190,16 @@ const Table = () => {
 
   return (
     <Wrapper>
+      {isEditModalIsOpen && (
+        <Modal>
+          {/* {transactionUpdate && transactionUpdate._id === row._id && ( */}
+          <UpdateForm
+            // contactUpdate={transactionUpdate}
+            toggleModal={toggleModal}
+          />
+          {/* )} */}
+        </Modal>
+      )}
       <ToastContainer />
       <TableWrapper>
         <Thead>
@@ -198,14 +216,6 @@ const Table = () => {
           {transactions &&
             transactions.map(row => (
               <TrWrapperTable key={row._id}>
-                {/* <Modal>
-                {transactionUpdate && transactionUpdate._id === row._id && (
-                  <UpdateForm
-                    contactUpdate={transactionUpdate}
-                    closeForm={closeForm}
-                  />
-                )}
-              </Modal> */}
                 <Td>{formatDate(row.date)}</Td>
                 <Td>
                   {row.type.toString() === 'true' ? (
@@ -245,7 +255,7 @@ const Table = () => {
                     .replace(',', '.')}
                 </TableSum>
                 <TableBtn>
-                  <EditBtn onClick={() => handleEdit(row._id)}>
+                  <EditBtn onClick={toggleModal}>
                     <IconBtn src={icon} alt="edit" />
                   </EditBtn>
                   <DeleteBtn
