@@ -1,5 +1,5 @@
 import React from 'react';
-import { connect } from 'react-redux';
+import { useSelector } from 'react-redux';
 import {
   BalanceContainer,
   BalanceTitle,
@@ -7,22 +7,20 @@ import {
   Grivan,
 } from './Balance.styled';
 
-const Balance = ({ totalBalance }) => {
+const Balance = () => {
+  const totalBalance = useSelector((state) => state.session.user.balance);
+
+  const formattedTotalBalance = totalBalance.toFixed(2).toLocaleString('fr-FR');
+
   return (
     <BalanceContainer>
       <BalanceTitle>YOUR BALANCE</BalanceTitle>
       <TotalBalance>
         <Grivan>&#8372;</Grivan>
-        {totalBalance}
+        {formattedTotalBalance}
       </TotalBalance>
     </BalanceContainer>
   );
 };
 
-const mapStateToProps = state => {
-  return {
-    totalBalance: state.session.user.balance,
-  };
-};
-
-export default connect(mapStateToProps)(Balance);
+export default Balance;
