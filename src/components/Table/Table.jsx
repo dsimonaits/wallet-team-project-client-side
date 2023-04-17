@@ -2,7 +2,10 @@ import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { useSelector, useDispatch } from 'react-redux';
 
-import { deleteTransaction } from '../../redux/finance/financeOperations';
+import {
+  deleteTransaction,
+  // loadMoreTransactions,
+} from '../../redux/finance/financeOperations';
 import {
   selectIsLoading,
   selectTransactions,
@@ -18,6 +21,7 @@ import 'react-toastify/dist/ReactToastify.css';
 // STYLE ////////////////////////////////////
 import {
   Wrapper,
+  // LoadMoreBtn,
   MobileCardWrapper,
   TransactionList,
   TransactionItem,
@@ -32,8 +36,10 @@ import {
   Tr,
   TrWrapperTable,
   Th,
+  LargeTh,
   ThSum,
   Td,
+  LargeTd,
   TableSum,
   TableBtn,
   EditBtn,
@@ -47,6 +53,7 @@ const Table = () => {
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 767);
   const [transactionUpdate, setTransactionUpdate] = useState(null);
   const [expandedRows, setExpandedRows] = useState({});
+  // const [currentPage, setCurrentPage] = useState(1);
 
   const isLoading = useSelector(selectIsLoading);
   const transactions = useSelector(selectTransactions);
@@ -70,6 +77,11 @@ const Table = () => {
     const transaction = transactions.find(({ _id }) => _id === transactionId);
     setTransactionUpdate(transaction);
   };
+
+  // Load moer transactions///////////////
+  // const handleLoadMore = async () => {
+  //   dispatch(loadMoreTransactions(currentPage + 1));
+  // };
 
   // const closeForm = () => {
   //   setTransactionUpdate(null);
@@ -133,7 +145,7 @@ const Table = () => {
                     className="cursor"
                     onClick={() => toggleRow(row._id)}
                     text={row.comment}
-                    length={expandedRows[row._id] ? 100 : 20}
+                    length={expandedRows[row._id] ? 100 : 15}
                   />
                 ) : (
                   '-'
@@ -176,8 +188,8 @@ const Table = () => {
           <Tr>
             <Th>Date</Th>
             <Th>Type</Th>
-            <Th>Category</Th>
-            <Th>Comment</Th>
+            <LargeTh>Category</LargeTh>
+            <LargeTh>Comment</LargeTh>
             <ThSum>Sum</ThSum>
             <Th></Th>
           </Tr>
@@ -202,14 +214,14 @@ const Table = () => {
                     <Text>-</Text>
                   )}
                 </Td>
-                <Td>
+                <LargeTd>
                   {row.type.toString() === 'true' ? (
                     <Text>Income</Text>
                   ) : (
                     <Text>{row.category}</Text>
                   )}
-                </Td>
-                <Td>
+                </LargeTd>
+                <LargeTd>
                   {row.comment ? (
                     <EllipsisText
                       className="cursor"
@@ -220,7 +232,7 @@ const Table = () => {
                   ) : (
                     '-'
                   )}
-                </Td>
+                </LargeTd>
                 <TableSum type={row.type.toString()}>
                   {/* {formatter.format(row.sum)} */}
                   {row.sum
@@ -246,6 +258,15 @@ const Table = () => {
             ))}
         </TbodyWrapper>
       </TableWrapper>
+      {/* {isLoading ? (
+        <Text>Loading...</Text>
+      ) : (
+        transactions.length > 5 && (
+          <LoadMoreBtn onClick={handleLoadMore}>
+            Load more transactions...
+          </LoadMoreBtn>
+        )
+      )} */}
     </Wrapper>
   );
 };

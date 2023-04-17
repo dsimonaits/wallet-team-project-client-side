@@ -34,6 +34,15 @@ export const fetchTransactions = createAsyncThunk(
   }
 );
 
+export const loadMoreTransactions = createAsyncThunk(
+  'transactions/loadMore',
+  async page => {
+    const response = await fetch(`${BASE_URL}/transaction/getAll?page=${page}`);
+    const data = await response.json();
+    return data;
+  }
+);
+
 export const addTransaction = createAsyncThunk(
   'finance/addTransaction',
   async (transaction, { rejectWithValue }) => {

@@ -3,7 +3,11 @@ import styled from 'styled-components';
 export const Wrapper = styled.div`
   margin: 0 auto;
   overflow-y: auto;
-  height: 310px;
+  height: 350px;
+  display: flex;
+  justify-content: start;
+  align-items: flex-start;
+  flex-direction: column;
 
   @media screen and (min-width: 768px) {
     width: 714px;
@@ -32,6 +36,22 @@ export const Wrapper = styled.div`
   ::-webkit-scrollbar-thumb:hover {
     background-color: #ff6596;
     /* box-shadow: 0 0 10px #ff6596; */
+  }
+`;
+
+export const LoadMoreBtn = styled.button`
+  color: #ffffff;
+  background-color: #24cca7;
+  border: none;
+  padding: 4px 12px;
+  border-radius: 20px;
+  margin: 10px auto;
+  cursor: pointer;
+  transition: box-shadow 250ms ease-in-out, background-color 250ms ease-in-out;
+
+  :hover {
+    /* background-color: #24f0a7; */
+    box-shadow: 0 0 8px #24cca7;
   }
 `;
 
@@ -179,7 +199,18 @@ export const Th = styled.th`
   line-height: 27px;
   padding: 10px;
   text-align: center;
-  width: 16.66%;
+  width: 15%;
+`;
+
+export const LargeTh = styled.th`
+  font-family: 'Circe';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 27px;
+  padding: 10px;
+  text-align: center;
+  width: 20%;
 `;
 
 export const ThSum = styled.th`
@@ -190,7 +221,7 @@ export const ThSum = styled.th`
   line-height: 27px;
   padding: 10px;
   text-align: right;
-  width: 16.66%;
+  width: 15%;
 `;
 ////////////////////////////////////////////////////////////
 
@@ -204,11 +235,27 @@ export const Td = styled.td`
   line-height: 24px;
   padding: 10px;
   text-align: center;
-  width: 16.66%;
+  width: 15%;
 
   .cursor {
     cursor: pointer;
   }
+`;
+
+export const LargeTd = styled.th`
+  font-family: 'Circe';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  padding: 10px;
+  text-align: center;
+  width: 15%;
+
+  .cursor {
+    cursor: pointer;
+  }
+  width: 20%;
 `;
 
 export const TableSum = styled.td`
