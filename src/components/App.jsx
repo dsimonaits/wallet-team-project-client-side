@@ -77,6 +77,7 @@ export const App = () => {
         {!refreshing && (
           <Routes>
             <Route
+              exact
               path="/login"
               element={
                 <PublicRoute restricted redirectTo="/home">
@@ -85,6 +86,7 @@ export const App = () => {
               }
             />
             <Route
+              exact
               path="/register"
               element={
                 <PublicRoute restricted redirectTo="/home">
