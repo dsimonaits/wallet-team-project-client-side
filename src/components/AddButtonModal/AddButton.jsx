@@ -41,7 +41,7 @@ import { selectIsModalAddTransactionOpen } from '../../redux/global/globalSelect
 import { addTransaction } from '../../redux/finance/financeOperations';
 
 const AddBtnFunction = () => {
-  const [startDate, setStartDate] = useState([new Date()]);
+  const [startDate] = useState([new Date()]);
   const [sum, setSum] = useState('');
   const [category, setCategory] = useState('');
   const [comment, setComment] = useState('');
@@ -200,8 +200,8 @@ const AddBtnFunction = () => {
                       const today = new Date();
                       const oneDay = 24 * 60 * 60 * 1000; // number of milliseconds in one day
                       const yesterday = new Date(today.getTime() - oneDay);
-                      setStartDate(current.isAfter(yesterday));
-                      return current.isAfter(yesterday);
+                      const date = current.isAfter(yesterday);
+                      return date;
                     }}
                   />
                 </ItemInput>
