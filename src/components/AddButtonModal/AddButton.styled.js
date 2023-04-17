@@ -115,6 +115,9 @@ export const Textarea = styled.textarea`
 export const AddBtn = styled.button`
   width: 44px;
   height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   //padding:20px;
   border-radius: 50%;
   color: rgba(255, 255, 255, 1);
@@ -128,6 +131,13 @@ export const AddBtn = styled.button`
   cursor: pointer;
   @media screen and (max-width: 768px) {
     bottom: 20px;
+  }
+
+  transition: box-shadow 250ms ease-in-out, background-color 250ms ease-in-out;
+
+  :hover {
+    /* background-color: #24f0a7; */
+    box-shadow: 0 0 8px #24cca7;
   }
 `;
 
