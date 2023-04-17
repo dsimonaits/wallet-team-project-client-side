@@ -131,6 +131,7 @@ const AddBtnFunction = () => {
                     name="onSwitch"
                     value={onSwitch}
                     type="checkbox"
+                    checked="checked"
                     // onSwitch={onSwitch}
                     onClick={handleChangeSwitch}
                   />
