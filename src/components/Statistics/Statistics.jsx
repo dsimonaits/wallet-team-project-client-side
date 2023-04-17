@@ -1,34 +1,56 @@
 import { ChartJs } from 'components/ChartJS/ChartJS';
-import { useSelector } from 'react-redux';
+import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { SelectLabels } from 'components/SelectLabels/SelectLabels';
-import { selectTransactions } from 'redux/finance/financeSelectors';
+import { selectStatistic } from 'redux/finance/financeSelectors';
+import { getTransactionsStatistics } from 'redux/finance/financeOperations';
+
 import { StatisticsList } from 'components/StatisticsList/StatisticsList';
+import { Text, Wrapper, SubWrapper, Box } from './Statistics.styled';
 
-const Statistics = () => {
-  // const [s, setS] = useState(0);
+export const Statistics = () => {
+  const [select, setSelect] = useState({ month: '4', year: '2023' });
+  const dispatch = useDispatch();
 
-  const transactions = useSelector(selectTransactions);
+  const statistic = useSelector(selectStatistic);
+  console.log(statistic);
+  // const statistic = {
+  //   result: [
+  //     {
+  //       totalSum: 3400,
+  //       category: 'Car',
+  //     },
+  //     {
+  //       totalSum: 2400,
+  //       category: 'Self care',
+  //     },
+  //   ],
+  //   transaction: [
+  //     {
+  //       type: true,
+  //       sum: 43000.12,
+  //     },
+  //   ],
+  // };
+  useEffect(() => {
+    dispatch(getTransactionsStatistics(select));
+  }, [dispatch, select]);
 
-  // useEffect(() => {
-  //   dispatch(fetchTransactions());
-  // }, [dispatch]);
-
-  // useEffect(() => {
-  //   setS(transactions);
-  // }, [transactions]);
-
-  //   const transactions = useSelector(allTransactions);
+  const hadleSelect = data => {
+    setSelect(data);
+  };
 
   return (
-    <>
-      <div style={{ display: 'flex', alignItems: 'center' }}>
-        <ChartJs transactions={transactions} />
-        <div>
-          <SelectLabels />
-          <StatisticsList transactions={transactions} />
-        </div>
-      </div>
-    </>
+    <Wrapper>
+      <Text>Statistics</Text>
+      <SubWrapper>
+        <ChartJs statistic={statistic} />
+        <Box>
+          <SelectLabels handleSelect={hadleSelect} />
+          <StatisticsList statistic={statistic} />
+        </Box>
+      </SubWrapper>
+    </Wrapper>
   );
 };
 

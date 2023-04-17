@@ -1,35 +1,55 @@
-export const StatisticsList = ({ transactions }) => {
+import {
+  List,
+  Item,
+  Elem,
+  Sum,
+  Category,
+  HeadList,
+  HeadCat,
+  SubList,
+  SubItem,
+} from './StatisticsList.styled';
+
+export const StatisticsList = ({ statistic }) => {
   const colors = [
-    'rgba(255, 99, 132, 1)',
-    'rgba(54, 162, 235, 1)',
-    'rgba(255, 206, 86, 1)',
-    'rgba(75, 192, 192, 1)',
-    'rgba(153, 102, 255, 1)',
-    'rgba(255, 159, 64, 1)',
+    '#FED057',
+    '#FFD8D0',
+    '#FD9498',
+    '#C5BAFF',
+    '#6E78E8',
+    '#4A56E2',
+    '#81E1FF',
+    '#24CCA7',
+    '#00AD84',
   ];
 
-  const obj = transactions.reduce((acc, { category, sum }) => {
-    acc[category] = acc[category] ? acc[category] + sum : sum;
-
-    return acc;
-  }, {});
-
   return (
-    <ul>
-      {Object.entries(obj).map(([category, sum], index) => (
-        <li style={{ width: '300px', display: 'flex' }} key={index}>
-          <p
-            style={{
-              width: '20px',
-              height: '15px',
-              backgroundColor: colors[index],
-              marginRight: '20px',
-            }}
-          ></p>
-          <p>{category}</p>
-          <p style={{ marginLeft: 'auto' }}>{sum}</p>
-        </li>
-      ))}
-    </ul>
+    <>
+      <HeadList>
+        <HeadCat>Category</HeadCat>
+        <HeadCat>Sum</HeadCat>
+      </HeadList>
+      <List>
+        {statistic.result.map(({ totalSum, category }, index) => (
+          <Item key={index}>
+            <Elem style={{ backgroundColor: colors[index] }}></Elem>
+            <Category>{category}</Category>
+            <Sum>{totalSum}</Sum>
+          </Item>
+        ))}
+      </List>
+      <SubList>
+        <SubItem>Expenses:</SubItem>
+        <SubItem>Income:</SubItem>
+      </SubList>
+    </>
   );
 };
+
+// {Object.entries(obj).map(([category, sum], index) => (
+//       <Item key={index}>
+//         <Elem style={{ backgroundColor: colors[index] }}></Elem>
+//         <Category>{category}</Category>
+//         <Sum>{sum}</Sum>
+//       </Item>
+//     ))}

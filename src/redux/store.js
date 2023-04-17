@@ -13,6 +13,7 @@ import {
   REGISTER,
 } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
+import countBalanceMiddleware from '../utils/middlewares/countBalanceMiddleware';
 
 const authPersistConfig = {
   key: 'session',
@@ -31,7 +32,7 @@ export const store = configureStore({
       serializableCheck: {
         ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
       },
-    }),
+    }).concat(countBalanceMiddleware),
 });
 
 export const persistor = persistStore(store);

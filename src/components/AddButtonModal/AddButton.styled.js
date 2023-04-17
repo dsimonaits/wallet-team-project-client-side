@@ -2,8 +2,8 @@ import styled from 'styled-components';
 import Datetime from 'react-datetime';
 
 export const Div = styled.div`
-background-color:var(--primary-white-color);
-`
+  background-color: var(--primary-white-color);
+`;
 export const Form = styled.form`
 display: flex;
 flex-direction: column;
@@ -23,19 +23,22 @@ color: rgba(0, 0, 0, 1);
   font-size:30px;
 }
 
-`
+  // background-color: antiquewhite;
+`;
+export const LabelTitle = styled.label`
+  font-size: 24px;
+  font-weight: 400;
+  margin: 20px 20px 42px 20px;
+  color: rgba(0, 0, 0, 1);
+`;
 export const ModalContainer = styled.div`
-  
   display: flex;
   flex-direction: column;
   text-align: center;
   padding-top: 40px;
-  width:320px;
+  width: 320px;
   height: auto;
-  
-  
 `;
-
 
 
 
@@ -133,7 +136,7 @@ cursor: pointer;
 @media screen and (max-width: 768px){
 bottom: 20px;
 }
-`
+
 export const CloseButton = styled.button`
   height: fit-content;
   padding: unset;
@@ -148,16 +151,15 @@ export const AddIcon = styled.svg`
 `;
 
 export const ExitButton = styled.button`
-width: 300px;
-height: 50px;
+  width: 300px;
+  height: 50px;
   padding: 13px;
   font-size: 18px;
   line-height: 27px;
   text-align: center;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: #4A56E2;;
-
+  color: #4a56e2;
   background-color: #FFFFFF;
   border: 1px solid #4A56E2;
 border-radius: 20px;
@@ -173,8 +175,7 @@ height: 50px;
   text-align: center;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color:  #FFFF;
-
+  color: #ffff;
   background-color:  #24CCA7;;
   border: 1px solid #4A56E2;
 border-radius: 20px;
@@ -215,65 +216,62 @@ font-weight:700;
 margin-right:24px;
 /* margin-left:20px; */
 color:${(props) => props.theme.income}` 
+
 export const Label = styled.label`
-position: relative;
-display: inline-block;
-width:80px;
-height:40px;
-/* border-radius:40%; */
-/* background-color: green; */
-` 
+  position: relative;
+  display: inline-block;
+  width: 80px;
+  height: 40px;
+  /* border-radius:40%; */
+  /* background-color: green; */
+`;
 // export const AddIconToggle = styled.svg`
 //   width: 20px;
 //   height: 20px;
 // `;
 export const Slider = styled.span`
-position: absolute;
-cursor: pointer;
-border-radius: 32px;
-top:0;
-left:0;
-right: 0;
-bottom: 0;
-border:solid 1px rgba(224, 224, 224, 1);
-background-color: transparent;
-&:before {
-   content: '';
-   background-image: url('../../images/Plusbtn.png');
   position: absolute;
-  width: 44px;
-height: 44px;
- top: -3px;
-border-radius:50%;
-background-color:rgba(36, 204, 167, 1);
- /* color:rgba(255, 255, 255, 1);  */
-font-size:30px;
-font-weight: 100;
-border: 1px solid #FFFFFF;
-background-color: rgba(36, 204, 167, 1); 
-transition-property: background-color, transform;
-  transition-duration: 500ms;
+  cursor: pointer;
+  border-radius: 32px;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border: solid 1px rgba(224, 224, 224, 1);
+  background-color: transparent;
+  &:before {
+    content: '';
+    position: absolute;
+    width: 44px;
+    height: 44px;
+    top: -3px;
+    border-radius: 50%;
+    background-color: rgba(36, 204, 167, 1);
+    /* color:rgba(255, 255, 255, 1);  */
+    font-size: 30px;
+    font-weight: 100;
+    border: 1px solid #ffffff;
+    background-color: rgba(36, 204, 167, 1);
+    transition-property: background-color, transform;
+    transition-duration: 500ms;
+  }
+`;
 
-}
-`
-
-  /* &:before{
+/* &:before{
     content:`${props}`
   } */
 export const Checkbox = styled.input`
-opacity:0;
-width: 0;
-height: 0;
+  opacity: 0;
+  width: 0;
+  height: 0;
 
-&:checked + ${Slider} {
+  &:checked + ${Slider} {
     /* background: green; */
 
     &:before {
       transform: translateX(40px);
       background-color: rgba(255, 101, 150, 1);
     }
-}
-`
-export const Span = styled.span`
-
-`
+  }
+`;
+export const Span = styled.span``;

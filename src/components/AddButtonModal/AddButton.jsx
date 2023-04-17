@@ -99,6 +99,13 @@ const AddBtnFunction = ({ category}) => {
       default:
         break;
     }
+    setOnSwitch(true);
+    dispatch(toggleModalAddTransaction());
+  };
+
+  const closeModal = () => {
+    setOnSwitch(true);
+    dispatch(toggleModalAddTransaction());
   };
 
   const themeInc = {
@@ -119,7 +126,7 @@ const AddBtnFunction = ({ category}) => {
         </AddBtn>
         {isAddModalIsOpen && (
           <Modal
-            onClose={() => dispatch(toggleModalAddTransaction())}
+            onClose={() => closeModal()}
             style={{
               width: '320px',
               height: '600px',
@@ -213,10 +220,7 @@ const AddBtnFunction = ({ category}) => {
                   <AddButton type="submit">ADD</AddButton>
                 </ButtonItem>
                 <ButtonItem>
-                  <ExitButton
-                    type="button"
-                    onClick={() => dispatch(toggleModalAddTransaction())}
-                  >
+                  <ExitButton type="button" onClick={() => closeModal()}>
                     Cancel
                   </ExitButton>
                 </ButtonItem>
