@@ -12,6 +12,12 @@ const initialState = {
 const sessionSlice = createSlice({
   name: 'session',
   initialState,
+  reducers: {
+    updateBalance(state, action) {
+      console.log(action);
+      state.user.balance = action.payload;
+    },
+  },
   extraReducers: builder =>
     builder
       .addCase(
@@ -91,5 +97,7 @@ const sessionSlice = createSlice({
         }
       ),
 });
+
+export const { updateBalance } = sessionSlice.actions;
 
 export const sessionReducer = sessionSlice.reducer;
