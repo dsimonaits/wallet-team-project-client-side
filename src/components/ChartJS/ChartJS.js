@@ -1,5 +1,6 @@
 import { Chart as ChartJS, ArcElement, Tooltip, Legend, Title } from 'chart.js';
 import { Doughnut } from 'react-chartjs-2';
+import { Chart } from './Chart.styled';
 
 ChartJS.register(ArcElement, Tooltip, Legend, Title);
 
@@ -50,7 +51,7 @@ export const ChartJs = ({ statistic }) => {
   };
 
   return (
-    <div style={{ width: '288px', position: 'relative' }}>
+    <Chart>
       <Doughnut
         data={data}
         options={options}
@@ -87,6 +88,6 @@ export const ChartJs = ({ statistic }) => {
       >
         {'₴ ' + statistic?.transaction[0]?.sum}
       </p> */}
-    </div>
+    </Chart>
   );
 };
