@@ -13,30 +13,12 @@ export const Statistics = () => {
   const dispatch = useDispatch();
 
   const statistic = useSelector(selectStatistic);
-  console.log(statistic);
-  // const statistic = {
-  //   result: [
-  //     {
-  //       totalSum: 3400,
-  //       category: 'Car',
-  //     },
-  //     {
-  //       totalSum: 2400,
-  //       category: 'Self care',
-  //     },
-  //   ],
-  //   transaction: [
-  //     {
-  //       type: true,
-  //       sum: 43000.12,
-  //     },
-  //   ],
-  // };
+
   useEffect(() => {
     dispatch(getTransactionsStatistics(select));
   }, [dispatch, select]);
 
-  const hadleSelect = data => {
+  const handleSelect = data => {
     setSelect(data);
   };
 
@@ -46,7 +28,7 @@ export const Statistics = () => {
       <SubWrapper>
         <ChartJs statistic={statistic} />
         <Box>
-          <SelectLabels handleSelect={hadleSelect} />
+          <SelectLabels handleSelect={handleSelect} />
           <StatisticsList statistic={statistic} />
         </Box>
       </SubWrapper>

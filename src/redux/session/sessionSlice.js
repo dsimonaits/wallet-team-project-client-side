@@ -2,7 +2,7 @@ import { createSlice, isAnyOf } from '@reduxjs/toolkit';
 import { register, logIn, logOut, refreshUser } from './sessionOperations';
 
 const initialState = {
-  user: { name: null, email: null, balance: 0 },
+  user: { name: null, email: null, balance: 0, createdAt: null },
   token: null,
   isLoggedIn: false,
   error: null,
@@ -22,22 +22,30 @@ const sessionSlice = createSlice({
     builder
       .addCase(
         register.fulfilled,
-        (state, { payload: { name, accessToken, email, balance } }) => {
+        (
+          state,
+          { payload: { name, accessToken, email, balance, createdAt } }
+        ) => {
           state.user.name = name;
           state.user.email = email;
           state.token = accessToken;
           state.user.balance = balance;
           state.isLoggedIn = true;
+          state.user.createdAt = createdAt;
         }
       )
       .addCase(
         logIn.fulfilled,
-        (state, { payload: { name, accessToken, email, balance } }) => {
+        (
+          state,
+          { payload: { name, accessToken, email, balance, createdAt } }
+        ) => {
           state.user.name = name;
           state.user.email = email;
           state.token = accessToken;
           state.user.balance = balance;
           state.isLoggedIn = true;
+          state.user.createdAt = createdAt;
         }
       )
       .addCase(logOut.fulfilled, state => {
@@ -47,12 +55,13 @@ const sessionSlice = createSlice({
       })
       .addCase(
         refreshUser.fulfilled,
-        (state, { payload: { name, balance, email } }) => {
+        (state, { payload: { name, balance, email, createdAt } }) => {
           state.user.name = name;
           state.user.email = email;
           state.user.balance = balance;
           state.isLoggedIn = true;
           state.isRefreshing = false;
+          state.user.createdAt = createdAt;
         }
       )
       .addCase(refreshUser.pending, state => {

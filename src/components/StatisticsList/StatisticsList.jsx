@@ -8,6 +8,8 @@ import {
   HeadCat,
   SubList,
   SubItem,
+  SubListItem,
+  Type,
 } from './StatisticsList.styled';
 
 export const StatisticsList = ({ statistic }) => {
@@ -22,6 +24,20 @@ export const StatisticsList = ({ statistic }) => {
     '#24CCA7',
     '#00AD84',
   ];
+  let expenses;
+  let income;
+
+  if (statistic.transaction[0]?.type === false) {
+    expenses = statistic.transaction[0]?.sum;
+  } else {
+    expenses = statistic.transaction[1]?.sum;
+  }
+
+  if (statistic.transaction[0]?.type === true) {
+    income = statistic.transaction[0]?.sum;
+  } else {
+    income = statistic.transaction[1]?.sum;
+  }
 
   return (
     <>
@@ -39,8 +55,14 @@ export const StatisticsList = ({ statistic }) => {
         ))}
       </List>
       <SubList>
-        <SubItem>Expenses:</SubItem>
-        <SubItem>Income:</SubItem>
+        <SubListItem>
+          <SubItem>Expenses:</SubItem>
+          <Type expenses>{expenses}</Type>
+        </SubListItem>
+        <SubListItem>
+          <SubItem>Income:</SubItem>
+          <Type>{income}</Type>
+        </SubListItem>
       </SubList>
     </>
   );

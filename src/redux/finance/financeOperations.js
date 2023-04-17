@@ -2,21 +2,9 @@ import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { toast } from 'react-toastify';
 
-const token = {
-  set(token) {
-    axios.defaults.headers.common.Authorization = `Bearer ${token}`;
-  },
-};
-//   unset() {
-//     axios.defaults.headers.common.Authorization = ``;
-//   },
-// };
-
-token.set(
-  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImV0d2dhd3d3MUBzZGYuY29tIiwiX2lkIjoiNjQzZDZlYTkzNWNlMjEzZjcyYWE1NGI1IiwiaXNBY3RpdmF0ZWQiOmZhbHNlLCJuYW1lIjoiU3ZldGFhIiwiYmFsYW5jZSI6MCwiaWF0IjoxNjgxNzQ3NzE4LCJleHAiOjE2ODE3NDk1MTh9.IqZhV2KeTP6pKKRT-wNe6gTlNv3cl-ijOAdhEhR-EZ8'
-);
-//   unset() {
-//     axios.defaults.headers.common.Authorization = ``;
+// const token = {
+//   set(token) {
+//     axios.defaults.headers.common.Authorization = `Bearer ${token}`;
 //   },
 // };
 
@@ -133,7 +121,7 @@ export const deleteTransaction = createAsyncThunk(
           _id: _id,
         },
       });
-      // console.log(data);
+
       toast.success('Transaction successfully removed', {
         position: 'top-right',
         autoClose: 3000,
@@ -162,7 +150,6 @@ export const getTransactionsStatistics = createAsyncThunk(
         `${BASE_URL}/transaction/statistic`,
         body
       );
-      console.log(data);
 
       return data;
     } catch (error) {
@@ -170,7 +157,3 @@ export const getTransactionsStatistics = createAsyncThunk(
     }
   }
 );
-// headers: {
-//   Authorization:
-//     'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNldHdnYXd3dzEyQHNkZi5jb20iLCJfaWQiOiI2NDNhZjUyMGQwNGZiMGY1NDdjMTY1ZjgiLCJpc0FjdGl2YXRlZCI6ZmFsc2UsIm5hbWUiOiJTdmV0YWEiLCJiYWxhbmNlIjowLCJpYXQiOjE2ODE1ODU0NDIsImV4cCI6MTY4MTU4NzI0Mn0.UBA_t5OTen1qqSEiHlIs2_A09Junh0jNh95nZh_k3PQ',
-// },
