@@ -95,6 +95,7 @@ export const App = () => {
               }
             />
             <Route
+              exact
               path="/"
               element={
                 <PrivateRoute redirectTo="/login">
@@ -130,6 +131,7 @@ export const App = () => {
               />
             </Route>
             <Route
+              exact
               path="*"
               element={
                 <PublicRoute restricted redirectTo="/login">
