@@ -95,7 +95,6 @@ export const App = () => {
               }
             />
             <Route
-              exact
               path="/"
               element={
                 <PrivateRoute redirectTo="/login">
@@ -103,18 +102,8 @@ export const App = () => {
                 </PrivateRoute>
               }
             >
-              {isMobile && (
-                <Route
-                  path="currency"
-                  element={
-                    <PrivateRoute redirectTo="/login">
-                      <Currency />
-                    </PrivateRoute>
-                  }
-                />
-              )}
               <Route
-                path="home"
+                path="/home"
                 element={
                   <PrivateRoute redirectTo="/login">
                     <Table />
@@ -122,16 +111,25 @@ export const App = () => {
                 }
               />
               <Route
-                path="diagram"
+                path="/diagram"
                 element={
                   <PrivateRoute redirectTo="/login">
                     <Statistics />
                   </PrivateRoute>
                 }
               />
+              {isMobile && (
+                <Route
+                  path="/currency"
+                  element={
+                    <PrivateRoute redirectTo="/login">
+                      <Currency />
+                    </PrivateRoute>
+                  }
+                />
+              )}
             </Route>
             <Route
-              exact
               path="*"
               element={
                 <PublicRoute restricted redirectTo="/login">
