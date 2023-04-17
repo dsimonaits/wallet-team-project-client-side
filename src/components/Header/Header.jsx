@@ -1,6 +1,7 @@
 import Media from 'react-media';
 import mediaQueries from '../../utils/media';
 import Logo from 'components/Logo/Logo';
+import { useDispatch, useSelector } from 'react-redux';
 import {
   AuthContainer,
   Button,
@@ -12,22 +13,27 @@ import {
   Name,
 } from './Header.styled';
 import sprite from '../../images/sprite.svg';
+import ModalLogout from 'components/ModalLogout/ModalLogout';
+import { toggleModalLogout } from 'redux/global/globalSlice';
+import { selectUser } from 'redux/session/sessionSelectors';
+import ThemeSwitcher from 'components/ThemeChanger/ThemeSwitcher';
 
-export default function Header() {
-  // const dispatch = useDispatch()
-  // const { name } = useSelector(getUser)
+export default function Header({ themeToggler }) {
+  const { isModalLogoutOpen } = useSelector(store => store.global);
+  const dispatch = useDispatch();
+  const { name } = useSelector(selectUser);
 
   return (
     <>
-      <HeaderContainer>
+      {isModalLogoutOpen && <ModalLogout />}
+      <HeaderContainer className="HeaderTheme">
         <MainContainer>
           <LogoContainer>
-            {/* <NavLink exact to="./"> */}
             <Logo />
-            {/* </NavLink> */}
           </LogoContainer>
+          <ThemeSwitcher themeToggler={themeToggler} />
           <AuthContainer>
-            <Name>Name</Name>
+            <Name>{name}</Name>
             <Media queries={mediaQueries}>
               {matches =>
                 (matches.tablet || matches.desktop) && (
@@ -37,10 +43,7 @@ export default function Header() {
                 )
               }
             </Media>
-            <Button
-              // onClick={() => dispatch(openModalLogout())}
-              type="button"
-            >
+            <Button onClick={() => dispatch(toggleModalLogout())} type="button">
               <ExitSvg>
                 <use href={`${sprite}#icon-exit`}></use>
               </ExitSvg>

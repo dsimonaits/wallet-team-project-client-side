@@ -1,17 +1,18 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { ThreeDots } from 'react-loader-spinner'; // Импортируйте ThreeDots
+import { selectIsLoading } from '../../redux/finance/financeSelectors';
+import { ThreeDots } from 'react-loader-spinner';
 import { SpinnerContainer } from './Spinner.styled';
 
-const Spinner = () => {
-  const isLoading = useSelector((state) => state.global.isLoading);
+const Spinner = ({ position }) => {
+  const isLoading = useSelector(selectIsLoading);
 
   if (!isLoading) {
     return null;
   }
 
   return (
-    <SpinnerContainer>
+    <SpinnerContainer position={position}>
       <ThreeDots color="#00BFFF" height={80} width={80} />
     </SpinnerContainer>
   );

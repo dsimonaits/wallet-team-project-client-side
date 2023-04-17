@@ -1,17 +1,18 @@
 import styled from 'styled-components';
 
 export const SectionStyled = styled.section`
-  background-color: var(--background-color);
-  backdrop-filter: blur(25px);
+  position: relative;
+  /* background-color: rgba(229, 229, 229, 0.4); */
   padding-top: 12px;
-  min-height: 100vh;
+  padding-bottom: 40;
+  min-height: 640px;
 
-  @media screen and (min-width: 768px) {
+  @media screen and (max-width: 1200px) {
     padding-top: 32px;
-    height: 100vh;
+    background-size: 50%;
   }
 
-  @media screen and (min-width: 1279px) {
+  @media screen and (min-width: 1280px) {
     padding-top: 46px;
   }
 `;

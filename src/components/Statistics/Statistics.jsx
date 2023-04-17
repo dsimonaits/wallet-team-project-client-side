@@ -4,6 +4,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { SelectLabels } from 'components/SelectLabels/SelectLabels';
 import { selectStatistic } from 'redux/finance/financeSelectors';
 import { getTransactionsStatistics } from 'redux/finance/financeOperations';
+
+import { selectTransactions } from 'redux/finance/financeSelectors';
 import { StatisticsList } from 'components/StatisticsList/StatisticsList';
 import { Text, Wrapper, SubWrapper, Box } from './Statistics.styled';
 
@@ -52,3 +54,5 @@ export const Statistics = () => {
     </Wrapper>
   );
 };
+
+export default Statistics;

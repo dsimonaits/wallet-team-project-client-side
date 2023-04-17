@@ -9,18 +9,16 @@ export const ContainerStyled = styled.div`
   margin-left: auto;
 
   @media screen and (min-width: 768px) {
-    width: 768px;
+    /* width: 768px; */
     padding-left: 32px;
     padding-right: 32px;
-    margin-right: 0;
-    margin-left: 0;
   }
 
   @media screen and (min-width: 1200px) {
-    width: 1280px;
+    /* width: 1280px; */
     padding-left: 16px;
     padding-right: 16px;
-    margin-right: 0;
-    margin-left: 0;
+    max-width: 1280px;
+    margin: 0 auto;
   }
 `;

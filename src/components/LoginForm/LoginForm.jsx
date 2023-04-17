@@ -15,8 +15,8 @@ import {
   ErrorText,
   IconMail,
   IconPassword,
-  StyledBtnMain,
-  StyledBtn,
+  FirstButton,
+  SecondButton,
 } from 'components/LoginForm/LoginForm.styled';
 
 import operations from 'redux/session/sessionOperations';
@@ -31,8 +31,12 @@ const LoginForm = () => {
     email: yup.string().email().required(),
     password: yup
       .string()
-      .min(6, 'must be at least 6 characters')
+      .min(8, 'must be at least 8 characters')
       .max(12, 'password length must be less than 13 characters')
+      .matches(
+        /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*])(?!.*\s).{6,12}$/,
+        'must contain a letter, a number and a symbol'
+      )
       .required(),
   });
 
@@ -51,16 +55,16 @@ const LoginForm = () => {
   };
 
   return (
-    <FormContainer>
-      <Formik
-        initialValues={{
-          email: '',
-          password: '',
-        }}
-        validationSchema={schema}
-        onSubmit={onSubmit}
-      >
-        {({ handleSubmit, handleChange, values }) => (
+    <Formik
+      initialValues={{
+        email: '',
+        password: '',
+      }}
+      validationSchema={schema}
+      onSubmit={onSubmit}
+    >
+      {({ handleSubmit, handleChange, values }) => (
+        <FormContainer>
           <Form onSubmit={handleSubmit}>
             <LogoContainer>
               <Logo />
@@ -99,19 +103,19 @@ const LoginForm = () => {
                 render={msg => <ErrorText>{msg}</ErrorText>}
               />
             </FormLabel>
-            <StyledBtnMain type="submit">Log In</StyledBtnMain>
-            <StyledBtn
+            <FirstButton type="submit">Log In</FirstButton>
+            <SecondButton
               type="button"
               onClick={() => {
-                navigate('/registration');
+                navigate('/register');
               }}
             >
               Register
-            </StyledBtn>
+            </SecondButton>
           </Form>
-        )}
-      </Formik>
-    </FormContainer>
+        </FormContainer>
+      )}
+    </Formik>
   );
 };
 

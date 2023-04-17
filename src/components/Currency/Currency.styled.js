@@ -1,11 +1,13 @@
 import styled from 'styled-components';
 import mobileBackground from '../../images/currencies/background-image-mobile.png';
 import background from '../../images/currencies/background-image.png';
+import tabletBackground from '../../images/currencies/background-image-tablet.png';
 
 export const CurrencyWrapper = styled.div`
+  position: relative;
   background-repeat: no-repeat;
   background-position: bottom;
-  @media screen and (max-width: 1279px) {
+  @media screen and (min-width: 320px) {
     width: 280px;
     min-height: 174px;
     border-radius: 30px;
@@ -16,10 +18,20 @@ export const CurrencyWrapper = styled.div`
     background-color: var(--ascent-text-color);
   }
 
+  @media screen and (min-width: 768px) {
+    width: 336px;
+    height: 182px;
+    border-radius: 30px;
+
+    background-image: url(${tabletBackground});
+
+    background-color: var(--ascent-text-color);
+  }
   @media screen and (min-width: 1280px) {
     width: 393px;
     min-height: 331px;
     border-radius: 30px;
+    margin: 0;
 
     background-image: url(${background});
 
@@ -32,8 +44,11 @@ export const Table = styled.table`
   color: var(--primary-white-color);
   text-align: center;
 
-  @media screen and (max-width: 1279px) {
+  @media screen and (min-width: 320px) {
     width: 280px;
+  }
+  @media screen and (min-width: 768px) {
+    width: 336px;
   }
 
   @media screen and (min-width: 1280px) {

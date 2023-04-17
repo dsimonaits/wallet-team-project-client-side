@@ -2,7 +2,6 @@ import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
 
 export const Nav = styled.nav`
-  padding-top: 15px;
   width: 300px;
   display: flex;
   justify-content: space-between;
@@ -15,6 +14,7 @@ export const Nav = styled.nav`
   }
 
   @media screen and (min-width: 768px) {
+    margin-bottom: 30px;
     flex-direction: column;
   }
 `;
@@ -23,6 +23,11 @@ export const NavItem = styled.li`
   @media screen and (min-width: 768px) {
     &:not(:first-child) {
       margin-top: 21px;
+    }
+
+    & svg {
+      width: 18px;
+      height: 18px;
     }
   }
 `;

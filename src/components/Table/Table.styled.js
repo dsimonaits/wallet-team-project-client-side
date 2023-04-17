@@ -1,9 +1,21 @@
 import styled from 'styled-components';
 
 export const Wrapper = styled.div`
+  margin: 0 auto;
   overflow-y: auto;
-  width: 730px;
-  height: 306px;
+  height: 350px;
+  display: flex;
+  justify-content: start;
+  align-items: flex-start;
+  flex-direction: column;
+
+  @media screen and (min-width: 768px) {
+    width: 714px;
+  }
+
+  @media screen and (min-width: 1280px) {
+    width: 725px;
+  }
 
   ::-webkit-scrollbar {
     width: 8px;
@@ -24,6 +36,22 @@ export const Wrapper = styled.div`
   ::-webkit-scrollbar-thumb:hover {
     background-color: #ff6596;
     /* box-shadow: 0 0 10px #ff6596; */
+  }
+`;
+
+export const LoadMoreBtn = styled.button`
+  color: #ffffff;
+  background-color: #24cca7;
+  border: none;
+  padding: 4px 12px;
+  border-radius: 20px;
+  margin: 10px auto;
+  cursor: pointer;
+  transition: box-shadow 250ms ease-in-out, background-color 250ms ease-in-out;
+
+  :hover {
+    /* background-color: #24f0a7; */
+    box-shadow: 0 0 8px #24cca7;
   }
 `;
 
@@ -52,7 +80,7 @@ export const TransactionItem = styled.li`
     ${props => (props.type === 'true' ? '#24cca7' : '#ff6596')};
   cursor: default;
   :not(:last-child) {
-    border-bottom: 2px solid #dcdcdf;
+    border-bottom: 1px solid #dcdcdf;
   }
 `;
 
@@ -71,6 +99,7 @@ export const Text = styled.span`
   font-size: 16px;
   line-height: 24px;
   text-align: right;
+  padding-left: 5px;
 
   .cursor {
     cursor: pointer;
@@ -97,6 +126,7 @@ export const EditBtnMobile = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
+  line-height: 0;
   padding: 4px;
   border-radius: 20px;
   border: none;
@@ -115,9 +145,18 @@ export const EditBtnMobile = styled.button`
 export const TableWrapper = styled.table`
   padding: 10px;
   border-collapse: collapse;
-  width: 715px;
   height: 306px;
   margin: 0 auto;
+  table-layout: fixed;
+  width: 100%;
+
+  @media screen and (min-width: 768px) {
+    width: 704px;
+  }
+
+  @media screen and (min-width: 1280px) {
+    width: 714px;
+  }
 `;
 
 export const Thead = styled.thead``;
@@ -147,7 +186,8 @@ export const TrWrapperTable = styled.tr`
   cursor: default;
 
   :not(:last-child) {
-    border-bottom: 2px solid #dcdcdf;
+    border-bottom: 1px solid #dcdcdf;
+    box-shadow: 0px 1px 0px rgba(255, 255, 255, 0.6);
   }
 `;
 
@@ -159,6 +199,29 @@ export const Th = styled.th`
   line-height: 27px;
   padding: 10px;
   text-align: center;
+  width: 15%;
+`;
+
+export const LargeTh = styled.th`
+  font-family: 'Circe';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 27px;
+  padding: 10px;
+  text-align: center;
+  width: 20%;
+`;
+
+export const ThSum = styled.th`
+  font-family: 'Circe';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 27px;
+  padding: 10px;
+  text-align: right;
+  width: 15%;
 `;
 ////////////////////////////////////////////////////////////
 
@@ -172,6 +235,27 @@ export const Td = styled.td`
   line-height: 24px;
   padding: 10px;
   text-align: center;
+  width: 15%;
+
+  .cursor {
+    cursor: pointer;
+  }
+`;
+
+export const LargeTd = styled.th`
+  font-family: 'Circe';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  padding: 10px;
+  text-align: center;
+  width: 15%;
+
+  .cursor {
+    cursor: pointer;
+  }
+  width: 20%;
 `;
 
 export const TableSum = styled.td`
@@ -181,6 +265,7 @@ export const TableSum = styled.td`
   font-size: 16px;
   line-height: 24px;
   padding: 10px;
+  text-align: right;
   color: ${props => (props.type === 'true' ? '#24cca7' : '#ff6596')};
 `;
 
@@ -190,8 +275,8 @@ export const TableBtn = styled.td`
   height: 100%;
   display: flex;
   align-items: center;
-  justify-content: center;
-  padding: 10px;
+  justify-content: right;
+  padding: 10px 0 10px 10px;
   /* gap: 5px; */
 `;
 

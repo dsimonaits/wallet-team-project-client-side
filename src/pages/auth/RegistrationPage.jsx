@@ -1,3 +1,6 @@
+import RegisterForm from '../../components/RegForm/RegForm'
+import Media from 'react-media';
+import mediaQueries from '../../utils/media';
 import {
     Section,
     PageContainer,
@@ -7,19 +10,21 @@ import {
     FormWrapper,
 } from './AuthPages.styled';
 
-const LoginPage = () => {
+const RegistrationPage = () => {
   return (
     <Section>
-       <PageContainer>
-        <ImgContainer>
+      <PageContainer>
+         <Media queries={mediaQueries}>
+              {matches => (matches.tablet || matches.desktop) &&  <ImgContainer>
             <ImgWrapperReg />
           <Title>Finance App</Title>
-        </ImgContainer>
+        </ImgContainer>}
+            </Media>     
               <FormWrapper>
-                  
+                 <RegisterForm />   
               </FormWrapper>
           </PageContainer>        
      </Section>
   );
 };
-export default LoginPage;
+export default RegistrationPage;

@@ -10,6 +10,7 @@ export const ModalWrapper = styled.div`
   justify-content: center;
   align-items: center;
   background: rgba(0, 0, 0, 0.25);
+  z-index: 1;
 `;
 export const ModalContent = styled.div`
   width: 100vw;
@@ -17,17 +18,19 @@ export const ModalContent = styled.div`
   background-color: var(--primary-white-color);
   padding: 20px;
   position: relative;
+  z-index: 1000;
+  transition: all 0.5s linear;
 
   @media screen and (min-width: 768px) {
-    width: 540px;
-    height: 508px;
+    width: auto;
+    height: auto;
     border-radius: 20px;
     padding: 40px;
   }
 `;
 
 export const CloseBtnBox = styled.div`
-position: absolute;
+  position: absolute;
   right: 20px;
   top: 20px;
   display: block;

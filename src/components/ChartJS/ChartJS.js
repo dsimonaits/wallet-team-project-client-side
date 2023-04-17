@@ -6,6 +6,7 @@ ChartJS.register(ArcElement, Tooltip, Legend, Title);
 
 export const ChartJs = ({ statistic }) => {
   const arrayTotalSum = statistic.result.map(({ totalSum }) => totalSum);
+
   const data = {
     labels: [],
     datasets: [

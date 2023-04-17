@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-// import axios from 'axios';
 import { useSelector, useDispatch } from 'react-redux';
+
 import {
-  fetchTransactions,
   deleteTransaction,
+  // loadMoreTransactions,
 } from '../../redux/finance/financeOperations';
 import {
   selectIsLoading,
@@ -13,10 +13,15 @@ import {
 import EllipsisText from 'react-ellipsis-text';
 // import data from './data.json';
 import icon from '../../images/pencil.png';
+// import Modal from 'components/Modal/Modal';
+
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 // STYLE ////////////////////////////////////
 import {
   Wrapper,
+  // LoadMoreBtn,
   MobileCardWrapper,
   TransactionList,
   TransactionItem,
@@ -31,7 +36,10 @@ import {
   Tr,
   TrWrapperTable,
   Th,
+  LargeTh,
+  ThSum,
   Td,
+  LargeTd,
   TableSum,
   TableBtn,
   EditBtn,
@@ -42,40 +50,41 @@ import {
 // COMPONENT //////////////////////////////////////////////////////
 
 const Table = () => {
-  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 767);
   const [transactionUpdate, setTransactionUpdate] = useState(null);
   const [expandedRows, setExpandedRows] = useState({});
-
-  // const [data, setData] = useState([]);
-
-  console.log(transactionUpdate);
+  // const [currentPage, setCurrentPage] = useState(1);
 
   const isLoading = useSelector(selectIsLoading);
   const transactions = useSelector(selectTransactions);
-  console.log(transactions);
 
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(fetchTransactions());
+    // dispatch(fetchTransactions());
 
     window.addEventListener('resize', handleResize);
 
     return () => window.removeEventListener('resize', handleResize);
   }, [dispatch]);
-  // console.log(data);
+  console.log(transactionUpdate);
 
   const handleResize = () => {
-    setIsMobile(window.innerWidth <= 768);
+    setIsMobile(window.innerWidth <= 767);
   };
 
   const handleEdit = transactionId => {
-    const transaction = transactions.find(({ id }) => id === transactionId);
+    const transaction = transactions.find(({ _id }) => _id === transactionId);
     setTransactionUpdate(transaction);
   };
 
-  // const handleDelete = id => {
-  //   //   // update
+  // Load moer transactions///////////////
+  // const handleLoadMore = async () => {
+  //   dispatch(loadMoreTransactions(currentPage + 1));
+  // };
+
+  // const closeForm = () => {
+  //   setTransactionUpdate(null);
   // };
 
   // DATE formatter //////////////////////////////////////////
@@ -88,6 +97,12 @@ const Table = () => {
       month < 10 ? '0' : ''
     }${month}.${year}`;
   }
+
+  // SUM formatter /////////////////////////////////
+  // const formatter = new Intl.NumberFormat('en-US', {
+  //   style: 'currency',
+  //   currency: 'USD',
+  // });
 
   // TOGGLE for comment //////////////////////////////////
   function toggleRow(rowId) {
@@ -102,6 +117,7 @@ const Table = () => {
   if (isMobile) {
     return (
       <MobileCardWrapper>
+        <ToastContainer />
         {transactions.map(row => (
           <TransactionList key={row._id}>
             <TransactionItem type={row.type.toString()}>
@@ -112,7 +128,14 @@ const Table = () => {
               {row.type.toString() === 'true' ? <Text>+</Text> : <Text>-</Text>}
             </TransactionItem>
             <TransactionItem type={row.type.toString()}>
-              <TitleText>Category:</TitleText> <Text>{row.category}</Text>
+              <TitleText>Category:</TitleText>
+              <Text>
+                {row.type.toString() === 'true' ? (
+                  <Text>Income</Text>
+                ) : (
+                  <Text>{row.category}</Text>
+                )}
+              </Text>
             </TransactionItem>
             <TransactionItem type={row.type.toString()}>
               <TitleText>Comment:</TitleText>
@@ -122,7 +145,7 @@ const Table = () => {
                     className="cursor"
                     onClick={() => toggleRow(row._id)}
                     text={row.comment}
-                    length={expandedRows[row._id] ? 100 : 20}
+                    length={expandedRows[row._id] ? 100 : 15}
                   />
                 ) : (
                   '-'
@@ -131,13 +154,21 @@ const Table = () => {
             </TransactionItem>
             <TransactionItem type={row.type.toString()}>
               <TitleText>Sum:</TitleText>
-              <TextSum type={row.type.toString()}>{row.sum}</TextSum>
+              <TextSum type={row.type.toString()}>
+                {row.sum
+                  .toLocaleString('ru-RU', {
+                    minimumIntegerDigits: 1,
+                    minimumFractionDigits: 2,
+                    maximumFractionDigits: 2,
+                    useGrouping: true,
+                  })
+                  .replace(',', '.')}
+              </TextSum>
             </TransactionItem>
             <TransactionItem type={row.type.toString()}>
               <DeleteBtn onClick={() => dispatch(deleteTransaction(row._id))}>
                 {isLoading ? 'Deleting' : 'Delete'}
               </DeleteBtn>
-              {/* <DeleteBtn onClick={() => handleDelete(row.id)}>Delete</DeleteBtn> */}
               <EditBtnMobile onClick={() => handleEdit(row._id)}>
                 <IconBtnMobile src={icon} alt="edit" />
                 Edit
@@ -151,56 +182,91 @@ const Table = () => {
 
   return (
     <Wrapper>
+      <ToastContainer />
       <TableWrapper>
         <Thead>
           <Tr>
             <Th>Date</Th>
             <Th>Type</Th>
-            <Th>Category</Th>
-            <Th>Comment</Th>
-            <Th>Sum</Th>
+            <LargeTh>Category</LargeTh>
+            <LargeTh>Comment</LargeTh>
+            <ThSum>Sum</ThSum>
             <Th></Th>
           </Tr>
         </Thead>
         <TbodyWrapper>
-          {transactions.map(row => (
-            <TrWrapperTable key={row._id}>
-              <Td>{formatDate(row.date)}</Td>
-              <Td>
-                {row.type.toString() === 'true' ? (
-                  <Text>+</Text>
-                ) : (
-                  <Text>-</Text>
-                )}
-              </Td>
-              <Td>{row.category}</Td>
-              <Td>
-                {row.comment ? (
-                  <EllipsisText
-                    onClick={() => toggleRow(row._id)}
-                    text={row.comment}
-                    length={expandedRows[row._id] ? 100 : 20}
+          {transactions &&
+            transactions.map(row => (
+              <TrWrapperTable key={row._id}>
+                {/* <Modal>
+                {transactionUpdate && transactionUpdate._id === row._id && (
+                  <UpdateForm
+                    contactUpdate={transactionUpdate}
+                    closeForm={closeForm}
                   />
-                ) : (
-                  '-'
                 )}
-              </Td>
-              <TableSum type={row.type.toString()}>{row.sum}</TableSum>
-              <TableBtn>
-                <EditBtn onClick={() => handleEdit(row._id)}>
-                  <IconBtn src={icon} alt="edit" />
-                </EditBtn>
-                <DeleteBtn onClick={() => dispatch(deleteTransaction(row._id))}>
-                  {isLoading ? 'Deleting' : 'Delete'}
-                </DeleteBtn>
-                {/* <DeleteBtn onClick={() => handleDelete(row._id)}>
-                  Delete
-                </DeleteBtn> */}
-              </TableBtn>
-            </TrWrapperTable>
-          ))}
+              </Modal> */}
+                <Td>{formatDate(row.date)}</Td>
+                <Td>
+                  {row.type.toString() === 'true' ? (
+                    <Text>+</Text>
+                  ) : (
+                    <Text>-</Text>
+                  )}
+                </Td>
+                <LargeTd>
+                  {row.type.toString() === 'true' ? (
+                    <Text>Income</Text>
+                  ) : (
+                    <Text>{row.category}</Text>
+                  )}
+                </LargeTd>
+                <LargeTd>
+                  {row.comment ? (
+                    <EllipsisText
+                      className="cursor"
+                      onClick={() => toggleRow(row._id)}
+                      text={row.comment}
+                      length={expandedRows[row._id] ? 100 : 20}
+                    />
+                  ) : (
+                    '-'
+                  )}
+                </LargeTd>
+                <TableSum type={row.type.toString()}>
+                  {/* {formatter.format(row.sum)} */}
+                  {row.sum
+                    .toLocaleString('ru-RU', {
+                      minimumIntegerDigits: 1,
+                      minimumFractionDigits: 2,
+                      maximumFractionDigits: 2,
+                      useGrouping: true,
+                    })
+                    .replace(',', '.')}
+                </TableSum>
+                <TableBtn>
+                  <EditBtn onClick={() => handleEdit(row._id)}>
+                    <IconBtn src={icon} alt="edit" />
+                  </EditBtn>
+                  <DeleteBtn
+                    onClick={() => dispatch(deleteTransaction(row._id))}
+                  >
+                    {isLoading ? 'Deleting' : 'Delete'}
+                  </DeleteBtn>
+                </TableBtn>
+              </TrWrapperTable>
+            ))}
         </TbodyWrapper>
       </TableWrapper>
+      {/* {isLoading ? (
+        <Text>Loading...</Text>
+      ) : (
+        transactions.length > 5 && (
+          <LoadMoreBtn onClick={handleLoadMore}>
+            Load more transactions...
+          </LoadMoreBtn>
+        )
+      )} */}
     </Wrapper>
   );
 };

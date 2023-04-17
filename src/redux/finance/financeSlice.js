@@ -4,6 +4,7 @@ import {
   addTransaction,
   deleteTransaction,
   updateTransaction,
+<<<<<<< HEAD
   getTransactionsStatistics,
 } from './financeOperations';
 
@@ -13,7 +14,15 @@ const initialState = {
     result: [],
     transaction: [],
   },
+=======
+  loadMoreTransactions,
+} from './financeOperations';
+
+const initialState = {
+  transactions: [],
+>>>>>>> main
   isLoading: false,
+  currentPage: 1,
   error: null,
 };
 
@@ -24,19 +33,26 @@ const financeSLice = createSlice({
   extraReducers: builder => {
     builder
       .addCase(fetchTransactions.fulfilled, (state, { payload }) => {
-        state.items = payload;
+        state.transactions = payload;
+      })
+      .addCase(loadMoreTransactions.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.transactions = [...state.transactions, ...action.payload];
+        state.currentPage += 1;
       })
       .addCase(addTransaction.fulfilled, (state, { payload }) => {
-        state.items = [...state.items, payload];
+        state.transactions = [...state.transactions, payload];
       })
       .addCase(updateTransaction.fulfilled, (state, { payload }) => {
-        const index = state.items.findIndex(
-          contact => contact.id === payload.id
+        const index = state.transactions.findIndex(
+          transaction => transaction._id === payload._id
         );
-        state.items[index] = payload;
+        state.transactions[index] = payload;
       })
       .addCase(deleteTransaction.fulfilled, (state, { payload }) => {
-        state.items = state.items.filter(({ id }) => id !== payload);
+        state.transactions = state.transactions.filter(
+          transaction => transaction._id !== payload
+        );
       })
       .addCase(getTransactionsStatistics.fulfilled, (state, { payload }) => {
         state.statistic = payload;
@@ -44,6 +60,7 @@ const financeSLice = createSlice({
       .addMatcher(
         isAnyOf(
           fetchTransactions.pending,
+          loadMoreTransactions.pending,
           deleteTransaction.pending,
           addTransaction.pending,
           updateTransaction.pending,
@@ -69,6 +86,7 @@ const financeSLice = createSlice({
       .addMatcher(
         isAnyOf(
           fetchTransactions.rejected,
+          loadMoreTransactions.pending,
           deleteTransaction.rejected,
           addTransaction.rejected,
           updateTransaction.rejected,

@@ -6,6 +6,14 @@ export const LeftBar = styled.div`
   @media screen and (max-width: 767.9px) {
     margin: 0 auto;
   }
+
+  @media screen and (min-width: 768px) {
+    justify-content: flex-end;
+  }
+  @media screen and (min-width: 1280px) {
+    margin-bottom: 32px;
+    justify-content: flex-end;
+  }
 `;
 
 export const DashBoardContainer = styled.div`
@@ -19,7 +27,7 @@ export const DashBoardContainer = styled.div`
   @media screen and (min-width: 1280px) {
     padding: 0 16px;
     display: flex;
-    width: 1280px;
+    /* width: 1280px; */
     flex-direction: row;
     -webkit-box-align: start;
     -webkit-box-pack: justify;
