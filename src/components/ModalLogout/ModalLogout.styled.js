@@ -35,6 +35,16 @@ export const ExitButton = styled.button`
   background-color: var(--primary-white-color);
   border-radius: 20px;
   margin-bottom: 20px;
+  cursor: pointer;
+
+  transition: var(--transition);
+   &:hover, 
+   &:focus {
+    box-shadow: -4px 4px 6px 0 rgba(255, 255, 255, 0.5),
+      -4px 4px 6px 0 rgba(116, 125, 139, 0.5),
+      inset -4px -4px 6px 0 rgba(255, 255, 255, 0.5),
+      inset -4px -4px 6px 0 rgba(0, 0, 0, 0.4);
+  }
 `;
 
 export const CancelButton = styled.button`
@@ -48,4 +58,14 @@ export const CancelButton = styled.button`
   border: none;
   background-color: var(--greenblue);
   border-radius: 20px;
+  cursor: pointer;
+
+  transition: var(--transition);
+   &:hover, 
+   &:focus {
+    box-shadow: -4px 4px 6px 0 rgba(255, 255, 255, 0.5),
+      -4px 4px 6px 0 rgba(116, 125, 139, 0.5),
+      inset -4px -4px 6px 0 rgba(255, 255, 255, 0.5),
+      inset -4px -4px 6px 0 rgba(0, 0, 0, 0.4);
+  }
 `;
