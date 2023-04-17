@@ -30,6 +30,7 @@ export const LogoContainer = styled.div`
 export const AuthContainer = styled.div`
   display: flex;
   padding-top: 5px;
+  align-items: end;
 `;
 
 export const Name = styled.p`
