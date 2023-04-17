@@ -162,6 +162,7 @@ export const getTransactionsStatistics = createAsyncThunk(
         `${BASE_URL}/transaction/statistic`,
         body
       );
+      console.log(data);
 
       return data;
     } catch (error) {

@@ -4,23 +4,25 @@ import {
   addTransaction,
   deleteTransaction,
   updateTransaction,
-<<<<<<< HEAD
   getTransactionsStatistics,
+  loadMoreTransactions,
 } from './financeOperations';
 
+// const initialState = {
+//   items: [],
+//   statistic: {
+//     result: [],
+//     transaction: [],
+//   },
+//   loadMoreTransactions,
+// } from './financeOperations';
+
 const initialState = {
-  items: [],
+  transactions: [],
   statistic: {
     result: [],
     transaction: [],
   },
-=======
-  loadMoreTransactions,
-} from './financeOperations';
-
-const initialState = {
-  transactions: [],
->>>>>>> main
   isLoading: false,
   currentPage: 1,
   error: null,
