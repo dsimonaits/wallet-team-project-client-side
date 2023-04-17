@@ -116,7 +116,14 @@ const Table = () => {
               {row.type.toString() === 'true' ? <Text>+</Text> : <Text>-</Text>}
             </TransactionItem>
             <TransactionItem type={row.type.toString()}>
-              <TitleText>Category:</TitleText> <Text>{row.category}</Text>
+              <TitleText>Category:</TitleText>
+              <Text>
+                {row.type.toString() === 'true' ? (
+                  <Text>Income</Text>
+                ) : (
+                  <Text>{row.category}</Text>
+                )}
+              </Text>
             </TransactionItem>
             <TransactionItem type={row.type.toString()}>
               <TitleText>Comment:</TitleText>
@@ -195,7 +202,13 @@ const Table = () => {
                     <Text>-</Text>
                   )}
                 </Td>
-                <Td>{row.category}</Td>
+                <Td>
+                  {row.type.toString() === 'true' ? (
+                    <Text>Income</Text>
+                  ) : (
+                    <Text>{row.category}</Text>
+                  )}
+                </Td>
                 <Td>
                   {row.comment ? (
                     <EllipsisText

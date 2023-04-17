@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export const Wrapper = styled.div`
   margin: 0 auto;
   overflow-y: auto;
-  height: 306px;
+  height: 310px;
 
   @media screen and (min-width: 768px) {
     width: 714px;
