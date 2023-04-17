@@ -6,7 +6,6 @@ body {
   margin: 0;
 }
 
-<<<<<<< HEAD
 h1,
 h2,
 h3,
@@ -20,8 +19,7 @@ ul {
   margin: 0;
   padding: 0;
   list-style: none;
-=======
+}
 .blur {
   filter: blur(15px);
->>>>>>> main
 }

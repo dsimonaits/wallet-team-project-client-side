@@ -1,11 +1,14 @@
 import { Chart as ChartJS, ArcElement, Tooltip, Legend, Title } from 'chart.js';
 import { Doughnut } from 'react-chartjs-2';
 import { Chart } from './Chart.styled';
+import { useSelector } from 'react-redux';
+import { selectUser } from 'redux/session/sessionSelectors';
 
 ChartJS.register(ArcElement, Tooltip, Legend, Title);
 
 export const ChartJs = ({ statistic }) => {
   const arrayTotalSum = statistic.result.map(({ totalSum }) => totalSum);
+  const { balance } = useSelector(selectUser);
 
   const data = {
     labels: [],
@@ -63,13 +66,8 @@ export const ChartJs = ({ statistic }) => {
               ctx.textAlign = 'center';
               ctx.font = '18px "Circe", Helvetica, Arial, sans-serif';
 
-              const total = statistic.transaction[0]
-                ? statistic.transaction[0].sum
-                : 0;
-              const a = new Intl.NumberFormat('ru-RU').format(total);
-              console.log(parseFloat(a).toFixed(2));
               ctx.fillText(
-                '₴ ' + new Intl.NumberFormat('ru-RU').format(total),
+                '₴ ' + new Intl.NumberFormat('ru-RU').format(balance),
                 chart?.getDatasetMeta(0)?.data[0]?.x,
                 chart?.getDatasetMeta(0)?.data[0]?.y
               );
