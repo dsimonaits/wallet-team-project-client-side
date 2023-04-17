@@ -4,11 +4,23 @@ import {
   addTransaction,
   deleteTransaction,
   updateTransaction,
+<<<<<<< HEAD
+  getTransactionsStatistics,
+} from './financeOperations';
+
+const initialState = {
+  items: [],
+  statistic: {
+    result: [],
+    transaction: [],
+  },
+=======
   loadMoreTransactions,
 } from './financeOperations';
 
 const initialState = {
   transactions: [],
+>>>>>>> main
   isLoading: false,
   currentPage: 1,
   error: null,
@@ -42,13 +54,17 @@ const financeSLice = createSlice({
           transaction => transaction._id !== payload
         );
       })
+      .addCase(getTransactionsStatistics.fulfilled, (state, { payload }) => {
+        state.statistic = payload;
+      })
       .addMatcher(
         isAnyOf(
           fetchTransactions.pending,
           loadMoreTransactions.pending,
           deleteTransaction.pending,
           addTransaction.pending,
-          updateTransaction.pending
+          updateTransaction.pending,
+          getTransactionsStatistics.pending
         ),
         state => {
           state.isLoading = true;
@@ -59,7 +75,8 @@ const financeSLice = createSlice({
           fetchTransactions.fulfilled,
           deleteTransaction.fulfilled,
           addTransaction.fulfilled,
-          updateTransaction.fulfilled
+          updateTransaction.fulfilled,
+          getTransactionsStatistics.fulfilled
         ),
         state => {
           state.isLoading = false;
@@ -72,7 +89,8 @@ const financeSLice = createSlice({
           loadMoreTransactions.pending,
           deleteTransaction.rejected,
           addTransaction.rejected,
-          updateTransaction.rejected
+          updateTransaction.rejected,
+          getTransactionsStatistics.rejected
         ),
         (state, { payload }) => {
           state.isLoading = false;

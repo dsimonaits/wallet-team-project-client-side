@@ -2,11 +2,19 @@ import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { toast } from 'react-toastify';
 
-// const token = {
-//   set(token) {
-//     axios.defaults.headers.common.Authorization = `Bearer ${token}`;
+const token = {
+  set(token) {
+    axios.defaults.headers.common.Authorization = `Bearer ${token}`;
+  },
+};
+//   unset() {
+//     axios.defaults.headers.common.Authorization = ``;
 //   },
+// };
 
+token.set(
+  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImV0d2dhd3d3MUBzZGYuY29tIiwiX2lkIjoiNjQzZDZlYTkzNWNlMjEzZjcyYWE1NGI1IiwiaXNBY3RpdmF0ZWQiOmZhbHNlLCJuYW1lIjoiU3ZldGFhIiwiYmFsYW5jZSI6MCwiaWF0IjoxNjgxNzQ3NzE4LCJleHAiOjE2ODE3NDk1MTh9.IqZhV2KeTP6pKKRT-wNe6gTlNv3cl-ijOAdhEhR-EZ8'
+);
 //   unset() {
 //     axios.defaults.headers.common.Authorization = ``;
 //   },
@@ -20,12 +28,7 @@ export const fetchTransactions = createAsyncThunk(
     try {
       const {
         data: { ResponseBody },
-      } = await axios(`${BASE_URL}/transaction/getAll`, {
-        // headers: {
-        //   Authorization:
-        //     'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDM1YjRhOTI2YjJlOTllYTY5Y2E5N2YiLCJpYXQiOjE2ODE0MTE4MjUsImV4cCI6MTY4MjAxNjYyNX0.m-RceESTfxin6DVqUcDnClQ4IQKfKUjb9hpz_-mPfs0',
-        // },
-      });
+      } = await axios(`${BASE_URL}/transaction/getAll`);
 
       return ResponseBody.data;
     } catch (error) {
@@ -150,3 +153,23 @@ export const deleteTransaction = createAsyncThunk(
     }
   }
 );
+
+export const getTransactionsStatistics = createAsyncThunk(
+  'finance/getTransactionsStatistics',
+  async (body, { rejectWithValue }) => {
+    try {
+      const { data } = await axios.post(
+        `${BASE_URL}/transaction/statistic`,
+        body
+      );
+
+      return data;
+    } catch (error) {
+      return rejectWithValue(error.message);
+    }
+  }
+);
+// headers: {
+//   Authorization:
+//     'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNldHdnYXd3dzEyQHNkZi5jb20iLCJfaWQiOiI2NDNhZjUyMGQwNGZiMGY1NDdjMTY1ZjgiLCJpc0FjdGl2YXRlZCI6ZmFsc2UsIm5hbWUiOiJTdmV0YWEiLCJiYWxhbmNlIjowLCJpYXQiOjE2ODE1ODU0NDIsImV4cCI6MTY4MTU4NzI0Mn0.UBA_t5OTen1qqSEiHlIs2_A09Junh0jNh95nZh_k3PQ',
+// },
