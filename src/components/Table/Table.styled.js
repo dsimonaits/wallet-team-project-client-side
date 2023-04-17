@@ -3,7 +3,11 @@ import styled from 'styled-components';
 export const Wrapper = styled.div`
   margin: 0 auto;
   overflow-y: auto;
-  height: 310px;
+  height: 350px;
+  display: flex;
+  justify-content: start;
+  align-items: flex-start;
+  flex-direction: column;
 
   @media screen and (min-width: 768px) {
     width: 714px;
@@ -32,6 +36,22 @@ export const Wrapper = styled.div`
   ::-webkit-scrollbar-thumb:hover {
     background-color: #ff6596;
     /* box-shadow: 0 0 10px #ff6596; */
+  }
+`;
+
+export const LoadMoreBtn = styled.button`
+  color: #ffffff;
+  background-color: #24cca7;
+  border: none;
+  padding: 4px 12px;
+  border-radius: 20px;
+  margin: 10px auto;
+  cursor: pointer;
+  transition: box-shadow 250ms ease-in-out, background-color 250ms ease-in-out;
+
+  :hover {
+    /* background-color: #24f0a7; */
+    box-shadow: 0 0 8px #24cca7;
   }
 `;
 
@@ -247,7 +267,6 @@ export const TableSum = styled.td`
   padding: 10px;
   text-align: right;
   color: ${props => (props.type === 'true' ? '#24cca7' : '#ff6596')};
-  
 `;
 
 ////////////////////////////////////////////////////////
@@ -259,7 +278,6 @@ export const TableBtn = styled.td`
   justify-content: right;
   padding: 10px 0 10px 10px;
   /* gap: 5px; */
-
 `;
 
 export const IconBtn = styled.img`

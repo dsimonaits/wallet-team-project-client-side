@@ -4,11 +4,13 @@ import {
   addTransaction,
   deleteTransaction,
   updateTransaction,
+  loadMoreTransactions,
 } from './financeOperations';
 
 const initialState = {
   transactions: [],
   isLoading: false,
+  currentPage: 1,
   error: null,
 };
 
@@ -20,6 +22,11 @@ const financeSLice = createSlice({
     builder
       .addCase(fetchTransactions.fulfilled, (state, { payload }) => {
         state.transactions = payload;
+      })
+      .addCase(loadMoreTransactions.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.transactions = [...state.transactions, ...action.payload];
+        state.currentPage += 1;
       })
       .addCase(addTransaction.fulfilled, (state, { payload }) => {
         state.transactions = [...state.transactions, payload];
@@ -38,6 +45,7 @@ const financeSLice = createSlice({
       .addMatcher(
         isAnyOf(
           fetchTransactions.pending,
+          loadMoreTransactions.pending,
           deleteTransaction.pending,
           addTransaction.pending,
           updateTransaction.pending
@@ -61,6 +69,7 @@ const financeSLice = createSlice({
       .addMatcher(
         isAnyOf(
           fetchTransactions.rejected,
+          loadMoreTransactions.pending,
           deleteTransaction.rejected,
           addTransaction.rejected,
           updateTransaction.rejected

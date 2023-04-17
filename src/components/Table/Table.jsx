@@ -2,7 +2,10 @@ import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { useSelector, useDispatch } from 'react-redux';
 
-import { deleteTransaction } from '../../redux/finance/financeOperations';
+import {
+  deleteTransaction,
+  // loadMoreTransactions,
+} from '../../redux/finance/financeOperations';
 import {
   selectIsLoading,
   selectTransactions,
@@ -18,6 +21,7 @@ import 'react-toastify/dist/ReactToastify.css';
 // STYLE ////////////////////////////////////
 import {
   Wrapper,
+  // LoadMoreBtn,
   MobileCardWrapper,
   TransactionList,
   TransactionItem,
@@ -49,6 +53,7 @@ const Table = () => {
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 767);
   const [transactionUpdate, setTransactionUpdate] = useState(null);
   const [expandedRows, setExpandedRows] = useState({});
+  // const [currentPage, setCurrentPage] = useState(1);
 
   const isLoading = useSelector(selectIsLoading);
   const transactions = useSelector(selectTransactions);
@@ -72,6 +77,11 @@ const Table = () => {
     const transaction = transactions.find(({ _id }) => _id === transactionId);
     setTransactionUpdate(transaction);
   };
+
+  // Load moer transactions///////////////
+  // const handleLoadMore = async () => {
+  //   dispatch(loadMoreTransactions(currentPage + 1));
+  // };
 
   // const closeForm = () => {
   //   setTransactionUpdate(null);
@@ -248,6 +258,15 @@ const Table = () => {
             ))}
         </TbodyWrapper>
       </TableWrapper>
+      {/* {isLoading ? (
+        <Text>Loading...</Text>
+      ) : (
+        transactions.length > 5 && (
+          <LoadMoreBtn onClick={handleLoadMore}>
+            Load more transactions...
+          </LoadMoreBtn>
+        )
+      )} */}
     </Wrapper>
   );
 };
