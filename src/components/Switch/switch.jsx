@@ -13,7 +13,7 @@ import { useState } from 'react';
     <ToggleContainer >
               <Income >Income</Income>
               <Label>  
-        <Checkbox name='onSwitch' value={onSwitch} type="checkbox" checked={onSwitch} onClick={handleChangeSwitch} />
+        <Checkbox name='onSwitch' value={onSwitch} type="checkbox" onSwitch={onSwitch} onClick={handleChangeSwitch} />
           <Slider />
     
             </Label>
