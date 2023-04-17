@@ -219,7 +219,12 @@ const AddBtnFunction = () => {
 
               <MenuBtn>
                 <ButtonItem>
-                  <AddButton type="submit">ADD</AddButton>
+                  <AddButton
+                    onClick={() => dispatch(toggleModalAddTransaction())}
+                    type="submit"
+                  >
+                    ADD
+                  </AddButton>
                 </ButtonItem>
                 <ButtonItem>
                   <ExitButton
