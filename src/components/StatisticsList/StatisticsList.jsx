@@ -1,4 +1,14 @@
-import { List, Item, Elem, Sum, Category } from './StatisticsList.styled';
+import {
+  List,
+  Item,
+  Elem,
+  Sum,
+  Category,
+  HeadList,
+  HeadCat,
+  SubList,
+  SubItem,
+} from './StatisticsList.styled';
 
 export const StatisticsList = ({ statistic }) => {
   const colors = [
@@ -14,15 +24,25 @@ export const StatisticsList = ({ statistic }) => {
   ];
 
   return (
-    <List>
-      {statistic.result.map(({ totalSum, category }, index) => (
-        <Item key={index}>
-          <Elem style={{ backgroundColor: colors[index] }}></Elem>
-          <Category>{category}</Category>
-          <Sum>{totalSum}</Sum>
-        </Item>
-      ))}
-    </List>
+    <>
+      <HeadList>
+        <HeadCat>Category</HeadCat>
+        <HeadCat>Sum</HeadCat>
+      </HeadList>
+      <List>
+        {statistic.result.map(({ totalSum, category }, index) => (
+          <Item key={index}>
+            <Elem style={{ backgroundColor: colors[index] }}></Elem>
+            <Category>{category}</Category>
+            <Sum>{totalSum}</Sum>
+          </Item>
+        ))}
+      </List>
+      <SubList>
+        <SubItem>Expenses:</SubItem>
+        <SubItem>Income:</SubItem>
+      </SubList>
+    </>
   );
 };
 

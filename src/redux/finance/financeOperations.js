@@ -12,7 +12,7 @@ const token = {
 };
 
 token.set(
-  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNldHdnYXd3dzEyQHNkZi5jb20iLCJfaWQiOiI2NDNhZDE5YWFlYTRhMjg0Y2JjZjNiZTAiLCJpc0FjdGl2YXRlZCI6ZmFsc2UsIm5hbWUiOiJTdmV0YWEiLCJpYXQiOjE2ODE1Nzc4MzEsImV4cCI6MTY4MTU3OTYzMX0.PPU73OZJe50AIWEOQ0JoxG2rFExgpaHMrK0M9dEK6z8'
+  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImV0d2dhd3d3MUBzZGYuY29tIiwiX2lkIjoiNjQzZDZlYTkzNWNlMjEzZjcyYWE1NGI1IiwiaXNBY3RpdmF0ZWQiOmZhbHNlLCJuYW1lIjoiU3ZldGFhIiwiYmFsYW5jZSI6MCwiaWF0IjoxNjgxNzQ3NzE4LCJleHAiOjE2ODE3NDk1MTh9.IqZhV2KeTP6pKKRT-wNe6gTlNv3cl-ijOAdhEhR-EZ8'
 );
 
 const BASE_URL = 'https://wallet-team-project-hg8k.onrender.com/api';
@@ -91,20 +91,19 @@ export const deleteTransaction = createAsyncThunk(
 export const getTransactionsStatistics = createAsyncThunk(
   'finance/getTransactionsStatistics',
   async (body, { rejectWithValue }) => {
-    console.log(body);
     try {
-      const { data } = await axios(`${BASE_URL}/transaction/statistic`, {
-        headers: {
-          Authorization:
-            'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNldHdnYXd3dzEyQHNkZi5jb20iLCJfaWQiOiI2NDNhZjUyMGQwNGZiMGY1NDdjMTY1ZjgiLCJpc0FjdGl2YXRlZCI6ZmFsc2UsIm5hbWUiOiJTdmV0YWEiLCJiYWxhbmNlIjowLCJpYXQiOjE2ODE1ODU0NDIsImV4cCI6MTY4MTU4NzI0Mn0.UBA_t5OTen1qqSEiHlIs2_A09Junh0jNh95nZh_k3PQ',
-        },
-        body,
-      });
-      console.log(data);
+      const { data } = await axios.post(
+        `${BASE_URL}/transaction/statistic`,
+        body
+      );
+
       return data;
     } catch (error) {
-      console.log(error.message);
       return rejectWithValue(error.message);
     }
   }
 );
+// headers: {
+//   Authorization:
+//     'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InNldHdnYXd3dzEyQHNkZi5jb20iLCJfaWQiOiI2NDNhZjUyMGQwNGZiMGY1NDdjMTY1ZjgiLCJpc0FjdGl2YXRlZCI6ZmFsc2UsIm5hbWUiOiJTdmV0YWEiLCJiYWxhbmNlIjowLCJpYXQiOjE2ODE1ODU0NDIsImV4cCI6MTY4MTU4NzI0Mn0.UBA_t5OTen1qqSEiHlIs2_A09Junh0jNh95nZh_k3PQ',
+// },

@@ -1,6 +1,27 @@
 import styled from 'styled-components';
 
-export const List = styled.ul``;
+export const HeadList = styled.ul`
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  height: 58px;
+  background: #ffffff;
+  border-radius: 30px;
+  margin-bottom: 14px;
+`;
+
+export const HeadCat = styled.li`
+  font-family: var(--primary-font-family);
+
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 1.5;
+  color: var(--primary-text-color);
+`;
+
+export const List = styled.ul`
+  margin-bottom: 14px;
+`;
 
 export const Item = styled.li`
   border-bottom: 1px solid #dcdcdf;
@@ -8,6 +29,19 @@ export const Item = styled.li`
   padding: 10px;
 `;
 
+export const SubList = styled.ul`
+  & :not(:last-child) {
+    margin-bottom: 14px;
+  }
+`;
+
+export const SubItem = styled.li`
+  font-family: var(--primary-font-family);
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 1.5;
+  color: var(--primary-text-color);
+`;
 export const Elem = styled.p`
   width: 24px;
   height: 24px;

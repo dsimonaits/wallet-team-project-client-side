@@ -2,8 +2,8 @@ import * as React from 'react';
 import { useState } from 'react';
 import MenuItem from '@mui/material/MenuItem';
 
-import FormControl from '@mui/material/FormControl';
-import Select from '@mui/material/Select';
+import { WrapperControl } from './SelectLabels.styled';
+import { Selec, Control } from './SelectLabels.styled';
 
 export const SelectLabels = ({ handleSelect }) => {
   const [year, setYear] = useState('2009');
@@ -27,10 +27,10 @@ export const SelectLabels = ({ handleSelect }) => {
   };
 
   return (
-    <div>
-      <FormControl sx={{ m: 1, minWidth: 120 }} size="small">
-        <Select
-          style={{ border: '1px solid #000000', borderRadius: '30px' }}
+    <WrapperControl>
+      <Control sx={{ m: 1 }}>
+        <Selec
+          style={{ borderRadius: '30px' }}
           value={month}
           name="month"
           onChange={handleChange}
@@ -51,11 +51,11 @@ export const SelectLabels = ({ handleSelect }) => {
           <MenuItem value={'10'}>October</MenuItem>
           <MenuItem value={'11'}>November</MenuItem>
           <MenuItem value={'12'}>December</MenuItem>
-        </Select>
-      </FormControl>
-      <FormControl sx={{ m: 1, minWidth: 120 }} size="small">
-        <Select
-          style={{ border: '1px solid #000000', borderRadius: '30px' }}
+        </Selec>
+      </Control>
+      <Control sx={{ m: 1 }}>
+        <Selec
+          style={{ borderRadius: '30px' }}
           value={year}
           name="year"
           onChange={handleChange}
@@ -79,8 +79,8 @@ export const SelectLabels = ({ handleSelect }) => {
           <MenuItem value={'2021'}>2021</MenuItem>
           <MenuItem value={'2022'}>2022</MenuItem>
           <MenuItem value={'2023'}>2023</MenuItem>
-        </Select>
-      </FormControl>
-    </div>
+        </Selec>
+      </Control>
+    </WrapperControl>
   );
 };

@@ -5,7 +5,6 @@ import { Chart } from './Chart.styled';
 ChartJS.register(ArcElement, Tooltip, Legend, Title);
 
 export const ChartJs = ({ statistic }) => {
-  console.log(statistic);
   const arrayTotalSum = statistic.result.map(({ totalSum }) => totalSum);
   const data = {
     labels: [],
@@ -70,24 +69,13 @@ export const ChartJs = ({ statistic }) => {
               console.log(parseFloat(a).toFixed(2));
               ctx.fillText(
                 '₴ ' + new Intl.NumberFormat('ru-RU').format(total),
-                chart.getDatasetMeta(0).data[0].x,
-                chart.getDatasetMeta(0).data[0].y
+                chart?.getDatasetMeta(0)?.data[0]?.x,
+                chart?.getDatasetMeta(0)?.data[0]?.y
               );
             },
           },
         ]}
       />
-      {/* <p
-        style={{
-          width: '85px',
-          position: 'absolute',
-          top: '50%',
-          left: '50%',
-          transform: 'translate(-50%, -50%)',
-        }}
-      >
-        {'₴ ' + statistic?.transaction[0]?.sum}
-      </p> */}
     </Chart>
   );
 };

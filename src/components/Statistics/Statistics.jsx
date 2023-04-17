@@ -12,6 +12,7 @@ export const Statistics = () => {
   const dispatch = useDispatch();
 
   // const statistic = useSelector(selectStatistic);
+
   const statistic = {
     result: [
       {
@@ -30,9 +31,9 @@ export const Statistics = () => {
       },
     ],
   };
-  useEffect(() => {
-    // dispatch(getTransactionsStatistics(select));
-  }, [dispatch, select]);
+  // useEffect(() => {
+  //   dispatch(getTransactionsStatistics(select));
+  // }, [dispatch, select]);
 
   const hadleSelect = data => {
     setSelect(data);
