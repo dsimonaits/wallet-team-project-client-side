@@ -19,9 +19,9 @@ import {
   TeamWrapper,
 } from './TeamModal.styled';
 
-export default function TeamModal() {
+export default function TeamModal({ onClose }) {
   return (
-    <Modal>
+    <Modal onClose={onClose}>
       <TeamWrapper>
         <TeamList>
           <TeamItem>
@@ -69,30 +69,30 @@ export default function TeamModal() {
           <TeamItem>
             <TeamImg src={`${Zara}`} alt="Deniss" />
             <TeamInfo>
-            <InfoTitle>Зара Меликян</InfoTitle>
+              <InfoTitle>Зара Меликян</InfoTitle>
               <InfoDescr>Frontend</InfoDescr>
-              </TeamInfo>
+            </TeamInfo>
           </TeamItem>
           <TeamItem>
             <TeamImg src={`${Svetlana}`} alt="Deniss" />
             <TeamInfo>
-            <InfoTitle>Светлана Редюхина</InfoTitle>
+              <InfoTitle>Светлана Редюхина</InfoTitle>
               <InfoDescr>Frontend, Backend </InfoDescr>
-              </TeamInfo>
+            </TeamInfo>
           </TeamItem>
           <TeamItem>
             <TeamImg src={`${Vitaliy}`} alt="Deniss" />
             <TeamInfo>
-            <InfoTitle>Виталий Герасимов</InfoTitle>
+              <InfoTitle>Виталий Герасимов</InfoTitle>
               <InfoDescr>Frontend</InfoDescr>
-              </TeamInfo>
+            </TeamInfo>
           </TeamItem>
           <TeamItem>
             <TeamImg src={`${Dmitriy}`} alt="Deniss" />
             <TeamInfo>
-            <InfoTitle>Дмитрий Базалей</InfoTitle>
+              <InfoTitle>Дмитрий Базалей</InfoTitle>
               <InfoDescr>Frontend, Backend </InfoDescr>
-              </TeamInfo>
+            </TeamInfo>
           </TeamItem>
         </TeamList>
       </TeamWrapper>
