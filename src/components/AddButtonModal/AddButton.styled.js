@@ -1,13 +1,27 @@
 import styled from 'styled-components';
+import Datetime from 'react-datetime';
 
 export const Div = styled.div`
   background-color: var(--primary-white-color);
 `;
 export const Form = styled.form`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+display: flex;
+flex-direction: column;
+flex-wrap: wrap;
+align-items: center;
+ justify-content: center;
+ 
+ // background-color: antiquewhite; 
+`
+export const LabelTitle = styled.label`
+font-size:24px;
+font-weight:400;
+margin: 20px 20px 42px 20px;
+color: rgba(0, 0, 0, 1);
+@media screen and (min-width: 768px){
+  margin: 40px 79px 40px 80px;
+  font-size:30px;
+}
 
   // background-color: antiquewhite;
 `;
@@ -26,86 +40,103 @@ export const ModalContainer = styled.div`
   height: auto;
 `;
 
-export const Expense = styled.p`
-  font-size: 16px;
-  font-weight: 700;
-  margin-right: 20px;
-  margin-left: 20px;
-  color: ${props => props.theme.expense};
-  /* color:${props =>
-    props.type === 'false' ? '#E0E0E0' : 'rgba(255, 255, 255, 1)'}  */
-`;
-export const Income = styled.p`
-  font-size: 16px;
-  font-weight: 700;
-  margin-right: 20px;
-  margin-left: 20px;
-  color: ${props => props.theme.income};
-`;
+
 
 export const NumberInput = styled.input`
-  min-width: 270px;
-  border: transparent;
-  border-bottom: 1px solid #e0e0e0;
-  color: rgba(0, 0, 0, 1);
-  font-size: 18px;
-  outline: none;
-  /* &:focus {
+min-width:280px;
+border:transparent;
+border-bottom:1px solid #E0E0E0;
+color:rgba(0, 0, 0, 1);
+font-size: 18px;
+outline:none;
+   @media screen and (min-width: 768px) {
+ 
+    min-width: 181px;
+  
+    }
+/* &:focus {
     border-color:transparent} */
-`;
-export const Select = styled.select`
-  min-width: 270px;
-  border: transparent;
-  border-bottom: 1px solid #e0e0e0;
-  color: rgba(0, 0, 0, 1);
-  font-size: 18px;
-  outline: none;
-`;
-export const MenuInputs = styled.ul`
-  list-style: none;
-  padding-left: 0px;
-`;
-export const ItemInput = styled.li`
-  margin-bottom: 40px;
-  padding: 0 20px;
-`;
-export const Textarea = styled.textarea`
-  min-width: 270px;
-  border: transparent;
-  border-bottom: 1px solid #e0e0e0;
-  color: rgba(0, 0, 0, 1);
-  font-size: 18px;
-  outline: none;
-`;
-export const ToggleContainer = styled.div`
-  display: flex;
-  margin-bottom: 42px;
-`;
-export const AddBtn = styled.button`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 44px;
-  height: 44px;
-  //padding:20px;
-  border-radius: 50%;
-  color: rgba(255, 255, 255, 1);
-  font-size: 30px;
-  font-weight: 100;
-  border: 1px solid #ffffff;
-  background-color: rgba(36, 204, 167, 1);
-  position: fixed;
-  bottom: 40px;
-  right: 40px;
-  cursor: pointer;
 
-  transition: box-shadow 250ms ease-in-out, background 250ms ease-in-out;
+`
 
-  :hover {
-    /* background: #24cca7; */
-    box-shadow: 0 0 10px #24cca7;
+// export const DivNumberCalend = styled.div`
+// @media screen and (max-width: 768px){
+// display: none;
+// }
+
+// `
+// export const StyledDatetime = styled(Datetime)`'
+// .datetime-wrapper {
+//     minWidth: 200px;
+    
+//     @media screen and (min-width: 768px) {
+//       minWidth: 300px;
+//     }
+//   }` 
+  export const StyledDatetime = styled(Datetime)`
+  input {
+    min-width: 280px;
   }
+    @media screen and (min-width: 768px) {
+     input {
+    min-width: 181px;
+  } 
+    }
+  
 `;
+ /* height: auto; */
+ /* min-width:280px;
+border:transparent;
+border-bottom: 1px solid #E0E0E0;          
+color: rgba(0, 0, 0, 1) ;
+outline: none;
+@media screen and (min-width: 768px){
+min-width:181px;
+margin-left:32px;
+} */
+
+export const MenuInputs = styled.ul` 
+list-style: none;
+  padding: 0px;
+  margin:0 
+  
+  `
+export const ItemInput = styled.li`
+ width: auto;
+&:not(:last-child){
+  margin-bottom:40px;
+}
+`
+export const Textarea = styled.textarea`
+min-width:270px;
+border:transparent;
+border-bottom:1px solid #E0E0E0;
+color:rgba(0, 0, 0, 1); 
+font-size: 18px;
+outline:none;
+@media screen and (min-width: 768px){
+min-width:394px;
+}
+`
+
+export const AddBtn = styled.button`
+ width: 44px;
+height: 44px; 
+//padding:20px;
+border-radius:50%;
+color:rgba(255, 255, 255, 1);
+font-size:30px;
+font-weight: 100;
+border: 1px solid #FFFFFF;
+ background-color: rgba(36, 204, 167, 1); 
+position: fixed;
+ bottom: 20px; 
+ right: 40px; 
+cursor: pointer;
+@media screen and (max-width: 768px){
+bottom: 20px;
+}
+
 export const CloseButton = styled.button`
   height: fit-content;
   padding: unset;
@@ -118,10 +149,7 @@ export const AddIcon = styled.svg`
   width: 20px;
   height: 20px;
 `;
-export const MenuBtn = styled.ul`
-  list-style: none;
-  padding-left: 0px;
-`;
+
 export const ExitButton = styled.button`
   width: 300px;
   height: 50px;
@@ -132,17 +160,15 @@ export const ExitButton = styled.button`
   letter-spacing: 0.1em;
   text-transform: uppercase;
   color: #4a56e2;
+  background-color: #FFFFFF;
+  border: 1px solid #4A56E2;
+border-radius: 20px;
+ font-size: 18px;
 
-  background-color: #ffffff;
-  border: 1px solid #4a56e2;
-  border-radius: 20px;
-  font-size: 18px;
-  margin-bottom: 20px;
-`;
-
-export const AddButton = styled.button`
-  width: 300px;
-  height: 50px;
+ `
+  export const AddButton = styled.button`
+width: 300px;
+height: 50px;
   padding: 13px;
   font-size: 18px;
   line-height: 27px;
@@ -150,18 +176,46 @@ export const AddButton = styled.button`
   letter-spacing: 0.1em;
   text-transform: uppercase;
   color: #ffff;
-
-  background-color: #24cca7;
-  border: 1px solid #4a56e2;
-  border-radius: 20px;
-  font-size: 18px;
-  margin-bottom: 20px;
-`;
-
+  background-color:  #24CCA7;;
+  border: 1px solid #4A56E2;
+border-radius: 20px;
+ font-size: 18px;
+  
+ `
+export const MenuBtn = styled.ul`
+list-style: none;
+  padding: 0px;
+ margin: 40px 0 0;
+ @media screen and (min-width: 768px){
+margin: 41px 0 0;
+}
+`
 export const ButtonItem = styled.li`
-  margin-bottom: 20px;
-`;
-/* gvhjbkkkkkkkkkkkkkkkkkkkkk */
+&:not(:last-child){margin-bottom:20px} 
+`
+/* toggle */
+
+export const ToggleContainer = styled.div`
+display:flex;
+margin-bottom:40px;
+@media screen and (min-width: 768px){
+margin-bottom:42px;
+}
+
+`
+export const Expense = styled.p`
+font-size:16px;
+font-weight:700;
+margin-left:24px;
+color:${(props) => props.theme.expense};
+/* color:${props=>(props.type=== 'false' ? '#E0E0E0':'rgba(255, 255, 255, 1)')}  */
+`
+export const Income = styled.p`
+font-size:16px;
+font-weight:700;
+margin-right:24px;
+/* margin-left:20px; */
+color:${(props) => props.theme.income}` 
 
 export const Label = styled.label`
   position: relative;
