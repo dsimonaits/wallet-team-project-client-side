@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { AddBtn } from './AddButton.styled';
-import Datetime from 'react-datetime';
+// import Datetime from 'react-datetime';
 import 'react-datetime/css/react-datetime.css';
 
 import { ThemeProvider } from 'styled-components';
@@ -24,7 +24,7 @@ import {
   Checkbox,
   MenuBtn,
   Income,
-StyledDatetime
+  StyledDatetime,
 } from './AddButton.styled';
 // import { SelectFunk } from './Select';
 
@@ -33,19 +33,16 @@ import sprite from '../../images/sprite.svg';
 import Modal from '../Modal/Modal';
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Switch } from '../Switch/switch';
+// import { Switch } from '../Switch/switch';
 // import { string } from 'prop-types';
 import { Label } from 'components/Switch/switch.styled';
 import { toggleModalAddTransaction } from '../../redux/global/globalSlice';
 import { selectIsModalAddTransactionOpen } from '../../redux/global/globalSelectors';
 // import { addTransaction } from '../../redux/finance/financeSlice';
 import { addTransaction } from '../../redux/finance/financeOperations';
-import {SelectFunk}from'./Select'
- 
+import { SelectFunk } from './Select';
 
-
-
-const AddBtnFunction = ({ category}) => {
+const AddBtnFunction = ({ category }) => {
   const [startDate] = useState([new Date()]);
   const [sum, setSum] = useState('');
   // const [category, setCategory] = useState('');
@@ -55,7 +52,7 @@ const AddBtnFunction = ({ category}) => {
   const isThemeExpense = theme === 'themeExp';
   const dispatch = useDispatch();
   const isAddModalIsOpen = useSelector(selectIsModalAddTransactionOpen);
- 
+
   const toggleTheme = () => {
     setTheme(isThemeExpense ? 'greenText' : 'themeExp');
   };
@@ -150,12 +147,11 @@ const AddBtnFunction = ({ category}) => {
                 </Label>
                 <Expense>Expense</Expense>
               </ToggleContainer>
-               {!onSwitch &&<SelectFunk />} 
-              
+              {!onSwitch && <SelectFunk />}
 
               <MenuInputs>
                 {/* <DivNumberCalend> */}
-                  <ItemInput>
+                <ItemInput>
                   <NumberInput
                     size="small"
                     id="filled-number"
@@ -168,26 +164,23 @@ const AddBtnFunction = ({ category}) => {
                 </ItemInput>
                 <ItemInput>
                   {' '}
-                  
                   <StyledDatetime
                     // updateOnView={true}
                     timeFormat={false}
-                    
                     value={startDate}
                     // input={true}//Показывать ли поле ввода для редактирования даты вручную.
                     // initialValue={startDate} Представляет выбранную дату для компонента, чтобы использовать его в качестве неуправляемого компонента. Это свойство анализируется Moment.js, поэтому можно использовать строку даты или объект момента. Если вам нужно программно установить выбранную дату после инициализации средства выбора, используйте вместо этого свойство value.
                     // onChange={e => setStartDate(e.target.value)}
-                   inputProps={{
+                    inputProps={{
                       style: {
-//                         height: 'auto',
-                      //  minWidth: '280px',
-                     border: 'transparent',
+                        //                         height: 'auto',
+                        //  minWidth: '280px',
+                        border: 'transparent',
                         borderBottom: '1px solid #E0E0E0',
-                     color: 'rgba(0, 0, 0, 1) ',
-                    outline: 'none',
-
-          },
-                 }}
+                        color: 'rgba(0, 0, 0, 1) ',
+                        outline: 'none',
+                      },
+                    }}
                     dateFormat="yyyy-MM-DD"
                     // isValidDate={(current) => {
                     //  current.isBefore(Datetime.moment().add(1, 'day'))
@@ -199,9 +192,8 @@ const AddBtnFunction = ({ category}) => {
                       const date = current.isAfter(yesterday);
                       return date;
                     }}
-                    />
-               
-                  </ItemInput>
+                  />
+                </ItemInput>
                 {/* </DivNumberCalend> */}
                 <ItemInput>
                   {' '}
