@@ -16,5 +16,5 @@
   --primary-font-family: 'Circe', sans-serif;
   --secondary-font-family: 'Poppins', sans-serif;
 
-  --transition: box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
