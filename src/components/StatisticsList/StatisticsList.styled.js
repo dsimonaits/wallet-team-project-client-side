@@ -35,7 +35,7 @@ export const SubList = styled.ul`
   }
 `;
 
-export const SubItem = styled.li`
+export const SubItem = styled.p`
   font-family: var(--primary-font-family);
   font-weight: 700;
   font-size: 16px;
@@ -63,4 +63,14 @@ export const Category = styled.p`
   font-size: 16px;
   line-height: 1.5;
   color: var(--primary-text-color);
+`;
+
+export const SubListItem = styled.li`
+  display: flex;
+  align-items: center;
+`;
+
+export const Type = styled.p`
+  margin-left: auto;
+  color: ${props => (props.expenses ? 'red' : 'green')};
 `;

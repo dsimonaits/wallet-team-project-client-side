@@ -1,13 +1,18 @@
 import * as React from 'react';
 import { useState } from 'react';
 import MenuItem from '@mui/material/MenuItem';
+import { useSelector } from 'react-redux';
+import { selectUser } from 'redux/session/sessionSelectors';
 
-import { WrapperControl } from './SelectLabels.styled';
-import { Selec, Control } from './SelectLabels.styled';
+import { Selec, Control, WrapperControl } from './SelectLabels.styled';
 
 export const SelectLabels = ({ handleSelect }) => {
-  const [year, setYear] = useState('2009');
-  const [month, setMonth] = useState('1');
+  const [year, setYear] = useState(
+    useSelector(selectUser).createdAt.slice(0, 4)
+  );
+  const [month, setMonth] = useState(
+    useSelector(selectUser).createdAt.slice(5, 7)
+  );
 
   const handleChange = event => {
     const { name, value } = event.target;
@@ -39,15 +44,15 @@ export const SelectLabels = ({ handleSelect }) => {
           <MenuItem value="">
             <em>Month</em>
           </MenuItem>
-          <MenuItem value={'1'}>January</MenuItem>
-          <MenuItem value={'2'}>February</MenuItem>
-          <MenuItem value={'3'}>March</MenuItem>
-          <MenuItem value={'4'}>April</MenuItem>
-          <MenuItem value={'5'}>May</MenuItem>
-          <MenuItem value={'6'}>June</MenuItem>
-          <MenuItem value={'7'}>July</MenuItem>
-          <MenuItem value={'8'}>August</MenuItem>
-          <MenuItem value={'9'}>September</MenuItem>
+          <MenuItem value={'01'}>January</MenuItem>
+          <MenuItem value={'02'}>February</MenuItem>
+          <MenuItem value={'03'}>March</MenuItem>
+          <MenuItem value={'04'}>April</MenuItem>
+          <MenuItem value={'05'}>May</MenuItem>
+          <MenuItem value={'06'}>June</MenuItem>
+          <MenuItem value={'07'}>July</MenuItem>
+          <MenuItem value={'08'}>August</MenuItem>
+          <MenuItem value={'09'}>September</MenuItem>
           <MenuItem value={'10'}>October</MenuItem>
           <MenuItem value={'11'}>November</MenuItem>
           <MenuItem value={'12'}>December</MenuItem>

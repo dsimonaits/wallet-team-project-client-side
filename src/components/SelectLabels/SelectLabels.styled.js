@@ -14,12 +14,7 @@ export const WrapperControl = styled.div`
   }
 `;
 
-export const Control = styled(FormControl)`
-  /* border: 1px solid #000000;
-  border-radius: 30px;
-  height: 50px;
-  width: 280px; */
-`;
+export const Control = styled(FormControl)``;
 
 export const Selec = styled(Select)`
   border: 1px solid #000000;
@@ -31,10 +26,3 @@ export const Selec = styled(Select)`
     width: 160px;
   }
 `;
-//    &:not(:last-child) {
-//     margin-bottom: 20px;
-//   }
-
-/* &:not(:last-child) {
-      margin-bottom: 0px;
-    } */

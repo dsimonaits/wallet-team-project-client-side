@@ -1,20 +1,20 @@
 import { Chart as ChartJS, ArcElement, Tooltip, Legend, Title } from 'chart.js';
 import { Doughnut } from 'react-chartjs-2';
 import { Chart } from './Chart.styled';
-import { useSelector } from 'react-redux';
-import { selectUser } from 'redux/session/sessionSelectors';
 
 ChartJS.register(ArcElement, Tooltip, Legend, Title);
 
 export const ChartJs = ({ statistic }) => {
   const arrayTotalSum = statistic.result.map(({ totalSum }) => totalSum);
-  const { balance } = useSelector(selectUser);
+  const category = statistic.result.map(({ category }) => category);
+  const expenses = statistic.transaction.filter(({ type }) => type === false);
+  const sum = new Intl.NumberFormat('ru-RU').format(expenses[0]?.sum);
 
   const data = {
     labels: [],
     datasets: [
       {
-        label: ' Sveta',
+        label: category,
         data: arrayTotalSum,
 
         backgroundColor: [
@@ -54,27 +54,31 @@ export const ChartJs = ({ statistic }) => {
   };
 
   return (
-    <Chart>
-      <Doughnut
-        data={data}
-        options={options}
-        plugins={[
-          {
-            id: 'centerText',
-            beforeDatasetsDraw(chart, args, pluginOptions) {
-              const { ctx } = chart;
-              ctx.textAlign = 'center';
-              ctx.font = '18px "Circe", Helvetica, Arial, sans-serif';
+    <>
+      {sum !== 'не число' && (
+        <Chart>
+          <Doughnut
+            data={data}
+            options={options}
+            plugins={[
+              {
+                id: 'centerText',
+                beforeDatasetsDraw(chart, args, pluginOptions) {
+                  const { ctx } = chart;
+                  ctx.textAlign = 'center';
+                  ctx.font = '18px "Circe", Helvetica, Arial, sans-serif';
 
-              ctx.fillText(
-                '₴ ' + new Intl.NumberFormat('ru-RU').format(balance),
-                chart?.getDatasetMeta(0)?.data[0]?.x,
-                chart?.getDatasetMeta(0)?.data[0]?.y
-              );
-            },
-          },
-        ]}
-      />
-    </Chart>
+                  ctx.fillText(
+                    '₴ ' + sum,
+                    chart?.getDatasetMeta(0)?.data[0]?.x,
+                    chart?.getDatasetMeta(0)?.data[0]?.y
+                  );
+                },
+              },
+            ]}
+          />
+        </Chart>
+      )}
+    </>
   );
 };
