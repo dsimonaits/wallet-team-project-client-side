@@ -41,12 +41,11 @@ export const CloseBtnBox = styled.div`
   right: 20px;
   top: 20px;
   display: block;
-
-  transition: box-shadow 250ms ease-in-out, background-color 250ms ease-in-out;
+  border-radius: 50%;
+    transition: box-shadow 250ms ease-in-out, background-color 250ms ease-in-out;
 
   :hover {
-    /* background-color: #24f0a7; */
-    box-shadow: 0 0 8px #24cca7;
+  transform: scale(1.1);
   }
 `;
 

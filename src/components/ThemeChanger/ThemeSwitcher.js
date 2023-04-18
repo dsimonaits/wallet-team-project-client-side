@@ -5,6 +5,8 @@ import '@fontsource/public-sans';
 const ThemeSwitcher = ({ themeToggler }) => {
   return (
     <Switch
+    variant="outlined"
+    color="neutral"
       onChange={themeToggler}
       slotProps={{
         input: { 'aria-label': 'Dark mode' },
@@ -13,7 +15,7 @@ const ThemeSwitcher = ({ themeToggler }) => {
         },
       }}
       sx={{
-        '--Switch-thumbSize': '28px',
+        '--Switch-thumbSize': '20px',
       }}
     />
   );
