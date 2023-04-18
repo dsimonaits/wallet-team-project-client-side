@@ -19,9 +19,9 @@ export default function ModalLogout() {
   const dispatch = useDispatch();
 
   const userLogOut = () => {
+    dispatch(logOut());
     dispatch(toggleModalLogout());
     dispatch(toggleIsLoading());
-    dispatch(logOut());
   };
 
   const onClose = () => {
