@@ -2,7 +2,7 @@
 import { useState } from 'react';
 import { Select } from './Select.styled';
 export const SelectFunk = () => {
-  const [mySelect, setMySelect] = useState('');
+  const [category, setCategory] = useState('');
   // const handleChange = e => useMySelect(e.target.value);
   return (
     <div>

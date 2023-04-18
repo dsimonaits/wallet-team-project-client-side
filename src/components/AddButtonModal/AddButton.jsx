@@ -40,9 +40,9 @@ import { toggleModalAddTransaction } from '../../redux/global/globalSlice';
 import { selectIsModalAddTransactionOpen } from '../../redux/global/globalSelectors';
 // import { addTransaction } from '../../redux/finance/financeSlice';
 import { addTransaction } from '../../redux/finance/financeOperations';
-import { SelectFunk } from './Select';
+// import { SelectFunk } from './Select';
 
-const AddBtnFunction = ({ category }) => {
+const AddBtnFunction = ({ categories }) => {
   const [startDate] = useState([new Date()]);
   const [sum, setSum] = useState('');
   const [category, setCategory] = useState('');
@@ -84,7 +84,7 @@ const AddBtnFunction = ({ category }) => {
           addTransaction({
             type: onSwitch,
             sum: sum,
-            category: category,
+            category,
             date: startDate[0],
             comment: comment,
           })
@@ -146,8 +146,22 @@ const AddBtnFunction = ({ category }) => {
                 </Label>
                 <Expense>Expense</Expense>
               </ToggleContainer>
-              {!onSwitch && <SelectFunk />}
-
+              <div>
+                <Select
+                  value={category}
+                  category={category}
+                  onChange={e => setCategory(e.target.value)}
+                >
+                  <option value="Main expenses">Main expenses</option>
+                  <option value="Car">Car</option>
+                  <option value="Self care">Self care</option>
+                  <option value="Child care">Child care</option>
+                  <option value="Household products">Household products</option>
+                  <option value="Education">Education</option>
+                  <option value="Leisure">Leisure</option>
+                  <option value="Other">Other expenses</option>
+                </Select>
+              </div>
               <MenuInputs>
                 {/* <DivNumberCalend> */}
                 <ItemInput>
