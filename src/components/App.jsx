@@ -7,9 +7,8 @@ import { useMediaQuery } from '@mui/material';
 import {
   selectIsLoggedIn,
   selectIsRefreshing,
+  selectToken,
 } from '../redux/session/sessionSelectors';
-// import { selectIsLoading } from '../redux/global/globalSelectors';
-// import { modalsIsOpen } from '../redux/global/globalSelectors';
 import { refreshUser } from '../redux/session/sessionOperations';
 import { fetchTransactions } from '../redux/finance/financeOperations';
 import { PublicRoute } from './PublicRoute';
@@ -18,7 +17,9 @@ import Spinner from './Spinner/Spinner';
 
 const LoginPage = lazy(() => import('../pages/auth/LoginPage'));
 const RegistrationPage = lazy(() => import('../pages/auth/RegistrationPage'));
-const DashboardPage = lazy(() => import('pages/DashboardPage/DashboardPage'));
+const DashboardPage = lazy(() =>
+  import('../pages/DashboardPage/DashboardPage')
+);
 const Table = lazy(() => import('./Table/Table'));
 const Statistics = lazy(() => import('./Statistics/Statistics'));
 const Currency = lazy(() => import('./Currency/Currency'));
@@ -30,14 +31,13 @@ export const App = () => {
   const dispatch = useDispatch();
   const userLoggedIn = useSelector(selectIsLoggedIn);
   const refreshing = useSelector(selectIsRefreshing);
-  // const isModalIsOpen = useSelector(modalsIsOpen);
-  // const isGLobalLoading = useSelector(selectIsLoading);
+  const token = useSelector(selectToken);
 
   const navigate = useNavigate();
 
   useEffect(() => {
-    dispatch(refreshUser());
-  }, [dispatch]);
+    if (token) dispatch(refreshUser());
+  }, [dispatch, token]);
 
   useEffect(() => {
     if (userLoggedIn && !refreshing) {
@@ -53,27 +53,6 @@ export const App = () => {
       navigate('/home');
     }
   }, [isMobile, navigate, location.pathname]);
-
-  // useEffect(() => {
-  //   if (!isGLobalLoading && userLoggedIn && !refreshing) {
-  //     let section;
-  //     window.addEventListener('load', event => {
-  //       section = document.getElementById('blur');
-  //     });
-
-  //     switch (isModalIsOpen) {
-  //       case true:
-  //         section.classList.add('blur');
-  //         break;
-  //       case false:
-  //         // section.classList.contains('blur') &&
-  //         section.classList.remove('blur');
-  //         break;
-  //       default:
-  //         break;
-  //     }
-  //   }
-  // });
 
   return (
     <>
@@ -107,7 +86,7 @@ export const App = () => {
               }
             >
               <Route
-                path="/home"
+                path="home"
                 element={
                   <PrivateRoute redirectTo="/login">
                     <Table />
@@ -115,7 +94,7 @@ export const App = () => {
                 }
               />
               <Route
-                path="/diagram"
+                path="diagram"
                 element={
                   <PrivateRoute redirectTo="/login">
                     <Statistics />
@@ -124,7 +103,7 @@ export const App = () => {
               />
               {isMobile && (
                 <Route
-                  path="/currency"
+                  path="currency"
                   element={
                     <PrivateRoute redirectTo="/login">
                       <Currency />

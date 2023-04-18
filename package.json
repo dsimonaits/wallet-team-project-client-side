@@ -7,13 +7,9 @@
     "@blueprintjs/core": "^4.17.8",
     "@emotion/react": "^11.10.6",
     "@emotion/styled": "^11.10.6",
-<<<<<<< Updated upstream
     "@fontsource/public-sans": "^4.5.12",
     "@mui/icons-material": "^5.11.16",
     "@mui/joy": "^5.0.0-alpha.75",
-=======
-    "@mui/icons-material": "^5.10.16",
->>>>>>> Stashed changes
     "@mui/material": "^5.12.0",
     "@mui/styled-engine-sc": "^5.11.11",
     "@mui/x-date-pickers": "^6.0.4",

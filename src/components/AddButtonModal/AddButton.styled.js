@@ -1,29 +1,27 @@
 import styled from 'styled-components';
-<<<<<<< Updated upstream
 import Datetime from 'react-datetime';
-import DateRangeIcon from '@mui/icons-material/DateRange';
+// import DateRangeIcon from '@mui/icons-material/DateRange';
 export const Select = styled.select`
-  
   border: transparent;
   border-bottom: 1px solid #e0e0e0;
   color: rgba(0, 0, 0, 1);
   font-size: 18px;
   outline: none;
   width: 280px;
-  margin-bottom:40px;
+  margin-bottom: 40px;
   &:focus {
-     border-bottom: 2px solid var(--greenblue);  
-  }  
+    border-bottom: 2px solid var(--greenblue);
+  }
 `;
 export const Option = styled.option`
-background-color: rgba(255, 255, 255, 0.7);
-box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.1);
-backdrop-filter: blur(25px);
-border-radius: 20px;
-&:focus {
-    color: #FF6596;
-  }  
-`
+  background-color: rgba(255, 255, 255, 0.7);
+  box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(25px);
+  border-radius: 20px;
+  &:focus {
+    color: #ff6596;
+  }
+`;
 export const Div = styled.div`
   background-color: var(--primary-white-color);
 `;
@@ -59,32 +57,32 @@ export const NumberInput = styled.input`
   font-size: 18px;
   outline: none;
   &:focus {
-     border-bottom: 2px solid var(--greenblue);  
-  }  
-  @media screen and (max-width: 768px){  
-  min-width: 280px;
+    border-bottom: 2px solid var(--greenblue);
+  }
+  @media screen and (max-width: 768px) {
+    min-width: 280px;
   }
   @media screen and (min-width: 768px) {
     width: 181px;
     text-align: center;
-   
   }
-  
+
   /* &:focus {
     border-color:transparent} */
 `;
 export const StyledDatetime = styled(Datetime)`
-&:focus {
-     border-bottom: 2px solid var(--greenblue);  
-  }  
+  &:focus {
+    border-bottom: 2px solid var(--greenblue);
+  }
   @media screen and (max-width: 768px) {
-  input {
-    min-width: 280px;
-    position:relative;
-  }}
+    input {
+      min-width: 280px;
+      position: relative;
+    }
+  }
   @media screen and (min-width: 768px) {
     input {
-      position:relative;
+      position: relative;
       width: 181px;
       text-align: center;
     }
@@ -94,19 +92,18 @@ export const StyledDatetime = styled(Datetime)`
 // color:#4A56E2;
 // `
 export const DivRelative = styled.div`
-position:relative;
-`
+  position: relative;
+`;
 export const ItemCalendarNumber = styled.li`
-@media screen and (max-width: 768px) {
-&:not(:last-child) {
-
-    margin-bottom:40px;
-  }}
-    @media screen and (min-width: 768px) {
-          margin-right: 32px;
+  @media screen and (max-width: 768px) {
+    &:not(:last-child) {
+      margin-bottom: 40px;
     }
-
-`
+  }
+  @media screen and (min-width: 768px) {
+    margin-right: 32px;
+  }
+`;
 // export const Dateicon = styled(StyledDatetime)`
 // width: 18px;
 // height: 20px;
@@ -114,10 +111,10 @@ export const ItemCalendarNumber = styled.li`
 // `
 
 export const MenuCalendarNumber = styled.ul`
-@media screen and (min-width: 768px){
-display:flex;
-}
-` 
+  @media screen and (min-width: 768px) {
+    display: flex;
+  }
+`;
 export const MenuInputs = styled.ul`
   list-style: none;
   padding: 0px;
@@ -137,8 +134,8 @@ export const Textarea = styled.textarea`
   font-size: 18px;
   outline: none;
   &:focus {
-     border-bottom: 2px solid var(--greenblue);  
-  }  
+    border-bottom: 2px solid var(--greenblue);
+  }
   @media screen and (min-width: 768px) {
     min-width: 394px;
   }
@@ -200,11 +197,12 @@ export const ExitButton = styled.button`
   border: 1px solid #4a56e2;
   border-radius: 20px;
   font-size: 18px;
-   transition: box-shadow 250ms ease-in-out, background-color 250ms ease-in-out;
+  transition: box-shadow 250ms ease-in-out, background-color 250ms ease-in-out;
 
   :hover {
     /* background-color: #24f0a7; */
-    box-shadow: 0 0 8px #24cca7;}
+    box-shadow: 0 0 8px #24cca7;
+  }
 `;
 export const AddButton = styled.button`
   width: 300px;
@@ -220,11 +218,12 @@ export const AddButton = styled.button`
   border: 1px solid #4a56e2;
   border-radius: 20px;
   font-size: 18px;
-   transition: box-shadow 250ms ease-in-out, background-color 250ms ease-in-out;
+  transition: box-shadow 250ms ease-in-out, background-color 250ms ease-in-out;
 
   :hover {
     /* background-color: #24f0a7; */
-    box-shadow: 0 0 8px #24cca7;}
+    box-shadow: 0 0 8px #24cca7;
+  }
 `;
 export const MenuBtn = styled.ul`
   list-style: none;
@@ -300,8 +299,6 @@ export const Slider = styled.span`
     background-color: rgba(36, 204, 167, 1);
     transition-property: background-color, transform;
     transition-duration: 500ms;
-
-
   }
 `;
 
@@ -323,11 +320,9 @@ export const Checkbox = styled.input`
   }
 `;
 
-=======
-export const Div = styled.div`
-background-color:var(--primary-white-color);
-`
-export const Form = styled.form`
+// export const Div = styled.div`
+// background-color:var(--primary-white-color);
+// `
+// export const Form = styled.form`
 
-`
->>>>>>> Stashed changes
+// `
