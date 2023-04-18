@@ -19,10 +19,7 @@ import {
 
 const initialState = {
   transactions: [],
-  statistic: {
-    result: [],
-    transaction: [],
-  },
+  statistic: null,
   isLoading: false,
   currentPage: 1,
   error: null,

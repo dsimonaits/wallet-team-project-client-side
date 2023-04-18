@@ -57,11 +57,11 @@ export const StatisticsList = ({ statistic }) => {
       <SubList>
         <SubListItem>
           <SubItem>Expenses:</SubItem>
-          <Type expenses>{expenses}</Type>
+          <Type expenses>{expenses ? expenses : 0}</Type>
         </SubListItem>
         <SubListItem>
           <SubItem>Income:</SubItem>
-          <Type>{income}</Type>
+          <Type>{income ? income : 0}</Type>
         </SubListItem>
       </SubList>
     </>
