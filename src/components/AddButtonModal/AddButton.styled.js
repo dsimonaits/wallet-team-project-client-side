@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+<<<<<<< Updated upstream
 import Datetime from 'react-datetime';
 import DateRangeIcon from '@mui/icons-material/DateRange';
 export const Select = styled.select`
@@ -322,3 +323,11 @@ export const Checkbox = styled.input`
   }
 `;
 
+=======
+export const Div = styled.div`
+background-color:var(--primary-white-color);
+`
+export const Form = styled.form`
+
+`
+>>>>>>> Stashed changes

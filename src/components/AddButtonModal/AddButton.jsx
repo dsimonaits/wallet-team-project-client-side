@@ -1,4 +1,5 @@
 import * as React from 'react';
+<<<<<<< Updated upstream
 import { ToastContainer, toast } from 'react-toastify';
 import * as yup from 'yup';
 import 'react-datetime/css/react-datetime.css';
@@ -279,3 +280,82 @@ const AddBtnFunction = ({ categories }) => {
 };
 
 export default AddBtnFunction;
+=======
+import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
+import Typography from '@mui/material/Typography';
+import Modal from '@mui/material/Modal';
+
+const AddBtn = () => {
+   const [open, setOpen] = React.useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
+
+  const style = {
+  position: 'absolute',
+  top: '50%',
+  left: '50%',
+  transform: 'translate(-50%, -50%)',
+  width: 400,
+  bgcolor: 'background.paper',
+  border: '2px solid #000',
+  boxShadow: 24,
+  p: 4,
+};
+
+  return (
+    <>
+      <Button onClick={handleOpen}>Open modal</Button>
+      <div>
+ <Modal
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+      >
+        <Box sx={style}>
+          <Typography id="modal-modal-title" variant="h6" component="h2">
+          Add transaction
+          </Typography>
+          <form action="">
+       <p>Income</p>
+          <input type="radio" name="income" value="income" id= "income" checked />
+           <input type="radio" name="expense" value="expense" id="expense" checked />
+        <p>Expense</p>
+        {/* <select name="month" id="month">
+          <optgroup label="Summer">
+            <option value="s6">June</option>
+            <option value="s7">July</option>
+            <option value="s8">August</option>
+          </optgroup>
+        </select> */}
+              <input
+          type="number"
+          name="cash"
+          min="0"
+          max="150"
+          step="0.1"
+          value="0"
+              />
+              
+        {/* <input type="text" name="username" placeholder="Jacob Mercer" /> */}
+        
+        <input type="date" min="2023-01-01" max="2025-01-01" />
+        <textarea
+          name="comment"
+          rows="3"
+          placeholder="Comment"
+        ></textarea>
+        <button>ADD</button>
+        <button>Cancel</button>
+      </form>
+        </Box>
+      </Modal>
+          {/* <h1>Add transaction</h1> */}
+      
+      </div>
+      </>
+  );
+};
+export default AddBtn;
+>>>>>>> Stashed changes
