@@ -56,6 +56,22 @@ export const LoadMoreBtn = styled.button`
 `;
 
 // MOBILE ////////////////////////////////////////
+export const NoTransactionMob = styled.div`
+  font-family: 'Circe';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 30px;
+  line-height: 1.5;
+  padding: 10px;
+  text-align: center;
+  width: 100%;
+`;
+
+export const SpanNoTran = styled.span`
+  font-size: 20px;
+  color: #bdbdbd;
+`;
+
 export const MobileCardWrapper = styled.div`
   width: 280px;
   margin: 0 auto;
@@ -142,10 +158,21 @@ export const EditBtnMobile = styled.button`
 
 // DESCTOP //////////////////////////////////////////////
 
+export const NoTransaction = styled.div`
+  font-family: 'Circe';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 40px;
+  line-height: 1.5;
+  padding: 10px;
+  text-align: center;
+  width: 100%;
+`;
+
 export const TableWrapper = styled.table`
   padding: 10px;
   border-collapse: collapse;
-  height: 306px;
+  max-height: 310px;
   margin: 0 auto;
   table-layout: fixed;
   width: 100%;
@@ -174,8 +201,6 @@ export const Tr = styled.tr`
     width: 100%;
     height: 100%;
     background-color: #fff;
-    /* background: #24cca7; */
-
     border-radius: 30px;
     z-index: -1;
   }
@@ -183,6 +208,7 @@ export const Tr = styled.tr`
 
 export const TrWrapperTable = styled.tr`
   padding: 10px;
+  /* height: 80px; */
   cursor: default;
 
   :not(:last-child) {
@@ -242,7 +268,7 @@ export const Td = styled.td`
   }
 `;
 
-export const LargeTd = styled.th`
+export const LargeTd = styled.td`
   font-family: 'Circe';
   font-style: normal;
   font-weight: 400;
@@ -298,7 +324,6 @@ export const EditBtn = styled.button`
   transition: box-shadow 250ms ease-in-out, background 250ms ease-in-out;
 
   :hover {
-    /* background: #24cca7; */
     box-shadow: 0 0 10px #24cca7;
   }
 `;
@@ -314,7 +339,6 @@ export const DeleteBtn = styled.button`
   transition: box-shadow 250ms ease-in-out, background-color 250ms ease-in-out;
 
   :hover {
-    /* background-color: #24f0a7; */
     box-shadow: 0 0 8px #24cca7;
   }
 `;
