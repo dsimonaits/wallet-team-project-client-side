@@ -8,8 +8,8 @@ import {
   selectIsLoggedIn,
   selectIsRefreshing,
 } from '../redux/session/sessionSelectors';
-import { selectIsLoading } from '../redux/global/globalSelectors';
-import { modalsIsOpen } from '../redux/global/globalSelectors';
+// import { selectIsLoading } from '../redux/global/globalSelectors';
+// import { modalsIsOpen } from '../redux/global/globalSelectors';
 import { refreshUser } from '../redux/session/sessionOperations';
 import { fetchTransactions } from '../redux/finance/financeOperations';
 import { PublicRoute } from './PublicRoute';
@@ -30,8 +30,8 @@ export const App = () => {
   const dispatch = useDispatch();
   const userLoggedIn = useSelector(selectIsLoggedIn);
   const refreshing = useSelector(selectIsRefreshing);
-  const isModalIsOpen = useSelector(modalsIsOpen);
-  const isGLobalLoading = useSelector(selectIsLoading);
+  // const isModalIsOpen = useSelector(modalsIsOpen);
+  // const isGLobalLoading = useSelector(selectIsLoading);
 
   const navigate = useNavigate();
 
@@ -54,26 +54,26 @@ export const App = () => {
     }
   }, [isMobile, navigate, location.pathname]);
 
-  useEffect(() => {
-    if (!isGLobalLoading && userLoggedIn && !refreshing) {
-      let section;
-      window.addEventListener('load', event => {
-        section = document.getElementById('blur');
-      });
+  // useEffect(() => {
+  //   if (!isGLobalLoading && userLoggedIn && !refreshing) {
+  //     let section;
+  //     window.addEventListener('load', event => {
+  //       section = document.getElementById('blur');
+  //     });
 
-      switch (isModalIsOpen) {
-        case true:
-          section.classList.add('blur');
-          break;
-        case false:
-          section.classList.contains('blur') &&
-            section.classList.remove('blur');
-          break;
-        default:
-          break;
-      }
-    }
-  });
+  //     switch (isModalIsOpen) {
+  //       case true:
+  //         section.classList.add('blur');
+  //         break;
+  //       case false:
+  //         // section.classList.contains('blur') &&
+  //         section.classList.remove('blur');
+  //         break;
+  //       default:
+  //         break;
+  //     }
+  //   }
+  // });
 
   return (
     <>
