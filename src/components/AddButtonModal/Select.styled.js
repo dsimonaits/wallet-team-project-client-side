@@ -7,8 +7,4 @@ border-bottom:1px solid #E0E0E0;
 color:rgba(0, 0, 0, 1);
 font-size: 18px;
 outline:none;
-margin-bottom:40px;
-@media screen and (min-width: 768px){
-    min-width:394px;
-}
 `

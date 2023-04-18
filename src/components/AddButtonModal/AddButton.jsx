@@ -19,7 +19,7 @@ import {
   ExitButton,
   AddButton,
   ButtonItem,
-  // Select,
+  Select,
   Slider,
   Checkbox,
   MenuBtn,
@@ -45,14 +45,13 @@ import { SelectFunk } from './Select';
 const AddBtnFunction = ({ category }) => {
   const [startDate] = useState([new Date()]);
   const [sum, setSum] = useState('');
-  // const [category, setCategory] = useState('');
+  const [category, setCategory] = useState('');
   const [comment, setComment] = useState('');
   const [onSwitch, setOnSwitch] = useState(true);
   const [theme, setTheme] = useState('themeInc');
   const isThemeExpense = theme === 'themeExp';
   const dispatch = useDispatch();
   const isAddModalIsOpen = useSelector(selectIsModalAddTransactionOpen);
-
   const toggleTheme = () => {
     setTheme(isThemeExpense ? 'greenText' : 'themeExp');
   };
@@ -132,7 +131,7 @@ const AddBtnFunction = ({ category }) => {
           >
             <Form onSubmit={handelSubmit}>
               <LabelTitle htmlFor="">Add transaction</LabelTitle>
-              {/* <Switch toggleTheme={toggleTheme}  checked={onSwitch} /> */}
+              {/* <Switch toggleTheme={toggleTheme} /> */}
               <ToggleContainer>
                 <Income>Income</Income>
                 <Label>

@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import Datetime from 'react-datetime';
 
 export const Div = styled.div`
   background-color: var(--primary-white-color);
@@ -7,7 +6,10 @@ export const Div = styled.div`
 export const Form = styled.form`
   display: flex;
   flex-direction: column;
+<<<<<<< HEAD
   flex-wrap: wrap;
+=======
+>>>>>>> parent of 397851b (Merge pull request #36 from dsimonaits/GalyaBrantch)
   align-items: center;
   justify-content: center;
 
@@ -40,13 +42,36 @@ export const ModalContainer = styled.div`
   height: auto;
 `;
 
+<<<<<<< HEAD
 export const NumberInput = styled.input`
   min-width: 280px;
+=======
+export const Expense = styled.p`
+  font-size: 16px;
+  font-weight: 700;
+  margin-right: 20px;
+  margin-left: 20px;
+  color: ${props => props.theme.expense};
+  /* color:${props =>
+    props.type === 'false' ? '#E0E0E0' : 'rgba(255, 255, 255, 1)'}  */
+`;
+export const Income = styled.p`
+  font-size: 16px;
+  font-weight: 700;
+  margin-right: 20px;
+  margin-left: 20px;
+  color: ${props => props.theme.income};
+`;
+
+export const NumberInput = styled.input`
+  min-width: 270px;
+>>>>>>> parent of 397851b (Merge pull request #36 from dsimonaits/GalyaBrantch)
   border: transparent;
   border-bottom: 1px solid #e0e0e0;
   color: rgba(0, 0, 0, 1);
   font-size: 18px;
   outline: none;
+<<<<<<< HEAD
   @media screen and (min-width: 768px) {
     min-width: 181px;
   }
@@ -99,6 +124,26 @@ export const ItemInput = styled.li`
   &:not(:last-child) {
     margin-bottom: 40px;
   }
+=======
+  /* &:focus {
+    border-color:transparent} */
+`;
+export const Select = styled.select`
+  min-width: 270px;
+  border: transparent;
+  border-bottom: 1px solid #e0e0e0;
+  color: rgba(0, 0, 0, 1);
+  font-size: 18px;
+  outline: none;
+`;
+export const MenuInputs = styled.ul`
+  list-style: none;
+  padding-left: 0px;
+`;
+export const ItemInput = styled.li`
+  margin-bottom: 40px;
+  padding: 0 20px;
+>>>>>>> parent of 397851b (Merge pull request #36 from dsimonaits/GalyaBrantch)
 `;
 export const Textarea = styled.textarea`
   min-width: 270px;
@@ -107,12 +152,24 @@ export const Textarea = styled.textarea`
   color: rgba(0, 0, 0, 1);
   font-size: 18px;
   outline: none;
+<<<<<<< HEAD
   @media screen and (min-width: 768px) {
     min-width: 394px;
   }
 `;
 
 export const AddBtn = styled.button`
+=======
+`;
+export const ToggleContainer = styled.div`
+  display: flex;
+  margin-bottom: 42px;
+`;
+export const AddBtn = styled.button`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+>>>>>>> parent of 397851b (Merge pull request #36 from dsimonaits/GalyaBrantch)
   width: 44px;
   height: 44px;
   //padding:20px;
@@ -123,6 +180,7 @@ export const AddBtn = styled.button`
   border: 1px solid #ffffff;
   background-color: rgba(36, 204, 167, 1);
   position: fixed;
+<<<<<<< HEAD
   bottom: 20px;
   right: 40px;
   cursor: pointer;
@@ -130,7 +188,19 @@ export const AddBtn = styled.button`
     bottom: 20px;
   }
 `;
+=======
+  bottom: 40px;
+  right: 40px;
+  cursor: pointer;
+>>>>>>> parent of 397851b (Merge pull request #36 from dsimonaits/GalyaBrantch)
 
+  transition: box-shadow 250ms ease-in-out, background 250ms ease-in-out;
+
+  :hover {
+    /* background: #24cca7; */
+    box-shadow: 0 0 10px #24cca7;
+  }
+`;
 export const CloseButton = styled.button`
   height: fit-content;
   padding: unset;
@@ -143,7 +213,10 @@ export const AddIcon = styled.svg`
   width: 20px;
   height: 20px;
 `;
-
+export const MenuBtn = styled.ul`
+  list-style: none;
+  padding-left: 0px;
+`;
 export const ExitButton = styled.button`
   width: 300px;
   height: 50px;
@@ -154,11 +227,21 @@ export const ExitButton = styled.button`
   letter-spacing: 0.1em;
   text-transform: uppercase;
   color: #4a56e2;
+<<<<<<< HEAD
+=======
+
+>>>>>>> parent of 397851b (Merge pull request #36 from dsimonaits/GalyaBrantch)
   background-color: #ffffff;
   border: 1px solid #4a56e2;
   border-radius: 20px;
   font-size: 18px;
+<<<<<<< HEAD
 `;
+=======
+  margin-bottom: 20px;
+`;
+
+>>>>>>> parent of 397851b (Merge pull request #36 from dsimonaits/GalyaBrantch)
 export const AddButton = styled.button`
   width: 300px;
   height: 50px;
@@ -169,10 +252,15 @@ export const AddButton = styled.button`
   letter-spacing: 0.1em;
   text-transform: uppercase;
   color: #ffff;
+<<<<<<< HEAD
+=======
+
+>>>>>>> parent of 397851b (Merge pull request #36 from dsimonaits/GalyaBrantch)
   background-color: #24cca7;
   border: 1px solid #4a56e2;
   border-radius: 20px;
   font-size: 18px;
+<<<<<<< HEAD
 `;
 export const MenuBtn = styled.ul`
   list-style: none;
@@ -211,6 +299,15 @@ export const Income = styled.p`
   /* margin-left:20px; */
   color: ${props => props.theme.income};
 `;
+=======
+  margin-bottom: 20px;
+`;
+
+export const ButtonItem = styled.li`
+  margin-bottom: 20px;
+`;
+/* gvhjbkkkkkkkkkkkkkkkkkkkkk */
+>>>>>>> parent of 397851b (Merge pull request #36 from dsimonaits/GalyaBrantch)
 
 export const Label = styled.label`
   position: relative;
