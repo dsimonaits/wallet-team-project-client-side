@@ -21,8 +21,6 @@ const currenciesApi = async () => {
     );
     const responseData = response.data.ResponseBody;
 
-    console.log(responseData);
-
     localStorage.setItem(
       CURRENCY_CACHE_KEY,
       JSON.stringify({
@@ -32,9 +30,7 @@ const currenciesApi = async () => {
     );
 
     return responseData;
-  } catch (error) {
-    console.log(error.message);
-  }
+  } catch (error) {}
 };
 
 export default currenciesApi;

@@ -28,7 +28,6 @@ const DashboardPage = () => {
 
   const onClose = () => {
     setTeamModalOpen(!teamModalOpen);
-    console.log('clicking on team modal');
   };
 
   const themeToggler = () => {

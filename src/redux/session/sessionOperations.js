@@ -86,7 +86,6 @@ export const refreshUser = createAsyncThunk(
       const { data } = await API.getCurrent(credentials);
       return data;
     } catch (error) {
-      console.log(error);
       return thunkAPI.rejectWithValue(error.message);
     }
   }

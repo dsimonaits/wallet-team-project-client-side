@@ -132,7 +132,6 @@ export const deleteTransaction = createAsyncThunk(
         progress: undefined,
         theme: 'light',
       });
-      console.log({ _id }, data);
       return { id: _id, data };
     } catch (error) {
       toast.error('Transaction not removed');
