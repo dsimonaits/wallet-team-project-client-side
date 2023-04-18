@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const TeamButton = styled.button`
   position: fixed;
-  bottom: 20px;
+  bottom: 10px;
   left: 40px;
 
   background-color: transparent;
