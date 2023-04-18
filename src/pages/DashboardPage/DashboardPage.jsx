@@ -16,9 +16,18 @@ import { GlobalStyles } from '../../components/ThemeChanger/GlobalSyle';
 import { lightTheme, darkTheme } from '../../components/ThemeChanger/Theme';
 import MainBackground from '../../components/Background/background';
 import AddBtnFunction from 'components/AddButtonModal/AddButton';
+import DevButton from 'components/DevButton/DevButton';
+import TeamModal from 'components/TeamModal/TeamModal';
 
 const DashboardPage = () => {
   const [theme, setTheme] = useState('light');
+  const [teamModalOpen, setTeamModalOpen] = useState(false);
+
+  const onClose = () => {
+    setTeamModalOpen(!teamModalOpen);
+    console.log('clicking on team modal');
+  };
+
   const themeToggler = () => {
     theme === 'light' ? setTheme('dark') : setTheme('light');
   };
@@ -45,6 +54,8 @@ const DashboardPage = () => {
           </DashBoardContainer>
         </Section>
         <AddBtnFunction />
+        <DevButton onClick={onClose} />
+        {teamModalOpen && <TeamModal onClose={onClose} />}
       </ThemeProvider>
     </>
   );

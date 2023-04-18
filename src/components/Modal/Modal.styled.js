@@ -9,9 +9,16 @@ export const ModalWrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  background: rgba(0, 0, 0, 0.25);
+  background-color: var(--primary-white-color);
   z-index: 1;
+  overflow: auto;
+
+  @media screen and (min-width: 768px) {
+    background: rgba(0, 0, 0, 0.25);
+    overflow: hidden;
+  }
 `;
+
 export const ModalContent = styled.div`
   width: 100vw;
   height: 100vh;
@@ -34,6 +41,13 @@ export const CloseBtnBox = styled.div`
   right: 20px;
   top: 20px;
   display: block;
+
+  transition: box-shadow 250ms ease-in-out, background-color 250ms ease-in-out;
+
+  :hover {
+    /* background-color: #24f0a7; */
+    box-shadow: 0 0 8px #24cca7;
+  }
 `;
 
 export const CloseButton = styled.button`

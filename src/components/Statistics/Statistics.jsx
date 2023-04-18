@@ -1,34 +1,38 @@
 import { ChartJs } from 'components/ChartJS/ChartJS';
-import { useSelector } from 'react-redux';
+import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { SelectLabels } from 'components/SelectLabels/SelectLabels';
-import { selectTransactions } from 'redux/finance/financeSelectors';
+import { selectStatistic } from 'redux/finance/financeSelectors';
+import { getTransactionsStatistics } from 'redux/finance/financeOperations';
+
 import { StatisticsList } from 'components/StatisticsList/StatisticsList';
+import { Text, Wrapper, SubWrapper, Box } from './Statistics.styled';
 
-const Statistics = () => {
-  // const [s, setS] = useState(0);
+export const Statistics = () => {
+  const [select, setSelect] = useState({ month: '4', year: '2023' });
+  const dispatch = useDispatch();
 
-  const transactions = useSelector(selectTransactions);
+  const statistic = useSelector(selectStatistic);
 
-  // useEffect(() => {
-  //   dispatch(fetchTransactions());
-  // }, [dispatch]);
+  useEffect(() => {
+    dispatch(getTransactionsStatistics(select));
+  }, [dispatch, select]);
 
-  // useEffect(() => {
-  //   setS(transactions);
-  // }, [transactions]);
-
-  //   const transactions = useSelector(allTransactions);
+  const handleSelect = data => {
+    setSelect(data);
+  };
 
   return (
-    <>
-      <div style={{ display: 'flex', alignItems: 'center' }}>
-        <ChartJs transactions={transactions} />
-        <div>
-          <SelectLabels />
-          <StatisticsList transactions={transactions} />
-        </div>
-      </div>
-    </>
+    <Wrapper>
+      <Text>Statistics</Text>
+      <SubWrapper>
+        <ChartJs statistic={statistic} />
+        <Box>
+          <SelectLabels handleSelect={handleSelect} />
+          <StatisticsList statistic={statistic} />
+        </Box>
+      </SubWrapper>
+    </Wrapper>
   );
 };
 

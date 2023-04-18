@@ -6,10 +6,6 @@ import { toast } from 'react-toastify';
 //   set(token) {
 //     axios.defaults.headers.common.Authorization = `Bearer ${token}`;
 //   },
-
-//   unset() {
-//     axios.defaults.headers.common.Authorization = ``;
-//   },
 // };
 
 const BASE_URL = 'https://wallet-team-project-hg8k.onrender.com/api';
@@ -20,12 +16,7 @@ export const fetchTransactions = createAsyncThunk(
     try {
       const {
         data: { ResponseBody },
-      } = await axios(`${BASE_URL}/transaction/getAll`, {
-        // headers: {
-        //   Authorization:
-        //     'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDM1YjRhOTI2YjJlOTllYTY5Y2E5N2YiLCJpYXQiOjE2ODE0MTE4MjUsImV4cCI6MTY4MjAxNjYyNX0.m-RceESTfxin6DVqUcDnClQ4IQKfKUjb9hpz_-mPfs0',
-        // },
-      });
+      } = await axios(`${BASE_URL}/transaction/getAll`);
 
       return ResponseBody.data;
     } catch (error) {
@@ -130,7 +121,7 @@ export const deleteTransaction = createAsyncThunk(
           _id: _id,
         },
       });
-      // console.log(data);
+
       toast.success('Transaction successfully removed', {
         position: 'top-right',
         autoClose: 3000,
@@ -142,11 +133,27 @@ export const deleteTransaction = createAsyncThunk(
         theme: 'light',
       });
       console.log({ _id }, data);
-      return _id;
+      return { id: _id, data };
     } catch (error) {
       toast.error('Transaction not removed');
 
       return rejectWithValue(error);
+    }
+  }
+);
+
+export const getTransactionsStatistics = createAsyncThunk(
+  'finance/getTransactionsStatistics',
+  async (body, { rejectWithValue }) => {
+    try {
+      const { data } = await axios.post(
+        `${BASE_URL}/transaction/statistic`,
+        body
+      );
+
+      return data;
+    } catch (error) {
+      return rejectWithValue(error.message);
     }
   }
 );

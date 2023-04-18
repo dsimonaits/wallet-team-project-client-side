@@ -4,11 +4,25 @@ import {
   addTransaction,
   deleteTransaction,
   updateTransaction,
+  getTransactionsStatistics,
   loadMoreTransactions,
 } from './financeOperations';
 
+// const initialState = {
+//   items: [],
+//   statistic: {
+//     result: [],
+//     transaction: [],
+//   },
+//   loadMoreTransactions,
+// } from './financeOperations';
+
 const initialState = {
   transactions: [],
+  statistic: {
+    result: [],
+    transaction: [],
+  },
   isLoading: false,
   currentPage: 1,
   error: null,
@@ -39,8 +53,11 @@ const financeSLice = createSlice({
       })
       .addCase(deleteTransaction.fulfilled, (state, { payload }) => {
         state.transactions = state.transactions.filter(
-          transaction => transaction._id !== payload
+          transaction => transaction._id !== payload.id
         );
+      })
+      .addCase(getTransactionsStatistics.fulfilled, (state, { payload }) => {
+        state.statistic = payload;
       })
       .addMatcher(
         isAnyOf(
@@ -48,7 +65,8 @@ const financeSLice = createSlice({
           loadMoreTransactions.pending,
           deleteTransaction.pending,
           addTransaction.pending,
-          updateTransaction.pending
+          updateTransaction.pending,
+          getTransactionsStatistics.pending
         ),
         state => {
           state.isLoading = true;
@@ -59,7 +77,8 @@ const financeSLice = createSlice({
           fetchTransactions.fulfilled,
           deleteTransaction.fulfilled,
           addTransaction.fulfilled,
-          updateTransaction.fulfilled
+          updateTransaction.fulfilled,
+          getTransactionsStatistics.fulfilled
         ),
         state => {
           state.isLoading = false;
@@ -72,7 +91,8 @@ const financeSLice = createSlice({
           loadMoreTransactions.pending,
           deleteTransaction.rejected,
           addTransaction.rejected,
-          updateTransaction.rejected
+          updateTransaction.rejected,
+          getTransactionsStatistics.rejected
         ),
         (state, { payload }) => {
           state.isLoading = false;

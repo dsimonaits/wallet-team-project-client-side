@@ -7,9 +7,8 @@ import { useMediaQuery } from '@mui/material';
 import {
   selectIsLoggedIn,
   selectIsRefreshing,
+  selectToken,
 } from '../redux/session/sessionSelectors';
-import { selectIsLoading } from '../redux/global/globalSelectors';
-import { modalsIsOpen } from '../redux/global/globalSelectors';
 import { refreshUser } from '../redux/session/sessionOperations';
 import { fetchTransactions } from '../redux/finance/financeOperations';
 import { PublicRoute } from './PublicRoute';
@@ -18,7 +17,9 @@ import Spinner from './Spinner/Spinner';
 
 const LoginPage = lazy(() => import('../pages/auth/LoginPage'));
 const RegistrationPage = lazy(() => import('../pages/auth/RegistrationPage'));
-const DashboardPage = lazy(() => import('pages/DashboardPage/DashboardPage'));
+const DashboardPage = lazy(() =>
+  import('../pages/DashboardPage/DashboardPage')
+);
 const Table = lazy(() => import('./Table/Table'));
 const Statistics = lazy(() => import('./Statistics/Statistics'));
 const Currency = lazy(() => import('./Currency/Currency'));
@@ -30,14 +31,13 @@ export const App = () => {
   const dispatch = useDispatch();
   const userLoggedIn = useSelector(selectIsLoggedIn);
   const refreshing = useSelector(selectIsRefreshing);
-  const isModalIsOpen = useSelector(modalsIsOpen);
-  const isGLobalLoading = useSelector(selectIsLoading);
+  const token = useSelector(selectToken);
 
   const navigate = useNavigate();
 
   useEffect(() => {
-    dispatch(refreshUser());
-  }, [dispatch]);
+    if (token && !userLoggedIn) dispatch(refreshUser());
+  }, [dispatch, token, userLoggedIn]);
 
   useEffect(() => {
     if (userLoggedIn && !refreshing) {
@@ -54,29 +54,13 @@ export const App = () => {
     }
   }, [isMobile, navigate, location.pathname]);
 
-  useEffect(() => {
-    if (!isGLobalLoading && userLoggedIn && !refreshing) {
-      const section = document.getElementById('blur');
-      switch (isModalIsOpen) {
-        case true:
-          section.classList.add('blur');
-          break;
-        case false:
-          section.classList.contains('blur') &&
-            section.classList.remove('blur');
-          break;
-        default:
-          break;
-      }
-    }
-  });
-
   return (
     <>
       <Suspense fallback={<Spinner />}>
         {!refreshing && (
           <Routes>
             <Route
+              exact
               path="/login"
               element={
                 <PublicRoute restricted redirectTo="/home">
@@ -85,6 +69,7 @@ export const App = () => {
               }
             />
             <Route
+              exact
               path="/register"
               element={
                 <PublicRoute restricted redirectTo="/home">
@@ -100,16 +85,6 @@ export const App = () => {
                 </PrivateRoute>
               }
             >
-              {isMobile && (
-                <Route
-                  path="currency"
-                  element={
-                    <PrivateRoute redirectTo="/login">
-                      <Currency />
-                    </PrivateRoute>
-                  }
-                />
-              )}
               <Route
                 path="home"
                 element={
@@ -126,6 +101,16 @@ export const App = () => {
                   </PrivateRoute>
                 }
               />
+              {isMobile && (
+                <Route
+                  path="currency"
+                  element={
+                    <PrivateRoute redirectTo="/login">
+                      <Currency />
+                    </PrivateRoute>
+                  }
+                />
+              )}
             </Route>
             <Route
               path="*"
