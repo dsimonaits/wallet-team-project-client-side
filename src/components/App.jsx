@@ -36,7 +36,7 @@ export const App = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (token) dispatch(refreshUser());
+    if (token && !userLoggedIn) dispatch(refreshUser());
   }, [dispatch, token]);
 
   useEffect(() => {
