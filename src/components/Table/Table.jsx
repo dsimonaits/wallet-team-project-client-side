@@ -83,6 +83,7 @@ const Table = () => {
   const handleEdit = transactionId => {
     const transaction = transactions.find(({ _id }) => _id === transactionId);
     setTransactionUpdate(transaction);
+    toggleModal();
   };
 
   // Load moer transactions///////////////
@@ -125,6 +126,16 @@ const Table = () => {
   if (isMobile) {
     return (
       <MobileCardWrapper>
+        {isEditModalIsOpen && (
+          <Modal onClose={toggleModal}>
+            {/* {transactionUpdate && transactionUpdate._id === row._id && ( */}
+            <UpdateForm
+              transactionUpdate={transactionUpdate}
+              toggleModal={toggleModal}
+            />
+            {/* )} */}
+          </Modal>
+        )}
         <ToastContainer />
         {transactions.map(row => (
           <TransactionList key={row._id}>
@@ -191,10 +202,10 @@ const Table = () => {
   return (
     <Wrapper>
       {isEditModalIsOpen && (
-        <Modal>
+        <Modal onClose={toggleModal}>
           {/* {transactionUpdate && transactionUpdate._id === row._id && ( */}
           <UpdateForm
-            // contactUpdate={transactionUpdate}
+            transactionUpdate={transactionUpdate}
             toggleModal={toggleModal}
           />
           {/* )} */}
@@ -255,7 +266,10 @@ const Table = () => {
                     .replace(',', '.')}
                 </TableSum>
                 <TableBtn>
-                  <EditBtn onClick={toggleModal}>
+                  <EditBtn
+                    // onClick={toggleModal}
+                    onClick={() => handleEdit(row._id)}
+                  >
                     <IconBtn src={icon} alt="edit" />
                   </EditBtn>
                   <DeleteBtn

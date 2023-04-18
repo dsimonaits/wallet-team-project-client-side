@@ -8,13 +8,11 @@ export const Form = styled.form`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-
-  // background-color: antiquewhite;
 `;
 export const LabelTitle = styled.label`
   font-size: 24px;
   font-weight: 400;
-  margin: 20px 20px 42px 20px;
+  margin: 20px 20px 40px 20px;
   color: rgba(0, 0, 0, 1);
 `;
 export const ModalContainer = styled.div`
@@ -29,22 +27,19 @@ export const ModalContainer = styled.div`
 export const Expense = styled.p`
   font-size: 16px;
   font-weight: 700;
-  margin-right: 20px;
-  margin-left: 20px;
+  margin: 0 11px;
+
   color: ${props => props.theme.expense};
-  /* color:${props =>
-    props.type === 'false' ? '#E0E0E0' : 'rgba(255, 255, 255, 1)'}  */
 `;
 export const Income = styled.p`
   font-size: 16px;
   font-weight: 700;
-  margin-right: 20px;
-  margin-left: 20px;
+  margin: 0 11px;
   color: ${props => props.theme.income};
 `;
 
 export const NumberInput = styled.input`
-  min-width: 270px;
+  width: 181px;
   border: transparent;
   border-bottom: 1px solid #e0e0e0;
   color: rgba(0, 0, 0, 1);
@@ -54,32 +49,37 @@ export const NumberInput = styled.input`
     border-color:transparent} */
 `;
 export const Select = styled.select`
-  min-width: 270px;
+  width: 394px;
   border: transparent;
   border-bottom: 1px solid #e0e0e0;
   color: rgba(0, 0, 0, 1);
   font-size: 18px;
   outline: none;
+  margin-bottom: 40px;
 `;
-export const MenuInputs = styled.ul`
-  list-style: none;
-  padding-left: 0px;
+export const MenuInputs = styled.div`
+  display: flex;
+  align-items: center;
 `;
-export const ItemInput = styled.li`
+export const ItemInput = styled.div`
   margin-bottom: 40px;
   padding: 0 20px;
 `;
 export const Textarea = styled.textarea`
-  min-width: 270px;
+  width: 394px;
   border: transparent;
   border-bottom: 1px solid #e0e0e0;
   color: rgba(0, 0, 0, 1);
   font-size: 18px;
   outline: none;
+  resize: none;
+  height: 30px;
 `;
 export const ToggleContainer = styled.div`
   display: flex;
-  margin-bottom: 42px;
+  justify-content: center;
+  margin-bottom: 40px;
+  width: 100%;
 `;
 // export const AddBtn = styled.button`
 //   width: 44px;
@@ -114,38 +114,57 @@ export const MenuBtn = styled.ul`
 `;
 export const ExitButton = styled.button`
   width: 300px;
-  height: 50px;
-  padding: 13px;
-  font-size: 18px;
-  line-height: 27px;
+  padding-top: 13px;
+  padding-left: 61px;
+  padding-bottom: 13px;
+  padding-right: 55px;
+  margin-top: 20px;
+
+  background-color: var(--primary-white-color);
+  cursor: pointer;
+  border: 1px solid var(--ascent-text-color);
+  border-radius: 20px;
+
   text-align: center;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: #4a56e2;
-
-  background-color: #ffffff;
-  border: 1px solid #4a56e2;
-  border-radius: 20px;
   font-size: 18px;
-  margin-bottom: 20px;
+  line-height: 1.5;
+  color: var(--ascent-text-color);
+
+  transition: var(--transition);
+  &:hover,
+  &:focus {
+    box-shadow: -4px 4px 6px 0 rgba(255, 255, 255, 0.5),
+      -4px 4px 6px 0 rgba(116, 125, 139, 0.5),
+      inset -4px -4px 6px 0 rgba(255, 255, 255, 0.5),
+      inset -4px -4px 6px 0 rgba(0, 0, 0, 0.4);
+  }
 `;
 
 export const AddButton = styled.button`
   width: 300px;
-  height: 50px;
-  padding: 13px;
-  font-size: 18px;
-  line-height: 27px;
+  padding: 13px 100px;
+  background-color: var(--greenblue);
+  cursor: pointer;
+  border: none;
+  border-radius: 20px;
+
   text-align: center;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: #ffff;
-
-  background-color: #24cca7;
-  border: 1px solid #4a56e2;
-  border-radius: 20px;
   font-size: 18px;
-  margin-bottom: 20px;
+  line-height: 1.5;
+  color: var(--primary-white-color);
+
+  transition: var(--transition);
+  &:hover,
+  &:focus {
+    box-shadow: -4px 4px 6px 0 rgba(255, 255, 255, 0.5),
+      -4px 4px 6px 0 rgba(116, 125, 139, 0.5),
+      inset -4px -4px 6px 0 rgba(255, 255, 255, 0.5),
+      inset -4px -4px 6px 0 rgba(0, 0, 0, 0.4);
+  }
 `;
 
 export const ButtonItem = styled.li`
@@ -153,11 +172,14 @@ export const ButtonItem = styled.li`
 `;
 /* gvhjbkkkkkkkkkkkkkkkkkkkkk */
 
-export const Label = styled.label`
-  position: relative;
-  display: inline-block;
-  width: 80px;
+export const LabelEdit = styled.label`
+  /* position: relative; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 300px;
   height: 40px;
+  /* display: inline-block; */
   /* border-radius:40%; */
   /* background-color: green; */
 `;
@@ -165,6 +187,7 @@ export const Label = styled.label`
 //   width: 20px;
 //   height: 20px;
 // `;
+
 export const Slider = styled.span`
   position: absolute;
   cursor: pointer;
@@ -211,4 +234,6 @@ export const Checkbox = styled.input`
     }
   }
 `;
-export const Span = styled.span``;
+export const SpanSlash = styled.span`
+  color: #e0e0e0;
+`;
