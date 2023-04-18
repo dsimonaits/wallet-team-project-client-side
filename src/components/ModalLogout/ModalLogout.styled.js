@@ -4,7 +4,8 @@ export const ModalContainer = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
-  text-align: center;
+  justify-content: center;
+  align-items: center;
   padding-top: 40px;
 `;
 
@@ -21,6 +22,7 @@ export const Text = styled.p`
   font-weight: 400;
   font-size: 30px;
   line-height: 45px;
+  margin-bottom: 20px;
 `;
 
 export const ExitButton = styled.button`
@@ -36,6 +38,8 @@ export const ExitButton = styled.button`
   border-radius: 20px;
   margin-bottom: 20px;
   cursor: pointer;
+  width: 300px;
+  height: 50px; 
 
   transition: var(--transition);
    &:hover, 
@@ -59,6 +63,8 @@ export const CancelButton = styled.button`
   background-color: var(--greenblue);
   border-radius: 20px;
   cursor: pointer;
+  width: 300px;
+  height: 50px;
 
   transition: var(--transition);
    &:hover, 

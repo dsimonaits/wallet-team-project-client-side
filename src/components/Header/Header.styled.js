@@ -4,17 +4,15 @@ export const HeaderContainer = styled.header`
   width: 100%;
   height: 60px;
   background-color: var(--primary-white-color);
-  padding: 0 20px;
-  /* margin: 0 auto; */
+  padding: 15px 20px;
 
   @media screen and (min-width: 768px) {
     height: 80px;
-    padding: 0 32px;
+    padding: 20px 32px;
   }
 
   @media screen and (min-width: 1280px) {
-    /* width: 1280px; */
-    padding: 0 16px;
+    padding: 20px 16px;
   }
 `;
 
@@ -24,13 +22,12 @@ export const MainContainer = styled.div`
 `;
 
 export const LogoContainer = styled.div`
-  margin-top: 20px;
+
 `;
 
 export const AuthContainer = styled.div`
   display: flex;
-  padding-top: 5px;
-  align-items: end;
+  align-items: center;
 `;
 
 export const Name = styled.p`
@@ -68,7 +65,6 @@ export const Button = styled.button`
 export const LineSvg = styled.svg`
   width: 2px;
   height: 30px;
-  margin-top: 16px;
   margin-right: 12px;
 `;
 
