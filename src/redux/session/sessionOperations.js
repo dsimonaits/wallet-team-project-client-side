@@ -52,9 +52,9 @@ export const logIn = createAsyncThunk(
  */
 export const logOut = createAsyncThunk(
   'session/logOut',
-  async (_, thunkAPI) => {
+  async (credentials, thunkAPI) => {
     try {
-      await API.logout;
+      await API.logout(credentials);
       // After a successful logout, remove the token from the HTTP header
       token.unset();
     } catch (error) {
@@ -70,7 +70,7 @@ export const logOut = createAsyncThunk(
  */
 export const refreshUser = createAsyncThunk(
   'session/refreshUser',
-  async (_, thunkAPI) => {
+  async (credentials, thunkAPI) => {
     // Reading the token from the state via getState()
     const state = thunkAPI.getState();
     const persistedToken = state.session.token;
@@ -83,10 +83,9 @@ export const refreshUser = createAsyncThunk(
     try {
       // If there is a token, add it to the HTTP header and perform the request
       token.set(persistedToken);
-      const { data } = await API.getCurrent();
+      const { data } = await API.getCurrent(credentials);
       return data;
     } catch (error) {
-      console.log(error);
       return thunkAPI.rejectWithValue(error.message);
     }
   }

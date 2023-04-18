@@ -19,7 +19,6 @@ const Currency = () => {
         setCurrencyCourse(currencies.data);
         return;
       } catch (error) {
-        console.log(error.message);
       } finally {
       }
     };

@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useLocation } from 'react-router-dom';
 import '@fontsource/public-sans';
 import MainTab from 'components/MainTab/MainTab';
 import HomeTab from 'components/HomeTab/HomeTab';
@@ -23,9 +24,10 @@ const DashboardPage = () => {
   const [theme, setTheme] = useState('light');
   const [teamModalOpen, setTeamModalOpen] = useState(false);
 
+  const location = useLocation();
+
   const onClose = () => {
     setTeamModalOpen(!teamModalOpen);
-    console.log('clicking on team modal');
   };
 
   const themeToggler = () => {
@@ -53,7 +55,8 @@ const DashboardPage = () => {
             </HomeTab>
           </DashBoardContainer>
         </Section>
-        <AddBtnFunction />
+        {location.pathname !== '/diagram' && <AddBtnFunction />}
+
         <DevButton onClick={onClose} />
         {teamModalOpen && <TeamModal onClose={onClose} />}
       </ThemeProvider>

@@ -16,20 +16,16 @@ const GlobalStoreTest = () => {
   const dispatch = useDispatch();
   const handelLoading = () => dispatch(toggleIsLoading());
   const isLoading = useSelector(selectIsLoading);
-  console.log(isLoading);
 
   const handelModalAddTransaction = () => dispatch(toggleModalAddTransaction());
   const ModalAddTransaction = useSelector(selectIsModalAddTransactionOpen);
-  console.log(isLoading);
 
   const handelModalEditTransaction = () =>
     dispatch(toggleModalEditTransaction());
   const ModalEditTransaction = useSelector(selectIsModalEditTransactionOpen);
-  console.log(isLoading);
 
   const handelModalLogout = () => dispatch(toggleModalLogout());
   const ModalLogout = useSelector(selectIsModalLogoutOpen);
-  console.log(isLoading);
 
   return (
     <>
