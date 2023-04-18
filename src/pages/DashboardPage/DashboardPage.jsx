@@ -25,7 +25,6 @@ const DashboardPage = () => {
   const [teamModalOpen, setTeamModalOpen] = useState(false);
 
   const location = useLocation();
-  console.log(location.pathname);
 
   const onClose = () => {
     setTeamModalOpen(!teamModalOpen);
