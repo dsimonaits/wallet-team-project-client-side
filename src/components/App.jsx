@@ -37,7 +37,7 @@ export const App = () => {
 
   useEffect(() => {
     if (token && !userLoggedIn) dispatch(refreshUser());
-  }, [dispatch, token]);
+  }, [dispatch, token, userLoggedIn]);
 
   useEffect(() => {
     if (userLoggedIn && !refreshing) {
