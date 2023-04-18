@@ -6,16 +6,20 @@ ChartJS.register(ArcElement, Tooltip, Legend, Title);
 
 export const ChartJs = ({ statistic }) => {
   const arrayTotalSum = statistic.result.map(({ totalSum }) => totalSum);
+
   const category = statistic.result.map(({ category }) => category);
   const expenses = statistic.transaction.filter(({ type }) => type === false);
-  const sum = new Intl.NumberFormat('ru-RU').format(expenses[0]?.sum);
+
+  const sum = new Intl.NumberFormat('ru-RU').format(
+    expenses[0] ? expenses[0]?.sum : 0
+  );
 
   const data = {
     labels: [],
     datasets: [
       {
         label: category,
-        data: arrayTotalSum,
+        data: arrayTotalSum.length === 0 ? [1] : arrayTotalSum,
 
         backgroundColor: [
           '#FED057',
