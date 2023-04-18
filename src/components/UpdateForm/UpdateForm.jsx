@@ -1,6 +1,7 @@
 import * as React from 'react';
 // import { AddBtn } from './AddButton.styled';
 import Datetime from 'react-datetime';
+
 import 'react-datetime/css/react-datetime.css';
 
 import { ThemeProvider } from 'styled-components';
@@ -107,6 +108,18 @@ const UpdateForm = ({ toggleModal, transactionUpdate }) => {
     //  income: "#24CCA7", /*'Tealish'Matching Pantone */
     expense: '#FF6596',
   };
+
+  // DATE formatter //////////////////////////////////////////
+  function formatDate(dateString) {
+    const date = new Date(dateString);
+    const day = date.getDate();
+    const month = date.getMonth() + 1;
+    const year = date.getFullYear();
+    return `${day < 10 ? '0' : ''}${day}.${
+      month < 10 ? '0' : ''
+    }${month}.${year}`;
+  }
+
   return (
     <>
       <ThemeProvider theme={isThemeExpense ? themeExp : themeInc}>
@@ -160,9 +173,9 @@ const UpdateForm = ({ toggleModal, transactionUpdate }) => {
                 size="small"
                 id="filled-number"
                 type="number"
-                placeholder={transactionUpdate.sum}
+                placeholder="0.00"
                 name="sum"
-                value={sum}
+                value={transactionUpdate.sum}
                 onChange={handleCashChange}
               />
             </ItemInput>
@@ -173,7 +186,7 @@ const UpdateForm = ({ toggleModal, transactionUpdate }) => {
                 placeholder={transactionUpdate.date}
                 // firstDate={startDate(2023)}
                 // lastDate={startDate(2025)}
-                value={startDate}
+                value={formatDate(transactionUpdate.date)}
                 // input={true}//Показывать ли поле ввода для редактирования даты вручную.
                 // initialValue={startDate} Представляет выбранную дату для компонента, чтобы использовать его в качестве неуправляемого компонента. Это свойство анализируется Moment.js, поэтому можно использовать строку даты или объект момента. Если вам нужно программно установить выбранную дату после инициализации средства выбора, используйте вместо этого свойство value.
                 // onChange={e => setStartDate(e.target.value)}
@@ -203,11 +216,11 @@ const UpdateForm = ({ toggleModal, transactionUpdate }) => {
           </MenuInputs>
           <ItemInput>
             <Textarea
-              value={comment}
+              value={transactionUpdate.comment}
               onChange={handelChangeTextarea}
               name="comment"
               rows="3"
-              placeholder={transactionUpdate.comment}
+              placeholder="Comment"
             />
           </ItemInput>
 
