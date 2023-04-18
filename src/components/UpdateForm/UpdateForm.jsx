@@ -123,17 +123,8 @@ const UpdateForm = ({ toggleModal, transactionUpdate }) => {
   return (
     <>
       <ThemeProvider theme={isThemeExpense ? themeExp : themeInc}>
-        {/* <Modal
-          onClose={toggleModal}
-          style={{
-            width: '320px',
-            height: '600px',
-          }}
-          // value={date}
-        > */}
         <Form onSubmit={handelSubmit}>
           <LabelTitle htmlFor="">Edit transaction</LabelTitle>
-          {/* <Switch toggleTheme={toggleTheme} /> */}
           <ToggleContainer>
             <LabelEdit>
               <Income>Income</Income>
@@ -143,7 +134,6 @@ const UpdateForm = ({ toggleModal, transactionUpdate }) => {
                 name="onSwitch"
                 value={onSwitch}
                 type="checkbox"
-                // onSwitch={onSwitch}
                 onClick={handleChangeSwitch}
               />
             </LabelEdit>
@@ -181,15 +171,9 @@ const UpdateForm = ({ toggleModal, transactionUpdate }) => {
             </ItemInput>
             <ItemInput>
               <Datetime
-                // updateOnView={true}
                 timeFormat={false}
                 placeholder={transactionUpdate.date}
-                // firstDate={startDate(2023)}
-                // lastDate={startDate(2025)}
                 value={formatDate(transactionUpdate.date)}
-                // input={true}//Показывать ли поле ввода для редактирования даты вручную.
-                // initialValue={startDate} Представляет выбранную дату для компонента, чтобы использовать его в качестве неуправляемого компонента. Это свойство анализируется Moment.js, поэтому можно использовать строку даты или объект момента. Если вам нужно программно установить выбранную дату после инициализации средства выбора, используйте вместо этого свойство value.
-                // onChange={e => setStartDate(e.target.value)}
                 inputProps={{
                   style: {
                     height: 'auto',
@@ -201,9 +185,6 @@ const UpdateForm = ({ toggleModal, transactionUpdate }) => {
                   },
                 }}
                 dateFormat="yyyy-MM-DD"
-                // isValidDate={(current) => {
-                //  current.isBefore(Datetime.moment().add(1, 'day'))
-                // }},
                 isValidDate={current => {
                   const today = new Date();
                   const oneDay = 24 * 60 * 60 * 1000; // number of milliseconds in one day
@@ -235,7 +216,6 @@ const UpdateForm = ({ toggleModal, transactionUpdate }) => {
             </ButtonItem>
           </MenuBtn>
         </Form>
-        {/* </Modal> */}
       </ThemeProvider>
     </>
   );
