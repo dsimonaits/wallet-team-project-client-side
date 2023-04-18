@@ -28,7 +28,10 @@ export const SelectLabels = ({ handleSelect }) => {
         break;
     }
 
-    handleSelect({ year, month });
+    handleSelect({
+      year: name === 'year' ? value : year,
+      month: name === 'month' ? value : month,
+    });
   };
 
   return (
