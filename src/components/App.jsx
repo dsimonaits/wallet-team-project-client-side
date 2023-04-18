@@ -56,7 +56,11 @@ export const App = () => {
 
   useEffect(() => {
     if (!isGLobalLoading && userLoggedIn && !refreshing) {
-      const section = document.getElementById('blur');
+      let section;
+      window.addEventListener('load', event => {
+        section = document.getElementById('blur');
+      });
+
       switch (isModalIsOpen) {
         case true:
           section.classList.add('blur');

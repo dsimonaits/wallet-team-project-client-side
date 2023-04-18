@@ -146,22 +146,27 @@ const AddBtnFunction = ({ categories }) => {
                 </Label>
                 <Expense>Expense</Expense>
               </ToggleContainer>
-              <div>
-                <Select
-                  value={category}
-                  category={category}
-                  onChange={e => setCategory(e.target.value)}
-                >
-                  <option value="Main expenses">Main expenses</option>
-                  <option value="Car">Car</option>
-                  <option value="Self care">Self care</option>
-                  <option value="Child care">Child care</option>
-                  <option value="Household products">Household products</option>
-                  <option value="Education">Education</option>
-                  <option value="Leisure">Leisure</option>
-                  <option value="Other">Other expenses</option>
-                </Select>
-              </div>
+              {!onSwitch && (
+                <div>
+                  <Select
+                    value={category}
+                    category={category}
+                    onChange={e => setCategory(e.target.value)}
+                  >
+                    <option value="Main expenses">Main expenses</option>
+                    <option value="Car">Car</option>
+                    <option value="Self care">Self care</option>
+                    <option value="Child care">Child care</option>
+                    <option value="Household products">
+                      Household products
+                    </option>
+                    <option value="Education">Education</option>
+                    <option value="Leisure">Leisure</option>
+                    <option value="Other">Other expenses</option>
+                  </Select>
+                </div>
+              )}
+
               <MenuInputs>
                 {/* <DivNumberCalend> */}
                 <ItemInput>
