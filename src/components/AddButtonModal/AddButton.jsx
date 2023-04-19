@@ -46,7 +46,7 @@ import { addTransaction } from '../../redux/finance/financeOperations';
 // import RemoveIcon from '@mui/icons-material/Remove';
 
 const AddBtnFunction = ({ categories }) => {
-  const [startDate, setStartDate] = useState([new Date()]);
+  const [startDate, setStartDate] = useState(new Date());
   const [sum, setSum] = useState('');
   const [category, setCategory] = useState('');
   const [comment, setComment] = useState('');
