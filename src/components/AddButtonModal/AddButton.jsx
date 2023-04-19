@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { ToastContainer, toast } from 'react-toastify';
-import * as yup from 'yup';
+
 import 'react-datetime/css/react-datetime.css';
 import { ThemeProvider } from 'styled-components';
-// import { ThemeContext } from 'styled-components'
+
 import DateRangeIcon from '@mui/icons-material/DateRange';
 import {
   AddBtn,
@@ -19,7 +19,7 @@ import {
   ExitButton,
   AddButton,
   ButtonItem,
-  Select,
+  // Select,
   Slider,
   Checkbox,
   MenuBtn,
@@ -27,13 +27,12 @@ import {
   StyledDatetime,
   MenuCalendarNumber,
   ItemCalendarNumber,
-  // Dateicon,
   DivRelative,
   Option,
-  // CalendarIcon
+
 } from './AddButton.styled';
 
-// import { Formik } from 'formik';
+
 import sprite from '../../images/sprite.svg';
 import Modal from '../Modal/Modal';
 import { useState } from 'react';
@@ -42,8 +41,10 @@ import { Label } from 'components/Switch/switch.styled';
 import { toggleModalAddTransaction } from '../../redux/global/globalSlice';
 import { selectIsModalAddTransactionOpen } from '../../redux/global/globalSelectors';
 import { addTransaction } from '../../redux/finance/financeOperations';
-// import AddIcon from '@mui/icons-material/Add';
-// import RemoveIcon from '@mui/icons-material/Remove';
+import Select from 'react-select'
+// import makeAnimated from 'react-select/animated';
+// import { flavourOptions } from '../data';
+
 
 const AddBtnFunction = ({ categories }) => {
   const [startDate, setStartDate] = useState([new Date()]);
@@ -56,6 +57,43 @@ const AddBtnFunction = ({ categories }) => {
   const dispatch = useDispatch();
   const isAddModalIsOpen = useSelector(selectIsModalAddTransactionOpen);
 
+  const options = [
+  { value: 'Main expenses', label: 'Main expenses' },
+  { value: 'Car', label: 'Car',color:'black' },
+    { value: 'Self care', label: 'Self care'},
+  { value: 'Child care', label: 'Child care' },
+  { value: 'Household products', label: 'Household products' },
+    { value: 'Education', label: 'Education'},
+  { value: 'Leisure', label: 'Leisure' },
+  { value: 'Other', label: 'Other' },
+
+]
+  const colorStyle = {
+    control: (styles) => ({
+      ...styles, backgroundColor: 'rgba(255, 255, 255, 0.7)',color:'#000000', minMidth: '280px', border: 'transparent', outline: 'none',
+      minWidth: '280px', width: '100%', borderBottom: '1px solid #e0e0e0', cursor: 'pointer', marginBottom: '40px', '&:hover': {
+        border: '1px solid #ccc',boxShadow: '0px 6px 15px rgba(0, 0, 0, 0.1)',backdropFilter: 'blur(25px)'
+      },
+      '&:focus': {
+        backgroundColor: 'var(--primary-white-color )',
+        boxShadow: '0px 6px 15px rgba(0, 0, 0, 0.1)',
+      }, '&:hover': {
+        backgroundColor: 'var(--primary-white-color )',
+        boxShadow: '0px 6px 15px rgba(0, 0, 0, 0.1)',
+      }
+    }),
+    option: (styles, state) => ({
+      ...styles,
+      backgroundColor: state.isFocused ? 'rgba(255, 255, 255, 0.7)' : 'rgba(255, 255, 255, 1)',
+      color: state.isFocused ? ' #FF6596;' : '#000000',
+    }),
+  }
+  const handelSelectChang = selectedOption => {
+    console.log('handelSelectChang', selectedOption)
+
+}
+ 
+
   const toggleTheme = () => {
     setTheme(isThemeExpense ? 'greenText' : 'themeExp');
   };
@@ -67,17 +105,6 @@ const AddBtnFunction = ({ categories }) => {
   const handleCashChange = e => setSum(e.target.value);
 
   const handelChangeTextarea = e => setComment(e.target.value);
-
-  const schema = yup.object().shape({
-    comment: yup
-      .string()
-      .min(1, 'must min length 1')
-      .max(12, 'must max length 12'),
-    type: yup.boolean(),
-    sum: yup.number().required('sum is a required field'),
-    category: yup.string().required('category is required'),
-    date: yup.date().required(),
-  });
 
   const handelSubmit = async e => {
     e.preventDefault();
@@ -165,21 +192,9 @@ const AddBtnFunction = ({ categories }) => {
               height: '600px',
             }}
           >
-            {/* <Formik
-       initialValues={{
-        sum: '',
-       date: '', 
-       }}
-       validationSchema={schema}
-       onSubmit={values => {
-         // same shape as initial values
-         console.log(values);
-       }}
-     >
-       */}
+    
             <FormStyle
-              validationSchema={schema}
-              /*validationSchema={schema}*/ onSubmit={handelSubmit}
+              onSubmit={handelSubmit}
             >
               <LabelTitle htmlFor="">Add transaction</LabelTitle>
               {/* <Switch toggleTheme={toggleTheme} /> */}
@@ -190,7 +205,7 @@ const AddBtnFunction = ({ categories }) => {
                     name="onSwitch"
                     value={onSwitch}
                     type="checkbox"
-                    // onSwitch={onSwitch}
+                    
                     onClick={handleChangeSwitch}
                   />
                   <Slider></Slider>
@@ -198,13 +213,15 @@ const AddBtnFunction = ({ categories }) => {
                 <Expense>Expense</Expense>
               </ToggleContainer>
               {!onSwitch && (
-                <div>
-                  <Select
+                <Select  placeholder='Select a category' /*value={category}*/ onChange={handelSelectChang} /*onChange={e => setCategory(e.target.value)}*/ options={options} styles={colorStyle}/>
+   )}
+                 {/* <div> */}
+                  {/* <Select
                     value={category}
                     category={category}
                     onChange={e => setCategory(e.target.value)}
-                  >
-                    <Option value="Main expenses">Main expenses</Option>
+                  > */}
+                    {/* <Option value="Main expenses">Main expenses</Option>
                     <Option value="Car">Car</Option>
                     <option value="Self care">Self care</option>
                     <option value="Child care">Child care</option>
@@ -213,10 +230,10 @@ const AddBtnFunction = ({ categories }) => {
                     </option>
                     <option value="Education">Education</option>
                     <option value="Leisure">Leisure</option>
-                    <option value="Other">Other expenses</option>
-                  </Select>
-                </div>
-              )}
+                    <option value="Other">Other expenses</option> */}
+                  {/* </Select> */}
+                {/* // </div>
+              // )} */}
 
               <MenuInputs>
                 <ItemInput>
@@ -251,18 +268,10 @@ const AddBtnFunction = ({ categories }) => {
                           }}
                           dateFormat="yyyy-MM-DD"
                           onChange={value => setStartDate(value.toISOString())}
-                          // isValidDate={current => {
-                          //   const today = new Date();
-                          //   const oneDay = 24 * 60 * 60 * 1000; // number of milliseconds in one day
-                          //   const yesterday = new Date(today.getTime() - oneDay);
-                          //   const date = current.isAfter(yesterday);
-                          //   return setStartDate(date);
-                          // }}
+                          
                         />
 
-                        {/* <CalendarIcon width="20" height="18">
-                      <use href={`${sprite}#icon-calendar`} />
-                    </CalendarIcon> */}
+                        
 
                         <DateRangeIcon
                           color="primary"
