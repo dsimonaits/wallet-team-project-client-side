@@ -11,13 +11,13 @@ const PasswordStrengthMeter = ({ password }) => {
       case 0:
         return '#828282';
       case 1:
-        return '#EA1111';
+        return 'var(--greenblue)';
       case 2:
-        return '#FFAD00';
+        return 'var(--greenblue)';
       case 3:
-        return '#9bc158';
+        return 'var(--greenblue)';
       case 4:
-        return '#00b500';
+        return 'var(--greenblue)';
       default:
         return 'none';
     }
@@ -26,12 +26,12 @@ const PasswordStrengthMeter = ({ password }) => {
   const changePasswordColor = () => ({
     width: `${num}%`,
     background: funcProgressColor(),
-    height: '7px'
+    height: '5px'
   })
 
   return (
     <>
-      <div className="progress" style={{ height: '7px' }}>
+      <div className="progress" style={{ height: '5px' }}>
         <div className="progress-bar" style={changePasswordColor()}></div>
       </div>
       </>

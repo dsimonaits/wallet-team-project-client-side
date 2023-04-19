@@ -36,9 +36,9 @@ const RegisterForm = () => {
     password: yup
       .string()
       .min(6, 'must be at least 6 characters')
-      .max(12, 'password length must be less than 12 characters')
+      .max(16, 'password length must be less than 17 characters')
       .matches(
-        /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*])(?!.*\s).{6,12}$/,
+        /^(?=.*\d)(?=.*[a-z])(?=.*[!@#$%^&*])(?!.*\s).{6,16}$/,
         'must contain a letter, a number and a symbol'
       )
       .required(),
