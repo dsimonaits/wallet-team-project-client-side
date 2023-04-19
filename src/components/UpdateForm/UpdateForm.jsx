@@ -2,7 +2,7 @@ import * as React from 'react';
 import 'react-datetime/css/react-datetime.css';
 import DateRangeIcon from '@mui/icons-material/DateRange';
 import { ThemeProvider } from 'styled-components';
-
+import { ToastContainer, toast } from 'react-toastify';
 import {
   Form,
   LabelTitle,
@@ -61,7 +61,12 @@ const UpdateForm = ({ toggleModal, transactionUpdate }) => {
 
   const handelSubmit = e => {
     e.preventDefault();
-
+if (!sum) {
+      return toast.warn('sum is a required field');
+    }
+    if (!startDate) {
+      return toast.warn('date is a required field');
+    }
     switch (onSwitch) {
       case true:
         dispatch(
@@ -213,6 +218,7 @@ const UpdateForm = ({ toggleModal, transactionUpdate }) => {
           <MenuBtn>
             <ButtonItem>
               <AddButton
+                disabled={!sum || !startDate || ''}
                 type="submit"
                 // onClick={toggleModal}
               >
@@ -226,6 +232,7 @@ const UpdateForm = ({ toggleModal, transactionUpdate }) => {
             </ButtonItem>
           </MenuBtn>
         </Form>
+        <ToastContainer />
       </ThemeProvider>
     </>
   );
