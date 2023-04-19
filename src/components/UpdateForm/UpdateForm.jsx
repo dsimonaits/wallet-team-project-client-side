@@ -1,9 +1,9 @@
 import * as React from 'react';
 // import { AddBtn } from './AddButton.styled';
-import Datetime from 'react-datetime';
+// import Datetime from 'react-datetime';
 
 import 'react-datetime/css/react-datetime.css';
-
+import DateRangeIcon from '@mui/icons-material/DateRange';
 import { ThemeProvider } from 'styled-components';
 
 import {
@@ -25,6 +25,8 @@ import {
   Income,
   SpanSlash,
   LabelEdit,
+  StyledDatetime,
+  DivRelative,
 } from './UpdateForm.styled';
 // import { SelectFunk } from './Select';
 
@@ -172,31 +174,42 @@ const UpdateForm = ({ toggleModal, transactionUpdate }) => {
               />
             </ItemInput>
             <ItemInput>
-              <Datetime
-                timeFormat={false}
-                placeholder={transactionUpdate.date}
-                value={formatDate(startDate)}
-                closeOnSelect={true}
-                inputProps={{
-                  style: {
-                    height: 'auto',
-                    width: '181px',
-                    border: 'transparent',
-                    borderBottom: '1px solid #E0E0E0',
-                    color: 'rgba(0, 0, 0, 1) ',
-                    outline: 'none',
-                  },
-                }}
-                dateFormat="yyyy-MM-DD"
-                onChange={value => setStartDate(value.toISOString())}
-                // isValidDate={current => {
-                //   const today = new Date();
-                //   const oneDay = 24 * 60 * 60 * 1000; // number of milliseconds in one day
-                //   const yesterday = new Date(today.getTime() - oneDay);
-                //   const date = current.isAfter(yesterday);
-                //   return setStartDate(date);
-                // }}
-              />
+              <DivRelative>
+                <StyledDatetime
+                  timeFormat={false}
+                  placeholder={transactionUpdate.date}
+                  value={formatDate(startDate)}
+                  closeOnSelect={true}
+                  inputProps={{
+                    style: {
+                      height: 'auto',
+                      width: '181px',
+                      border: 'transparent',
+                      borderBottom: '1px solid #E0E0E0',
+                      color: 'rgba(0, 0, 0, 1) ',
+                      outline: 'none',
+                    },
+                  }}
+                  dateFormat="yyyy-MM-DD"
+                  onChange={value => setStartDate(value.toISOString())}
+                  // isValidDate={current => {
+                  //   const today = new Date();
+                  //   const oneDay = 24 * 60 * 60 * 1000; // number of milliseconds in one day
+                  //   const yesterday = new Date(today.getTime() - oneDay);
+                  //   const date = current.isAfter(yesterday);
+                  //   return setStartDate(date);
+                  // }}
+                />
+                <DateRangeIcon
+                  color="primary"
+                  fontSize="small"
+                  style={{
+                    position: 'absolute',
+                    top: '0px',
+                    right: '0px',
+                  }}
+                />
+              </DivRelative>
             </ItemInput>
           </MenuInputs>
           <ItemInput>
@@ -211,7 +224,10 @@ const UpdateForm = ({ toggleModal, transactionUpdate }) => {
 
           <MenuBtn>
             <ButtonItem>
-              <AddButton type="submit" onClick={toggleModal}>
+              <AddButton
+                type="submit"
+                // onClick={toggleModal}
+              >
                 SAVE
               </AddButton>
             </ButtonItem>

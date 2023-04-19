@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import Datetime from 'react-datetime';
 
 export const Div = styled.div`
   background-color: var(--primary-white-color);
@@ -39,8 +40,30 @@ export const Income = styled.p`
   color: ${props => props.theme.income};
 `;
 
+export const DivRelative = styled.div`
+  position: relative;
+`;
+
+export const StyledDatetime = styled(Datetime)`
+  &:focus {
+    border-bottom: 2px solid var(--greenblue);
+  }
+  @media screen and (max-width: 768px) {
+    input {
+      min-width: 280px;
+      position: relative;
+    }
+  }
+  @media screen and (min-width: 768px) {
+    input {
+      position: relative;
+      width: 181px;
+      text-align: center;
+    }
+  }
+`;
+
 export const NumberInput = styled.input`
-  width: 181px;
   border: transparent;
   border-bottom: 1px solid #e0e0e0;
   color: rgba(0, 0, 0, 1);
@@ -48,19 +71,37 @@ export const NumberInput = styled.input`
   outline: none;
   /* &:focus {
     border-color:transparent} */
+
+  @media screen and (max-width: 768px) {
+    width: 280px;
+  }
+  @media screen and (min-width: 768px) {
+    width: 181px;
+    text-align: center;
+  }
 `;
 export const Select = styled.select`
-  width: 394px;
+  /* width: 394px; */
   border: transparent;
   border-bottom: 1px solid #e0e0e0;
   color: rgba(0, 0, 0, 1);
   font-size: 18px;
   outline: none;
   margin-bottom: 40px;
+
+  @media screen and (max-width: 768px) {
+    width: 280px;
+  }
+  @media screen and (min-width: 768px) {
+    width: 394px;
+  }
 `;
 export const MenuInputs = styled.div`
   display: flex;
   align-items: center;
+  @media screen and (max-width: 768px) {
+    display: block;
+  }
 `;
 export const ItemInput = styled.div`
   margin-bottom: 40px;
@@ -75,6 +116,13 @@ export const Textarea = styled.textarea`
   outline: none;
   resize: none;
   height: 30px;
+
+  @media screen and (max-width: 768px) {
+    width: 280px;
+  }
+  @media screen and (min-width: 768px) {
+    width: 394px;
+  }
 `;
 export const ToggleContainer = styled.div`
   display: flex;
@@ -119,7 +167,6 @@ export const ExitButton = styled.button`
   padding-left: 61px;
   padding-bottom: 13px;
   padding-right: 55px;
-  margin-top: 20px;
   background-color: var(--primary-white-color);
   cursor: pointer;
   border: 1px solid var(--ascent-text-color);
@@ -165,6 +212,7 @@ export const AddButton = styled.button`
 `;
 
 export const ButtonItem = styled.li`
+  height: 50px;
   margin-bottom: 20px;
 `;
 
