@@ -8,6 +8,7 @@ export const Form = styled.form`
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  padding: 30px 0;
 `;
 export const LabelTitle = styled.label`
   font-size: 24px;
@@ -119,19 +120,16 @@ export const ExitButton = styled.button`
   padding-bottom: 13px;
   padding-right: 55px;
   margin-top: 20px;
-
   background-color: var(--primary-white-color);
   cursor: pointer;
   border: 1px solid var(--ascent-text-color);
   border-radius: 20px;
-
   text-align: center;
   letter-spacing: 0.1em;
   text-transform: uppercase;
   font-size: 18px;
   line-height: 1.5;
   color: var(--ascent-text-color);
-
   transition: var(--transition);
   &:hover,
   &:focus {
@@ -149,7 +147,6 @@ export const AddButton = styled.button`
   cursor: pointer;
   border: none;
   border-radius: 20px;
-
   text-align: center;
   letter-spacing: 0.1em;
   text-transform: uppercase;
@@ -170,7 +167,6 @@ export const AddButton = styled.button`
 export const ButtonItem = styled.li`
   margin-bottom: 20px;
 `;
-/* gvhjbkkkkkkkkkkkkkkkkkkkkk */
 
 export const LabelEdit = styled.label`
   /* position: relative; */

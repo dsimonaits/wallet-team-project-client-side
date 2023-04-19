@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { useSelector, useDispatch } from 'react-redux';
 
+// import TransactionMobile from './Transaction/TransactionMobile';
+
 import {
   deleteTransaction,
   // loadMoreTransactions,
@@ -27,6 +29,7 @@ import { selectIsModalEditTransactionOpen } from '../../redux/global/globalSelec
 // STYLE ////////////////////////////////////
 import {
   NoTransaction,
+  SpanNoTranDes,
   SpanNoTran,
   NoTransactionMob,
   Wrapper,
@@ -54,6 +57,7 @@ import {
   EditBtn,
   IconBtn,
   DeleteBtn,
+  GifContainer,
 } from './Table.styled';
 
 // COMPONENT //////////////////////////////////////////////////////
@@ -174,6 +178,7 @@ const Table = () => {
         {transactions.length > 0 ? (
           transactions.map(row => (
             <TransactionList key={row._id}>
+              {/* <TransactionItem row={row} /> */}
               <TransactionItem type={row.type.toString()}>
                 <TitleText>Date:</TitleText> <Text>{formatDate(row.date)}</Text>
               </TransactionItem>
@@ -231,7 +236,7 @@ const Table = () => {
                 >
                   Delete
                   {/* {isLoading ? 'Deleting' : 'Delete'} */}
-                  {/* {isDeleting ? 'Deleting' : 'Delete'} */}
+                  {/*{isDeleting ? 'Deleting' : 'Delete'} */}
                 </DeleteBtn>
                 <EditBtnMobile onClick={() => handleEdit(row._id)}>
                   <IconBtnMobile src={icon} alt="edit" />
@@ -241,9 +246,17 @@ const Table = () => {
             </TransactionList>
           ))
         ) : (
-          <NoTransactionMob>
-            NO TRANSACTIONS <SpanNoTran>(please add transaction)</SpanNoTran>
-          </NoTransactionMob>
+          <>
+            <NoTransactionMob>NO TRANSACTIONS</NoTransactionMob>
+            <SpanNoTran>(please add transaction)</SpanNoTran>
+            <GifContainer>
+              <img
+                width="280px"
+                src="https://i.gifer.com/YmvJ.gif"
+                alt="Animated GIF"
+              />
+            </GifContainer>
+          </>
         )}
       </MobileCardWrapper>
     );
@@ -262,21 +275,21 @@ const Table = () => {
         </Modal>
       )}
       <ToastContainer />
-      <TableWrapper>
-        <Thead>
-          <Tr>
-            <Th>Date</Th>
-            <Th>Type</Th>
-            <LargeTh>Category</LargeTh>
-            <LargeTh>Comment</LargeTh>
-            <ThSum>Sum</ThSum>
-            <Th></Th>
-          </Tr>
-        </Thead>
+      {transactions.length > 0 ? (
+        <TableWrapper>
+          <Thead>
+            <Tr>
+              <Th>Date</Th>
+              <Th>Type</Th>
+              <LargeTh>Category</LargeTh>
+              <LargeTh>Comment</LargeTh>
+              <ThSum>Sum</ThSum>
+              <Th></Th>
+            </Tr>
+          </Thead>
 
-        <TbodyWrapper>
-          {transactions.length > 0 ? (
-            transactions.map(row => (
+          <TbodyWrapper>
+            {transactions.map(row => (
               <TrWrapperTable key={row._id}>
                 <Td>{formatDate(row.date)}</Td>
                 <Td>
@@ -335,12 +348,22 @@ const Table = () => {
                   </DeleteBtn>
                 </TableBtn>
               </TrWrapperTable>
-            ))
-          ) : (
-            <NoTransaction>NO TRANSACTIONS</NoTransaction>
-          )}
-        </TbodyWrapper>
-      </TableWrapper>
+            ))}
+          </TbodyWrapper>
+        </TableWrapper>
+      ) : (
+        <>
+          <NoTransaction>NO TRANSACTIONS</NoTransaction>
+          <SpanNoTranDes>(please add transaction)</SpanNoTranDes>
+          <GifContainer>
+            <img
+              width="300px"
+              src="https://i.gifer.com/YmvJ.gif"
+              alt="Animated GIF"
+            />
+          </GifContainer>
+        </>
+      )}
       {/* {isLoading ? (
         <Text>Loading...</Text>
       ) : (

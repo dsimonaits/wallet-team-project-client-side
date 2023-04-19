@@ -211,7 +211,9 @@ const UpdateForm = ({ toggleModal, transactionUpdate }) => {
 
           <MenuBtn>
             <ButtonItem>
-              <AddButton type="submit">SAVE</AddButton>
+              <AddButton type="submit" onClick={toggleModal}>
+                SAVE
+              </AddButton>
             </ButtonItem>
             <ButtonItem>
               <ExitButton type="button" onClick={toggleModal}>
