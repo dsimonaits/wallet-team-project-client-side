@@ -2,20 +2,11 @@ import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { useSelector, useDispatch } from 'react-redux';
 
-// import TransactionMobile from './Transaction/TransactionMobile';
-
-import {
-  deleteTransaction,
-  // loadMoreTransactions,
-} from '../../redux/finance/financeOperations';
-import {
-  // selectIsLoading,
-  selectTransactions,
-} from '../../redux/finance/financeSelectors';
+import { deleteTransaction } from '../../redux/finance/financeOperations';
+import { selectTransactions } from '../../redux/finance/financeSelectors';
 import EllipsisText from 'react-ellipsis-text';
-// import data from './data.json';
+
 import icon from '../../images/pencil.png';
-// import Modal from 'components/Modal/Modal';
 
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -33,7 +24,6 @@ import {
   SpanNoTran,
   NoTransactionMob,
   Wrapper,
-  // LoadMoreBtn,
   MobileCardWrapper,
   TransactionList,
   TransactionItem,
@@ -66,18 +56,13 @@ const Table = () => {
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 767);
   const [transactionUpdate, setTransactionUpdate] = useState(null);
   const [expandedRows, setExpandedRows] = useState({});
-  // const [currentPage, setCurrentPage] = useState(1);
-  // const [isDeleting, setIsDeleting] = useState(false);
 
   const transactions = useSelector(selectTransactions);
   const isEditModalIsOpen = useSelector(selectIsModalEditTransactionOpen);
-  // const isLoading = useSelector(selectIsLoading);
 
   const dispatch = useDispatch();
 
   useEffect(() => {
-    // dispatch(fetchTransactions());
-
     window.addEventListener('resize', handleResize);
 
     return () => window.removeEventListener('resize', handleResize);
@@ -94,43 +79,7 @@ const Table = () => {
     toggleModal();
   };
 
-  // // const handleDelete = async rowId => {
-  // //   try {
-  // //     setIsDeleting(true);
-  // //     await dispatch(deleteTransaction(rowId));
-  // //   } catch (error) {
-  // //     console.log(error);
-  // //   } finally {
-  // //     setIsDeleting(false);
-  // //   }
-  // // };
-
-  // const handleDelete = () => {
-  //   setIsDeleting(true);
-  // };
-
-  // useEffect(() => {
-  //   const deleteItem = async () => {
-  //     try {
-  //       await dispatch(deleteTransaction(transactions._id));
-  //     } catch (error) {
-  //       console.log(error);
-  //     } finally {
-  //       setIsDeleting(false);
-  //     }
-  //   };
-  //   if (isDeleting) {
-  //     deleteItem();
-  //   }
-  // }, [isDeleting, dispatch, transactions._id]);
-
-  // Load moer transactions///////////////
-  // const handleLoadMore = async () => {
-  //   dispatch(loadMoreTransactions(currentPage + 1));
-  // };
-
   const toggleModal = () => {
-    // setTransactionUpdate(null);
     dispatch(toggleModalEditTransaction());
   };
 
@@ -144,12 +93,6 @@ const Table = () => {
       month < 10 ? '0' : ''
     }${month}.${year}`;
   }
-
-  // SUM formatter /////////////////////////////////
-  // const formatter = new Intl.NumberFormat('en-US', {
-  //   style: 'currency',
-  //   currency: 'USD',
-  // });
 
   // TOGGLE for comment //////////////////////////////////
   function toggleRow(rowId) {
@@ -166,7 +109,6 @@ const Table = () => {
       <MobileCardWrapper>
         {isEditModalIsOpen && (
           <Modal onClose={toggleModal}>
-            {/* {transactionUpdate && transactionUpdate._id === row._id && ( */}
             <UpdateForm
               transactionUpdate={transactionUpdate}
               toggleModal={toggleModal}
@@ -229,11 +171,7 @@ const Table = () => {
                 </TextSum>
               </TransactionItem>
               <TransactionItem type={row.type.toString()}>
-                <DeleteBtn
-                  // onClick={handleDelete(row._id)}
-                  // disabled={isDeleting}
-                  onClick={() => dispatch(deleteTransaction(row._id))}
-                >
+                <DeleteBtn onClick={() => dispatch(deleteTransaction(row._id))}>
                   Delete
                   {/* {isLoading ? 'Deleting' : 'Delete'} */}
                   {/*{isDeleting ? 'Deleting' : 'Delete'} */}
@@ -266,12 +204,10 @@ const Table = () => {
     <Wrapper>
       {isEditModalIsOpen && (
         <Modal onClose={toggleModal}>
-          {/* {transactionUpdate && transactionUpdate._id === row._id && ( */}
           <UpdateForm
             transactionUpdate={transactionUpdate}
             toggleModal={toggleModal}
           />
-          {/* )} */}
         </Modal>
       )}
       <ToastContainer />
@@ -319,7 +255,6 @@ const Table = () => {
                   )}
                 </LargeTd>
                 <TableSum type={row.type.toString()}>
-                  {/* {formatter.format(row.sum)} */}
                   {row.sum
                     .toLocaleString('ru-RU', {
                       minimumIntegerDigits: 1,
@@ -330,17 +265,11 @@ const Table = () => {
                     .replace(',', '.')}
                 </TableSum>
                 <TableBtn>
-                  <EditBtn
-                    // onClick={toggleModal}
-                    onClick={() => handleEdit(row._id)}
-                  >
+                  <EditBtn onClick={() => handleEdit(row._id)}>
                     <IconBtn src={icon} alt="edit" />
                   </EditBtn>
                   <DeleteBtn
                     onClick={() => dispatch(deleteTransaction(row._id))}
-
-                    // onClick={handleDelete(row._id)}
-                    // disabled={isDeleting}
                   >
                     Delete
                     {/* {isLoading ? 'Deleting' : 'Delete'} */}
@@ -364,15 +293,6 @@ const Table = () => {
           </GifContainer>
         </>
       )}
-      {/* {isLoading ? (
-        <Text>Loading...</Text>
-      ) : (
-        transactions.length > 5 && (
-          <LoadMoreBtn onClick={handleLoadMore}>
-            Load more transactions...
-          </LoadMoreBtn>
-        )
-      )} */}
     </Wrapper>
   );
 };

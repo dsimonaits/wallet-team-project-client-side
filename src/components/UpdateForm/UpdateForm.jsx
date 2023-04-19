@@ -32,6 +32,7 @@ import {
 } from 'react-redux';
 
 import { updateTransaction } from '../../redux/finance/financeOperations';
+// import Switch from './Switch';
 
 const UpdateForm = ({ toggleModal, transactionUpdate }) => {
   const [startDate, setStartDate] = useState(transactionUpdate.date);
@@ -46,19 +47,21 @@ const UpdateForm = ({ toggleModal, transactionUpdate }) => {
   const toggleTheme = () => {
     setTheme(isThemeExpense ? 'greenText' : 'themeExp');
   };
-  console.log(startDate);
+  // console.log(startDate);
   const { _id: id } = transactionUpdate;
 
   const handleChangeSwitch = () => {
     setOnSwitch(!onSwitch);
     toggleTheme();
   };
+
   const handleCashChange = e => setSum(e.target.value);
 
   const handelChangeTextarea = e => setComment(e.target.value);
 
   const handelSubmit = e => {
     e.preventDefault();
+
     switch (onSwitch) {
       case true:
         dispatch(
@@ -92,12 +95,12 @@ const UpdateForm = ({ toggleModal, transactionUpdate }) => {
   };
 
   const themeInc = {
-    income: '#24CCA7' /*'Tealish'Matching Pantone */,
-    // expense:"#FF6596"
+    income: '#24CCA7',
+    expense: '#dfdfdf',
   };
   const themeExp = {
-    //  income: "#24CCA7", /*'Tealish'Matching Pantone */
     expense: '#FF6596',
+    income: '#dfdfdf',
   };
 
   // DATE formatter //////////////////////////////////////////
@@ -111,6 +114,9 @@ const UpdateForm = ({ toggleModal, transactionUpdate }) => {
     }${month}.${year}`;
   }
 
+  // const dateNow = new Date;
+  // const formatDate = `${date} ${dateNow.getHours()}:${dateNow.getMinutes()}:${dateNow.getSeconds()} `
+
   return (
     <>
       <ThemeProvider theme={isThemeExpense ? themeExp : themeInc}>
@@ -123,9 +129,11 @@ const UpdateForm = ({ toggleModal, transactionUpdate }) => {
               <Expense>Expense</Expense>
               <Checkbox
                 name="onSwitch"
+                defaultChecked={onSwitch}
+                // checked={onSwitch}
                 value={onSwitch}
                 type="checkbox"
-                onClick={handleChangeSwitch}
+                onChange={handleChangeSwitch}
               />
             </LabelEdit>
           </ToggleContainer>

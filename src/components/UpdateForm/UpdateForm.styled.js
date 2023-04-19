@@ -30,6 +30,7 @@ export const Expense = styled.p`
   font-size: 16px;
   font-weight: 700;
   margin: 0 11px;
+  cursor: pointer;
 
   color: ${props => props.theme.expense};
 `;
@@ -38,6 +39,8 @@ export const Income = styled.p`
   font-weight: 700;
   margin: 0 11px;
   color: ${props => props.theme.income};
+
+  cursor: pointer;
 `;
 
 export const DivRelative = styled.div`
