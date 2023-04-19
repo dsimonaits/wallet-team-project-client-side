@@ -45,7 +45,7 @@ import {
 import { updateTransaction } from '../../redux/finance/financeOperations';
 
 const UpdateForm = ({ toggleModal, transactionUpdate }) => {
-  const [startDate] = useState([new Date()]);
+  const [startDate, setStartDate] = useState(transactionUpdate.date);
   const [sum, setSum] = useState('');
   const [category, setCategory] = useState('');
   const [comment, setComment] = useState('');
@@ -54,10 +54,11 @@ const UpdateForm = ({ toggleModal, transactionUpdate }) => {
   const isThemeExpense = theme === 'themeExp';
   const dispatch = useDispatch();
   //   const isEditModalIsOpen = useSelector(selectIsModalEditTransactionOpen);
-
   const toggleTheme = () => {
     setTheme(isThemeExpense ? 'greenText' : 'themeExp');
   };
+  console.log(startDate);
+  const { _id: id } = transactionUpdate;
 
   const handleChangeSwitch = () => {
     setOnSwitch(!onSwitch);
@@ -71,28 +72,29 @@ const UpdateForm = ({ toggleModal, transactionUpdate }) => {
     e.preventDefault();
     switch (onSwitch) {
       case true:
-        const resIncome = dispatch(
+        dispatch(
           updateTransaction({
+            id,
             type: onSwitch,
             sum: sum,
-            category: 'Other',
-            date: startDate[0],
+            date: startDate,
             comment: comment,
           })
         );
-        console.log(resIncome);
+        toggleModal();
         break;
       case false:
-        const resExpenses = dispatch(
+        dispatch(
           updateTransaction({
+            id,
             type: onSwitch,
             sum: sum,
             category: category,
-            date: startDate[0],
+            date: startDate,
             comment: comment,
           })
         );
-        console.log(resExpenses);
+        toggleModal();
         break;
 
       default:
@@ -165,7 +167,7 @@ const UpdateForm = ({ toggleModal, transactionUpdate }) => {
                 type="number"
                 placeholder="0.00"
                 name="sum"
-                value={transactionUpdate.sum}
+                value={sum}
                 onChange={handleCashChange}
               />
             </ItemInput>
@@ -173,7 +175,8 @@ const UpdateForm = ({ toggleModal, transactionUpdate }) => {
               <Datetime
                 timeFormat={false}
                 placeholder={transactionUpdate.date}
-                value={formatDate(transactionUpdate.date)}
+                value={formatDate(startDate)}
+                closeOnSelect={true}
                 inputProps={{
                   style: {
                     height: 'auto',
@@ -185,19 +188,20 @@ const UpdateForm = ({ toggleModal, transactionUpdate }) => {
                   },
                 }}
                 dateFormat="yyyy-MM-DD"
-                isValidDate={current => {
-                  const today = new Date();
-                  const oneDay = 24 * 60 * 60 * 1000; // number of milliseconds in one day
-                  const yesterday = new Date(today.getTime() - oneDay);
-                  const date = current.isAfter(yesterday);
-                  return date;
-                }}
+                onChange={value => setStartDate(value.toISOString())}
+                // isValidDate={current => {
+                //   const today = new Date();
+                //   const oneDay = 24 * 60 * 60 * 1000; // number of milliseconds in one day
+                //   const yesterday = new Date(today.getTime() - oneDay);
+                //   const date = current.isAfter(yesterday);
+                //   return setStartDate(date);
+                // }}
               />
             </ItemInput>
           </MenuInputs>
           <ItemInput>
             <Textarea
-              value={transactionUpdate.comment}
+              value={comment}
               onChange={handelChangeTextarea}
               name="comment"
               rows="3"

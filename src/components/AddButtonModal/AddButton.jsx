@@ -46,7 +46,7 @@ import { addTransaction } from '../../redux/finance/financeOperations';
 // import RemoveIcon from '@mui/icons-material/Remove';
 
 const AddBtnFunction = ({ categories }) => {
-  const [startDate] = useState([new Date()]);
+  const [startDate, setStartDate] = useState([new Date()]);
   const [sum, setSum] = useState('');
   const [category, setCategory] = useState('');
   const [comment, setComment] = useState('');
@@ -95,7 +95,7 @@ const AddBtnFunction = ({ categories }) => {
               type: onSwitch,
               sum: sum,
               category: 'Other',
-              date: startDate[0],
+              date: startDate,
               comment: comment,
             })
           );
@@ -107,7 +107,7 @@ const AddBtnFunction = ({ categories }) => {
               type: onSwitch,
               sum: sum,
               category,
-              date: startDate[0],
+              date: startDate,
               comment: comment,
             })
           );
@@ -139,6 +139,16 @@ const AddBtnFunction = ({ categories }) => {
   const themeExp = {
     expense: '#FF6596',
   };
+
+  function formatDate(dateString) {
+    const date = new Date(dateString);
+    const day = date.getDate();
+    const month = date.getMonth() + 1;
+    const year = date.getFullYear();
+    return `${day < 10 ? '0' : ''}${day}.${
+      month < 10 ? '0' : ''
+    }${month}.${year}`;
+  }
   return (
     <>
       <ThemeProvider theme={isThemeExpense ? themeExp : themeInc}>
@@ -226,15 +236,13 @@ const AddBtnFunction = ({ categories }) => {
                     <ItemCalendarNumber>
                       <DivRelative>
                         <StyledDatetime
-                          // defaultValue={currentDate}
                           timeFormat={false}
-                          value={new Date()}
-                          // initialViewDate={new Date()}
-                          // InitialViewMode={new Date()}
+                          value={formatDate(startDate)}
                           closeOnSelect={true}
                           inputProps={{
                             style: {
-                              size: '20px',
+                              height: 'auto',
+                              width: '181px',
                               border: 'transparent',
                               borderBottom: '1px solid #E0E0E0',
                               color: 'rgba(0, 0, 0, 1) ',
@@ -242,15 +250,14 @@ const AddBtnFunction = ({ categories }) => {
                             },
                           }}
                           dateFormat="yyyy-MM-DD"
-                          isValidDate={current => {
-                            const today = new Date();
-                            const oneDay = 24 * 60 * 60 * 1000; // number of milliseconds in one day
-                            const yesterday = new Date(
-                              today.getTime() - oneDay
-                            );
-                            const date = current.isAfter(yesterday);
-                            return date;
-                          }}
+                          onChange={value => setStartDate(value.toISOString())}
+                          // isValidDate={current => {
+                          //   const today = new Date();
+                          //   const oneDay = 24 * 60 * 60 * 1000; // number of milliseconds in one day
+                          //   const yesterday = new Date(today.getTime() - oneDay);
+                          //   const date = current.isAfter(yesterday);
+                          //   return setStartDate(date);
+                          // }}
                         />
 
                         {/* <CalendarIcon width="20" height="18">
