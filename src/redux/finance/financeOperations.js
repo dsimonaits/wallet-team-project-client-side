@@ -72,16 +72,14 @@ export const addTransaction = createAsyncThunk(
 
 export const updateTransaction = createAsyncThunk(
   'finance/updateTransaction',
-  async ({ type, category, comment, sum, _id }, { rejectWithValue }) => {
+  async ({ type, category, date, comment, sum, id }, { rejectWithValue }) => {
     try {
-      const {
-        data: { ResponseBody },
-      } = await axios.put(`${BASE_URL}/api/update`, {
+      const data = await axios.put(`${BASE_URL}/transaction/update/${id}`, {
         type,
+        date,
         category,
         comment,
         sum,
-        _id,
       });
 
       toast.success('Transaction updated successfully', {
@@ -94,7 +92,7 @@ export const updateTransaction = createAsyncThunk(
         progress: undefined,
         theme: 'light',
       });
-      return ResponseBody.data;
+      return data;
     } catch (error) {
       toast.error('Transaction not updated', {
         position: 'top-right',
