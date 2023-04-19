@@ -1,14 +1,10 @@
 import * as React from 'react';
-// import { AddBtn } from './AddButton.styled';
-import Datetime from 'react-datetime';
-
 import 'react-datetime/css/react-datetime.css';
-
+import DateRangeIcon from '@mui/icons-material/DateRange';
 import { ThemeProvider } from 'styled-components';
 
 import {
   Form,
-  //   AddIcon,
   LabelTitle,
   Expense,
   ToggleContainer,
@@ -25,51 +21,47 @@ import {
   Income,
   SpanSlash,
   LabelEdit,
+  StyledDatetime,
+  DivRelative,
 } from './UpdateForm.styled';
-// import { SelectFunk } from './Select';
 
-// import { Formik } from 'formik';
-// import sprite from '../../images/sprite.svg';
-// import Modal from '../Modal/Modal';
 import { useState } from 'react';
 import {
   useDispatch,
   // useSelector
 } from 'react-redux';
-// import { Switch } from '../Switch/switch';
-// import { string } from 'prop-types';
-// import { Label } from 'components/Switch/switch.styled';
-// import { toggleModalEditTransaction } from '../../redux/global/globalSlice';
-// import { selectIsModalEditTransactionOpen } from '../../redux/global/globalSelectors';
-// import { addTransaction } from '../../redux/finance/financeSlice';
+
 import { updateTransaction } from '../../redux/finance/financeOperations';
+// import Switch from './Switch';
 
 const UpdateForm = ({ toggleModal, transactionUpdate }) => {
   const [startDate, setStartDate] = useState(transactionUpdate.date);
-  const [sum, setSum] = useState('');
-  const [category, setCategory] = useState('');
-  const [comment, setComment] = useState('');
-  const [onSwitch, setOnSwitch] = useState(true);
+  const [sum, setSum] = useState(transactionUpdate.sum);
+  const [category, setCategory] = useState(transactionUpdate.category);
+  const [comment, setComment] = useState(transactionUpdate.comment);
+  const [onSwitch, setOnSwitch] = useState(transactionUpdate.type);
   const [theme, setTheme] = useState('themeInc');
   const isThemeExpense = theme === 'themeExp';
   const dispatch = useDispatch();
-  //   const isEditModalIsOpen = useSelector(selectIsModalEditTransactionOpen);
+
   const toggleTheme = () => {
     setTheme(isThemeExpense ? 'greenText' : 'themeExp');
   };
-  console.log(startDate);
+
   const { _id: id } = transactionUpdate;
 
   const handleChangeSwitch = () => {
     setOnSwitch(!onSwitch);
     toggleTheme();
   };
+
   const handleCashChange = e => setSum(e.target.value);
 
   const handelChangeTextarea = e => setComment(e.target.value);
 
   const handelSubmit = e => {
     e.preventDefault();
+
     switch (onSwitch) {
       case true:
         dispatch(
@@ -103,12 +95,12 @@ const UpdateForm = ({ toggleModal, transactionUpdate }) => {
   };
 
   const themeInc = {
-    income: '#24CCA7' /*'Tealish'Matching Pantone */,
-    // expense:"#FF6596"
+    income: '#24CCA7',
+    expense: '#dfdfdf',
   };
   const themeExp = {
-    //  income: "#24CCA7", /*'Tealish'Matching Pantone */
     expense: '#FF6596',
+    income: '#dfdfdf',
   };
 
   // DATE formatter //////////////////////////////////////////
@@ -122,6 +114,9 @@ const UpdateForm = ({ toggleModal, transactionUpdate }) => {
     }${month}.${year}`;
   }
 
+  // const dateNow = new Date;
+  // const formatDate = `${date} ${dateNow.getHours()}:${dateNow.getMinutes()}:${dateNow.getSeconds()} `
+
   return (
     <>
       <ThemeProvider theme={isThemeExpense ? themeExp : themeInc}>
@@ -134,9 +129,11 @@ const UpdateForm = ({ toggleModal, transactionUpdate }) => {
               <Expense>Expense</Expense>
               <Checkbox
                 name="onSwitch"
+                defaultChecked={transactionUpdate.type}
+                // checked={onSwitch}
                 value={onSwitch}
                 type="checkbox"
-                onClick={handleChangeSwitch}
+                onChange={handleChangeSwitch}
               />
             </LabelEdit>
           </ToggleContainer>
@@ -172,31 +169,35 @@ const UpdateForm = ({ toggleModal, transactionUpdate }) => {
               />
             </ItemInput>
             <ItemInput>
-              <Datetime
-                timeFormat={false}
-                placeholder={transactionUpdate.date}
-                value={formatDate(startDate)}
-                closeOnSelect={true}
-                inputProps={{
-                  style: {
-                    height: 'auto',
-                    width: '181px',
-                    border: 'transparent',
-                    borderBottom: '1px solid #E0E0E0',
-                    color: 'rgba(0, 0, 0, 1) ',
-                    outline: 'none',
-                  },
-                }}
-                dateFormat="yyyy-MM-DD"
-                onChange={value => setStartDate(value.toISOString())}
-                // isValidDate={current => {
-                //   const today = new Date();
-                //   const oneDay = 24 * 60 * 60 * 1000; // number of milliseconds in one day
-                //   const yesterday = new Date(today.getTime() - oneDay);
-                //   const date = current.isAfter(yesterday);
-                //   return setStartDate(date);
-                // }}
-              />
+              <DivRelative>
+                <StyledDatetime
+                  timeFormat={false}
+                  placeholder={transactionUpdate.date}
+                  value={formatDate(startDate)}
+                  closeOnSelect={true}
+                  inputProps={{
+                    style: {
+                      height: 'auto',
+                      width: '181px',
+                      border: 'transparent',
+                      borderBottom: '1px solid #E0E0E0',
+                      color: 'rgba(0, 0, 0, 1) ',
+                      outline: 'none',
+                    },
+                  }}
+                  dateFormat="yyyy-MM-DD"
+                  onChange={value => setStartDate(value.toISOString())}
+                />
+                <DateRangeIcon
+                  color="primary"
+                  fontSize="small"
+                  style={{
+                    position: 'absolute',
+                    top: '0px',
+                    right: '0px',
+                  }}
+                />
+              </DivRelative>
             </ItemInput>
           </MenuInputs>
           <ItemInput>
@@ -211,7 +212,12 @@ const UpdateForm = ({ toggleModal, transactionUpdate }) => {
 
           <MenuBtn>
             <ButtonItem>
-              <AddButton type="submit">SAVE</AddButton>
+              <AddButton
+                type="submit"
+                // onClick={toggleModal}
+              >
+                SAVE
+              </AddButton>
             </ButtonItem>
             <ButtonItem>
               <ExitButton type="button" onClick={toggleModal}>

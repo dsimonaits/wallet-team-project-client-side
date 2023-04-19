@@ -2,18 +2,11 @@ import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { useSelector, useDispatch } from 'react-redux';
 
-import {
-  deleteTransaction,
-  // loadMoreTransactions,
-} from '../../redux/finance/financeOperations';
-import {
-  // selectIsLoading,
-  selectTransactions,
-} from '../../redux/finance/financeSelectors';
+import { deleteTransaction } from '../../redux/finance/financeOperations';
+import { selectTransactions } from '../../redux/finance/financeSelectors';
 import EllipsisText from 'react-ellipsis-text';
-// import data from './data.json';
+
 import icon from '../../images/pencil.png';
-// import Modal from 'components/Modal/Modal';
 
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -27,10 +20,10 @@ import { selectIsModalEditTransactionOpen } from '../../redux/global/globalSelec
 // STYLE ////////////////////////////////////
 import {
   NoTransaction,
+  SpanNoTranDes,
   SpanNoTran,
   NoTransactionMob,
   Wrapper,
-  // LoadMoreBtn,
   MobileCardWrapper,
   TransactionList,
   TransactionItem,
@@ -54,6 +47,7 @@ import {
   EditBtn,
   IconBtn,
   DeleteBtn,
+  GifContainer,
 } from './Table.styled';
 
 // COMPONENT //////////////////////////////////////////////////////
@@ -62,23 +56,17 @@ const Table = () => {
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 767);
   const [transactionUpdate, setTransactionUpdate] = useState(null);
   const [expandedRows, setExpandedRows] = useState({});
-  // const [currentPage, setCurrentPage] = useState(1);
-  // const [isDeleting, setIsDeleting] = useState(false);
 
   const transactions = useSelector(selectTransactions);
   const isEditModalIsOpen = useSelector(selectIsModalEditTransactionOpen);
-  // const isLoading = useSelector(selectIsLoading);
 
   const dispatch = useDispatch();
 
   useEffect(() => {
-    // dispatch(fetchTransactions());
-
     window.addEventListener('resize', handleResize);
 
     return () => window.removeEventListener('resize', handleResize);
   }, [dispatch]);
-  console.log(transactionUpdate);
 
   const handleResize = () => {
     setIsMobile(window.innerWidth <= 767);
@@ -90,43 +78,7 @@ const Table = () => {
     toggleModal();
   };
 
-  // // const handleDelete = async rowId => {
-  // //   try {
-  // //     setIsDeleting(true);
-  // //     await dispatch(deleteTransaction(rowId));
-  // //   } catch (error) {
-  // //     console.log(error);
-  // //   } finally {
-  // //     setIsDeleting(false);
-  // //   }
-  // // };
-
-  // const handleDelete = () => {
-  //   setIsDeleting(true);
-  // };
-
-  // useEffect(() => {
-  //   const deleteItem = async () => {
-  //     try {
-  //       await dispatch(deleteTransaction(transactions._id));
-  //     } catch (error) {
-  //       console.log(error);
-  //     } finally {
-  //       setIsDeleting(false);
-  //     }
-  //   };
-  //   if (isDeleting) {
-  //     deleteItem();
-  //   }
-  // }, [isDeleting, dispatch, transactions._id]);
-
-  // Load moer transactions///////////////
-  // const handleLoadMore = async () => {
-  //   dispatch(loadMoreTransactions(currentPage + 1));
-  // };
-
   const toggleModal = () => {
-    // setTransactionUpdate(null);
     dispatch(toggleModalEditTransaction());
   };
 
@@ -140,12 +92,6 @@ const Table = () => {
       month < 10 ? '0' : ''
     }${month}.${year}`;
   }
-
-  // SUM formatter /////////////////////////////////
-  // const formatter = new Intl.NumberFormat('en-US', {
-  //   style: 'currency',
-  //   currency: 'USD',
-  // });
 
   // TOGGLE for comment //////////////////////////////////
   function toggleRow(rowId) {
@@ -162,7 +108,6 @@ const Table = () => {
       <MobileCardWrapper>
         {isEditModalIsOpen && (
           <Modal onClose={toggleModal}>
-            {/* {transactionUpdate && transactionUpdate._id === row._id && ( */}
             <UpdateForm
               transactionUpdate={transactionUpdate}
               toggleModal={toggleModal}
@@ -174,6 +119,7 @@ const Table = () => {
         {transactions.length > 0 ? (
           transactions.map(row => (
             <TransactionList key={row._id}>
+              {/* <TransactionItem row={row} /> */}
               <TransactionItem type={row.type.toString()}>
                 <TitleText>Date:</TitleText> <Text>{formatDate(row.date)}</Text>
               </TransactionItem>
@@ -224,14 +170,10 @@ const Table = () => {
                 </TextSum>
               </TransactionItem>
               <TransactionItem type={row.type.toString()}>
-                <DeleteBtn
-                  // onClick={handleDelete(row._id)}
-                  // disabled={isDeleting}
-                  onClick={() => dispatch(deleteTransaction(row._id))}
-                >
+                <DeleteBtn onClick={() => dispatch(deleteTransaction(row._id))}>
                   Delete
                   {/* {isLoading ? 'Deleting' : 'Delete'} */}
-                  {/* {isDeleting ? 'Deleting' : 'Delete'} */}
+                  {/*{isDeleting ? 'Deleting' : 'Delete'} */}
                 </DeleteBtn>
                 <EditBtnMobile onClick={() => handleEdit(row._id)}>
                   <IconBtnMobile src={icon} alt="edit" />
@@ -241,9 +183,17 @@ const Table = () => {
             </TransactionList>
           ))
         ) : (
-          <NoTransactionMob>
-            NO TRANSACTIONS <SpanNoTran>(please add transaction)</SpanNoTran>
-          </NoTransactionMob>
+          <>
+            <NoTransactionMob>NO TRANSACTIONS</NoTransactionMob>
+            <SpanNoTran>(please add transaction)</SpanNoTran>
+            <GifContainer>
+              <img
+                width="280px"
+                src="https://i.gifer.com/YmvJ.gif"
+                alt="Animated GIF"
+              />
+            </GifContainer>
+          </>
         )}
       </MobileCardWrapper>
     );
@@ -253,30 +203,28 @@ const Table = () => {
     <Wrapper>
       {isEditModalIsOpen && (
         <Modal onClose={toggleModal}>
-          {/* {transactionUpdate && transactionUpdate._id === row._id && ( */}
           <UpdateForm
             transactionUpdate={transactionUpdate}
             toggleModal={toggleModal}
           />
-          {/* )} */}
         </Modal>
       )}
       <ToastContainer />
-      <TableWrapper>
-        <Thead>
-          <Tr>
-            <Th>Date</Th>
-            <Th>Type</Th>
-            <LargeTh>Category</LargeTh>
-            <LargeTh>Comment</LargeTh>
-            <ThSum>Sum</ThSum>
-            <Th></Th>
-          </Tr>
-        </Thead>
+      {transactions.length > 0 ? (
+        <TableWrapper>
+          <Thead>
+            <Tr>
+              <Th>Date</Th>
+              <Th>Type</Th>
+              <LargeTh>Category</LargeTh>
+              <LargeTh>Comment</LargeTh>
+              <ThSum>Sum</ThSum>
+              <Th></Th>
+            </Tr>
+          </Thead>
 
-        <TbodyWrapper>
-          {transactions.length > 0 ? (
-            transactions.map(row => (
+          <TbodyWrapper>
+            {transactions.map(row => (
               <TrWrapperTable key={row._id}>
                 <Td>{formatDate(row.date)}</Td>
                 <Td>
@@ -306,7 +254,6 @@ const Table = () => {
                   )}
                 </LargeTd>
                 <TableSum type={row.type.toString()}>
-                  {/* {formatter.format(row.sum)} */}
                   {row.sum
                     .toLocaleString('ru-RU', {
                       minimumIntegerDigits: 1,
@@ -317,17 +264,11 @@ const Table = () => {
                     .replace(',', '.')}
                 </TableSum>
                 <TableBtn>
-                  <EditBtn
-                    // onClick={toggleModal}
-                    onClick={() => handleEdit(row._id)}
-                  >
+                  <EditBtn onClick={() => handleEdit(row._id)}>
                     <IconBtn src={icon} alt="edit" />
                   </EditBtn>
                   <DeleteBtn
                     onClick={() => dispatch(deleteTransaction(row._id))}
-
-                    // onClick={handleDelete(row._id)}
-                    // disabled={isDeleting}
                   >
                     Delete
                     {/* {isLoading ? 'Deleting' : 'Delete'} */}
@@ -335,21 +276,22 @@ const Table = () => {
                   </DeleteBtn>
                 </TableBtn>
               </TrWrapperTable>
-            ))
-          ) : (
-            <NoTransaction>NO TRANSACTIONS</NoTransaction>
-          )}
-        </TbodyWrapper>
-      </TableWrapper>
-      {/* {isLoading ? (
-        <Text>Loading...</Text>
+            ))}
+          </TbodyWrapper>
+        </TableWrapper>
       ) : (
-        transactions.length > 5 && (
-          <LoadMoreBtn onClick={handleLoadMore}>
-            Load more transactions...
-          </LoadMoreBtn>
-        )
-      )} */}
+        <>
+          <NoTransaction>NO TRANSACTIONS</NoTransaction>
+          <SpanNoTranDes>(please add transaction)</SpanNoTranDes>
+          <GifContainer>
+            <img
+              width="300px"
+              src="https://i.gifer.com/YmvJ.gif"
+              alt="Animated GIF"
+            />
+          </GifContainer>
+        </>
+      )}
     </Wrapper>
   );
 };

@@ -60,11 +60,13 @@ export const NoTransactionMob = styled.div`
   font-family: 'Circe';
   font-style: normal;
   font-weight: 700;
-  font-size: 30px;
+  font-size: 25px;
   line-height: 1.5;
   padding: 10px;
   text-align: center;
-  width: 100%;
+  margin: 0 auto;
+
+  width: 280px;
 `;
 
 export const SpanNoTran = styled.span`
@@ -75,6 +77,8 @@ export const SpanNoTran = styled.span`
 export const MobileCardWrapper = styled.div`
   width: 280px;
   margin: 0 auto;
+  text-align: center;
+  width: 100%;
 `;
 
 export const TransactionList = styled.ul`
@@ -83,7 +87,9 @@ export const TransactionList = styled.ul`
   justify-content: center;
   list-style: none;
   border-radius: 10px;
-  margin: 8px;
+  width: 280px;
+  margin: 0 auto 8px auto;
+
   overflow: hidden;
 `;
 
@@ -162,11 +168,20 @@ export const NoTransaction = styled.div`
   font-family: 'Circe';
   font-style: normal;
   font-weight: 700;
-  font-size: 40px;
-  line-height: 1.5;
+  font-size: 30px;
+  line-height: 1.2;
   padding: 10px;
   text-align: center;
   width: 100%;
+  margin-top: 40px;
+`;
+
+export const SpanNoTranDes = styled.span`
+  text-align: center;
+  width: 100%;
+
+  font-size: 20px;
+  color: #bdbdbd;
 `;
 
 export const TableWrapper = styled.table`
@@ -341,4 +356,11 @@ export const DeleteBtn = styled.button`
   :hover {
     box-shadow: 0 0 8px #24cca7;
   }
+`;
+
+export const GifContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
 `;
