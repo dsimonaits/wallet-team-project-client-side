@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, {keyframes} from 'styled-components';
 import Eliipse_Grey from '../../images/authicons/ellipse-grey.png';
 import Eliipse_Pink from '../../images/authicons/ellipse-pink.png';
 import Log_Img_Desktop from '../../images/authicons/log-img-desktop.png';
@@ -73,9 +73,58 @@ export const ImgWrapperLogin = styled.div`
   }
 `;
 
+
+const lights = keyframes`
+  0% {
+    color: hsl(230, 41%, 79%);
+    text-shadow:
+      0 0 1em hsla(320, 100%, 50%, 0.2),
+      0 0 0.125em hsla(320, 100%, 60%, 0.3),
+      -1em -0.125em 0.5em hsla(40, 100%, 60%, 0),
+      1em 0.125em 0.5em hsla(200, 100%, 60%, 0);
+  }
+  
+  30% { 
+    color: hsl(230, 36%, 65%);
+    text-shadow:
+      0 0 1em hsla(320, 100%, 50%, 0.5),
+      0 0 0.125em hsla(320, 100%, 60%, 0.5),
+      -0.5em -0.125em 0.25em hsla(40, 100%, 60%, 0.2),
+      0.5em 0.125em 0.25em hsla(200, 100%, 60%, 0.4);
+  }
+  
+  40% { 
+    color: hsl(230, 40%, 56%);
+    text-shadow:
+      0 0 1em hsla(320, 100%, 50%, 0.5),
+      0 0 0.125em hsla(320, 100%, 90%, 0.5),
+      -0.25em -0.125em 0.125em hsla(40, 100%, 60%, 0.2),
+      0.25em 0.125em 0.125em hsla(200, 100%, 60%, 0.4);
+  }
+  
+  70% {
+    color: hsl(230, 58%, 51%);
+    text-shadow:
+      0 0 1em hsla(320, 100%, 50%, 0.5),
+      0 0 0.125em hsla(320, 100%, 60%, 0.5),
+      0.5em -0.125em 0.25em hsla(40, 100%, 60%, 0.2),
+      -0.5em 0.125em 0.25em hsla(200, 100%, 60%, 0.4);
+  }
+  
+  100% {
+    color: hsl(230, 74%, 55%);
+    text-shadow:
+      0 0 1em hsla(320, 100%, 50%, 0.2),
+      0 0 0.125em hsla(320, 100%, 60%, 0.3),
+      1em -0.125em 0.5em hsla(40, 100%, 60%, 0),
+      -1em 0.125em 0.5em hsla(200, 100%, 60%, 0);
+  }  
+`;
+
+
 export const Title = styled.h1`
   @media screen and (min-width: 768px) {
-    color: var(--primary-text-color);
+    color: var(--ascent-text-color);
     display: flex;
     margin-right: auto;
     font-family: var(--secondary-font-family);
@@ -84,13 +133,13 @@ export const Title = styled.h1`
     line-height: 1.5;
     margin-left: 40px;
     align-items: center;
+    animation: ${lights} 5s 750ms linear infinite;
   }
   @media screen and (min-width: 1280px) {
     margin-left: auto;
     width: 187px;
   }
 `;
-
 
 export const FormWrapper = styled.div`
   align-items: center;

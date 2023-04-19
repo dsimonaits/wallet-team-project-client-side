@@ -20,8 +20,10 @@ export const Form = styled.form`
    display: flex;
    flex-direction: column;
    padding-top: 107px;
+   padding-bottom: 36px;
    @media screen and (min-width: 768px) {
    padding-top: 40px;
+   padding-bottom: 20px;
   }
 `;
 
@@ -93,7 +95,7 @@ export const LogoContainer = styled.div`
 
 export const ErrorText = styled.p`
   position: absolute;
-  top: 25px;
+  top: 38px;
   left: 15px;
   font-size: 12px;
   line-height: 1.5;
