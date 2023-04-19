@@ -26,26 +26,14 @@ const financeSLice = createSlice({
       .addCase(addTransaction.fulfilled, (state, { payload }) => {
         state.transactions = [payload, ...state.transactions];
       })
-      // .addCase(updateTransaction.fulfilled, (state, { payload }) => {
-      //   const updatedTransaction = payload.data;
-      //   const updatedTransactions = state.transactions.map(transaction => {
-      //     if (transaction._id === updatedTransaction._id) {
-      //       return updatedTransaction;
-      //     }
-      //     console.log(payload.data);
-      //     return transaction;
-      //   });
-      //   state.transactions = updatedTransactions;
-      //   console.log(updatedTransactions);
-      //   console.log(updatedTransaction);
-      // })
       .addCase(updateTransaction.fulfilled, (state, { payload }) => {
-        const index = state.transactions.findIndex(
-          transaction => transaction._id === payload.data._id
-        );
-        state.transactions[index] = payload.data;
-
-        // console.log(payload.data);
+        const newTransactions = state.transactions.map(item => {
+          if (item._id === payload._id) {
+            return payload;
+          }
+          return item;
+        });
+        state.transactions = newTransactions;
       })
       .addCase(deleteTransaction.fulfilled, (state, { payload }) => {
         state.transactions = state.transactions.filter(

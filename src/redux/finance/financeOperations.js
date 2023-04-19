@@ -92,7 +92,7 @@ export const updateTransaction = createAsyncThunk(
         progress: undefined,
         theme: 'light',
       });
-      return data;
+      return data.data.newTransaction;
     } catch (error) {
       toast.error('Transaction not updated', {
         position: 'top-right',
