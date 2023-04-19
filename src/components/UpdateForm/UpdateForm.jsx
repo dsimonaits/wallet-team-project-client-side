@@ -47,7 +47,7 @@ const UpdateForm = ({ toggleModal, transactionUpdate }) => {
   const toggleTheme = () => {
     setTheme(isThemeExpense ? 'greenText' : 'themeExp');
   };
-  // console.log(startDate);
+
   const { _id: id } = transactionUpdate;
 
   const handleChangeSwitch = () => {
@@ -129,7 +129,7 @@ const UpdateForm = ({ toggleModal, transactionUpdate }) => {
               <Expense>Expense</Expense>
               <Checkbox
                 name="onSwitch"
-                defaultChecked={onSwitch}
+                defaultChecked={transactionUpdate.type}
                 // checked={onSwitch}
                 value={onSwitch}
                 type="checkbox"

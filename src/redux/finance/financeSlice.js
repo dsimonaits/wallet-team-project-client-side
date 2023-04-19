@@ -45,7 +45,7 @@ const financeSLice = createSlice({
         );
         state.transactions[index] = payload.data;
 
-        console.log(payload.data);
+        // console.log(payload.data);
       })
       .addCase(deleteTransaction.fulfilled, (state, { payload }) => {
         state.transactions = state.transactions.filter(

@@ -67,7 +67,6 @@ const Table = () => {
 
     return () => window.removeEventListener('resize', handleResize);
   }, [dispatch]);
-  console.log(transactionUpdate);
 
   const handleResize = () => {
     setIsMobile(window.innerWidth <= 767);
