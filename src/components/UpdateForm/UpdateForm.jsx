@@ -1,14 +1,10 @@
 import * as React from 'react';
-// import { AddBtn } from './AddButton.styled';
-// import Datetime from 'react-datetime';
-
 import 'react-datetime/css/react-datetime.css';
 import DateRangeIcon from '@mui/icons-material/DateRange';
 import { ThemeProvider } from 'styled-components';
 
 import {
   Form,
-  //   AddIcon,
   LabelTitle,
   Expense,
   ToggleContainer,
@@ -28,34 +24,25 @@ import {
   StyledDatetime,
   DivRelative,
 } from './UpdateForm.styled';
-// import { SelectFunk } from './Select';
 
-// import { Formik } from 'formik';
-// import sprite from '../../images/sprite.svg';
-// import Modal from '../Modal/Modal';
 import { useState } from 'react';
 import {
   useDispatch,
   // useSelector
 } from 'react-redux';
-// import { Switch } from '../Switch/switch';
-// import { string } from 'prop-types';
-// import { Label } from 'components/Switch/switch.styled';
-// import { toggleModalEditTransaction } from '../../redux/global/globalSlice';
-// import { selectIsModalEditTransactionOpen } from '../../redux/global/globalSelectors';
-// import { addTransaction } from '../../redux/finance/financeSlice';
+
 import { updateTransaction } from '../../redux/finance/financeOperations';
 
 const UpdateForm = ({ toggleModal, transactionUpdate }) => {
   const [startDate, setStartDate] = useState(transactionUpdate.date);
-  const [sum, setSum] = useState('');
-  const [category, setCategory] = useState('');
-  const [comment, setComment] = useState('');
+  const [sum, setSum] = useState(transactionUpdate.sum);
+  const [category, setCategory] = useState(transactionUpdate.category);
+  const [comment, setComment] = useState(transactionUpdate.comment);
   const [onSwitch, setOnSwitch] = useState(true);
   const [theme, setTheme] = useState('themeInc');
   const isThemeExpense = theme === 'themeExp';
   const dispatch = useDispatch();
-  //   const isEditModalIsOpen = useSelector(selectIsModalEditTransactionOpen);
+
   const toggleTheme = () => {
     setTheme(isThemeExpense ? 'greenText' : 'themeExp');
   };
@@ -192,13 +179,6 @@ const UpdateForm = ({ toggleModal, transactionUpdate }) => {
                   }}
                   dateFormat="yyyy-MM-DD"
                   onChange={value => setStartDate(value.toISOString())}
-                  // isValidDate={current => {
-                  //   const today = new Date();
-                  //   const oneDay = 24 * 60 * 60 * 1000; // number of milliseconds in one day
-                  //   const yesterday = new Date(today.getTime() - oneDay);
-                  //   const date = current.isAfter(yesterday);
-                  //   return setStartDate(date);
-                  // }}
                 />
                 <DateRangeIcon
                   color="primary"
