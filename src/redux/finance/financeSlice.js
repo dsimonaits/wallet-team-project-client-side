@@ -24,7 +24,7 @@ const financeSLice = createSlice({
         state.transactions = payload;
       })
       .addCase(addTransaction.fulfilled, (state, { payload }) => {
-        state.transactions = [...state.transactions, payload];
+        state.transactions = [payload, ...state.transactions];
       })
       // .addCase(updateTransaction.fulfilled, (state, { payload }) => {
       //   const updatedTransaction = payload.data;
