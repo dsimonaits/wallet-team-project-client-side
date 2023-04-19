@@ -129,8 +129,7 @@ const AddBtnFunction = ({ categories }) => {
     }
   };
   const closeModal = () => {
-    setOnSwitch(true);
-    dispatch(toggleModalAddTransaction());
+    
      setOnSwitch(true);
       dispatch(toggleModalAddTransaction());
       setSum('');

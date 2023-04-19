@@ -97,6 +97,9 @@ if (!sum) {
       default:
         break;
     }
+      setSum('');
+      setCategory('');
+      setComment('');
   };
 
   const themeInc = {
