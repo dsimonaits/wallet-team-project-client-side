@@ -14,6 +14,7 @@ import 'react-toastify/dist/ReactToastify.css';
 // Edit /////////////////////
 import Modal from 'components/Modal/Modal';
 import UpdateForm from 'components/UpdateForm/UpdateForm';
+// import { toggleModalDeleteTransaction } from '../../redux/global/globalSlice';
 import { toggleModalEditTransaction } from '../../redux/global/globalSlice';
 import { selectIsModalEditTransactionOpen } from '../../redux/global/globalSelectors';
 
@@ -268,6 +269,7 @@ const Table = () => {
                     <IconBtn src={icon} alt="edit" />
                   </EditBtn>
                   <DeleteBtn
+                    // onClick={() => dispatch(toggleModalLogout())}
                     onClick={() => dispatch(deleteTransaction(row._id))}
                   >
                     Delete

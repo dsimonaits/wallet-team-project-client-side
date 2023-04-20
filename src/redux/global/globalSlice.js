@@ -5,6 +5,7 @@ const initialState = {
   isModalLogoutOpen: false,
   isModalAddTransactionOpen: false,
   isModalEditTransactionOpen: false,
+  isModalDeleteTransactionOpen: false,
 };
 
 const globalSlice = createSlice({
@@ -23,6 +24,9 @@ const globalSlice = createSlice({
     toggleModalEditTransaction(state) {
       state.isModalEditTransactionOpen = !state.isModalEditTransactionOpen;
     },
+    toggleModalDeleteTransaction(state) {
+      state.isModalDeleteTransactionOpen = !state.isModalDeleteTransactionOpen;
+    },
   },
 });
 
@@ -31,6 +35,7 @@ export const {
   toggleModalLogout,
   toggleModalAddTransaction,
   toggleModalEditTransaction,
+  toggleModalDeleteTransaction,
 } = globalSlice.actions;
 
 export const globalReducer = globalSlice.reducer;

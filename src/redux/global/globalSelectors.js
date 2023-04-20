@@ -10,13 +10,22 @@ export const selectIsModalAddTransactionOpen = state =>
 export const selectIsModalEditTransactionOpen = state =>
   state.global.isModalEditTransactionOpen;
 
+export const selectIsModalDeleteTransactionOpen = state =>
+  state.global.isModalDeleteTransactionOpen;
+
 export const modalsIsOpen = createSelector(
   [
     selectIsModalLogoutOpen,
     selectIsModalAddTransactionOpen,
     selectIsModalEditTransactionOpen,
+    selectIsModalDeleteTransactionOpen,
   ],
-  (isLogoutModalOpen, isEditModalOpen, isAddModalOpen) => {
-    return isLogoutModalOpen || isEditModalOpen || isAddModalOpen;
+  (isLogoutModalOpen, isEditModalOpen, isAddModalOpen, isDeleteModalOpen) => {
+    return (
+      isLogoutModalOpen ||
+      isEditModalOpen ||
+      isAddModalOpen ||
+      isDeleteModalOpen
+    );
   }
 );

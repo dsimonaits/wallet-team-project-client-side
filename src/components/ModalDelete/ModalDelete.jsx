@@ -10,21 +10,22 @@ import {
 import Modal from 'components/Modal/Modal';
 import Logo from 'components/Logo/Logo';
 import { useDispatch } from 'react-redux';
-import { toggleModalLogout } from 'redux/global/globalSlice';
+import { toggleModalDeleteTransaction } from 'redux/global/globalSlice';
 import { toggleIsLoading } from 'redux/global/globalSlice';
 // import { logOut } from 'redux/session/sessionOperations';
+// import { deleteTransaction } from '../../redux/finance/financeOperations';
 
 export default function ModalLogout() {
   const dispatch = useDispatch();
 
   const userLogOut = () => {
     // dispatch(logOut());
-    dispatch(toggleModalLogout());
+    dispatch(toggleModalDeleteTransaction());
     dispatch(toggleIsLoading());
   };
 
   const onClose = () => {
-    dispatch(toggleModalLogout());
+    dispatch(toggleModalDeleteTransaction());
   };
 
   return (
@@ -42,7 +43,7 @@ export default function ModalLogout() {
           </ExitButton>
           <CancelButton
             type="button"
-            onClick={() => dispatch(toggleModalLogout())}
+            onClick={() => dispatch(toggleModalDeleteTransaction())}
           >
             Cancel
           </CancelButton>
