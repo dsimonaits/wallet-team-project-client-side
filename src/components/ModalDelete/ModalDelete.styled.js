@@ -29,18 +29,26 @@ export const TextWrapper = styled.div`
 
 export const Text = styled.p`
   font-weight: 400;
-  font-size: 25px;
+  font-size: 20px;
   line-height: 1.2;
   /* max-width: 280px; */
+  color: var(--primary-grey-color);
   text-align: left;
   cursor: default;
 `;
 
-export const InfoWrapper = styled.div`
+export const InfoWrapper = styled.fieldset`
   padding: 10px;
-  border: 1px solid var(--pink);
+  border: 2px solid var(--primary-grey-color);
   border-radius: 10px;
 `;
+
+export const Legend = styled.legend`
+  font-weight: 700;
+  font-size: 20px;
+  color: var(--primary-grey-color);
+`;
+
 export const TextQ = styled.p`
   font-weight: 700;
   font-size: 25px;
