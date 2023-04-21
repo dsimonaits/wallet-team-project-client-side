@@ -62,6 +62,7 @@ const UpdateForm = ({ toggleModal, transactionUpdate }) => {
   const handelChangeTextarea = e => setComment(e.target.value);
 
   const handelSubmit = e => {
+    console.log(transactionUpdate);
     e.preventDefault();
     if (!sum) {
       return toast.warn('sum is a required field');
@@ -95,7 +96,6 @@ const UpdateForm = ({ toggleModal, transactionUpdate }) => {
         );
         toggleModal();
         break;
-
       default:
         break;
     }

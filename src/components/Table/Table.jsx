@@ -245,7 +245,7 @@ const Table = () => {
           />
         </Modal>
       )}
-      <ToastContainer />
+      {/* <ToastContainer /> */}
       {transactions.length > 0 ? (
         <TableWrapper>
           <Thead>
