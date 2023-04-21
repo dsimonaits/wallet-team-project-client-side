@@ -40,12 +40,14 @@ const UpdateForm = ({ toggleModal, transactionUpdate }) => {
   const [category, setCategory] = useState(transactionUpdate.category);
   const [comment, setComment] = useState(transactionUpdate.comment);
   const [onSwitch, setOnSwitch] = useState(transactionUpdate.type);
-  const [theme, setTheme] = useState('themeInc');
+  const [theme, setTheme] = useState(
+    transactionUpdate.type ? 'themeInc' : 'themeExp'
+  );
   const isThemeExpense = theme === 'themeExp';
   const dispatch = useDispatch();
 
   const toggleTheme = () => {
-    setTheme(isThemeExpense ? 'greenText' : 'themeExp');
+    setTheme(isThemeExpense ? 'themeInc' : 'themeExp');
   };
 
   const { _id: id } = transactionUpdate;
