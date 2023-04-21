@@ -24,25 +24,24 @@ export const Wrapper = styled.div`
   }
 
   ::-webkit-scrollbar-track {
-    background-color: #dcdcdf;
+    background-color: var(--secondary-grey-dark);
   }
 
   ::-webkit-scrollbar-thumb {
     border-radius: 20px;
     width: 20px;
     height: 20px;
-    background-color: #24cca7;
+    background-color: var(--greenblue);
   }
 
   ::-webkit-scrollbar-thumb:hover {
-    background-color: #ff6596;
-    /* box-shadow: 0 0 10px #ff6596; */
+    background-color: var(--pink);
   }
 `;
 
 export const LoadMoreBtn = styled.button`
-  color: #ffffff;
-  background-color: #24cca7;
+  color: var(--primary-white-color);
+  background-color: var(--greenblue);
   border: none;
   padding: 4px 12px;
   border-radius: 20px;
@@ -51,8 +50,7 @@ export const LoadMoreBtn = styled.button`
   transition: box-shadow 250ms ease-in-out, background-color 250ms ease-in-out;
 
   :hover {
-    /* background-color: #24f0a7; */
-    box-shadow: 0 0 8px #24cca7;
+    box-shadow: 0 0 8px var(--greenblue);
   }
 `;
 
@@ -72,7 +70,7 @@ export const NoTransactionMob = styled.div`
 
 export const SpanNoTran = styled.span`
   font-size: 20px;
-  color: #bdbdbd;
+  color: var(--secondary-grey-dark);
 `;
 
 export const MobileCardWrapper = styled.div`
@@ -84,7 +82,7 @@ export const MobileCardWrapper = styled.div`
 
 export const TransactionList = styled.ul`
   padding: 0;
-  background: #ffffff;
+  background: var(--primary-white-color);
   justify-content: center;
   list-style: none;
   border-radius: 10px;
@@ -103,7 +101,7 @@ export const TransactionItem = styled.li`
     ${props => (props.type === 'true' ? '#24cca7' : '#ff6596')};
   cursor: default;
   :not(:last-child) {
-    border-bottom: 1px solid #dcdcdf;
+    border-bottom: 1px solid var(--secondary-grey-dark);
   }
 `;
 
@@ -158,8 +156,7 @@ export const EditBtnMobile = styled.button`
   transition: box-shadow 250ms ease-in-out, background 250ms ease-in-out;
 
   :hover {
-    /* background: #24cca7; */
-    box-shadow: 0 0 10px #24cca7;
+    box-shadow: 0 0 10px var(--greenblue);
   }
 `;
 
@@ -182,7 +179,7 @@ export const SpanNoTranDes = styled.span`
   width: 100%;
 
   font-size: 20px;
-  color: #bdbdbd;
+  color: var(--secondary-grey-dark);
 `;
 
 export const TableWrapper = styled.table`
@@ -216,7 +213,7 @@ export const Tr = styled.tr`
     position: absolute;
     width: 100%;
     height: 100%;
-    background-color: #fff;
+    background-color: var(--primary-white-color);
     border-radius: 30px;
     z-index: -1;
   }
@@ -228,7 +225,7 @@ export const TrWrapperTable = styled.tr`
   cursor: default;
 
   :not(:last-child) {
-    border-bottom: 1px solid #dcdcdf;
+    border-bottom: 1px solid var(--primary-grey-color);
     box-shadow: 0px 1px 0px rgba(255, 255, 255, 0.6);
   }
 `;
@@ -340,13 +337,13 @@ export const EditBtn = styled.button`
   transition: box-shadow 250ms ease-in-out, background 250ms ease-in-out;
 
   :hover {
-    box-shadow: 0 0 10px #24cca7;
+    box-shadow: 0 0 10px var(--greenblue);
   }
 `;
 
 export const DeleteBtn = styled.button`
-  color: #ffffff;
-  background-color: #24cca7;
+  color: var(--primary-white-color);
+  background-color: var(--greenblue);
   border: none;
   padding: 4px 12px;
   border-radius: 20px;
@@ -355,7 +352,7 @@ export const DeleteBtn = styled.button`
   transition: box-shadow 250ms ease-in-out, background-color 250ms ease-in-out;
 
   :hover {
-    box-shadow: 0 0 8px #24cca7;
+    box-shadow: 0 0 8px var(--greenblue);
   }
 `;
 

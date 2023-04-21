@@ -68,7 +68,7 @@ export const StyledDatetime = styled(Datetime)`
 
 export const NumberInput = styled.input`
   border: transparent;
-  border-bottom: 1px solid #e0e0e0;
+  border-bottom: 1px solid var(--secondary-grey-light);
   color: rgba(0, 0, 0, 1);
   font-size: 18px;
   outline: none;
@@ -86,7 +86,7 @@ export const NumberInput = styled.input`
 export const Select = styled.select`
   /* width: 394px; */
   border: transparent;
-  border-bottom: 1px solid #e0e0e0;
+  border-bottom: 1px solid var(--secondary-grey-light);
   color: rgba(0, 0, 0, 1);
   font-size: 18px;
   outline: none;
@@ -113,7 +113,7 @@ export const ItemInput = styled.div`
 export const Textarea = styled.textarea`
   width: 394px;
   border: transparent;
-  border-bottom: 1px solid #e0e0e0;
+  border-bottom: 1px solid var(--secondary-grey-light);
   color: rgba(0, 0, 0, 1);
   font-size: 18px;
   outline: none;
@@ -133,21 +133,7 @@ export const ToggleContainer = styled.div`
   margin-bottom: 40px;
   width: 100%;
 `;
-// export const AddBtn = styled.button`
-//   width: 44px;
-//   height: 44px;
-//   //padding:20px;
-//   border-radius: 50%;
-//   color: rgba(255, 255, 255, 1);
-//   font-size: 30px;
-//   font-weight: 100;
-//   border: 1px solid #ffffff;
-//   background-color: rgba(36, 204, 167, 1);
-//   position: fixed;
-//   bottom: 40px;
-//   right: 40px;
-//   cursor: pointer;
-// `;
+
 export const CloseButton = styled.button`
   height: fit-content;
   padding: unset;
@@ -226,14 +212,7 @@ export const LabelEdit = styled.label`
   align-items: center;
   width: 300px;
   height: 40px;
-  /* display: inline-block; */
-  /* border-radius:40%; */
-  /* background-color: green; */
 `;
-// export const AddIconToggle = styled.svg`
-//   width: 20px;
-//   height: 20px;
-// `;
 
 export const Slider = styled.span`
   position: absolute;
@@ -257,7 +236,7 @@ export const Slider = styled.span`
     /* color:rgba(255, 255, 255, 1);  */
     font-size: 30px;
     font-weight: 100;
-    border: 1px solid #ffffff;
+    border: 1px solid var(--primary-white-color);
     background-color: rgba(36, 204, 167, 1);
     transition-property: background-color, transform;
     transition-duration: 500ms;
@@ -282,5 +261,5 @@ export const Checkbox = styled.input`
   }
 `;
 export const SpanSlash = styled.span`
-  color: #e0e0e0;
+  color: var(--secondary-grey-light);
 `;

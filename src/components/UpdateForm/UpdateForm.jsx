@@ -32,7 +32,6 @@ import {
 } from 'react-redux';
 
 import { updateTransaction } from '../../redux/finance/financeOperations';
-// import Switch from './Switch';
 
 const UpdateForm = ({ toggleModal, transactionUpdate }) => {
   const [startDate, setStartDate] = useState(transactionUpdate.date);
