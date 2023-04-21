@@ -5,7 +5,11 @@ import {
   ExitButton,
   LogoContainer,
   ModalContainer,
+  TextWrapper,
+  TextQ,
+  InfoWrapper,
   Text,
+  SpanBold,
 } from './ModalDelete.styled';
 import Modal from 'components/Modal/Modal';
 import Logo from 'components/Logo/Logo';
@@ -16,6 +20,8 @@ import { toggleIsLoading } from 'redux/global/globalSlice';
 import { deleteTransaction } from '../../redux/finance/financeOperations';
 
 const ModalDelete = ({ transactionDelete }) => {
+  const { type, date, sum, _id, category } = transactionDelete;
+
   const dispatch = useDispatch();
 
   const deleteTr = id => {
@@ -29,6 +35,17 @@ const ModalDelete = ({ transactionDelete }) => {
     dispatch(toggleModalDeleteTransaction());
   };
 
+  // DATE formatter //////////////////////////////////////////
+  function formatDate(dateString) {
+    const date = new Date(dateString);
+    const day = date.getDate();
+    const month = date.getMonth() + 1;
+    const year = date.getFullYear();
+    return `${day < 10 ? '0' : ''}${day}.${
+      month < 10 ? '0' : ''
+    }${month}.${year}`;
+  }
+
   return (
     <>
       <Modal onClose={onClose}>
@@ -38,18 +55,39 @@ const ModalDelete = ({ transactionDelete }) => {
               {matches => matches.mobile && <Logo />}
             </Media>
           </LogoContainer>
-          <Text>Are you sure you want to delete?</Text>
-          <ExitButton
-            type="button"
-            onClick={() => deleteTr(transactionDelete._id)}
-          >
-            Delete
+          <TextWrapper>
+            <TextQ>Are you sure you want to delete this transaction?</TextQ>
+            <InfoWrapper>
+              <Text>
+                Date: <SpanBold> {formatDate(date)}</SpanBold>{' '}
+              </Text>
+              <Text>
+                Category:{' '}
+                <SpanBold>{type ? ' "Income" ' : ` "${category}" `}</SpanBold>
+              </Text>
+              <Text>
+                Amount:
+                <SpanBold>
+                  {sum
+                    .toLocaleString('ru-RU', {
+                      minimumIntegerDigits: 1,
+                      minimumFractionDigits: 2,
+                      maximumFractionDigits: 2,
+                      useGrouping: true,
+                    })
+                    .replace(',', '.')}
+                </SpanBold>
+              </Text>
+            </InfoWrapper>
+          </TextWrapper>
+          <ExitButton type="button" onClick={() => deleteTr(_id)}>
+            Yes
           </ExitButton>
           <CancelButton
             type="button"
             onClick={() => dispatch(toggleModalDeleteTransaction())}
           >
-            Cancel
+            No
           </CancelButton>
         </ModalContainer>
       </Modal>

@@ -19,11 +19,43 @@ export const LogoContainer = styled.div`
     margin-bottom: 0;
   }
 `;
+export const TextWrapper = styled.div`
+  max-width: 300px;
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-items: center;
+`;
+
 export const Text = styled.p`
   font-weight: 400;
-  font-size: 30px;
-  line-height: 45px;
-  margin-bottom: 20px;
+  font-size: 25px;
+  line-height: 1.2;
+  /* max-width: 280px; */
+  text-align: left;
+  cursor: default;
+`;
+
+export const InfoWrapper = styled.div`
+  padding: 10px;
+  border: 1px solid var(--pink);
+  border-radius: 10px;
+`;
+export const TextQ = styled.p`
+  font-weight: 700;
+  font-size: 25px;
+  line-height: 1.2;
+  max-width: 280px;
+  cursor: default;
+
+  color: var(--pink);
+`;
+
+export const SpanBold = styled.span`
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 1.2;
+  margin-left: 5px;
 `;
 
 export const ExitButton = styled.button`
