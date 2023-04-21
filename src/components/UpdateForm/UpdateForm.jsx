@@ -62,7 +62,6 @@ const UpdateForm = ({ toggleModal, transactionUpdate }) => {
   const handelChangeTextarea = e => setComment(e.target.value);
 
   const handelSubmit = e => {
-    console.log(transactionUpdate);
     e.preventDefault();
     if (!sum) {
       return toast.warn('sum is a required field');
@@ -99,6 +98,7 @@ const UpdateForm = ({ toggleModal, transactionUpdate }) => {
       default:
         break;
     }
+    console.log(transactionUpdate);
     setSum('');
     setCategory('');
     setComment('');
@@ -139,7 +139,7 @@ const UpdateForm = ({ toggleModal, transactionUpdate }) => {
               <Expense>Expense</Expense>
               <Checkbox
                 name="onSwitch"
-                defaultChecked={transactionUpdate.type}
+                // defaultChecked={transactionUpdate.type}
                 // checked={onSwitch}
                 value={onSwitch}
                 type="checkbox"
