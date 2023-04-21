@@ -43,26 +43,37 @@ export const Income = styled.p`
   cursor: pointer;
 `;
 
+export const MenuInputs = styled.div`
+  display: flex;
+  align-items: center;
+  /* width: 300px; */
+  @media screen and (max-width: 767px) {
+    display: block;
+  }
+`;
+
+export const ItemInput = styled.div`
+  margin-bottom: 40px;
+  padding: 0 20px;
+`;
+
 export const DivRelative = styled.div`
   position: relative;
 `;
 
 export const StyledDatetime = styled(Datetime)`
+  border-bottom: 1px solid var(--secondary-grey-light);
+
   &:focus {
     border-bottom: 2px solid var(--greenblue);
   }
   @media screen and (max-width: 768px) {
-    input {
-      min-width: 280px;
-      position: relative;
-    }
+    text-align: left;
+    width: 280px;
   }
   @media screen and (min-width: 768px) {
-    input {
-      position: relative;
-      width: 181px;
-      text-align: center;
-    }
+    width: 181px;
+    text-align: center;
   }
 `;
 
@@ -72,8 +83,6 @@ export const NumberInput = styled.input`
   color: rgba(0, 0, 0, 1);
   font-size: 18px;
   outline: none;
-  /* &:focus {
-    border-color:transparent} */
 
   @media screen and (max-width: 768px) {
     width: 280px;
@@ -84,7 +93,6 @@ export const NumberInput = styled.input`
   }
 `;
 export const Select = styled.select`
-  /* width: 394px; */
   border: transparent;
   border-bottom: 1px solid var(--secondary-grey-light);
   color: rgba(0, 0, 0, 1);
@@ -99,17 +107,7 @@ export const Select = styled.select`
     width: 394px;
   }
 `;
-export const MenuInputs = styled.div`
-  display: flex;
-  align-items: center;
-  @media screen and (max-width: 768px) {
-    display: block;
-  }
-`;
-export const ItemInput = styled.div`
-  margin-bottom: 40px;
-  padding: 0 20px;
-`;
+
 export const Textarea = styled.textarea`
   width: 394px;
   border: transparent;

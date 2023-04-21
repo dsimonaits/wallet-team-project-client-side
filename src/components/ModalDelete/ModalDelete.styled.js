@@ -31,7 +31,6 @@ export const Text = styled.p`
   font-weight: 400;
   font-size: 20px;
   line-height: 1.2;
-  /* max-width: 280px; */
   color: var(--primary-grey-color);
   text-align: left;
   cursor: default;

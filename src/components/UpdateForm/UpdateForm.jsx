@@ -188,8 +188,7 @@ const UpdateForm = ({ toggleModal, transactionUpdate }) => {
                     style: {
                       height: 'auto',
                       width: '181px',
-                      border: 'transparent',
-                      borderBottom: '1px solid #E0E0E0',
+                      border: 'none',
                       color: 'rgba(0, 0, 0, 1) ',
                       outline: 'none',
                     },
