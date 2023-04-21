@@ -47,10 +47,10 @@ export const App = () => {
 
   useEffect(() => {
     if (!isMobile && location.pathname === '/currency') {
-      navigate('/home');
+      navigate('home');
     }
     if (location.pathname === '/') {
-      navigate('/home');
+      navigate('home');
     }
   }, [isMobile, navigate, location.pathname]);
 
