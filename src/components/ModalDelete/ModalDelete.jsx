@@ -6,20 +6,21 @@ import {
   LogoContainer,
   ModalContainer,
   Text,
-} from './ModalLogout.styled';
+} from './ModalDelete.styled';
 import Modal from 'components/Modal/Modal';
 import Logo from 'components/Logo/Logo';
 import { useDispatch } from 'react-redux';
 import { toggleModalDeleteTransaction } from 'redux/global/globalSlice';
 import { toggleIsLoading } from 'redux/global/globalSlice';
 // import { logOut } from 'redux/session/sessionOperations';
-// import { deleteTransaction } from '../../redux/finance/financeOperations';
+import { deleteTransaction } from '../../redux/finance/financeOperations';
 
-export default function ModalLogout() {
+const ModalDelete = ({ transactionDelete }) => {
   const dispatch = useDispatch();
 
-  const userLogOut = () => {
-    // dispatch(logOut());
+  const deleteTr = id => {
+    dispatch(deleteTransaction(id));
+
     dispatch(toggleModalDeleteTransaction());
     dispatch(toggleIsLoading());
   };
@@ -38,8 +39,11 @@ export default function ModalLogout() {
             </Media>
           </LogoContainer>
           <Text>Are you sure you want to delete?</Text>
-          <ExitButton type="button" onClick={() => dispatch(userLogOut)}>
-            Exit
+          <ExitButton
+            type="button"
+            onClick={() => deleteTr(transactionDelete._id)}
+          >
+            Delete
           </ExitButton>
           <CancelButton
             type="button"
@@ -51,4 +55,6 @@ export default function ModalLogout() {
       </Modal>
     </>
   );
-}
+};
+
+export default ModalDelete;

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { useSelector, useDispatch } from 'react-redux';
 
-import { deleteTransaction } from '../../redux/finance/financeOperations';
+// import { deleteTransaction } from '../../redux/finance/financeOperations';
 import { selectTransactions } from '../../redux/finance/financeSelectors';
 import EllipsisText from 'react-ellipsis-text';
 
@@ -11,12 +11,15 @@ import icon from '../../images/pencil.png';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-// Edit /////////////////////
+// Edit/Delete /////////////////////
 import Modal from 'components/Modal/Modal';
 import UpdateForm from 'components/UpdateForm/UpdateForm';
+import ModalDelete from 'components/ModalDelete/ModalDelete';
 // import { toggleModalDeleteTransaction } from '../../redux/global/globalSlice';
 import { toggleModalEditTransaction } from '../../redux/global/globalSlice';
+import { toggleModalDeleteTransaction } from '../../redux/global/globalSlice';
 import { selectIsModalEditTransactionOpen } from '../../redux/global/globalSelectors';
+import { selectIsModalDeleteTransactionOpen } from '../../redux/global/globalSelectors';
 
 // STYLE ////////////////////////////////////
 import {
@@ -56,10 +59,13 @@ import {
 const Table = () => {
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 767);
   const [transactionUpdate, setTransactionUpdate] = useState(null);
+  const [transactionDelete, setTransactionDelete] = useState(null);
+
   const [expandedRows, setExpandedRows] = useState({});
 
   const transactions = useSelector(selectTransactions);
   const isEditModalIsOpen = useSelector(selectIsModalEditTransactionOpen);
+  const isDeleteModalIsOpen = useSelector(selectIsModalDeleteTransactionOpen);
 
   const dispatch = useDispatch();
 
@@ -73,6 +79,12 @@ const Table = () => {
     setIsMobile(window.innerWidth <= 767);
   };
 
+  const handleDelete = transactionId => {
+    const transaction = transactions.find(({ _id }) => _id === transactionId);
+    setTransactionDelete(transaction);
+    toggleModalDel();
+  };
+
   const handleEdit = transactionId => {
     const transaction = transactions.find(({ _id }) => _id === transactionId);
     setTransactionUpdate(transaction);
@@ -81,6 +93,10 @@ const Table = () => {
 
   const toggleModal = () => {
     dispatch(toggleModalEditTransaction());
+  };
+
+  const toggleModalDel = () => {
+    dispatch(toggleModalDeleteTransaction());
   };
 
   // DATE formatter //////////////////////////////////////////
@@ -113,7 +129,14 @@ const Table = () => {
               transactionUpdate={transactionUpdate}
               toggleModal={toggleModal}
             />
-            {/* )} */}
+          </Modal>
+        )}
+        {isDeleteModalIsOpen && (
+          <Modal onClose={toggleModalDel}>
+            <ModalDelete
+              transactionDelete={transactionDelete}
+              toggleModal={toggleModalDel}
+            />
           </Modal>
         )}
         <ToastContainer />
@@ -171,10 +194,14 @@ const Table = () => {
                 </TextSum>
               </TransactionItem>
               <TransactionItem type={row.type.toString()}>
-                <DeleteBtn onClick={() => dispatch(deleteTransaction(row._id))}>
+                <DeleteBtn
+                  // onClick={() => dispatch(toggleModalDel())}
+                  // onClick={() => dispatch(deleteTransaction(row._id))}
+                  onClick={() => handleDelete(row._id)}
+                >
                   Delete
                   {/* {isLoading ? 'Deleting' : 'Delete'} */}
-                  {/*{isDeleting ? 'Deleting' : 'Delete'} */}
+                  {/* {isDeleting ? 'Deleting' : 'Delete'} */}
                 </DeleteBtn>
                 <EditBtnMobile onClick={() => handleEdit(row._id)}>
                   <IconBtnMobile src={icon} alt="edit" />
@@ -207,6 +234,14 @@ const Table = () => {
           <UpdateForm
             transactionUpdate={transactionUpdate}
             toggleModal={toggleModal}
+          />
+        </Modal>
+      )}
+      {isDeleteModalIsOpen && (
+        <Modal onClose={toggleModalDel}>
+          <ModalDelete
+            transactionDelete={transactionDelete}
+            toggleModal={toggleModalDel}
           />
         </Modal>
       )}
@@ -269,8 +304,9 @@ const Table = () => {
                     <IconBtn src={icon} alt="edit" />
                   </EditBtn>
                   <DeleteBtn
-                    // onClick={() => dispatch(toggleModalLogout())}
-                    onClick={() => dispatch(deleteTransaction(row._id))}
+                    // onClick={() => dispatch(toggleModalDel())}
+                    // onClick={() => dispatch(deleteTransaction(row._id))}
+                    onClick={() => handleDelete(row._id)}
                   >
                     Delete
                     {/* {isLoading ? 'Deleting' : 'Delete'} */}

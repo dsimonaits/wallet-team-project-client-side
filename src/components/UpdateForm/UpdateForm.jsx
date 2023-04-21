@@ -61,7 +61,7 @@ const UpdateForm = ({ toggleModal, transactionUpdate }) => {
 
   const handelSubmit = e => {
     e.preventDefault();
-if (!sum) {
+    if (!sum) {
       return toast.warn('sum is a required field');
     }
     if (!startDate) {
@@ -97,9 +97,9 @@ if (!sum) {
       default:
         break;
     }
-      setSum('');
-      setCategory('');
-      setComment('');
+    setSum('');
+    setCategory('');
+    setComment('');
   };
 
   const themeInc = {
