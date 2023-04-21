@@ -15,9 +15,10 @@ const countBalanceMiddleware = store => next => async action => {
     store.dispatch(updateBalance(updatedBalance));
   }
   if (action.type === 'finance/updateTransaction/fulfilled') {
-    const updatedBalance = action.payload.data.ResponseBody.data.balance;
+    const updatedBalance = action.payload;
+    console.log(updatedBalance);
     // const { balance } = await store.getState().session.user;
-    store.dispatch(updateBalance(updatedBalance));
+    // store.dispatch(updateBalance(updatedBalance));
   }
 
   return next(action);
