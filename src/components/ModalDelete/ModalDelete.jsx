@@ -8,6 +8,7 @@ import {
   TextWrapper,
   TextQ,
   InfoWrapper,
+  Legend,
   Text,
   SpanBold,
 } from './ModalDelete.styled';
@@ -16,7 +17,6 @@ import Logo from 'components/Logo/Logo';
 import { useDispatch } from 'react-redux';
 import { toggleModalDeleteTransaction } from 'redux/global/globalSlice';
 import { toggleIsLoading } from 'redux/global/globalSlice';
-// import { logOut } from 'redux/session/sessionOperations';
 import { deleteTransaction } from '../../redux/finance/financeOperations';
 
 const ModalDelete = ({ transactionDelete }) => {
@@ -35,7 +35,7 @@ const ModalDelete = ({ transactionDelete }) => {
     dispatch(toggleModalDeleteTransaction());
   };
 
-  // DATE formatter //////////////////////////////////////////
+  // DATE formatter ///////////////////////////////////////
   function formatDate(dateString) {
     const date = new Date(dateString);
     const day = date.getDate();
@@ -58,11 +58,12 @@ const ModalDelete = ({ transactionDelete }) => {
           <TextWrapper>
             <TextQ>Are you sure you want to delete this transaction?</TextQ>
             <InfoWrapper>
+              <Legend>Transaction - {type ? 'income' : 'withdrawal'}</Legend>
               <Text>
-                Date: <SpanBold> {formatDate(date)}</SpanBold>{' '}
+                Date: <SpanBold> {formatDate(date)}</SpanBold>
               </Text>
               <Text>
-                Category:{' '}
+                Category:
                 <SpanBold>{type ? ' "Income" ' : ` "${category}" `}</SpanBold>
               </Text>
               <Text>
