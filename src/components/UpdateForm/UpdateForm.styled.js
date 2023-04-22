@@ -99,6 +99,7 @@ export const Select = styled.select`
   font-size: 18px;
   outline: none;
   margin-bottom: 40px;
+  cursor: pointer;
 
   @media screen and (max-width: 768px) {
     width: 280px;
@@ -115,8 +116,10 @@ export const Textarea = styled.textarea`
   color: rgba(0, 0, 0, 1);
   font-size: 18px;
   outline: none;
-  resize: none;
+  resize: vertical;
   height: 30px;
+  min-height: 30px;
+  max-height: 90px;
 
   @media screen and (max-width: 768px) {
     width: 280px;

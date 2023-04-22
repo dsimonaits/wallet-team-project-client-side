@@ -1,4 +1,5 @@
 import * as React from 'react';
+import * as yup from 'yup';
 import 'react-datetime/css/react-datetime.css';
 import DateRangeIcon from '@mui/icons-material/DateRange';
 import { ThemeProvider } from 'styled-components';
@@ -34,6 +35,16 @@ import {
 import { updateTransaction } from '../../redux/finance/financeOperations';
 
 const UpdateForm = ({ toggleModal, transactionUpdate }) => {
+  // SUM formater ///////////////////////////////////
+  // const formatSum = transactionUpdate.sum
+  //   .toLocaleString('ru-RU', {
+  //     minimumIntegerDigits: 1,
+  //     minimumFractionDigits: 2,
+  //     maximumFractionDigits: 2,
+  //     useGrouping: true,
+  //   })
+  //   .replace(',', '.');
+
   const [startDate, setStartDate] = useState(transactionUpdate.date);
   const [sum, setSum] = useState(transactionUpdate.sum);
   const [category, setCategory] = useState(transactionUpdate.category);
@@ -59,6 +70,17 @@ const UpdateForm = ({ toggleModal, transactionUpdate }) => {
   const handleCashChange = e => setSum(e.target.value);
 
   const handelChangeTextarea = e => setComment(e.target.value);
+
+  const schema = yup.object().shape({
+    comment: yup
+      .string()
+      .min(1, 'must min length 1')
+      .max(12, 'must max length 12'),
+    type: yup.boolean(),
+    sum: yup.number().required('sum is a required field'),
+    category: yup.string().required('category is required'),
+    date: yup.date().required(),
+  });
 
   const handelSubmit = e => {
     e.preventDefault();
@@ -129,7 +151,7 @@ const UpdateForm = ({ toggleModal, transactionUpdate }) => {
   return (
     <>
       <ThemeProvider theme={isThemeExpense ? themeExp : themeInc}>
-        <Form onSubmit={handelSubmit}>
+        <Form validationSchema={schema} onSubmit={handelSubmit}>
           <LabelTitle htmlFor="">Edit transaction</LabelTitle>
           <ToggleContainer>
             <LabelEdit>
@@ -191,10 +213,11 @@ const UpdateForm = ({ toggleModal, transactionUpdate }) => {
                       border: 'none',
                       color: 'rgba(0, 0, 0, 1) ',
                       outline: 'none',
+                      cursor: 'pointer',
                     },
                   }}
                   dateFormat="yyyy-MM-DD"
-                  onChange={value => setStartDate(value.toISOString())}
+                  onChange={value => setStartDate(value.toString())}
                 />
                 <DateRangeIcon
                   color="primary"
