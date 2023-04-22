@@ -48,7 +48,7 @@ import { addTransaction } from '../../redux/finance/financeOperations';
 const AddBtnFunction = ({ categories }) => {
   const [startDate, setStartDate] = useState(new Date());
   const [sum, setSum] = useState('');
-  const [category, setCategory] = useState('');
+  const [category, setCategory] = useState('Main expenses');
   const [comment, setComment] = useState('');
   const [onSwitch, setOnSwitch] = useState(true);
   const [theme, setTheme] = useState('themeInc');
