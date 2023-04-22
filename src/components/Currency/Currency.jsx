@@ -59,6 +59,7 @@ const Currency = () => {
                     </tr>
                   );
                 }
+                return console.log();
               })}
           </tbody>
         </Table>
