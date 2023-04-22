@@ -119,7 +119,6 @@ const UpdateForm = ({ toggleModal, transactionUpdate }) => {
       default:
         break;
     }
-    console.log(transactionUpdate);
     setSum('');
     setCategory('');
     setComment('');
