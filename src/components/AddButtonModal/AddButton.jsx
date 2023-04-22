@@ -90,7 +90,7 @@ const AddBtnFunction = ({ categories }) => {
     try {
       switch (onSwitch) {
         case true:
-          const resIncome = dispatch(
+          dispatch(
             addTransaction({
               type: onSwitch,
               sum: sum,
@@ -101,7 +101,7 @@ const AddBtnFunction = ({ categories }) => {
           );
           break;
         case false:
-          const resExpenses = dispatch(
+          dispatch(
             addTransaction({
               type: onSwitch,
               sum: sum,
