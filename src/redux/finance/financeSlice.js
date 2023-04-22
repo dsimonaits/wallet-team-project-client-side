@@ -28,8 +28,8 @@ const financeSLice = createSlice({
       })
       .addCase(updateTransaction.fulfilled, (state, { payload }) => {
         const newTransactions = state.transactions.map(item => {
-          if (item._id === payload._id) {
-            return payload;
+          if (item._id === payload.newTransaction._id) {
+            return payload.newTransaction;
           }
           return item;
         });
