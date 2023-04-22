@@ -99,7 +99,6 @@ const AddBtnFunction = ({ categories }) => {
               comment: comment,
             })
           );
-          console.log(resIncome);
           break;
         case false:
           const resExpenses = dispatch(
@@ -111,7 +110,6 @@ const AddBtnFunction = ({ categories }) => {
               comment: comment,
             })
           );
-          console.log(resExpenses);
           break;
 
         default:
@@ -129,12 +127,11 @@ const AddBtnFunction = ({ categories }) => {
     }
   };
   const closeModal = () => {
-    
-     setOnSwitch(true);
-      dispatch(toggleModalAddTransaction());
-      setSum('');
-      setCategory('');
-      setComment('');
+    setOnSwitch(true);
+    dispatch(toggleModalAddTransaction());
+    setSum('');
+    setCategory('');
+    setComment('');
   };
 
   const themeInc = {
