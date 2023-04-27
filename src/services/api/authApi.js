@@ -1,25 +1,23 @@
-import axios from 'axios';
-
-axios.defaults.baseURL = 'https://wallet-team-project-hg8k.onrender.com';
+import api from './api';
 
 const signup = async body => {
-  const { data } = await axios.post('api/user/signup', body);
+  const { data } = await api.post('api/user/signup', body);
 
   return data.ResponseBody;
 };
 
 const login = async body => {
-  const { data } = await axios.post('/api/user/login', body);
+  const { data } = await api.post('/api/user/login', body);
 
   return data.ResponseBody;
 };
 
 const logout = async () => {
-  await axios.post('api/user/logout');
+  await api.post('api/user/logout');
 };
 
 const getCurrent = async () => {
-  const { data } = await axios.get('api/user/current');
+  const { data } = await api.get('api/user/current');
 
   return data.ResponseBody;
 };

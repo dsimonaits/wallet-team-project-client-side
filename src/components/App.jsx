@@ -61,7 +61,7 @@ export const App = () => {
           <Routes>
             <Route
               exact
-              path="login"
+              path="/login"
               element={
                 <PublicRoute restricted redirectTo="/home">
                   <LoginPage />
@@ -70,7 +70,7 @@ export const App = () => {
             />
             <Route
               exact
-              path="register"
+              path="/register"
               element={
                 <PublicRoute restricted redirectTo="/home">
                   <RegistrationPage />
