@@ -20,7 +20,7 @@ export const fetchTransactions = createAsyncThunk(
 
       return ResponseBody.data;
     } catch (error) {
-      return rejectWithValue(error);
+      return rejectWithValue(error.message);
     }
   }
 );
@@ -65,7 +65,7 @@ export const addTransaction = createAsyncThunk(
         theme: 'light',
       });
 
-      return rejectWithValue(error);
+      return rejectWithValue(error.message);
     }
   }
 );
@@ -107,7 +107,7 @@ export const updateTransaction = createAsyncThunk(
         theme: 'light',
       });
 
-      return rejectWithValue(error);
+      return rejectWithValue(error.message);
     }
   }
 );
@@ -136,7 +136,7 @@ export const deleteTransaction = createAsyncThunk(
     } catch (error) {
       toast.error('Transaction not removed');
 
-      return rejectWithValue(error);
+      return rejectWithValue(error.message);
     }
   }
 );

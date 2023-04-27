@@ -102,6 +102,9 @@ const sessionSlice = createSlice({
         (state, { payload }) => {
           state.isRefreshing = false;
           state.error = payload;
+          state.user = { name: '', email: '', balance: '' };
+          state.token = null;
+          state.isLoggedIn = false;
         }
       ),
 });
