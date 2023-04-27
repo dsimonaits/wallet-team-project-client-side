@@ -12,12 +12,10 @@ const api = axios.create({
 api.interceptors.response.use(
   response => response,
   error => {
-    console.log(error);
     if (error.response.status === 401) {
       const dispatch = useDispatch();
       dispatch(logOut());
     }
-    console.log(error);
     return Promise.reject(error);
   }
 );
