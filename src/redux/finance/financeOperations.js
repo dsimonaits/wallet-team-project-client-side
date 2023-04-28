@@ -1,14 +1,6 @@
-import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { toast } from 'react-toastify';
-
-// const token = {
-//   set(token) {
-//     axios.defaults.headers.common.Authorization = `Bearer ${token}`;
-//   },
-// };
-
-const BASE_URL = 'https://wallet-team-project-hg8k.onrender.com/api';
+import api from 'services/api/api';
 
 export const fetchTransactions = createAsyncThunk(
   'finance/fetchTransactions',
@@ -16,11 +8,11 @@ export const fetchTransactions = createAsyncThunk(
     try {
       const {
         data: { ResponseBody },
-      } = await axios(`${BASE_URL}/transaction/getAll`);
+      } = await api(`/api/transaction/getAll`);
 
       return ResponseBody.data;
     } catch (error) {
-      return rejectWithValue(error);
+      return rejectWithValue(error.message);
     }
   }
 );
@@ -28,7 +20,7 @@ export const fetchTransactions = createAsyncThunk(
 export const loadMoreTransactions = createAsyncThunk(
   'transactions/loadMore',
   async page => {
-    const response = await fetch(`${BASE_URL}/transaction/getAll?page=${page}`);
+    const response = await api(`/api/transaction/getAll?page=${page}`);
     const data = await response.json();
     return data;
   }
@@ -40,7 +32,7 @@ export const addTransaction = createAsyncThunk(
     try {
       const {
         data: { ResponseBody },
-      } = await axios.post(`${BASE_URL}/transaction/create`, transaction);
+      } = await api.post(`/api/transaction/create`, transaction);
       toast.success('Transaction added successfully', {
         position: 'top-right',
         autoClose: 3000,
@@ -65,7 +57,7 @@ export const addTransaction = createAsyncThunk(
         theme: 'light',
       });
 
-      return rejectWithValue(error);
+      return rejectWithValue(error.message);
     }
   }
 );
@@ -76,7 +68,7 @@ export const updateTransaction = createAsyncThunk(
     try {
       const {
         data: { ResponseBody },
-      } = await axios.put(`${BASE_URL}/transaction/update/${id}`, {
+      } = await api.put(`/api/transaction/update/${id}`, {
         type,
         date,
         category,
@@ -107,7 +99,7 @@ export const updateTransaction = createAsyncThunk(
         theme: 'light',
       });
 
-      return rejectWithValue(error);
+      return rejectWithValue(error.message);
     }
   }
 );
@@ -116,7 +108,7 @@ export const deleteTransaction = createAsyncThunk(
   'finance/deleteTransaction',
   async (_id, { rejectWithValue }) => {
     try {
-      const { data } = await axios.delete(`${BASE_URL}/transaction/delete`, {
+      const { data } = await api.delete(`/api/transaction/delete`, {
         data: {
           _id: _id,
         },
@@ -136,7 +128,7 @@ export const deleteTransaction = createAsyncThunk(
     } catch (error) {
       toast.error('Transaction not removed');
 
-      return rejectWithValue(error);
+      return rejectWithValue(error.message);
     }
   }
 );
@@ -145,10 +137,7 @@ export const getTransactionsStatistics = createAsyncThunk(
   'finance/getTransactionsStatistics',
   async (body, { rejectWithValue }) => {
     try {
-      const { data } = await axios.post(
-        `${BASE_URL}/transaction/statistic`,
-        body
-      );
+      const { data } = await api.post(`/api/transaction/statistic`, body);
 
       return data;
     } catch (error) {

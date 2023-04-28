@@ -13,7 +13,6 @@ import { useDispatch } from 'react-redux';
 import { toggleModalLogout } from 'redux/global/globalSlice';
 import { toggleIsLoading } from 'redux/global/globalSlice';
 import { logOut } from 'redux/session/sessionOperations';
-// import { logOut } from '../../redux/session/session-operations'
 
 export default function ModalLogout() {
   const dispatch = useDispatch();

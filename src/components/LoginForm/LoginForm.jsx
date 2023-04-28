@@ -32,7 +32,6 @@ const LoginForm = () => {
     password: yup
       .string()
       .min(6, 'must be at least 6 characters')
-      
       .matches(
        /^(?=.*[A-Za-z])(?=.*\d).{6,}$/,
         'must contain 1 letter, 1 number'

@@ -1,17 +1,6 @@
-import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { toast } from 'react-toastify';
 import API from '../../services/api/authApi';
-
-const token = {
-  set(token) {
-    axios.defaults.headers.common.Authorization = `Bearer ${token}`;
-  },
-
-  unset() {
-    axios.defaults.headers.common.Authorization = ``;
-  },
-};
+import { setAuthToken } from 'services/api/api';
 
 export const register = createAsyncThunk(
   'session/register',
@@ -19,7 +8,7 @@ export const register = createAsyncThunk(
     try {
       const { data } = await API.signup(credentials);
       // After successful registration, add the token to the HTTP header
-      token.set(data.accessToken);
+      setAuthToken(data.accessToken);
 
       return data;
     } catch (error) {
@@ -38,7 +27,7 @@ export const logIn = createAsyncThunk(
     try {
       const { data } = await API.login(credentials);
 
-      token.set(data.accessToken);
+      setAuthToken(data.accessToken);
       return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
@@ -56,9 +45,8 @@ export const logOut = createAsyncThunk(
     try {
       await API.logout(credentials);
       // After a successful logout, remove the token from the HTTP header
-      token.unset();
+      setAuthToken(null);
     } catch (error) {
-      toast.error('Something went wrong! Please, try again');
       return thunkAPI.rejectWithValue(error.message);
     }
   }
@@ -82,7 +70,7 @@ export const refreshUser = createAsyncThunk(
 
     try {
       // If there is a token, add it to the HTTP header and perform the request
-      token.set(persistedToken);
+      setAuthToken(persistedToken);
       const { data } = await API.getCurrent(credentials);
       return data;
     } catch (error) {
