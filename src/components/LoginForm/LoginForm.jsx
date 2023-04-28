@@ -32,10 +32,9 @@ const LoginForm = () => {
     password: yup
       .string()
       .min(6, 'must be at least 6 characters')
-      // .max(16, 'password length must be less than 17 characters')
       .matches(
-        /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,}$/,
-        'must contain 1 letter, and 1 number'
+       /^(?=.*[A-Za-z])(?=.*\d).{6,}$/,
+        'must contain 1 letter, 1 number'
       )
       .required(),
   });
