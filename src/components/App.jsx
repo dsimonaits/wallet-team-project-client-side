@@ -7,9 +7,8 @@ import { useMediaQuery } from '@mui/material';
 import {
   selectIsLoggedIn,
   selectIsRefreshing,
-  selectToken,
 } from '../redux/session/sessionSelectors';
-import { refreshUser } from '../redux/session/sessionOperations';
+import { refreshToken } from '../redux/session/sessionOperations';
 import { fetchTransactions } from '../redux/finance/financeOperations';
 import { PublicRoute } from './PublicRoute';
 import { PrivateRoute } from './PrivateRoute';
@@ -31,13 +30,13 @@ export const App = () => {
   const dispatch = useDispatch();
   const userLoggedIn = useSelector(selectIsLoggedIn);
   const refreshing = useSelector(selectIsRefreshing);
-  const token = useSelector(selectToken);
 
   const navigate = useNavigate();
+  const localToken = localStorage.getItem('token');
 
   useEffect(() => {
-    if (token && !userLoggedIn) dispatch(refreshUser());
-  }, [dispatch, token, userLoggedIn]);
+    if (localToken && !userLoggedIn) dispatch(refreshToken());
+  }, [dispatch, localToken, userLoggedIn]);
 
   useEffect(() => {
     if (userLoggedIn && !refreshing) {
