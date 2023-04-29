@@ -1,12 +1,16 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import API from '../../services/api/authApi';
 
+const setToken = token => {
+  localStorage.setItem('token', token);
+};
+
 export const register = createAsyncThunk(
   'session/register',
   async (credentials, thunkAPI) => {
     try {
       const { data } = await API.signup(credentials);
-
+      setToken(data.accessToken);
       return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
@@ -23,6 +27,7 @@ export const logIn = createAsyncThunk(
   async (credentials, thunkAPI) => {
     try {
       const { data } = await API.login(credentials);
+      setToken(data.accessToken);
       return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
@@ -39,6 +44,7 @@ export const logOut = createAsyncThunk(
   async (credentials, thunkAPI) => {
     try {
       await API.logout(credentials);
+      setToken(null);
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }
