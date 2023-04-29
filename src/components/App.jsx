@@ -7,6 +7,7 @@ import { useMediaQuery } from '@mui/material';
 import {
   selectIsLoggedIn,
   selectIsRefreshing,
+  selectToken,
 } from '../redux/session/sessionSelectors';
 import { refreshToken } from '../redux/session/sessionOperations';
 import { fetchTransactions } from '../redux/finance/financeOperations';
@@ -30,19 +31,18 @@ export const App = () => {
   const dispatch = useDispatch();
   const userLoggedIn = useSelector(selectIsLoggedIn);
   const refreshing = useSelector(selectIsRefreshing);
+  const token = useSelector(selectToken);
 
   const navigate = useNavigate();
-  const localToken = localStorage.getItem('token');
 
   useEffect(() => {
-    if (localToken && !userLoggedIn) dispatch(refreshToken());
-  }, [dispatch, localToken, userLoggedIn]);
-
-  useEffect(() => {
-    if (userLoggedIn && !refreshing) {
+    if (token !== null && userLoggedIn) {
       dispatch(fetchTransactions());
     }
-  }, [dispatch, userLoggedIn, refreshing]);
+    if (token && !userLoggedIn) {
+      dispatch(refreshToken());
+    }
+  }, [dispatch, token, userLoggedIn]);
 
   useEffect(() => {
     if (!isMobile && location.pathname === '/currency') {
