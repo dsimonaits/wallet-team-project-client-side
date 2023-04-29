@@ -29,20 +29,24 @@ export const App = () => {
   const location = useLocation();
 
   const dispatch = useDispatch();
+
   const userLoggedIn = useSelector(selectIsLoggedIn);
+
   const refreshing = useSelector(selectIsRefreshing);
+
   const token = useSelector(selectToken);
 
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (token !== null && userLoggedIn && !refreshing) {
-      dispatch(fetchTransactions());
-    }
-    if (token && !userLoggedIn && !refreshing) {
+    if (token && !userLoggedIn) {
       dispatch(refreshToken());
     }
-  }, [dispatch, token, userLoggedIn, refreshing]);
+
+    if (token && userLoggedIn) {
+      dispatch(fetchTransactions());
+    }
+  }, [dispatch, token, userLoggedIn]);
 
   useEffect(() => {
     if (!isMobile && location.pathname === '/currency') {
@@ -56,71 +60,70 @@ export const App = () => {
   return (
     <>
       <Suspense fallback={<Spinner />}>
-        {!refreshing && (
-          <Routes>
+        {refreshing && <Spinner />}
+        <Routes>
+          <Route
+            exact
+            path="/login"
+            element={
+              <PublicRoute restricted redirectTo="/home">
+                <LoginPage />
+              </PublicRoute>
+            }
+          />
+          <Route
+            exact
+            path="/register"
+            element={
+              <PublicRoute restricted redirectTo="/home">
+                <RegistrationPage />
+              </PublicRoute>
+            }
+          />
+          <Route
+            path=""
+            element={
+              <PrivateRoute redirectTo="/login">
+                <DashboardPage />
+              </PrivateRoute>
+            }
+          >
             <Route
-              exact
-              path="/login"
-              element={
-                <PublicRoute restricted redirectTo="/home">
-                  <LoginPage />
-                </PublicRoute>
-              }
-            />
-            <Route
-              exact
-              path="/register"
-              element={
-                <PublicRoute restricted redirectTo="/home">
-                  <RegistrationPage />
-                </PublicRoute>
-              }
-            />
-            <Route
-              path=""
+              path="home"
               element={
                 <PrivateRoute redirectTo="/login">
-                  <DashboardPage />
+                  <Table />
                 </PrivateRoute>
               }
-            >
-              <Route
-                path="home"
-                element={
-                  <PrivateRoute redirectTo="/login">
-                    <Table />
-                  </PrivateRoute>
-                }
-              />
-              <Route
-                path="diagram"
-                element={
-                  <PrivateRoute redirectTo="/login">
-                    <Statistics />
-                  </PrivateRoute>
-                }
-              />
-              {isMobile && (
-                <Route
-                  path="currency"
-                  element={
-                    <PrivateRoute redirectTo="/login">
-                      <Currency />
-                    </PrivateRoute>
-                  }
-                />
-              )}
-            </Route>
+            />
             <Route
-              path="*"
+              path="diagram"
               element={
-                <PublicRoute restricted redirectTo="/login">
-                  <RegistrationPage />
-                </PublicRoute>
+                <PrivateRoute redirectTo="/login">
+                  <Statistics />
+                </PrivateRoute>
               }
             />
-          </Routes>
-        )}
+            {isMobile && (
+              <Route
+                path="currency"
+                element={
+                  <PrivateRoute redirectTo="/login">
+                    <Currency />
+                  </PrivateRoute>
+                }
+              />
+            )}
+          </Route>
+          <Route
+            path="*"
+            element={
+              <PublicRoute restricted redirectTo="/login">
+                <RegistrationPage />
+              </PublicRoute>
+            }
+          />
+        </Routes>
       </Suspense>
     </>
   );
