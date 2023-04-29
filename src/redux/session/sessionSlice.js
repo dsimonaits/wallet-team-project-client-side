@@ -1,5 +1,11 @@
 import { createSlice, isAnyOf } from '@reduxjs/toolkit';
-import { register, logIn, logOut, refreshUser } from './sessionOperations';
+import {
+  register,
+  logIn,
+  logOut,
+  refreshUser,
+  refreshToken,
+} from './sessionOperations';
 
 const initialState = {
   user: { name: null, email: null, balance: 0, createdAt: null },
@@ -58,27 +64,27 @@ const sessionSlice = createSlice({
           state.user.name = name;
           state.user.email = email;
           state.user.balance = balance;
-          state.isLoggedIn = true;
-          state.isRefreshing = false;
           state.user.createdAt = createdAt;
+          state.isLoggedIn = true;
         }
       )
-      .addCase(refreshUser.pending, state => {
-        state.isRefreshing = true;
-      })
-      .addCase(refreshUser.rejected, (state, { payload }) => {
-        state.isLoggedIn = false;
-        state.user = { name: '', email: '', balance: '' };
-        state.token = null;
-        state.error = payload;
-        state.isRefreshing = false;
-      })
+      .addCase(
+        refreshToken.fulfilled,
+        (state, { payload: { name, balance, email, createdAt } }) => {
+          state.user.name = name;
+          state.user.email = email;
+          state.user.balance = balance;
+          state.user.createdAt = createdAt;
+          state.isLoggedIn = true;
+        }
+      )
       .addMatcher(
         isAnyOf(
           register.pending,
           logIn.pending,
           logOut.pending,
-          refreshUser.pending
+          refreshUser.pending,
+          refreshToken.pending
         ),
         state => {
           state.isRefreshing = true;
@@ -86,7 +92,13 @@ const sessionSlice = createSlice({
         }
       )
       .addMatcher(
-        isAnyOf(register.fulfilled, logIn.fulfilled, logOut.fulfilled),
+        isAnyOf(
+          register.fulfilled,
+          logIn.fulfilled,
+          logOut.fulfilled,
+          refreshToken.fulfilled,
+          refreshUser.fulfilled
+        ),
         state => {
           state.isRefreshing = false;
           state.error = null;
@@ -97,7 +109,8 @@ const sessionSlice = createSlice({
           register.rejected,
           logIn.rejected,
           logOut.rejected,
-          refreshUser.rejected
+          refreshUser.rejected,
+          refreshToken.rejected
         ),
         (state, { payload }) => {
           state.isRefreshing = false;
