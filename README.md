@@ -22,3 +22,10 @@
    - Define the error in the redux store session.error.
    - Display the error message.
 7. The "Login" link is a Link component from react-router-dom and should redirect to "/login".
+
+<h4>RegistrationPage</h4>
+
+- Implements responsive design for mobile, tablet, and desktop screens.
+- Ensures proper placement and alignment of elements on the page.
+- Includes the RegistrationForm component.
+- Wraps the page in the withAuthRedirect higher-order component to redirect unauthenticated users to the login page.
