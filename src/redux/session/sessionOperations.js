@@ -1,14 +1,13 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import API from '../../services/api/authApi';
-import { setAuthToken } from 'services/api/api';
 
 export const register = createAsyncThunk(
   'session/register',
   async (credentials, thunkAPI) => {
     try {
       const { data } = await API.signup(credentials);
-      // After successful registration, add the token to the HTTP header
-      setAuthToken(data.accessToken);
+
+      localStorage.setItem('token', data.accessToken);
 
       return data;
     } catch (error) {
@@ -27,7 +26,7 @@ export const logIn = createAsyncThunk(
     try {
       const { data } = await API.login(credentials);
 
-      setAuthToken(data.accessToken);
+      localStorage.setItem('token', data.accessToken);
       return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
@@ -44,8 +43,6 @@ export const logOut = createAsyncThunk(
   async (credentials, thunkAPI) => {
     try {
       await API.logout(credentials);
-      // After a successful logout, remove the token from the HTTP header
-      setAuthToken(null);
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }
@@ -59,19 +56,28 @@ export const logOut = createAsyncThunk(
 export const refreshUser = createAsyncThunk(
   'session/refreshUser',
   async (credentials, thunkAPI) => {
-    // Reading the token from the state via getState()
     const state = thunkAPI.getState();
     const persistedToken = state.session.token;
 
     if (persistedToken === null) {
-      // If there is no token, exit without performing any request
       return thunkAPI.rejectWithValue('Unable to fetch user');
     }
 
     try {
-      // If there is a token, add it to the HTTP header and perform the request
-      setAuthToken(persistedToken);
       const { data } = await API.getCurrent(credentials);
+      return data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
+export const refreshToken = createAsyncThunk(
+  'session/refreshToken',
+  async (_, thunkAPI) => {
+    try {
+      const { data } = await API.refreshToken();
+      localStorage.setItem('token', data.accessToken);
       return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
@@ -84,6 +90,7 @@ const operations = {
   logIn,
   logOut,
   refreshUser,
+  refreshToken,
 };
 
 export default operations;
