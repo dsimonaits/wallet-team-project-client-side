@@ -10,13 +10,11 @@ import './stylesheet/index.css';
 import './stylesheet/vars.css';
 import './stylesheet/fonts.css';
 ReactDOM.createRoot(document.getElementById('root')).render(
-  <React.StrictMode>
-    <Provider store={store}>
-      <PersistGate persistor={persistor}>
-        <BrowserRouter basename="wallet-team-project-client-side">
-          <App />
-        </BrowserRouter>
-      </PersistGate>
-    </Provider>
-  </React.StrictMode>
+  <Provider store={store}>
+    <PersistGate persistor={persistor}>
+      <BrowserRouter basename="wallet-team-project-client-side">
+        <App />
+      </BrowserRouter>
+    </PersistGate>
+  </Provider>
 );
