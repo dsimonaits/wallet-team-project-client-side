@@ -36,13 +36,13 @@ export const App = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (token !== null && userLoggedIn) {
+    if (token !== null && userLoggedIn && !refreshing) {
       dispatch(fetchTransactions());
     }
-    if (token && !userLoggedIn) {
+    if (token && !userLoggedIn && !refreshing) {
       dispatch(refreshToken());
     }
-  }, [dispatch, token, userLoggedIn]);
+  }, [dispatch, token, userLoggedIn, refreshing]);
 
   useEffect(() => {
     if (!isMobile && location.pathname === '/currency') {
