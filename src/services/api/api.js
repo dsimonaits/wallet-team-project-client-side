@@ -1,6 +1,4 @@
 import axios from 'axios';
-import { logOut } from 'redux/session/sessionOperations';
-import { useDispatch } from 'react-redux';
 
 const API_URL = 'https://wallet-team-project-hg8k.onrender.com';
 
@@ -9,23 +7,34 @@ const api = axios.create({
   withCredentials: true,
 });
 
+api.interceptors.request.use(config => {
+  config.headers.Authorization = `Bearer ${localStorage.getItem('token')}`;
+  return config;
+});
+
 api.interceptors.response.use(
-  response => response,
-  error => {
-    if (error.response.status === 401) {
-      const dispatch = useDispatch();
-      dispatch(logOut());
+  config => {
+    return config;
+  },
+  async error => {
+    const originalRequest = error.config;
+    if (
+      error.response.status === 401 &&
+      error.config &&
+      !error.config._isRetry
+    ) {
+      originalRequest._isRetry = true;
+      try {
+        const { data } = await axios.get(`${API_URL}/api/user/refresh`, {
+          withCredentials: true,
+        });
+        localStorage.setItem('token', data.ResponseBody.data.accessToken);
+        return api.request(originalRequest);
+      } catch (error) {
+        console.log(error.message);
+      }
     }
-    return Promise.reject(error);
   }
 );
-
-export const setAuthToken = token => {
-  if (token) {
-    api.defaults.headers.common.Authorization = `Bearer ${token}`;
-  } else {
-    delete api.defaults.headers.common.Authorization;
-  }
-};
 
 export default api;
