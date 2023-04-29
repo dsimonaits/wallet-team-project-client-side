@@ -33,17 +33,21 @@ export const Statistics = () => {
   };
 
   return (
-    <Wrapper>
-      <Text>Statistics</Text>
-      <SubWrapper>
-        <>{statistic && !loading && <ChartJs statistic={statistic} />}</>
+    <>
+      {userLoggedIn && (
+        <Wrapper>
+          <Text>Statistics</Text>
+          <SubWrapper>
+            <>{statistic && !loading && <ChartJs statistic={statistic} />}</>
 
-        <Box>
-          <SelectLabels handleSelect={handleSelect} />
-          {statistic && <StatisticsList statistic={statistic} />}
-        </Box>
-      </SubWrapper>
-    </Wrapper>
+            <Box>
+              <SelectLabels handleSelect={handleSelect} />
+              {statistic && <StatisticsList statistic={statistic} />}
+            </Box>
+          </SubWrapper>
+        </Wrapper>
+      )}
+    </>
   );
 };
 
