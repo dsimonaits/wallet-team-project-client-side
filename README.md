@@ -5,6 +5,7 @@
 <h3>Technical tasks</h3>
 
 <h4>RegistrationForm</h4>
+
 1. Mobile, tablet, desktop layout.
 2. Validate form fields using either formik and yup library or indicative.
    - Password and email are mandatory fields.
