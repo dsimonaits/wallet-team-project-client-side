@@ -7,8 +7,6 @@ export const register = createAsyncThunk(
     try {
       const { data } = await API.signup(credentials);
 
-      localStorage.setItem('token', data.accessToken);
-
       return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
@@ -25,8 +23,6 @@ export const logIn = createAsyncThunk(
   async (credentials, thunkAPI) => {
     try {
       const { data } = await API.login(credentials);
-
-      localStorage.setItem('token', data.accessToken);
       return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
@@ -77,7 +73,6 @@ export const refreshToken = createAsyncThunk(
   async (_, thunkAPI) => {
     try {
       const { data } = await API.refreshToken();
-      localStorage.setItem('token', data.accessToken);
       return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
