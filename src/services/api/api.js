@@ -7,11 +7,9 @@ const api = axios.create({
   withCredentials: true,
 });
 
-const persistToken = JSON.parse(localStorage.getItem('persist:session')).token;
-
 api.interceptors.request.use(config => {
-  const tokenWithoutQuotes = persistToken.replace(/['"]+/g, '');
-  config.headers.Authorization = `Bearer ${tokenWithoutQuotes}`;
+  const token = localStorage.getItem('token');
+  config.headers.Authorization = `Bearer ${token}`;
   return config;
 });
 
