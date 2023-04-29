@@ -7,8 +7,11 @@ const api = axios.create({
   withCredentials: true,
 });
 
+const persistToken = JSON.parse(localStorage.getItem('persist:session')).token;
+
 api.interceptors.request.use(config => {
-  config.headers.Authorization = `Bearer ${localStorage.getItem('token')}`;
+  const tokenWithoutQuotes = persistToken.replace(/['"]+/g, '');
+  config.headers.Authorization = `Bearer ${tokenWithoutQuotes}`;
   return config;
 });
 
@@ -25,10 +28,9 @@ api.interceptors.response.use(
     ) {
       originalRequest._isRetry = true;
       try {
-        const { data } = await axios.get(`${API_URL}/api/user/refresh`, {
+        await axios.get(`${API_URL}/api/user/refresh`, {
           withCredentials: true,
         });
-        localStorage.setItem('token', data.ResponseBody.data.accessToken);
         return api.request(originalRequest);
       } catch (error) {
         console.log(error.message);
