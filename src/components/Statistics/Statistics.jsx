@@ -6,6 +6,7 @@ import {
   selectStatistic,
   selectIsLoading,
 } from 'redux/finance/financeSelectors';
+import { selectToken, selectIsLoggedIn } from 'redux/session/sessionSelectors';
 import { getTransactionsStatistics } from 'redux/finance/financeOperations';
 
 import { StatisticsList } from 'components/StatisticsList/StatisticsList';
@@ -17,10 +18,15 @@ export const Statistics = () => {
   const dispatch = useDispatch();
   const statistic = useSelector(selectStatistic);
   const loading = useSelector(selectIsLoading);
+  const userLoggedIn = useSelector(selectIsLoggedIn);
+
+  const token = useSelector(selectToken);
 
   useEffect(() => {
-    dispatch(getTransactionsStatistics(select));
-  }, [dispatch, select]);
+    if (token && userLoggedIn) {
+      dispatch(getTransactionsStatistics(select));
+    }
+  }, [dispatch, token, userLoggedIn, select]);
 
   const handleSelect = data => {
     setSelect(data);
