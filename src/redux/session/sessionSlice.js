@@ -70,11 +70,15 @@ const sessionSlice = createSlice({
       )
       .addCase(
         refreshToken.fulfilled,
-        (state, { payload: { name, balance, email, createdAt } }) => {
+        (
+          state,
+          { payload: { name, balance, email, createdAt, accessToken } }
+        ) => {
           state.user.name = name;
           state.user.email = email;
           state.user.balance = balance;
           state.user.createdAt = createdAt;
+          state.token = accessToken;
           state.isLoggedIn = true;
         }
       )
