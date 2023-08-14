@@ -12,6 +12,8 @@ export const HeaderContainer = styled.header`
   }
 
   @media screen and (min-width: 1280px) {
+    max-width: 1200px;
+    margin: 0 auto;
     padding: 20px 16px;
   }
 `;
@@ -21,9 +23,7 @@ export const MainContainer = styled.div`
   justify-content: space-between;
 `;
 
-export const LogoContainer = styled.div`
-
-`;
+export const LogoContainer = styled.div``;
 
 export const AuthContainer = styled.div`
   display: flex;
