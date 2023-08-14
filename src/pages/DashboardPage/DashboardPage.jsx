@@ -35,7 +35,6 @@ const DashboardPage = () => {
   };
   return (
     <>
-      <MainBackground />
       <ThemeProvider theme={theme === 'light' ? lightTheme : darkTheme}>
         <GlobalStyles />
         <Header themeToggler={themeToggler} />
@@ -54,6 +53,7 @@ const DashboardPage = () => {
               <Outlet />
             </HomeTab>
           </DashBoardContainer>
+          <MainBackground />
         </Section>
         {location.pathname !== '/diagram' && <AddBtnFunction />}
 
