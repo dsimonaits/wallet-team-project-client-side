@@ -8,7 +8,7 @@ export const Background = styled.div`
   top: 0;
   left: 0;
   width: 100%;
-  min-height: 720px;
+  min-height: 100%;
   background-color: rgba(229, 229, 229, 0.4);
 
   @media screen and (min-width: 768px) {
