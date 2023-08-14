@@ -6,6 +6,7 @@ export const SectionStyled = styled.section`
   padding-top: 12px;
   padding-bottom: 40;
   min-height: 640px;
+  margin: 0 auto;
 
   @media screen and (max-width: 1200px) {
     padding-top: 32px;
@@ -13,6 +14,8 @@ export const SectionStyled = styled.section`
   }
 
   @media screen and (min-width: 1280px) {
+    max-width: 1200px;
+    margin: 0 auto;
     padding-top: 46px;
   }
 `;
