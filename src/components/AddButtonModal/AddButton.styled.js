@@ -189,6 +189,7 @@ export const AddBtn = styled.button`
   cursor: pointer;
   @media screen and (max-width: 768px) {
     bottom: 20px;
+    position: fixed;
   }
 
   transition: box-shadow 250ms ease-in-out, background-color 250ms ease-in-out;

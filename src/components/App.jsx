@@ -52,9 +52,9 @@ export const App = () => {
     if (!isMobile && location.pathname === '/currency') {
       navigate('home');
     }
-    if (location.pathname === '/') {
-      navigate('home');
-    }
+    // if (location.pathname === '/') {
+    //   navigate('home');
+    // }
   }, [isMobile, navigate, location.pathname]);
 
   return (
@@ -66,7 +66,7 @@ export const App = () => {
             exact
             path="/login"
             element={
-              <PublicRoute restricted redirectTo="/home">
+              <PublicRoute restricted redirectTo="/">
                 <LoginPage />
               </PublicRoute>
             }
@@ -75,7 +75,7 @@ export const App = () => {
             exact
             path="/register"
             element={
-              <PublicRoute restricted redirectTo="/home">
+              <PublicRoute restricted redirectTo="/">
                 <RegistrationPage />
               </PublicRoute>
             }
@@ -89,7 +89,7 @@ export const App = () => {
             }
           >
             <Route
-              path="home"
+              path="/"
               element={
                 <PrivateRoute redirectTo="/login">
                   <Table />
