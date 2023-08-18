@@ -1,6 +1,7 @@
 <h1>Team Project - Wallet</h1>
 
 <h2>Live page  https://dsimonaits.github.io/wallet-team-project-client-side</h2>
+<h2>Server repo  https://github.com/dsimonaits/wallet-team-project-server-side</h2>
 
 We apologize for any inconvenience you may experience while using our application. We want to inform you that our backend is hosted on a free cloud application platform called Render. Due to the nature of the free service, there may be occasional delays or slower response times, especially during actions like logging in, as it may take some time for the initial connection to the server to occur.
 
