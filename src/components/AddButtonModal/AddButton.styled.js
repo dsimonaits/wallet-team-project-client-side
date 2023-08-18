@@ -3,8 +3,8 @@ import Datetime from 'react-datetime';
 // import DateRangeIcon from '@mui/icons-material/DateRange';
 
 export const Select = styled.select`
-/* border:0; */
-appearance: none;
+  /* border:0; */
+  appearance: none;
   border: transparent;
   border-bottom: 1px solid #e0e0e0;
   /* margin-bottom:44px; */
@@ -15,44 +15,40 @@ appearance: none;
   min-width: 280px;
   width: 100%;
   margin-bottom: 40px;
-  background-color:rgba(255, 255, 255, 1);
+  background-color: rgba(255, 255, 255, 1);
   cursor: pointer;
-    &:focus {
+  &:focus {
     /* color:red; */
-    background-color:var(--primary-white-color );
+    background-color: var(--primary-white-color);
     border-bottom: 2px solid var(--greenblue);
-
   }
- @media screen and (min-width: 768px) {
+  @media screen and (min-width: 768px) {
     min-width: 394px;
-  width: 100%;
+    width: 100%;
   }
-
-
 `;
 export const SelectConteiner = styled.div`
- /* background-color:red;  */
-width: 280px;
-height:auto;
-display:flex;
-justify-content:center;
-position:relative;
-/* box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.1);
+  /* background-color:red;  */
+  width: 280px;
+  height: auto;
+  display: flex;
+  justify-content: center;
+  position: relative;
+  /* box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.1);
 backdrop-filter: blur(25px);
 border-radius: 20px; */
- `
+`;
 export const Option = styled.option`
   background-color: rgba(255, 255, 255, 0.7);
   box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.1);
   backdrop-filter: blur(25px);
   border-radius: 20px;
-  width:40px;
-  margin-bottom:44px;
-     &:focus {
-    color:black;
-    background-color:blue;
+  width: 40px;
+  margin-bottom: 44px;
+  &:focus {
+    color: black;
+    background-color: blue;
     border-bottom: 2px solid var(--greenblue);
-  
   }
 `;
 export const Div = styled.div`
@@ -185,9 +181,9 @@ export const AddBtn = styled.button`
   color: rgba(255, 255, 255, 1);
   font-size: 30px;
   font-weight: 100;
-  border: 1px solid  var(--primary-white-color);
+  border: 1px solid var(--primary-white-color);
   background-color: rgba(36, 204, 167, 1);
-  position: fixed;
+  position: absolute;
   bottom: 20px;
   right: 40px;
   cursor: pointer;
@@ -226,7 +222,7 @@ export const ExitButton = styled.button`
   letter-spacing: 0.1em;
   text-transform: uppercase;
   color: #4a56e2;
-  background-color:  var(--primary-white-color);
+  background-color: var(--primary-white-color);
   border: 1px solid var(--ascent-text-color);
   border-radius: 20px;
   font-size: 18px;
@@ -246,8 +242,8 @@ export const AddButton = styled.button`
   text-align: center;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color:var(--primary-white-color);
-  background-color: var( --greenblue);
+  color: var(--primary-white-color);
+  background-color: var(--greenblue);
   border: 1px solid var(--ascent-text-color);
   border-radius: 20px;
   font-size: 18px;
@@ -336,7 +332,7 @@ export const Slider = styled.span`
   }
 `;
 
- export const Checkbox = styled.input`
+export const Checkbox = styled.input`
   opacity: 0;
   width: 0;
   height: 0;
@@ -350,26 +346,7 @@ export const Slider = styled.span`
       background-repeat: no-repeat;
       background-size: 30px;
       background-position: center;
-      background-color:var(--pink);
+      background-color: var(--pink);
     }
   }
 `;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

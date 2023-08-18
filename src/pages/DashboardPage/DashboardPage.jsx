@@ -53,9 +53,9 @@ const DashboardPage = () => {
               <Outlet />
             </HomeTab>
           </DashBoardContainer>
+          {location.pathname !== '/diagram' && <AddBtnFunction />}
           <MainBackground />
         </Section>
-        {location.pathname !== '/diagram' && <AddBtnFunction />}
 
         <DevButton onClick={onClose} />
         {teamModalOpen && <TeamModal onClose={onClose} />}
