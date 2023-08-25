@@ -19,7 +19,7 @@ apologize for any inconvenience it may cause.
 
 We appreciate your understanding and thank you for using our application.
 
-# Project Technologies and Dependencies
+# Project Technologies
 
 ## Frontend
 
@@ -55,7 +55,7 @@ We appreciate your understanding and thank you for using our application.
 - Version: ^1.1.0
 - Description: A JavaScript schema builder for value parsing and validation.
 
-## Styling Dependencies
+## Styling
 
 ### Emotion
 
@@ -69,7 +69,7 @@ We appreciate your understanding and thank you for using our application.
 - Description: A library for styling React components with tagged template
   literals.
 
-## Data Visualization Dependencies
+## Data Visualization
 
 ### Chart.js
 
@@ -83,7 +83,7 @@ We appreciate your understanding and thank you for using our application.
 - Description: A React wrapper for Chart.js, making it easy to integrate charts
   into React applications.
 
-## Utility Dependencies
+## Utility
 
 ### Date-fns
 
@@ -167,7 +167,7 @@ We appreciate your understanding and thank you for using our application.
 - Description: A cloud-based email delivery platform for sending transactional
   and marketing emails.
 
-## Utility Dependencies
+## Utility
 
 ### Axios
 
