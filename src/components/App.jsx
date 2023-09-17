@@ -118,8 +118,8 @@ export const App = () => {
           <Route
             path="*"
             element={
-              <PublicRoute restricted redirectTo="/login">
-                <RegistrationPage />
+              <PublicRoute restricted redirectTo="/">
+                <LoginPage />
               </PublicRoute>
             }
           />
