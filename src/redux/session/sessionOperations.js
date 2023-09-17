@@ -41,8 +41,7 @@ export const logIn = createAsyncThunk(
       setToken(data.accessToken);
       return data;
     } catch (error) {
-      console.log(error.message);
-      toast.error(error.message, {
+      toast.error('Wrong email or password', {
         position: 'top-right',
         autoClose: 3000,
         hideProgressBar: false,
@@ -68,16 +67,6 @@ export const logOut = createAsyncThunk(
       await API.logout(credentials);
       setToken(null);
     } catch (error) {
-      toast.error(error.message, {
-        position: 'top-right',
-        autoClose: 3000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: 'light',
-      });
       return thunkAPI.rejectWithValue(error.message);
     }
   }
@@ -101,16 +90,6 @@ export const refreshUser = createAsyncThunk(
       const { data } = await API.getCurrent(credentials);
       return data;
     } catch (error) {
-      toast.error(error.message, {
-        position: 'top-right',
-        autoClose: 3000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: 'light',
-      });
       return thunkAPI.rejectWithValue(error.message);
     }
   }
@@ -129,16 +108,6 @@ export const refreshToken = createAsyncThunk(
       setToken(data.accessToken);
       return data;
     } catch (error) {
-      toast.error(error.message, {
-        position: 'top-right',
-        autoClose: 3000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: 'light',
-      });
       return thunkAPI.rejectWithValue(error.message);
     }
   }
