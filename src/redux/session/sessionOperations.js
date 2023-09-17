@@ -41,6 +41,7 @@ export const logIn = createAsyncThunk(
       setToken(data.accessToken);
       return data;
     } catch (error) {
+      console.log(error.message);
       toast.error(error.message, {
         position: 'top-right',
         autoClose: 3000,
