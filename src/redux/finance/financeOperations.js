@@ -131,7 +131,6 @@ export const getTransactionsStatistics = createAsyncThunk(
   async (body, { rejectWithValue }) => {
     try {
       const { data } = await api.post(`/api/transaction/statistic`, body);
-      console.log(data);
       return data;
     } catch (error) {
       return rejectWithValue(error.message);
