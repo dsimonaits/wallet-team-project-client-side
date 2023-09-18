@@ -6,12 +6,11 @@ const API_URL = 'https://wallet-team-project-hg8k.onrender.com';
 const signup = async body => {
   const { data } = await api.post('api/user/signup', body);
 
-  return data.ResponseBody;
+  return data;
 };
 
 const login = async body => {
   const { data } = await api.post('/api/user/login', body);
-  console.log(data);
   return data;
 };
 
