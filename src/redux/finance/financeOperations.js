@@ -6,11 +6,8 @@ export const fetchTransactions = createAsyncThunk(
   'finance/fetchTransactions',
   async (_, { rejectWithValue }) => {
     try {
-      const {
-        data: { ResponseBody },
-      } = await api(`/api/transaction/getAll`);
-
-      return ResponseBody.data;
+      const { data } = await api(`/api/transaction/getAll`);
+      return data.data;
     } catch (error) {
       return rejectWithValue(error.message);
     }
@@ -30,9 +27,7 @@ export const addTransaction = createAsyncThunk(
   'finance/addTransaction',
   async (transaction, { rejectWithValue }) => {
     try {
-      const {
-        data: { ResponseBody },
-      } = await api.post(`/api/transaction/create`, transaction);
+      const { data } = await api.post(`/api/transaction/create`, transaction);
       toast.success('Transaction added successfully', {
         position: 'top-right',
         autoClose: 3000,
@@ -44,7 +39,7 @@ export const addTransaction = createAsyncThunk(
         theme: 'light',
       });
 
-      return ResponseBody.data;
+      return data.data;
     } catch (error) {
       toast.error('Transaction not added', {
         position: 'top-right',
@@ -66,9 +61,7 @@ export const updateTransaction = createAsyncThunk(
   'finance/updateTransaction',
   async ({ type, category, date, comment, sum, id }, { rejectWithValue }) => {
     try {
-      const {
-        data: { ResponseBody },
-      } = await api.put(`/api/transaction/update/${id}`, {
+      const { data } = await api.put(`/api/transaction/update/${id}`, {
         type,
         date,
         category,
@@ -86,7 +79,7 @@ export const updateTransaction = createAsyncThunk(
         progress: undefined,
         theme: 'light',
       });
-      return ResponseBody.data;
+      return data.data;
     } catch (error) {
       toast.error('Transaction not updated', {
         position: 'top-right',
@@ -138,7 +131,7 @@ export const getTransactionsStatistics = createAsyncThunk(
   async (body, { rejectWithValue }) => {
     try {
       const { data } = await api.post(`/api/transaction/statistic`, body);
-
+      console.log(data);
       return data;
     } catch (error) {
       return rejectWithValue(error.message);
