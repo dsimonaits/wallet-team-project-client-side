@@ -38,10 +38,15 @@ export const logIn = createAsyncThunk(
   async (credentials, thunkAPI) => {
     try {
       const { data } = await API.login(credentials);
+      console.log(data);
+      if (data.error) {
+        throw new Error(data.error.message);
+      }
+
       setToken(data.accessToken);
       return data;
     } catch (error) {
-      toast.error('Wrong email or password', {
+      toast.error(error.message, {
         position: 'top-right',
         autoClose: 3000,
         hideProgressBar: false,
