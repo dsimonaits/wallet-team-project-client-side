@@ -34,6 +34,10 @@ api.interceptors.response.use(
         console.log(error.message);
       }
     }
+    if (error.response.status === 400) {
+      // You can add custom handling for status 400 here if needed
+      return error.response;
+    }
   }
 );
 
