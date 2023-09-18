@@ -11,8 +11,8 @@ const signup = async body => {
 
 const login = async body => {
   const { data } = await api.post('/api/user/login', body);
-
-  return data.ResponseBody;
+  console.log(data);
+  return data;
 };
 
 const logout = async () => {
@@ -21,15 +21,14 @@ const logout = async () => {
 
 const getCurrent = async () => {
   const { data } = await api.get('api/user/current');
-
-  return data.ResponseBody;
+  return data;
 };
 const refreshToken = async () => {
   const { data } = await axios.get(`${API_URL}/api/user/refresh`, {
     withCredentials: true,
   });
 
-  return data.ResponseBody;
+  return data;
 };
 
 const API = {

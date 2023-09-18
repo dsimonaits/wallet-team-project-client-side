@@ -19,7 +19,7 @@ const currenciesApi = async () => {
     const response = await axios(
       'https://wallet-team-project-hg8k.onrender.com/api/currenciesApi'
     );
-    const responseData = response.data.ResponseBody;
+    const responseData = response.data;
 
     localStorage.setItem(
       CURRENCY_CACHE_KEY,
