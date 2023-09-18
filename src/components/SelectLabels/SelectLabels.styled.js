@@ -16,7 +16,7 @@ export const WrapperControl = styled.div`
 
 export const Control = styled(FormControl)``;
 
-export const Selec = styled(Select)`
+export const DateSelect = styled(Select)`
   border: 1px solid #000000;
   border-radius: 30px;
   height: 50px;
