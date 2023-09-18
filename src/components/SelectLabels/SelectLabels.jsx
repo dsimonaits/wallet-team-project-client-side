@@ -1,18 +1,16 @@
 import * as React from 'react';
 import { useState } from 'react';
 import MenuItem from '@mui/material/MenuItem';
-import { useSelector } from 'react-redux';
-import { selectUser } from 'redux/session/sessionSelectors';
 
-import { Selec, Control, WrapperControl } from './SelectLabels.styled';
+import { DateSelect, Control, WrapperControl } from './SelectLabels.styled';
 
 export const SelectLabels = ({ handleSelect }) => {
-  const [year, setYear] = useState(
-    useSelector(selectUser).createdAt.slice(0, 4)
-  );
-  const [month, setMonth] = useState(
-    useSelector(selectUser).createdAt.slice(5, 7)
-  );
+  const currentDate = new Date();
+  const currentMonth = (currentDate.getMonth() + 1).toString().padStart(2, '0');
+  const currentYear = currentDate.getFullYear().toString();
+
+  const [year, setYear] = useState(currentYear);
+  const [month, setMonth] = useState(currentMonth);
 
   const handleChange = event => {
     const { name, value } = event.target;
@@ -37,7 +35,7 @@ export const SelectLabels = ({ handleSelect }) => {
   return (
     <WrapperControl>
       <Control sx={{ m: 1 }}>
-        <Selec
+        <DateSelect
           style={{ borderRadius: '30px' }}
           value={month}
           name="month"
@@ -59,10 +57,10 @@ export const SelectLabels = ({ handleSelect }) => {
           <MenuItem value={'10'}>October</MenuItem>
           <MenuItem value={'11'}>November</MenuItem>
           <MenuItem value={'12'}>December</MenuItem>
-        </Selec>
+        </DateSelect>
       </Control>
       <Control sx={{ m: 1 }}>
-        <Selec
+        <DateSelect
           style={{ borderRadius: '30px' }}
           value={year}
           name="year"
@@ -87,7 +85,7 @@ export const SelectLabels = ({ handleSelect }) => {
           <MenuItem value={'2021'}>2021</MenuItem>
           <MenuItem value={'2022'}>2022</MenuItem>
           <MenuItem value={'2023'}>2023</MenuItem>
-        </Selec>
+        </DateSelect>
       </Control>
     </WrapperControl>
   );
