@@ -1,6 +1,6 @@
 import { ChartJs } from 'components/ChartJS/ChartJS';
 import { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch, useSelector, shallowEqual } from 'react-redux';
 import { SelectLabels } from 'components/SelectLabels/SelectLabels';
 import {
   selectStatistic,
@@ -16,8 +16,8 @@ export const Statistics = () => {
   const [select, setSelect] = useState({ month: '4', year: '2023' });
 
   const dispatch = useDispatch();
-  const statistic = useSelector(selectStatistic);
-  const loading = useSelector(selectIsLoading);
+  const statistic = useSelector(state => selectStatistic(state), shallowEqual);
+  const loading = useSelector(state => selectIsLoading(state), shallowEqual);
   const userLoggedIn = useSelector(selectIsLoggedIn);
 
   const token = useSelector(selectToken);
