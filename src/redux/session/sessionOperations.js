@@ -11,8 +11,12 @@ export const register = createAsyncThunk(
   async (credentials, thunkAPI) => {
     try {
       const { data } = await API.signup(credentials);
-      setToken(data.accessToken);
-      return data;
+      console.log(data);
+      if (data.error) {
+        throw new Error(data.error.message);
+      }
+      setToken(data.data.accessToken);
+      return data.data;
     } catch (error) {
       toast.error(error.message, {
         position: 'top-right',
@@ -38,13 +42,12 @@ export const logIn = createAsyncThunk(
   async (credentials, thunkAPI) => {
     try {
       const { data } = await API.login(credentials);
-      console.log(data);
       if (data.error) {
         throw new Error(data.error.message);
       }
 
-      setToken(data.accessToken);
-      return data;
+      setToken(data.data.accessToken);
+      return data.data;
     } catch (error) {
       toast.error(error.message, {
         position: 'top-right',

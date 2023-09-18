@@ -4,13 +4,13 @@ import api from './api';
 const API_URL = 'https://wallet-team-project-hg8k.onrender.com';
 
 const signup = async body => {
-  const { data } = await api.post('api/user/signup', body);
-
+  const data = await api.post('api/user/signup', body);
+  console.log(data);
   return data;
 };
 
 const login = async body => {
-  const { data } = await api.post('/api/user/login', body);
+  const data = await api.post('/api/user/login', body);
   return data;
 };
 
