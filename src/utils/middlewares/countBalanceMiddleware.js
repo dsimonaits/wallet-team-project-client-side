@@ -2,7 +2,6 @@ import { updateBalance } from '../../redux/session/sessionSlice';
 
 const countBalanceMiddleware = store => next => async action => {
   if (action.type === 'finance/addTransaction/fulfilled') {
-    console.log(action);
     const { balance } = await store.getState().session.user;
     const newBalance =
       (await action.payload.type) === true
