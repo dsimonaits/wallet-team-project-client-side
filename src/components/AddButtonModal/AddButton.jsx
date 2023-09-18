@@ -118,7 +118,7 @@ const AddBtnFunction = ({ categories }) => {
       setOnSwitch(true);
       dispatch(toggleModalAddTransaction());
       setSum('');
-      setCategory('');
+      setCategory('Main expenses');
       setComment('');
     } catch (error) {
       error.errors.forEach(errorMessage => {
@@ -130,7 +130,7 @@ const AddBtnFunction = ({ categories }) => {
     setOnSwitch(true);
     dispatch(toggleModalAddTransaction());
     setSum('');
-    setCategory('');
+    setCategory('Main expenses');
     setComment('');
   };
 
@@ -207,14 +207,14 @@ const AddBtnFunction = ({ categories }) => {
                   >
                     <Option value="Main expenses">Main expenses</Option>
                     <Option value="Car">Car</Option>
-                    <option value="Self care">Self care</option>
-                    <option value="Child care">Child care</option>
-                    <option value="Household products">
+                    <Option value="Self care">Self care</Option>
+                    <Option value="Child care">Child care</Option>
+                    <Option value="Household products">
                       Household products
-                    </option>
-                    <option value="Education">Education</option>
-                    <option value="Leisure">Leisure</option>
-                    <option value="Other">Other expenses</option>
+                    </Option>
+                    <Option value="Education">Education</Option>
+                    <Option value="Leisure">Leisure</Option>
+                    <Option value="Other">Other expenses</Option>
                   </Select>
                 </div>
               )}
