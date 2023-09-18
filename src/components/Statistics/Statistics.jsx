@@ -13,7 +13,14 @@ import { StatisticsList } from 'components/StatisticsList/StatisticsList';
 import { Text, Wrapper, SubWrapper, Box } from './Statistics.styled';
 
 export const Statistics = () => {
-  const [select, setSelect] = useState({ month: '4', year: '2023' });
+  const currentDate = new Date();
+  const currentMonth = (currentDate.getMonth() + 1).toString();
+  const currentYear = currentDate.getFullYear().toString();
+
+  const [select, setSelect] = useState({
+    month: currentMonth,
+    year: currentYear,
+  });
 
   const dispatch = useDispatch();
   const statistic = useSelector(state => selectStatistic(state), shallowEqual);
