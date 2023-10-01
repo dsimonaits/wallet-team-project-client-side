@@ -186,7 +186,6 @@ export const AddBtn = styled.button`
   position: absolute;
   bottom: 20px;
   right: 40px;
-  position: fixed;
   cursor: pointer;
   @media screen and (max-width: 768px) {
     bottom: 20px;
