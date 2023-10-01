@@ -1,37 +1,12 @@
-import LoginForm from 'components/LoginForm/LoginForm';
-import Media from 'react-media';
-import mediaQueries from '../../utils/media';
-import {
-  Section,
-  PageContainer,
-  ImgContainer,
-  ImgWrapperLogin,
-  Title,
-  FormWrapper,
-} from './AuthPages.styled';
-import { ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import LoginForm from 'components/Forms/LoginForm/LoginForm';
+import { ImgWrapperLogin } from 'components/Layouts/AuthLayout/AuthLayout.styled';
+import AuthLayout from 'components/Layouts/AuthLayout/AuthLayout';
 
 const LoginPage = () => {
   return (
-    <Section>
-      <PageContainer>
-        <Media queries={mediaQueries}>
-          {matches =>
-            (matches.tablet || matches.desktop) && (
-              <ImgContainer>
-                <ImgWrapperLogin />
-                <Title>Finance App</Title>
-              </ImgContainer>
-            )
-          }
-        </Media>
-        <FormWrapper>
-          <LoginForm />
-        </FormWrapper>
-      </PageContainer>
-      <ToastContainer />
-    </Section>
+    <AuthLayout ImgWrapper={ImgWrapperLogin}>
+      <LoginForm />
+    </AuthLayout>
   );
 };
 export default LoginPage;

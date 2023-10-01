@@ -11,18 +11,16 @@ import {
 } from '../redux/session/sessionSelectors';
 import { refreshToken } from '../redux/session/sessionOperations';
 import { fetchTransactions } from '../redux/finance/financeOperations';
-import { PublicRoute } from './PublicRoute';
-import { PrivateRoute } from './PrivateRoute';
-import Spinner from './Spinner/Spinner';
+import { PublicRoute } from '../Routes/PublicRoute';
+import { PrivateRoute } from '../Routes/PrivateRoute';
+import Spinner from './UI/Spinner/Spinner';
 
-const LoginPage = lazy(() => import('../pages/auth/LoginPage'));
-const RegistrationPage = lazy(() => import('../pages/auth/RegistrationPage'));
-const DashboardPage = lazy(() =>
-  import('../pages/DashboardPage/DashboardPage')
-);
-const Table = lazy(() => import('./Table/Table'));
-const Statistics = lazy(() => import('./Statistics/Statistics'));
-const Currency = lazy(() => import('./Currency/Currency'));
+const LoginPage = lazy(() => import('../pages/Auth/LoginPage'));
+const RegistrationPage = lazy(() => import('../pages/Auth/RegistrationPage'));
+const DashboardPage = lazy(() => import('../pages/DashboardPage'));
+const Table = lazy(() => import('./UI/Table/Table'));
+const Statistics = lazy(() => import('./UI/Statistics/Statistics'));
+const Currency = lazy(() => import('./UI/Currency/Currency'));
 
 export const App = () => {
   const isMobile = useMediaQuery(mediaQueries.mobile);
