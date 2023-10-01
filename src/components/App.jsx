@@ -15,8 +15,8 @@ import { PublicRoute } from '../Routes/PublicRoute';
 import { PrivateRoute } from '../Routes/PrivateRoute';
 import Spinner from './UI/Spinner/Spinner';
 
-const LoginPage = lazy(() => import('../pages/Auth/LoginPage'));
-const RegistrationPage = lazy(() => import('../pages/Auth/RegistrationPage'));
+const LoginPage = lazy(() => import('../pages/LoginPage'));
+const RegistrationPage = lazy(() => import('../pages/RegistrationPage'));
 const DashboardPage = lazy(() => import('../pages/DashboardPage'));
 const Table = lazy(() => import('./UI/Table/Table'));
 const Statistics = lazy(() => import('./UI/Statistics/Statistics'));
