@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 export const DashBoardContainer = styled.div`
+  position: relative;
   display: flex;
   flex-flow: column;
   margin: 0 auto;
