@@ -14,20 +14,13 @@ import { ThemeProvider } from 'styled-components';
 import { GlobalStyles } from '../components/UI/ThemeChanger/GlobalStyle';
 import { lightTheme, darkTheme } from '../components/UI/ThemeChanger/Theme';
 import AddBtnFunction from 'components/UI/AddButtonModal/AddButton';
-import DevButton from 'components/UI/DevButton/DevButton';
-import TeamModal from 'components/UI/TeamModal/TeamModal';
 import DashBoard from 'components/Layouts/DashBoard/DashBoard';
 import LeftBar from 'components/Layouts/LeftBar/LeftBar';
 
 const DashboardPage = () => {
   const [theme, setTheme] = useState('light');
-  const [teamModalOpen, setTeamModalOpen] = useState(false);
 
   const location = useLocation();
-
-  const onClose = () => {
-    setTeamModalOpen(!teamModalOpen);
-  };
 
   const themeToggler = () => {
     theme === 'light' ? setTheme('dark') : setTheme('light');
@@ -50,10 +43,8 @@ const DashboardPage = () => {
           <HomeTab>
             <Outlet />
           </HomeTab>
+          {location.pathname !== '/diagram' && <AddBtnFunction />}
         </DashBoard>
-        {location.pathname !== '/diagram' && <AddBtnFunction />}
-        <DevButton onClick={onClose} />
-        {teamModalOpen && <TeamModal onClose={onClose} />}
       </ThemeProvider>
     </>
   );
