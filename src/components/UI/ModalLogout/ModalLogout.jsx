@@ -1,5 +1,5 @@
 import mediaQueries from '../../../utils/media';
-import Media from 'react-media';
+import withMediaHOC from 'hoc/reactMediaHOC';
 import {
   CancelButton,
   ExitButton,
@@ -27,14 +27,13 @@ export default function ModalLogout() {
     dispatch(toggleModalLogout());
   };
 
+  const Media = withMediaHOC({ queries: mediaQueries });
   return (
     <>
       <Modal onClose={onClose}>
         <ModalContainer>
           <LogoContainer>
-            <Media queries={mediaQueries}>
-              {matches => matches.mobile && <Logo />}
-            </Media>
+            <Media>{matches => matches.mobile && <Logo />}</Media>
           </LogoContainer>
           <Text>Are you sure you want to exit?</Text>
           <ExitButton type="button" onClick={() => dispatch(userLogOut)}>

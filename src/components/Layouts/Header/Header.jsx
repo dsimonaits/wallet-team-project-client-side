@@ -1,4 +1,4 @@
-import Media from 'react-media';
+import withMediaHOC from 'hoc/reactMediaHOC';
 import mediaQueries from '../../../utils/media';
 import Logo from 'components/UI/Logo/Logo';
 import { useDispatch, useSelector } from 'react-redux';
@@ -23,6 +23,8 @@ export default function Header({ themeToggler }) {
   const dispatch = useDispatch();
   const { name } = useSelector(selectUser);
 
+  const Media = withMediaHOC({ queries: mediaQueries });
+
   return (
     <>
       {isModalLogoutOpen && <ModalLogout />}
@@ -34,7 +36,7 @@ export default function Header({ themeToggler }) {
           <ThemeSwitcher themeToggler={themeToggler} />
           <AuthContainer>
             <Name>{name}</Name>
-            <Media queries={mediaQueries}>
+            <Media>
               {matches =>
                 (matches.tablet || matches.desktop) && (
                   <LineSvg>

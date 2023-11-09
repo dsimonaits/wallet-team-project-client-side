@@ -1,4 +1,4 @@
-import Media from 'react-media';
+import withMediaHOC from 'hoc/reactMediaHOC';
 import mediaQueries from '../../../utils/media';
 import {
   Section,
@@ -11,10 +11,11 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 const AuthLayout = ({ children, ImgWrapper }) => {
+  const Media = withMediaHOC({ queries: mediaQueries });
   return (
     <Section>
       <PageContainer>
-        <Media queries={mediaQueries}>
+        <Media>
           {matches =>
             (matches.tablet || matches.desktop) && (
               <ImgContainer>

@@ -5,7 +5,7 @@ import MainTab from 'components/Layouts/MainTab/MainTab';
 import HomeTab from 'components/Layouts/HomeTab/HomeTab';
 import Navigation from 'components/Layouts/Navigation/Navigation';
 import Balance from '../components/UI/Balance/Balance';
-import Media from 'react-media';
+import withMediaHOC from 'hoc/reactMediaHOC';
 import mediaQueries from '../utils/media';
 import Currency from 'components/UI/Currency/Currency';
 import { Outlet } from 'react-router-dom';
@@ -21,6 +21,7 @@ const DashboardPage = () => {
   const [theme, setTheme] = useState('light');
 
   const location = useLocation();
+  const Media = withMediaHOC({ queries: mediaQueries });
 
   const themeToggler = () => {
     theme === 'light' ? setTheme('dark') : setTheme('light');
@@ -36,7 +37,8 @@ const DashboardPage = () => {
               <Navigation />
               <Balance />
             </LeftBar>
-            <Media queries={mediaQueries}>
+
+            <Media>
               {matches => (matches.tablet || matches.desktop) && <Currency />}
             </Media>
           </MainTab>

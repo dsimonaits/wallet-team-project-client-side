@@ -1,5 +1,5 @@
 import mediaQueries from '../../../utils/media';
-import Media from 'react-media';
+import withMediaHOC from 'hoc/reactMediaHOC';
 import {
   CancelButton,
   ExitButton,
@@ -46,14 +46,14 @@ const ModalDelete = ({ transactionDelete }) => {
     }${month}.${year}`;
   }
 
+  const Media = withMediaHOC({ queries: mediaQueries });
+
   return (
     <>
       <Modal onClose={onClose}>
         <ModalContainer>
           <LogoContainer>
-            <Media queries={mediaQueries}>
-              {matches => matches.mobile && <Logo />}
-            </Media>
+            <Media>{matches => matches.mobile && <Logo />}</Media>
           </LogoContainer>
           <TextWrapper>
             <TextQ>Are you sure you want to delete this transaction?</TextQ>

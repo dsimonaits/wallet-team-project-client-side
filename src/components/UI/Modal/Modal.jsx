@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import Media from 'react-media';
+import withMediaHOC from 'hoc/reactMediaHOC';
 import mediaQueries from '../../../utils/media';
 import {
   ModalWrapper,
@@ -39,11 +39,13 @@ export default function Modal({ onClose, children }) {
     }
   };
 
+  const Media = withMediaHOC({ queries: mediaQueries });
+
   return (
     <>
       <ModalWrapper onClick={handleBackdropClick}>
         <ModalContent>
-          <Media queries={mediaQueries}>
+          <Media>
             {matches =>
               (matches.tablet || matches.desktop) && (
                 <CloseBtnBox>
