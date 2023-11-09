@@ -6,12 +6,38 @@ const setToken = token => {
   localStorage.setItem('token', token);
 };
 
+let showToast = false;
+
+const upStartWarning = () => {
+  setTimeout(() => {
+    if (!showToast) {
+      return;
+    }
+    showToast &&
+      toast.warning(
+        'Sorry for the delay. Our server is starting up after inactivity. Please wait a bit. Normally it takes a minute ',
+        {
+          position: 'top-right',
+          autoClose: 60000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: 'light',
+        }
+      );
+  }, 10000);
+};
+
 export const register = createAsyncThunk(
   'session/register',
   async (credentials, thunkAPI) => {
     try {
+      showToast = true;
+      upStartWarning();
       const { data } = await API.signup(credentials);
-      console.log(data);
+
       if (data.error) {
         throw new Error(data.error.message);
       }
@@ -29,6 +55,8 @@ export const register = createAsyncThunk(
         theme: 'light',
       });
       return thunkAPI.rejectWithValue(error.message);
+    } finally {
+      showToast = false;
     }
   }
 );
@@ -41,7 +69,10 @@ export const logIn = createAsyncThunk(
   'session/logIn',
   async (credentials, thunkAPI) => {
     try {
+      upStartWarning();
+      showToast = true;
       const { data } = await API.login(credentials);
+
       if (data.error) {
         throw new Error(data.error.message);
       }
@@ -60,6 +91,8 @@ export const logIn = createAsyncThunk(
         theme: 'light',
       });
       return thunkAPI.rejectWithValue(error.message);
+    } finally {
+      showToast = false;
     }
   }
 );
@@ -72,6 +105,7 @@ export const logOut = createAsyncThunk(
   'session/logOut',
   async (credentials, thunkAPI) => {
     try {
+      upStartWarning();
       await API.logout(credentials);
       setToken(null);
     } catch (error) {
@@ -95,7 +129,9 @@ export const refreshUser = createAsyncThunk(
     }
 
     try {
+      upStartWarning();
       const { data } = await API.getCurrent(credentials);
+
       return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
@@ -107,7 +143,10 @@ export const refreshToken = createAsyncThunk(
   'session/refreshToken',
   async (credentials, thunkAPI) => {
     try {
+      showToast = true;
+      upStartWarning();
       const { data } = await API.refreshToken();
+
       if (data === null) {
         await API.logout(credentials);
         setToken(null);
@@ -117,6 +156,8 @@ export const refreshToken = createAsyncThunk(
       return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
+    } finally {
+      showToast = false;
     }
   }
 );
