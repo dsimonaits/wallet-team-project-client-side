@@ -6,9 +6,11 @@ import { PersistGate } from 'redux-persist/integration/react';
 import { BrowserRouter } from 'react-router-dom';
 import { store } from './redux/store';
 import { persistor } from './redux/store';
+
 import './stylesheet/index.css';
 import './stylesheet/vars.css';
 import './stylesheet/fonts.css';
+
 ReactDOM.createRoot(document.getElementById('root')).render(
   <Provider store={store}>
     <PersistGate persistor={persistor}>

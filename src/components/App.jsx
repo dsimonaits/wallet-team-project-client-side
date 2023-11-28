@@ -1,5 +1,5 @@
 import { Routes, Route, useNavigate, useLocation } from 'react-router-dom';
-import { lazy, Suspense } from 'react';
+import { lazy, Suspense, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import mediaQueries from 'utils/media';
@@ -14,6 +14,8 @@ import { fetchTransactions } from '../redux/finance/financeOperations';
 import { PublicRoute } from '../Routes/PublicRoute';
 import { PrivateRoute } from '../Routes/PrivateRoute';
 import Spinner from './UI/Spinner/Spinner';
+import ConnectingToDB from './UI/ConnectingToDB/ConnectingToDB';
+import { ChakraProvider, extendTheme } from '@chakra-ui/react';
 
 const LoginPage = lazy(() => import('../pages/LoginPage'));
 const RegistrationPage = lazy(() => import('../pages/RegistrationPage'));
@@ -22,7 +24,11 @@ const Table = lazy(() => import('./UI/Table/Table'));
 const Statistics = lazy(() => import('./UI/Statistics/Statistics'));
 const Currency = lazy(() => import('./UI/Currency/Currency'));
 
+const theme = extendTheme({});
+
 export const App = () => {
+  const [connectingToDB, setConnectingToDB] = useState(false);
+
   const isMobile = useMediaQuery(mediaQueries.mobile);
   const location = useLocation();
 
@@ -35,6 +41,21 @@ export const App = () => {
   const token = useSelector(selectToken);
 
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const timeoutId = setTimeout(() => {
+      refreshing && setConnectingToDB(true);
+    }, 5000);
+
+    if (!refreshing) {
+      clearTimeout(timeoutId);
+      setConnectingToDB(false);
+    }
+
+    return () => {
+      clearTimeout(timeoutId);
+    };
+  }, [refreshing]);
 
   useEffect(() => {
     if (token && !userLoggedIn) {
@@ -57,72 +78,81 @@ export const App = () => {
 
   return (
     <>
-      <Suspense fallback={<Spinner />}>
-        {refreshing && <Spinner />}
-        <Routes>
-          <Route
-            exact
-            path="/login"
-            element={
-              <PublicRoute restricted redirectTo="/">
-                <LoginPage />
-              </PublicRoute>
-            }
-          />
-          <Route
-            exact
-            path="/register"
-            element={
-              <PublicRoute restricted redirectTo="/">
-                <RegistrationPage />
-              </PublicRoute>
-            }
-          />
-          <Route
-            path=""
-            element={
-              <PrivateRoute redirectTo="/login">
-                <DashboardPage />
-              </PrivateRoute>
-            }
-          >
+      {refreshing && connectingToDB ? (
+        <ChakraProvider theme={theme}>
+          <ConnectingToDB />
+        </ChakraProvider>
+      ) : (
+        refreshing && <Spinner />
+      )}
+
+      {!refreshing && !connectingToDB ? (
+        <Suspense fallback={<Spinner />}>
+          <Routes>
             <Route
-              path="/"
+              exact
+              path="/login"
               element={
-                <PrivateRoute redirectTo="/login">
-                  <Table />
-                </PrivateRoute>
+                <PublicRoute restricted redirectTo="/">
+                  <LoginPage />
+                </PublicRoute>
               }
             />
             <Route
-              path="diagram"
+              exact
+              path="/register"
               element={
-                <PrivateRoute redirectTo="/login">
-                  <Statistics />
-                </PrivateRoute>
+                <PublicRoute restricted redirectTo="/">
+                  <RegistrationPage />
+                </PublicRoute>
               }
             />
-            {isMobile && (
+            <Route
+              path=""
+              element={
+                <PrivateRoute redirectTo="/login">
+                  <DashboardPage />
+                </PrivateRoute>
+              }
+            >
               <Route
-                path="currency"
+                path="/"
                 element={
                   <PrivateRoute redirectTo="/login">
-                    <Currency />
+                    <Table />
                   </PrivateRoute>
                 }
               />
-            )}
-          </Route>
-          <Route
-            path="*"
-            element={
-              <PublicRoute restricted redirectTo="/">
-                <LoginPage />
-              </PublicRoute>
-            }
-          />
-        </Routes>
-      </Suspense>
+              <Route
+                path="diagram"
+                element={
+                  <PrivateRoute redirectTo="/login">
+                    <Statistics />
+                  </PrivateRoute>
+                }
+              />
+              {isMobile && (
+                <Route
+                  path="currency"
+                  element={
+                    <PrivateRoute redirectTo="/login">
+                      <Currency />
+                    </PrivateRoute>
+                  }
+                />
+              )}
+            </Route>
+            <Route
+              path="*"
+              element={
+                <PublicRoute restricted redirectTo="/">
+                  <LoginPage />
+                </PublicRoute>
+              }
+            />
+          </Routes>
+        </Suspense>
+      ) : null}
     </>
   );
 };
