@@ -78,81 +78,78 @@ export const App = () => {
 
   return (
     <>
-      {refreshing && connectingToDB ? (
+      {connectingToDB ? (
         <ChakraProvider theme={theme}>
           <ConnectingToDB />
         </ChakraProvider>
-      ) : (
-        refreshing && <Spinner />
-      )}
+      ) : null}
+      {refreshing ? <Spinner /> : null}
 
-      {!refreshing && !connectingToDB ? (
-        <Suspense fallback={<Spinner />}>
-          <Routes>
+      <Suspense fallback={<Spinner />}>
+        <Routes>
+          <Route
+            exact
+            path="/login"
+            element={
+              <PublicRoute restricted redirectTo="/">
+                <LoginPage />
+              </PublicRoute>
+            }
+          />
+          <Route
+            exact
+            path="/register"
+            element={
+              <PublicRoute restricted redirectTo="/">
+                <RegistrationPage />
+              </PublicRoute>
+            }
+          />
+          <Route
+            path=""
+            element={
+              <PrivateRoute redirectTo="/login">
+                <DashboardPage />
+              </PrivateRoute>
+            }
+          >
             <Route
-              exact
-              path="/login"
-              element={
-                <PublicRoute restricted redirectTo="/">
-                  <LoginPage />
-                </PublicRoute>
-              }
-            />
-            <Route
-              exact
-              path="/register"
-              element={
-                <PublicRoute restricted redirectTo="/">
-                  <RegistrationPage />
-                </PublicRoute>
-              }
-            />
-            <Route
-              path=""
+              path="/"
               element={
                 <PrivateRoute redirectTo="/login">
-                  <DashboardPage />
+                  <Table />
                 </PrivateRoute>
               }
-            >
-              <Route
-                path="/"
-                element={
-                  <PrivateRoute redirectTo="/login">
-                    <Table />
-                  </PrivateRoute>
-                }
-              />
-              <Route
-                path="diagram"
-                element={
-                  <PrivateRoute redirectTo="/login">
-                    <Statistics />
-                  </PrivateRoute>
-                }
-              />
-              {isMobile && (
-                <Route
-                  path="currency"
-                  element={
-                    <PrivateRoute redirectTo="/login">
-                      <Currency />
-                    </PrivateRoute>
-                  }
-                />
-              )}
-            </Route>
+            />
             <Route
-              path="*"
+              path="diagram"
               element={
-                <PublicRoute restricted redirectTo="/">
-                  <LoginPage />
-                </PublicRoute>
+                <PrivateRoute redirectTo="/login">
+                  <Statistics />
+                </PrivateRoute>
               }
             />
-          </Routes>
-        </Suspense>
-      ) : null}
+            {isMobile && (
+              <Route
+                path="currency"
+                element={
+                  <PrivateRoute redirectTo="/login">
+                    <Currency />
+                  </PrivateRoute>
+                }
+              />
+            )}
+          </Route>
+          <Route
+            path="*"
+            element={
+              <PublicRoute restricted redirectTo="/">
+                <LoginPage />
+              </PublicRoute>
+            }
+          />
+        </Routes>
+      </Suspense>
     </>
   );
 };

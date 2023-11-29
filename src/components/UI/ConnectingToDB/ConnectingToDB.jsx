@@ -52,15 +52,19 @@ const ConnectingToDB = () => {
   return (
     <Box
       as="section"
-      position="absolute"
-      top="200px"
+      position="fixed"
+      display="flex"
+      pt="200px"
+      justifyContent="center"
+      top="50%"
       left="50%"
-      transform="translateX(-50%)"
-      width={['260px', '400px', '600px']}
-      height="60vh"
-      background="secondary"
+      transform="translate(-50%, -50%)"
+      width="100%"
+      height="100%"
+      background="white"
+      zIndex="999"
     >
-      <Box px="20px" style={{ width: ['200px', '400px', '600px'] }}>
+      <Box px="20px" width={['200px', '400px', '600px']}>
         <Heading as="h1" fontSize={[15, 20, 25]} textAlign="center">
           Connecting to server...
         </Heading>
